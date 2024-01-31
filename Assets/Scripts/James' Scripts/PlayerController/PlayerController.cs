@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 5f;
     public float sensitivity = 2f;
     public float jumpForce = 10f;
+    public float groundCheckDistance = 1.0f; // Distance for the raycast to check if grounded
 
     private bool isGrounded = true;
     private Rigidbody rb;
@@ -19,7 +20,6 @@ public class PlayerController : MonoBehaviour
         InputAction jumpAction = GetComponent<PlayerInput>().actions.FindAction("Jump");
         jumpAction.performed += ctx => OnJump();
 
-
         rb = GetComponent<Rigidbody>();
 
         // Lock and hide the cursor
@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour
         // Set the initial rotation to look straight
         transform.rotation = Quaternion.identity;
         Camera.main.transform.localRotation = Quaternion.identity;
-
     }
 
     void OnMove(InputValue value)
@@ -43,25 +42,17 @@ public class PlayerController : MonoBehaviour
 
     void OnJump()
     {
+        if (isGrounded)
+        {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isGrounded = false;
-        
+        }
+        //rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        //isGrounded = false;
     }
-
-
-
-    void GroundCheck()
-    {
-        // Use transform.TransformDirection to convert local forward to world space forward
-        isGrounded = Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), 0.1f);
-        Debug.Log("Is Grounded: " + isGrounded);
-    }
- 
-
 
     void FixedUpdate()
     {
-
         // Move the player based on moveInput
         Vector3 movement = new Vector3(moveInput.x, 0f, moveInput.y) * speed * Time.deltaTime;
         transform.Translate(movement, Space.Self);
@@ -74,11 +65,23 @@ public class PlayerController : MonoBehaviour
         Vector3 cameraRotation = new Vector3(-lookInput.y, 0f, 0f) * sensitivity;
         Camera.main.transform.Rotate(cameraRotation);
 
-
+        // Check if the player is grounded
+        CheckGrounded();
     }
 
-    void OnDrawGizmos()
+    void CheckGrounded()
     {
-        Gizmos.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 0.1f);
+        // Perform a raycast to check if the player is grounded
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, groundCheckDistance))
+        {
+            isGrounded = true;
+            Debug.Log("Player is grounded");
+        }
+        else
+        {
+            isGrounded = false;
+            Debug.Log("Player is airborne");
+        }
     }
 }
