@@ -15,6 +15,13 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveInput;
     private Vector2 lookInput;
 
+    Animator playerAnimation;
+
+    private void Awake()
+    {
+        playerAnimation = GetComponent<Animator>();
+    }
+
     void Start()
     {
         InputAction jumpAction = GetComponent<PlayerInput>().actions.FindAction("Jump");
@@ -47,8 +54,6 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isGrounded = false;
         }
-        //rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        //isGrounded = false;
     }
 
     void FixedUpdate()
@@ -67,6 +72,8 @@ public class PlayerController : MonoBehaviour
 
         // Check if the player is grounded
         CheckGrounded();
+
+        UpdateAnimation();
     }
 
     void CheckGrounded()
@@ -83,5 +90,23 @@ public class PlayerController : MonoBehaviour
             isGrounded = false;
             Debug.Log("Player is airborne");
         }
+    }
+
+    void UpdateAnimation()
+    {
+        float moveMagnitude = moveInput.magnitude;
+
+        // Check if the player is moving forward or backward
+        bool isMovingForward = moveInput.y > 0;
+        bool isMovingBackward = moveInput.y < 0;
+
+        // Set the "Running" parameter in the animator based on whether the player is moving forward or backward
+        playerAnimation.SetBool("Running", isMovingForward || isMovingBackward);
+
+        // Set the "Backward" parameter in the animator based on whether the player is moving backward
+        playerAnimation.SetBool("Backwards", isMovingBackward);
+
+        // Set the "Idle" parameter in the animator based on whether the player is not moving
+        playerAnimation.SetBool("Idle", moveMagnitude == 0f);
     }
 }
