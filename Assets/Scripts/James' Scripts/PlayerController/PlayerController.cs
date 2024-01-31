@@ -5,21 +5,29 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 5f;
-    public float sensitivity = 2f; // adjust this if needed 2 is kinda high, i set it to 0.01 in the inspector.s
+    public float sensitivity = 2f;
+    public float jumpForce = 10f;
+
+    private bool isGrounded = true;
+    private Rigidbody rb;
+
     private Vector2 moveInput;
     private Vector2 lookInput;
-    private Rigidbody rb;
-    private Camera mainCamera;
 
-    void Awake()
+    void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        mainCamera = Camera.main;
+        InputAction jumpAction = GetComponent<PlayerInput>().actions.FindAction("Jump");
+        jumpAction.performed += ctx => OnJump();
 
-        // Reset the mouse position to the center of the screen
+
+        rb = GetComponent<Rigidbody>();
+
+        // Lock and hide the cursor
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+
+        // Set the initial rotation to look straight
+        transform.rotation = Quaternion.identity;
+        Camera.main.transform.localRotation = Quaternion.identity;
 
     }
 
@@ -33,31 +41,44 @@ public class PlayerController : MonoBehaviour
         lookInput = value.Get<Vector2>();
     }
 
-    void FixedUpdate()
+    void OnJump()
     {
-        // adjusting the camera's forward and right vectors to calculate movement direction
-        Vector3 cameraForward = mainCamera.transform.forward;
-        Vector3 cameraRight = mainCamera.transform.right;
-
-        // setting the vectors onto the y to 0
-        cameraForward.y = 0f;
-        cameraRight.y = 0f;
-
-        // grabbing the vector 3 variable and normalizing the speed to be constant whenever moving
-        cameraForward.Normalize();
-        cameraRight.Normalize();
-
-        // setting the movement direction based of moveInput and the 2 vector3 camera orientation
-        Vector3 movement = (cameraForward * moveInput.y + cameraRight * moveInput.x) * speed * Time.deltaTime;
-
-        // Move the player
-        rb.MovePosition(rb.position + movement);
-
-        // Rotate the player based on mouse input
-        Vector3 playerRotation = new Vector3(0f, lookInput.x, 0f) * sensitivity;
-        rb.MoveRotation(rb.rotation * Quaternion.Euler(playerRotation));
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isGrounded = false;
+        
     }
 
 
 
+    void GroundCheck()
+    {
+        // Use transform.TransformDirection to convert local forward to world space forward
+        isGrounded = Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), 0.1f);
+        Debug.Log("Is Grounded: " + isGrounded);
+    }
+ 
+
+
+    void FixedUpdate()
+    {
+
+        // Move the player based on moveInput
+        Vector3 movement = new Vector3(moveInput.x, 0f, moveInput.y) * speed * Time.deltaTime;
+        transform.Translate(movement, Space.Self);
+
+        // Rotate the player based on mouse input
+        Vector3 playerRotation = new Vector3(0f, lookInput.x, 0f) * sensitivity;
+        transform.Rotate(playerRotation);
+
+        // Rotate the camera based on mouse input
+        Vector3 cameraRotation = new Vector3(-lookInput.y, 0f, 0f) * sensitivity;
+        Camera.main.transform.Rotate(cameraRotation);
+
+
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 0.1f);
+    }
 }
