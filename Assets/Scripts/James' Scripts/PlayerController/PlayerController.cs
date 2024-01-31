@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+
     }
 
     void OnMove(InputValue value)
@@ -53,7 +54,7 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition(rb.position + movement);
 
         // Rotate the player based on mouse input
-        Vector3 playerRotation = new Vector3(-lookInput.y, lookInput.x, 0f) * sensitivity;
+        Vector3 playerRotation = new Vector3(0f, lookInput.x, 0f) * sensitivity;
         rb.MoveRotation(rb.rotation * Quaternion.Euler(playerRotation));
     }
 
