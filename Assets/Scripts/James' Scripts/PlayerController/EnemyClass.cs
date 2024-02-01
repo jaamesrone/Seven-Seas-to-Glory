@@ -13,4 +13,10 @@ public class EnemyClass : MonoBehaviour
     public float attackTime;
 
     public float damage;
-}
+
+    public float detectionRadius; 
+
+    public float speed;
+
+    public float rotationSpeed;
+ }

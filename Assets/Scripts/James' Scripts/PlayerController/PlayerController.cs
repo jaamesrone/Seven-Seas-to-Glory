@@ -18,15 +18,13 @@ public class PlayerController : MonoBehaviour
 
     Animator playerAnimation;
 
-    private void Awake()
-    {
-        playerAnimation = GetComponent<Animator>();
-    }
 
     void Start()
     {
         InputAction jumpAction = GetComponent<PlayerInput>().actions.FindAction("Jump");
         jumpAction.performed += ctx => OnJump();
+
+        playerAnimation = GetComponent<Animator>();
 
         rb = GetComponent<Rigidbody>();
 
@@ -119,7 +117,6 @@ public class PlayerController : MonoBehaviour
 
     void UpdateAnimation()
     {
-        float moveMagnitude = moveInput.magnitude;
 
         // Check if the player is moving forward or backward
         bool isMovingForward = moveInput.y > 0;
