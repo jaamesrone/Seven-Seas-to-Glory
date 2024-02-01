@@ -11,4 +11,6 @@ public class EnemyClass : MonoBehaviour
     public float reloadTime;
 
     public float attackTime;
+
+    public float damage;
 }

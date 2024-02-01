@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 10f;
     public float groundCheckDistance = 1.0f; // Distance for the raycast to check if grounded
 
+    private bool isAttacking = false;
     private bool isGrounded = true;
     private Rigidbody rb;
 
@@ -56,6 +57,30 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void OnFire()
+    {
+        // Check if the player is not currently attacking
+        if (!isAttacking)
+        {
+            // Set the "IsAttacking" parameter to true to initiate the attack
+            playerAnimation.SetBool("IsAttacking", true);
+            isAttacking = true;
+
+            // Automatically reset the "IsAttacking" parameter after a delay
+            StartCoroutine(ResetIsAttackingAfterDelay(1f)); // Adjust the delay as needed
+        }
+    }
+
+    IEnumerator ResetIsAttackingAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        // Reset the "IsAttacking" parameter to false after the specified delay
+        playerAnimation.SetBool("IsAttacking", false);
+        isAttacking = false; // Allow the player to attack again
+    }
+
+
     void FixedUpdate()
     {
         // Move the player based on moveInput
@@ -101,12 +126,11 @@ public class PlayerController : MonoBehaviour
         bool isMovingBackward = moveInput.y < 0;
 
         // Set the "Running" parameter in the animator based on whether the player is moving forward or backward
-        playerAnimation.SetBool("Running", isMovingForward || isMovingBackward);
+        playerAnimation.SetBool("Running", isMovingForward);
 
-        // Set the "Backward" parameter in the animator based on whether the player is moving backward
+        // Set the "Backwards" parameter in the animator based on whether the player is moving backward
         playerAnimation.SetBool("Backwards", isMovingBackward);
-
-        // Set the "Idle" parameter in the animator based on whether the player is not moving
-        playerAnimation.SetBool("Idle", moveMagnitude == 0f);
     }
+
+
 }
