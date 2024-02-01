@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Pirate : EnemyClass
@@ -8,11 +7,13 @@ public class Pirate : EnemyClass
     private Rigidbody rb;
 
     Animator pirateAnimation;
+    private float attackRange = 4f;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody>();
+        pirateAnimation = GetComponent<Animator>();
     }
 
     void Update()
@@ -29,7 +30,6 @@ public class Pirate : EnemyClass
 
     void MoveTowardsPlayer()
     {
-        pirateAnimation.SetBool("isRunning", true);
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 
@@ -40,25 +40,32 @@ public class Pirate : EnemyClass
         if (distanceToPlayer < detectionRadius)
         {
             LookAtPlayer();
-            MoveTowardsPlayer();
-            AttackPlayer();
+
+            if (distanceToPlayer <= attackRange)
+            {
+                pirateAnimation.SetBool("isRunning", false);
+                // The pirate is within attack range, initiate attack animation
+                AttackPlayer();
+            }
+            else
+            {
+                pirateAnimation.SetBool("pirateAttack", false);
+                // The pirate is outside attack range, move towards the player
+                MoveTowardsPlayer();
+                // Set the "isRunning" parameter to true for movement animation
+                pirateAnimation.SetBool("isRunning", true);
+            }
+        }
+        else
+        {
+            // Player is out of detection radius, stop running animation
+            pirateAnimation.SetBool("isRunning", false);
         }
     }
 
     void AttackPlayer()
     {
-        //attacking
-        StartCoroutine(attacking());
-    }
-    IEnumerator attacking()
-    {
-        //animation
-        Debug.Log("Attacking player!");
-
-        // wait until attack again
-        yield return new WaitForSeconds(1f);
-
-        
+            pirateAnimation.SetBool("pirateAttack", true);
     }
     public void TakeDamage(float damage)
     {
