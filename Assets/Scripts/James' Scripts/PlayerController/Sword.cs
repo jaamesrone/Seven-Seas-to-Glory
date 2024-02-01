@@ -9,24 +9,18 @@ public class Sword : WeaponClass
     private void OnTriggerEnter(Collider other)
     {
         // Check if the collided object has an enemy script
-        Pirate pirate = other.GetComponent<Pirate>();
-        Player player = other.GetComponent<Player>();
-
-        if (pirate != null)
+        Pirate enemy = other.GetComponent<Pirate>();
+        if (enemy != null)
         {
-            // Deal damage to the pirate
-            pirate.TakeDamage(damage);
-        }
-        else if (player != null)
-        {
-            // Deal damage to the player
-            player.TakeDamage(damage);
-        }
+            // Deal damage to the enemy
+            enemy.TakeDamage(damage);
 
-        // Reduce durability
-        ReduceDurability();
+            // Reduce durability
+            ReduceDurability();
 
-        Debug.Log("Dealing damage?");
+
+            Debug.Log("hitting pirate?");
+        }
     }
 
     private void ReduceDurability()
