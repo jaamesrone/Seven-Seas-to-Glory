@@ -1,24 +1,28 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Pirate : EnemyClass
 {
     private Transform player;
-    private Rigidbody rb;
-
-    Animator pirateAnimation;
+    private NavMeshAgent agent;
+    private Animator pirateAnimation;
     private float attackRange = 4f;
+
+    // Add a boolean to track whether the pirate is in attack mode
+    private bool isAttacking = false;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        rb = GetComponent<Rigidbody>();
+        agent = GetComponent<NavMeshAgent>();
         pirateAnimation = GetComponent<Animator>();
     }
 
     void Update()
     {
         CheckPlayerRadius();
+        UpdateAnimation();
     }
 
     void LookAtPlayer()
@@ -26,11 +30,6 @@ public class Pirate : EnemyClass
         Vector3 direction = (player.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
-    }
-
-    void MoveTowardsPlayer()
-    {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 
     void CheckPlayerRadius()
@@ -43,30 +42,60 @@ public class Pirate : EnemyClass
 
             if (distanceToPlayer <= attackRange)
             {
-                pirateAnimation.SetBool("isRunning", false);
-                // The pirate is within attack range, initiate attack animation
-                AttackPlayer();
+                agent.isStopped = true;
+
+                // Check if the pirate is not already in attack mode
+                if (!isAttacking)
+                {
+                    isAttacking = true;
+                    AttackPlayer();
+                }
             }
             else
             {
-                pirateAnimation.SetBool("pirateAttack", false);
-                // The pirate is outside attack range, move towards the player
-                MoveTowardsPlayer();
-                // Set the "isRunning" parameter to true for movement animation
-                pirateAnimation.SetBool("isRunning", true);
+                // If the player is out of attack range, switch back to non-attacking state
+                if (isAttacking)
+                {
+                    isAttacking = false;
+                    pirateAnimation.ResetTrigger("pirateAttack");
+                }
+
+                agent.isStopped = false;
+                agent.SetDestination(player.position);
             }
         }
         else
         {
-            // Player is out of detection radius, stop running animation
+            // If the player is out of detection radius, switch back to non-attacking state
+            if (isAttacking)
+            {
+                isAttacking = false;
+                pirateAnimation.ResetTrigger("pirateAttack");
+            }
+
+            agent.isStopped = true;
+        }
+    }
+
+    void UpdateAnimation()
+    {
+        float speed = agent.velocity.magnitude;
+
+        if (speed > 0)
+        {
+            pirateAnimation.SetBool("isRunning", true);
+        }
+        else
+        {
             pirateAnimation.SetBool("isRunning", false);
         }
     }
 
     void AttackPlayer()
     {
-            pirateAnimation.SetBool("pirateAttack", true);
+        pirateAnimation.SetTrigger("pirateAttack");
     }
+
     public void TakeDamage(float damage)
     {
         // pirate takes dmg

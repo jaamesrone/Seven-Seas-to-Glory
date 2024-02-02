@@ -1,16 +1,13 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public float minimumX;
-    public float max_X;
-    public float minimumY;
-    public float max_Y;
+    public Vector2 spawnRangeX;
+    public Vector2 spawnRangeY;
 
     public GameObject enemySpawner;
-    public int numberOfEnemies = 6; 
+    public int numberOfEnemies = 6;
 
     void Start()
     {
@@ -21,8 +18,8 @@ public class EnemySpawner : MonoBehaviour
     {
         for (int i = 0; i < numberOfEnemies; i++)
         {
-            float randomX = Random.Range(minimumX, max_X);
-            float randomY = Random.Range(minimumY, max_Y);
+            float randomX = Random.Range(spawnRangeX.x, spawnRangeX.y);
+            float randomY = Random.Range(spawnRangeY.x, spawnRangeY.y);
 
             Vector3 pos = new Vector3(randomX, 15, randomY);
 

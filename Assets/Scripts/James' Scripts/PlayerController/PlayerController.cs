@@ -57,8 +57,8 @@ public class PlayerController : MonoBehaviour
 
     void OnFire()
     {
-        // Check if the player is not currently attacking
-        if (!isAttacking)
+        // Check if the player is moving forward or backward and not currently attacking
+        if ((moveInput.y > 0 || moveInput.y < 0) && !isAttacking)
         {
             // Set the "IsAttacking" parameter to true to initiate the attack
             playerAnimation.SetBool("IsAttacking", true);

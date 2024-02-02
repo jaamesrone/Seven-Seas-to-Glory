@@ -144,6 +144,11 @@ PrefabInstance:
       objectReference: {fileID: 9000000, guid: 2ce92ce88e537584b9f73b506405c8fc, type: 3}
     - target: {fileID: 5866666021909216657, guid: 9fa4a278e5c0c5a4b95193f1c4db250a,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 9fa4a278e5c0c5a4b95193f1c4db250a,
+        type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 9b055d4cbf5bb7c40a90c53bae5d60b9, type: 2}
@@ -171,7 +176,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9fa4a278e5c0c5a4b95193f1c4db250a,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: -7225287527747911444}
+      addedObject: {fileID: 6543367678309385870}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9fa4a278e5c0c5a4b95193f1c4db250a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2846537983388441697}
   m_SourcePrefab: {fileID: 100100000, guid: 9fa4a278e5c0c5a4b95193f1c4db250a, type: 3}
 --- !u!1 &2872997683106807374 stripped
 GameObject:
@@ -226,8 +235,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!65 &-7225287527747911444
-BoxCollider:
+--- !u!64 &6543367678309385870
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -244,9 +253,32 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1.754394, z: 1}
-  m_Center: {x: 0, y: 0.9206352, z: 0}
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2497106002754787046, guid: 2ce92ce88e537584b9f73b506405c8fc, type: 3}
+--- !u!195 &2846537983388441697
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2872997683106807374}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!4 &3650788930015411415 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1852576806548013000, guid: 9fa4a278e5c0c5a4b95193f1c4db250a,
