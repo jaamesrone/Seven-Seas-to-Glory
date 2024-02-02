@@ -9,7 +9,6 @@ public class Pirate : EnemyClass
     private Animator pirateAnimation;
     private float attackRange = 4f;
 
-    // Add a boolean to track whether the pirate is in attack mode
     private bool isAttacking = false;
 
     void Start()
@@ -53,11 +52,11 @@ public class Pirate : EnemyClass
             }
             else
             {
-                // If the player is out of attack range, switch back to non-attacking state
+                // If the player is out of attack range, switch bool back to false
                 if (isAttacking)
                 {
                     isAttacking = false;
-                    pirateAnimation.ResetTrigger("pirateAttack");
+                    pirateAnimation.SetBool("pirateAttack", false);
                 }
 
                 agent.isStopped = false;
@@ -66,11 +65,11 @@ public class Pirate : EnemyClass
         }
         else
         {
-            // If the player is out of detection radius, switch back to non-attacking state
+            // If the player is out of detection radius, switch bool back to false
             if (isAttacking)
             {
                 isAttacking = false;
-                pirateAnimation.ResetTrigger("pirateAttack");
+                pirateAnimation.SetBool("pirateAttack", false);
             }
 
             agent.isStopped = true;

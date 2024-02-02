@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PirateSword : WeaponClass
 {
-
-    // Called when the sword's hitbox collides with another collider
     private void OnTriggerEnter(Collider other)
     {
         // Check if the collided object has an enemy script
