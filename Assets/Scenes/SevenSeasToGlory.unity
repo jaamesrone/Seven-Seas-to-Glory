@@ -6857,44 +6857,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95cf93f4e6b7609438c6f35d0d28eb29, type: 3}
---- !u!84 &1482930401
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: WaterDepthMap
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 5
-  m_Width: 1024
-  m_Height: 1024
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 94
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_EnableRandomWrite: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!4 &1493487104 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1868825050329918591, guid: 95cf93f4e6b7609438c6f35d0d28eb29,
@@ -7887,6 +7849,25 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 2.0694366, z: 1}
   m_Center: {x: 0, y: 0.9765737, z: 0}
+--- !u!114 &1602085103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602085093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!4 &1616108174 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1868825050329918591, guid: 95cf93f4e6b7609438c6f35d0d28eb29,
@@ -8097,6 +8078,44 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95cf93f4e6b7609438c6f35d0d28eb29, type: 3}
+--- !u!84 &1631289100
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: WaterDepthMap
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 5
+  m_Width: 1024
+  m_Height: 1024
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 94
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_EnableRandomWrite: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
 --- !u!4 &1633072743 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1868825050329918591, guid: 95cf93f4e6b7609438c6f35d0d28eb29,
@@ -8728,6 +8747,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1602085101}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9fa4a278e5c0c5a4b95193f1c4db250a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1602085103}
   m_SourcePrefab: {fileID: 100100000, guid: 9fa4a278e5c0c5a4b95193f1c4db250a, type: 3}
 --- !u!1001 &1729140282
 PrefabInstance:
@@ -11015,7 +11038,7 @@ PrefabInstance:
     - target: {fileID: 6394156930601380080, guid: 47b7c47a56223814daf4b148007d2406,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.151
+      value: -0.138
       objectReference: {fileID: 0}
     - target: {fileID: 6394156930601380080, guid: 47b7c47a56223814daf4b148007d2406,
         type: 3}
@@ -11025,27 +11048,27 @@ PrefabInstance:
     - target: {fileID: 6394156930601380080, guid: 47b7c47a56223814daf4b148007d2406,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.342
+      value: 0.27
       objectReference: {fileID: 0}
     - target: {fileID: 6394156930601380080, guid: 47b7c47a56223814daf4b148007d2406,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.5889903
+      value: 0.6012574
       objectReference: {fileID: 0}
     - target: {fileID: 6394156930601380080, guid: 47b7c47a56223814daf4b148007d2406,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.39126867
+      value: 0.37214184
       objectReference: {fileID: 0}
     - target: {fileID: 6394156930601380080, guid: 47b7c47a56223814daf4b148007d2406,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.39126834
+      value: 0.37214184
       objectReference: {fileID: 0}
     - target: {fileID: 6394156930601380080, guid: 47b7c47a56223814daf4b148007d2406,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.5889894
+      value: 0.6012574
       objectReference: {fileID: 0}
     - target: {fileID: 6394156930601380080, guid: 47b7c47a56223814daf4b148007d2406,
         type: 3}
@@ -11055,7 +11078,7 @@ PrefabInstance:
     - target: {fileID: 6394156930601380080, guid: 47b7c47a56223814daf4b148007d2406,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 67.193
+      value: 63.51
       objectReference: {fileID: 0}
     - target: {fileID: 6394156930601380080, guid: 47b7c47a56223814daf4b148007d2406,
         type: 3}

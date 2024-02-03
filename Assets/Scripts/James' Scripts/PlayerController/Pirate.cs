@@ -9,7 +9,7 @@ public class Pirate : EnemyClass
     private Animator pirateAnimation;
     private float attackRange = 4f;
 
-    private bool isAttacking = false;
+    public bool isAttacking = false;
 
     void Start()
     {

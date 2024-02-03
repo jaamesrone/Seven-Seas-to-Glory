@@ -1,9 +1,33 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PirateSword : WeaponClass
 {
+    public BoxCollider swordCollider;
+
+    private Pirate pirate;
+
+    private void Start()
+    {
+        DisableAllSwordColliders();
+        pirate = GetComponentInParent<Pirate>();
+    }
+
+    private void DisableAllSwordColliders()
+    {
+        PirateSword[] childSwords = GetComponentsInChildren<PirateSword>();
+        foreach (PirateSword childSword in childSwords)
+        {
+            childSword.swordCollider.enabled = false;
+        }
+    }
+
+
+    private void Update()
+    {
+        colliderToggle();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         // Check if the collided object has an enemy script
@@ -12,8 +36,19 @@ public class PirateSword : WeaponClass
         {
             // Deal damage to the enemy
             player.TakeDamage(damage);
+            Debug.Log("Hitting player??");
+        }
+    }
 
-            Debug.Log("hitting player??");
+    public void colliderToggle()
+    {
+        if (pirate != null && pirate.isAttacking)
+        {
+            swordCollider.enabled = true;
+        }
+        else
+        {
+            swordCollider.enabled = false;
         }
     }
 }
