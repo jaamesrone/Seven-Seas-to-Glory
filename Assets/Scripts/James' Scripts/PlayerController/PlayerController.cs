@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        // Set initial camera rotation
+        Camera.main.transform.localRotation = Quaternion.Euler(Vector3.zero);
+
         InputAction jumpAction = GetComponent<PlayerInput>().actions.FindAction("Jump");
         jumpAction.performed += ctx => OnJump();
 
@@ -64,15 +67,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    IEnumerator ResetIsAttackingAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-
-        playerAnimation.SetBool("IsAttacking", false);
-        isAttacking = false; 
-    }
-
-
     void FixedUpdate()
     {
         // move the player based on moveInput
@@ -85,13 +79,27 @@ public class PlayerController : MonoBehaviour
 
         // rotate the camera based on mouse movement
         Vector3 cameraRotation = new Vector3(-lookInput.y, 0f, 0f) * sensitivity;
-        Camera.main.transform.Rotate(cameraRotation);
+        float currentRotationX = Camera.main.transform.localEulerAngles.x;
+        float newRotationX = currentRotationX + cameraRotation.x;
+        /*// Clamp the rotation within the specified range
+        if (newRotationX > 180)// if newrotationX goes above 180 degrees (beyond straight up), subtract 360 degrees to keep it within the [-180, 180] range.
+            newRotationX -= 360;
+        newRotationX = Mathf.Clamp(newRotationX, -30f, 40f);*/
+        Camera.main.transform.localEulerAngles = new Vector3(newRotationX, 0f, 0f);
 
-        
         CheckGrounded();
 
         UpdateAnimation();
     }
+
+    IEnumerator ResetIsAttackingAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        playerAnimation.SetBool("IsAttacking", false);
+        isAttacking = false; 
+    }
+
 
     void CheckGrounded()
     {
