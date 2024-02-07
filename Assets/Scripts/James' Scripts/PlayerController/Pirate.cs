@@ -7,7 +7,7 @@ public class Pirate : EnemyClass
     private Transform player;
     private NavMeshAgent agent;
     private Animator pirateAnimation;
-    private float attackRange = 4f;
+    private float attackRange = 5f;
 
     public bool isAttacking = false;
 
