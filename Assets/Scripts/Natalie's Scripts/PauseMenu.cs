@@ -18,6 +18,13 @@ public class PauseMenu : MonoBehaviour
 
     public object ScreenManager { get; private set; }
 
+    void Start()
+    {
+        GamePaused = false;
+        ControlsUp = false;
+        GameOver = false;
+        Time.timeScale = 1f;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -69,11 +76,10 @@ public class PauseMenu : MonoBehaviour
         GameOver = true;
     }
 
-    //public void Reset()
-    //{
-     //   Time.timeScale = 1f;
-     //   SceneManager.LoadSceneAsync("SevenSeasToGlory");
-   // }
+    public void Reset()
+    {
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+    }
 
     public void Controls()
     {
