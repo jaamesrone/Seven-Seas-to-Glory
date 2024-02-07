@@ -1,10 +1,15 @@
 using System.Collections;
 using UnityEngine;
 
+
+//minZ:74  maxZ: 84
+
 public class EnemySpawner : MonoBehaviour
 {
-    public Vector2 spawnRangeX;
-    public Vector2 spawnRangeY;
+    public float minimumX;
+    public float max_X;
+    public float minimumZ;
+    public float max_Z;
 
     public GameObject enemySpawner;
     public int numberOfEnemies = 6;
@@ -18,12 +23,12 @@ public class EnemySpawner : MonoBehaviour
     {
         for (int i = 0; i < numberOfEnemies; i++)
         {
-            float randomX = Random.Range(spawnRangeX.x, spawnRangeX.y);
-            float randomY = Random.Range(spawnRangeY.x, spawnRangeY.y);
+            float randomX = Random.Range(minimumX, max_X);
+            float randomY = Random.Range(minimumZ, max_Z);
 
             Vector3 pos = new Vector3(randomX, 15, randomY);
 
-            Instantiate(enemySpawner, pos, Quaternion.identity, transform);
+            Instantiate(enemySpawner,pos,Quaternion.identity);
         }
     }
 }
