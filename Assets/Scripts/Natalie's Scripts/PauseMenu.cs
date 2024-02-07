@@ -7,18 +7,28 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool GamePaused = false;
     public static bool ControlsUp = false;
+    public static bool GameOver = false;
     //public static bool SettingsUp = false;
 
     public GameObject pauseMenuUI;
     public GameObject controlsMenuUI;
+    public GameObject GameOverUI;
+    public Player player;
     //public GameObject settingsMenuUI;
 
     public object ScreenManager { get; private set; }
 
+    void Start()
+    {
+        GamePaused = false;
+        ControlsUp = false;
+        GameOver = false;
+        Time.timeScale = 1f;
+    }
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !GameOver)
         {
             if (GamePaused)
             {
@@ -28,6 +38,10 @@ public class PauseMenu : MonoBehaviour
             {
                 Pause();
             }
+        }
+        if (player.health <= 0)
+        {
+            DisplayGameOver();
         }
     }
 
@@ -51,6 +65,20 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GamePaused = true;
+    }
+
+    void DisplayGameOver()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+        GameOverUI.SetActive(true);
+        Time.timeScale = 0f;
+        GameOver = true;
+    }
+
+    public void Reset()
+    {
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void Controls()
@@ -88,6 +116,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = true;
         Time.timeScale = 1f;
         GamePaused = false;
+        GameOver = false;
         SceneManager.LoadScene("MainMenu");
     }
 }

@@ -11,11 +11,17 @@ public class Pirate : EnemyClass
 
     public bool isAttacking = false;
 
+    //Natalie's HealthBar
+    public HealthBar healthBar;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         pirateAnimation = GetComponent<Animator>();
+
+        //more of Natalie's HealthBar
+        healthBar.SetMaxHealth(health);
     }
 
     void Update()
@@ -99,6 +105,9 @@ public class Pirate : EnemyClass
     {
         // pirate takes dmg
         health -= damage;
+
+        //even more of Natalie's HealthBar
+        healthBar.SetHealth(health);
 
         // Check if the pirate's health is below or equal to zero
         if (health <= 0f)
