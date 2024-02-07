@@ -30,6 +30,6 @@ public class Player : PlayerClass
     private void Die()
     {
         Debug.Log("player died!");
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 }
