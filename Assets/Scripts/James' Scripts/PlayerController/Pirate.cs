@@ -22,6 +22,17 @@ public class Pirate : EnemyClass
 
         //more of Natalie's HealthBar
         healthBar.SetMaxHealth(health);
+
+        // Disable NavMeshAgent on Awake
+        agent.enabled = false;
+        StartCoroutine(EnableAgentAfterDelay(2f));
+    }
+
+    IEnumerator EnableAgentAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        // Re-enable NavMeshAgent after a couple of seconds
+        agent.enabled = true;
     }
 
     void Update()
@@ -66,7 +77,7 @@ public class Pirate : EnemyClass
                 }
 
                 agent.isStopped = false;
-                agent.SetDestination(player.position);
+                agent.destination = player.position;
             }
         }
         else
