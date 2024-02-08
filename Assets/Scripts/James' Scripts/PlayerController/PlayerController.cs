@@ -81,10 +81,10 @@ public class PlayerController : MonoBehaviour
         Vector3 cameraRotation = new Vector3(-lookInput.y, 0f, 0f) * sensitivity;
         float currentRotationX = Camera.main.transform.localEulerAngles.x;
         float newRotationX = currentRotationX + cameraRotation.x;
-        /*// Clamp the rotation within the specified range
-        if (newRotationX > 180)// if newrotationX goes above 180 degrees (beyond straight up), subtract 360 degrees to keep it within the [-180, 180] range.
+        // clamp the rotation within the specified range
+        if (newRotationX > 180)// if new rotationX goes above 180 degrees (beyond straight up), subtract 360 degrees to keep it within the [-180, 180] range.
             newRotationX -= 360;
-        newRotationX = Mathf.Clamp(newRotationX, -30f, 40f);*/
+        newRotationX = Mathf.Clamp(newRotationX, -30f, 40f);
         Camera.main.transform.localEulerAngles = new Vector3(newRotationX, 0f, 0f);
 
         CheckGrounded();
