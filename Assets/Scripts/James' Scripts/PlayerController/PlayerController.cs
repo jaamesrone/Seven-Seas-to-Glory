@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 10f;
     public float groundCheckDistance = 1.0f; // Distance for the raycast to check if grounded
 
+    private bool isBlocking = false;
     private bool isAttacking = false;
     private bool isGrounded = true;
     private Rigidbody rb;
@@ -67,6 +68,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void OnBlock()
+    {
+        // Trigger the block animation
+        playerAnimation.SetBool("IsBlocking", true);
+
+        isBlocking = true;
+    }
+ 
     void FixedUpdate()
     {
         // move the player based on moveInput
@@ -116,17 +125,43 @@ public class PlayerController : MonoBehaviour
     }
 
     void UpdateAnimation()
+{
+    // Check if the block action is currently performed
+    bool isBlocking = BlockActionIsPerformed();
+
+    // Check if the player is moving forward or backward
+    bool isMovingForward = moveInput.y > 0;
+    bool isMovingBackward = moveInput.y < 0;
+
+    // Determine the overall movement state of the player
+    bool isMoving = isMovingForward || isMovingBackward;
+
+    // Set animation parameters based on input
+    playerAnimation.SetBool("Running", isMovingForward && !isBlocking);
+    playerAnimation.SetBool("Backwards", isMovingBackward && !isBlocking);
+    playerAnimation.SetBool("IsBlocking", isBlocking);
+
+    // If the player is not moving or blocking, set the idle animation
+    if (!isMoving && !isBlocking)
     {
-
-        // checks to see if the player is moving forward or backward
-        bool isMovingForward = moveInput.y > 0;
-        bool isMovingBackward = moveInput.y < 0;
-
-        
-        playerAnimation.SetBool("Running", isMovingForward);
-
-        playerAnimation.SetBool("Backwards", isMovingBackward);
+        playerAnimation.SetBool("Idle", true);
     }
+    else
+    {
+        playerAnimation.SetBool("Idle", false);
+    }
+}
+
+
+    bool BlockActionIsPerformed()
+    {
+        // Get the block action map
+        var blockActionMap = GetComponent<PlayerInput>().actions.FindActionMap("Player");
+
+        // Check if the block action is currently performed
+        return blockActionMap["Block"].ReadValue<float>() > 0.5f;
+    }
+
 
 
 }

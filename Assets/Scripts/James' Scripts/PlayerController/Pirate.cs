@@ -4,6 +4,8 @@ using UnityEngine.AI;
 
 public class Pirate : EnemyClass
 {
+    public PlayerController PlayerController;
+
     private Transform player;
     private NavMeshAgent agent;
     private Animator pirateAnimation;
@@ -114,12 +116,19 @@ public class Pirate : EnemyClass
 
     public void TakeDamage(float damage)
     {
-        // pirate takes dmg
+        if (PlayerController != null && PlayerController.isBlocking == true)
+        {
+            // Reduce damage if the player is blocking
+            float blockedDamage = damage * 0.5f; // You can adjust the reduction factor as needed
+            Debug.Log("Player blocked the attack! Damage received: " + blockedDamage);
+        }
+        else
+        {
+            Debug.Log("Player didn't block the attack! Damage received: " + damage);
+        }
+
+        // Deal damage to the pirate
         health -= damage;
-
-        //even more of Natalie's HealthBar
-        healthBar.SetHealth(health);
-
         // Check if the pirate's health is below or equal to zero
         if (health <= 0f)
         {

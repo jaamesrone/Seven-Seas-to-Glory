@@ -643,7 +643,7 @@ MonoBehaviour:
   defense: 50
   reloadTime: 0
   attackTime: 3
-  damage: 25
+  damage: 3
   detectionRadius: 30
   speed: 0
   rotationSpeed: 5
