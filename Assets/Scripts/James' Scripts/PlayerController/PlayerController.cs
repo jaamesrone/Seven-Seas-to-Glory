@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 10f;
     public float groundCheckDistance = 1.0f; // Distance for the raycast to check if grounded
 
-    private bool isBlocking = false;
+    public bool isBlocking = false;
     private bool isAttacking = false;
     private bool isGrounded = true;
     private Rigidbody rb;

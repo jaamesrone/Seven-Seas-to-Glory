@@ -116,7 +116,7 @@ public class Pirate : EnemyClass
 
     public void TakeDamage(float damage)
     {
-        if (PlayerController != null && PlayerController.isBlocking == true)
+        if (PlayerController.isBlocking == true)
         {
             // Reduce damage if the player is blocking
             float blockedDamage = damage * 0.5f; // You can adjust the reduction factor as needed

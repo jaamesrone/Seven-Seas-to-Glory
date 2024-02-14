@@ -36,7 +36,6 @@ public class PirateSword : WeaponClass
         {
             // Deal damage to the enemy
             player.TakeDamage(damage);
-            Debug.Log("Hitting player??");
         }
     }
 
