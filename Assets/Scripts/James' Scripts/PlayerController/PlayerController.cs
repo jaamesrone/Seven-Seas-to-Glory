@@ -20,13 +20,11 @@ public class PlayerController : MonoBehaviour
     Animator playerAnimation;
 
 
-    void Start()
+    public void Start()
     {
+        ActionControls();
         // Set initial camera rotation
         Camera.main.transform.localRotation = Quaternion.Euler(Vector3.zero);
-
-        InputAction jumpAction = GetComponent<PlayerInput>().actions.FindAction("Jump");
-        jumpAction.performed += ctx => OnJump();
 
         playerAnimation = GetComponent<Animator>();
 
@@ -37,46 +35,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void OnMove(InputValue value)
-    {
-        moveInput = value.Get<Vector2>();
-    }
-
-    void OnLook(InputValue value)
-    {
-        lookInput = value.Get<Vector2>();
-    }
-
-    void OnJump()
-    {
-        if (isGrounded)
-        {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isGrounded = false;
-        }
-    }
-
-    void OnFire()
-    {
-        // check if the player is moving forward or backward and not currently attacking
-        if ((!isAttacking||moveInput.y > 0 || moveInput.y < 0) && !isAttacking )
-        {
-            playerAnimation.SetBool("IsAttacking", true);
-            isAttacking = true;
-
-            StartCoroutine(ResetIsAttackingAfterDelay(1f)); // Adjust the delay as needed
-        }
-    }
-
-    void OnBlock()
-    {
-        // Trigger the block animation
-        playerAnimation.SetBool("IsBlocking", true);
-
-        isBlocking = true;
-    }
- 
-    void FixedUpdate()
+    public void FixedUpdate()
     {
         // move the player based on moveInput
         Vector3 movement = new Vector3(moveInput.x, 0f, moveInput.y) * speed * Time.deltaTime;
@@ -101,6 +60,53 @@ public class PlayerController : MonoBehaviour
         UpdateAnimation();
     }
 
+    public void OnMove(InputValue value)
+    {
+        moveInput = value.Get<Vector2>();
+    }
+
+    public void OnLook(InputValue value)
+    {
+        lookInput = value.Get<Vector2>();
+    }
+
+    public void OnJump()
+    {
+        if (isGrounded)
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isGrounded = false;
+        }
+    }
+
+    public void OnFire()
+    {
+        // check if the player is moving forward or backward and not currently attacking
+        if ((!isAttacking||moveInput.y > 0 || moveInput.y < 0) && !isAttacking )
+        {
+            playerAnimation.SetBool("IsAttacking", true);
+            isAttacking = true;
+
+            StartCoroutine(ResetIsAttackingAfterDelay(1f)); // Adjust the delay as needed
+        }
+    }
+
+    public void OnBlock()
+    {
+        // Trigger the block animation
+        playerAnimation.SetBool("IsBlocking", true);
+
+        isBlocking = true;
+    }
+
+    public void StopBlock()
+    {
+        // Stop the block animation
+        playerAnimation.SetBool("IsBlocking", false);
+
+        isBlocking = false;
+    }
+
     IEnumerator ResetIsAttackingAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -110,7 +116,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    void CheckGrounded()
+    public void CheckGrounded()
     {
         // checks to see if i am on the ground
         RaycastHit hit;
@@ -124,44 +130,53 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void UpdateAnimation()
-{
-    // Check if the block action is currently performed
-    bool isBlocking = BlockActionIsPerformed();
-
-    // Check if the player is moving forward or backward
-    bool isMovingForward = moveInput.y > 0;
-    bool isMovingBackward = moveInput.y < 0;
-
-    // Determine the overall movement state of the player
-    bool isMoving = isMovingForward || isMovingBackward;
-
-    // Set animation parameters based on input
-    playerAnimation.SetBool("Running", isMovingForward && !isBlocking);
-    playerAnimation.SetBool("Backwards", isMovingBackward && !isBlocking);
-    playerAnimation.SetBool("IsBlocking", isBlocking);
-
-    // If the player is not moving or blocking, set the idle animation
-    if (!isMoving && !isBlocking)
+    public void UpdateAnimation()
     {
-        playerAnimation.SetBool("Idle", true);
+        // Check if the block action is currently performed
+        bool isBlocking = BlockActionIsPerformed();
+
+        // Check if the player is moving forward or backward
+        bool isMovingForward = moveInput.y > 0;
+        bool isMovingBackward = moveInput.y < 0;
+
+        // Determine the overall movement state of the player
+        bool isMoving = isMovingForward || isMovingBackward;
+
+        // Set animation parameters based on input
+        playerAnimation.SetBool("Running", isMovingForward && !isBlocking);
+        playerAnimation.SetBool("Backwards", isMovingBackward && !isBlocking);
+        playerAnimation.SetBool("IsBlocking", isBlocking);
+
+        // If the player is not moving or blocking, set the idle animation
+        if (!isMoving && !isBlocking)
+        {
+            playerAnimation.SetBool("Idle", true);
+        }
+        else
+        {
+            playerAnimation.SetBool("Idle", false);
+        }
     }
-    else
-    {
-        playerAnimation.SetBool("Idle", false);
-    }
-}
 
 
-    bool BlockActionIsPerformed()
+
+    public bool BlockActionIsPerformed()
     {
-        // Get the block action map
+        // get the block action map
         var blockActionMap = GetComponent<PlayerInput>().actions.FindActionMap("Player");
 
-        // Check if the block action is currently performed
+        // check if the block action is currently performed
         return blockActionMap["Block"].ReadValue<float>() > 0.5f;
     }
 
+    public void ActionControls()
+    {
+        InputAction jumpAction = GetComponent<PlayerInput>().actions.FindAction("Jump");
+        jumpAction.performed += ctx => OnJump();
+        InputAction blockAction = GetComponent<PlayerInput>().actions.FindAction("Block");
+        blockAction.started += ctx => OnBlock();
+        blockAction.canceled += ctx => StopBlock();
+    }
 
 
 }

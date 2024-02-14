@@ -116,17 +116,6 @@ public class Pirate : EnemyClass
 
     public void TakeDamage(float damage)
     {
-        if (PlayerController.isBlocking == true)
-        {
-            // Reduce damage if the player is blocking
-            float blockedDamage = damage * 0.5f; // You can adjust the reduction factor as needed
-            Debug.Log("Player blocked the attack! Damage received: " + blockedDamage);
-        }
-        else
-        {
-            Debug.Log("Player didn't block the attack! Damage received: " + damage);
-        }
-
         // Deal damage to the pirate
         health -= damage;
         // Check if the pirate's health is below or equal to zero
