@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Sword : WeaponClass
 {
@@ -18,11 +17,9 @@ public class Sword : WeaponClass
             // Reduce durability
             ReduceDurability();
 
-
-            Debug.Log("hitting pirate?");
+            Debug.Log("Hitting pirate?");
         }
     }
-
     private void ReduceDurability()
     {
         // Reduce durability by a fixed amount per hit
@@ -32,7 +29,7 @@ public class Sword : WeaponClass
         if (durability <= 0f)
         {
             Debug.Log("Sword is broken!");
-            gameObject.SetActive(false);  
+            gameObject.SetActive(false);
         }
     }
 }

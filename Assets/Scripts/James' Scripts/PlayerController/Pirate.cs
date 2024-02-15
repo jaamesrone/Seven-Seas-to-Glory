@@ -1,18 +1,22 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using TMPro;
 
 public class Pirate : EnemyClass
 {
     private Transform player;
     private NavMeshAgent agent;
     private Animator pirateAnimation;
-    private float attackRange = 5f;
+    public float attackRange = 5f;
 
     public bool isAttacking = false;
 
-    //Natalie's HealthBar
+    // natalie's HealthBar
     public HealthBar healthBar;
+
+    // reference to the TextMeshPro component for displaying damage indicator
+    public TextMeshPro damageTextPrefab;
 
     void Start()
     {
@@ -20,8 +24,19 @@ public class Pirate : EnemyClass
         agent = GetComponent<NavMeshAgent>();
         pirateAnimation = GetComponent<Animator>();
 
-        //more of Natalie's HealthBar
+        // set max health for health bar
         healthBar.SetMaxHealth(health);
+
+        // disable NavMeshAgent on Awake
+        agent.enabled = false;
+        StartCoroutine(EnableAgentAfterDelay(2f));
+    }
+
+    IEnumerator EnableAgentAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        // re-enable NavMeshAgent after a couple of seconds
+        agent.enabled = true;
     }
 
     void Update()
@@ -49,7 +64,7 @@ public class Pirate : EnemyClass
             {
                 agent.isStopped = true;
 
-                // Check if the pirate is not already in attack mode
+                // check if the pirate is not already in attack mode
                 if (!isAttacking)
                 {
                     isAttacking = true;
@@ -58,7 +73,7 @@ public class Pirate : EnemyClass
             }
             else
             {
-                // If the player is out of attack range, switch bool back to false
+                // if the player is out of attack range, switch bool back to false
                 if (isAttacking)
                 {
                     isAttacking = false;
@@ -66,12 +81,12 @@ public class Pirate : EnemyClass
                 }
 
                 agent.isStopped = false;
-                agent.SetDestination(player.position);
+                agent.destination = player.position;
             }
         }
         else
         {
-            // If the player is out of detection radius, switch bool back to false
+            // if the player is out of detection radius, switch bool back to false
             if (isAttacking)
             {
                 isAttacking = false;
@@ -86,14 +101,7 @@ public class Pirate : EnemyClass
     {
         float speed = agent.velocity.magnitude;
 
-        if (speed > 0)
-        {
-            pirateAnimation.SetBool("isRunning", true);
-        }
-        else
-        {
-            pirateAnimation.SetBool("isRunning", false);
-        }
+        pirateAnimation.SetBool("isRunning", speed > 0);
     }
 
     void AttackPlayer()
@@ -103,18 +111,72 @@ public class Pirate : EnemyClass
 
     public void TakeDamage(float damage)
     {
-        // pirate takes dmg
+        // deal damage to the pirate
         health -= damage;
 
-        //even more of Natalie's HealthBar
-        healthBar.SetHealth(health);
-
-        // Check if the pirate's health is below or equal to zero
+        // check if the pirate's health is below or equal to zero
         if (health <= 0f)
         {
             Die();
         }
+        else
+        {
+            // display damage indicator
+            DisplayDamageIndicator(transform.position, damage);
+        }
     }
+
+    private void DisplayDamageIndicator(Vector3 position, float damage)
+    {
+        // offset the position to be above the pirate's head
+        Vector3 aboveHeadPosition = position + Vector3.up * 1.3f;
+
+        // instantiate the damage text prefab at the adjusted position
+        TextMeshPro damageText = Instantiate(damageTextPrefab, aboveHeadPosition, Quaternion.identity);
+
+        // calculate the direction to the camera
+        Vector3 toCamera = Camera.main.transform.position - damageText.transform.position;
+
+        // make the damage text face the camera
+        damageText.transform.rotation = Quaternion.LookRotation(toCamera);
+
+        // set the damage text
+        damageText.text = damage.ToString();
+
+        // start the floating coroutine
+        StartCoroutine(FloatDamageText(damageText));
+
+        // destroy the text after a certain time
+        Destroy(damageText.gameObject, 1.0f); // change that float number for longer time.
+    }
+
+
+    private IEnumerator FloatDamageText(TextMeshPro damageText)
+    {
+        float elapsedTime = 0f;
+        float floatDuration = 1.0f; // adjust this value to control the duration of floating
+
+        Vector3 startPosition = damageText.transform.position;
+        Vector3 endPosition = startPosition + Vector3.up * 2.0f; // adjust the float height
+
+        while (elapsedTime < floatDuration)
+        {
+            // calculate the new position based on interpolation
+            Vector3 newPosition = Vector3.Lerp(startPosition, endPosition, elapsedTime / floatDuration);
+
+            // update the text's position
+            damageText.transform.position = newPosition;
+
+            // increment the elapsed time
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
+        }
+
+        // making sure text is at the final position
+        damageText.transform.position = endPosition;
+    }
+
 
     private void Die()
     {
