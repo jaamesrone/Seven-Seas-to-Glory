@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 5f;
     public float sensitivity = 2f;
     public float jumpForce = 10f;
-    public float groundCheckDistance = 1.0f; // Distance for the raycast to check if grounded
+    public float groundCheckDistance = 1.0f; // distance for the raycast to check if grounded
 
     public bool isBlocking = false;
     private bool isAttacking = false;
@@ -17,13 +17,12 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveInput;
     private Vector2 lookInput;
 
-    Animator playerAnimation;
-
+    private Animator playerAnimation;
 
     public void Start()
     {
         ActionControls();
-        // Set initial camera rotation
+        
         Camera.main.transform.localRotation = Quaternion.Euler(Vector3.zero);
 
         playerAnimation = GetComponent<Animator>();
@@ -32,7 +31,6 @@ public class PlayerController : MonoBehaviour
 
         // lock and hide the cursor
         Cursor.lockState = CursorLockMode.Locked;
-
     }
 
     public void FixedUpdate()
@@ -82,39 +80,35 @@ public class PlayerController : MonoBehaviour
     public void OnFire()
     {
         // check if the player is moving forward or backward and not currently attacking
-        if ((!isAttacking||moveInput.y > 0 || moveInput.y < 0) && !isAttacking )
+        if ((!isAttacking || moveInput.y > 0 || moveInput.y < 0) && !isAttacking)
         {
             playerAnimation.SetBool("IsAttacking", true);
             isAttacking = true;
 
-            StartCoroutine(ResetIsAttackingAfterDelay(1f)); // Adjust the delay as needed
+            StartCoroutine(ResetIsAttackingAfterDelay(1f)); //dont change that float because right now it's perfect omegalul
         }
     }
 
     public void OnBlock()
     {
-        // Trigger the block animation
+        // trigger the block animation
         playerAnimation.SetBool("IsBlocking", true);
-
         isBlocking = true;
     }
 
     public void StopBlock()
     {
-        // Stop the block animation
+        // stopping the block animation
         playerAnimation.SetBool("IsBlocking", false);
-
         isBlocking = false;
     }
 
     IEnumerator ResetIsAttackingAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-
         playerAnimation.SetBool("IsAttacking", false);
-        isAttacking = false; 
+        isAttacking = false;
     }
-
 
     public void CheckGrounded()
     {
@@ -132,22 +126,22 @@ public class PlayerController : MonoBehaviour
 
     public void UpdateAnimation()
     {
-        // Check if the block action is currently performed
+        // checking if the block action is currently performed
         bool isBlocking = BlockActionIsPerformed();
 
-        // Check if the player is moving forward or backward
+        // checking if the player is moving forward or backward
         bool isMovingForward = moveInput.y > 0;
         bool isMovingBackward = moveInput.y < 0;
 
-        // Determine the overall movement state of the player
+        // making sure the overall movement state of the player
         bool isMoving = isMovingForward || isMovingBackward;
 
-        // Set animation parameters based on input
+        // setting my animation parameters based on input
         playerAnimation.SetBool("Running", isMovingForward && !isBlocking);
         playerAnimation.SetBool("Backwards", isMovingBackward && !isBlocking);
         playerAnimation.SetBool("IsBlocking", isBlocking);
 
-        // If the player is not moving or blocking, set the idle animation
+        //if the player is not moving or blocking, set the idle animation
         if (!isMoving && !isBlocking)
         {
             playerAnimation.SetBool("Idle", true);
@@ -157,8 +151,6 @@ public class PlayerController : MonoBehaviour
             playerAnimation.SetBool("Idle", false);
         }
     }
-
-
 
     public bool BlockActionIsPerformed()
     {
@@ -177,6 +169,4 @@ public class PlayerController : MonoBehaviour
         blockAction.started += ctx => OnBlock();
         blockAction.canceled += ctx => StopBlock();
     }
-
-
 }

@@ -1,9 +1,5 @@
 using System.Collections;
 using UnityEngine;
-
-
-//minZ:74  maxZ: 84
-
 public class EnemySpawner : MonoBehaviour
 {
     public float minimumX;
