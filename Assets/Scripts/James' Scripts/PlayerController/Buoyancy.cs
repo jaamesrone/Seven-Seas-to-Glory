@@ -18,10 +18,11 @@ public class BuoyancyWithRocking : MonoBehaviour
     {
         float angle = rockingAngle * Mathf.Sin(Time.time * rockingSpeed);
         transform.localRotation = initialRotation * Quaternion.Euler(0f, 0f, angle);
-
+        /*
         foreach (var collider in colliders)
         {
             collider.transform.localRotation = Quaternion.Euler(0f, 0f, angle);
         }
+        */
     }
 }

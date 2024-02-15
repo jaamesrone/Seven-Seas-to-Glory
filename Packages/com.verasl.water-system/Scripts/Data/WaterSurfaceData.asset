@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b17284ebf5e80436eb6089f8c7459dab, type: 3}
   m_Name: WaterSurfaceData
   m_EditorClassIdentifier: 
-  _waterMaxVisibility: 16.2
+  _waterMaxVisibility: 3
   _absorptionRamp:
     serializedVersion: 2
     key0: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 1}
