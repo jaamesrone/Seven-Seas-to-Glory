@@ -114,6 +114,9 @@ public class Pirate : EnemyClass
         // deal damage to the pirate
         health -= damage;
 
+        //More of Natalie's Healthbar
+        healthBar.SetHealth(health);
+
         // check if the pirate's health is below or equal to zero
         if (health <= 0f)
         {
