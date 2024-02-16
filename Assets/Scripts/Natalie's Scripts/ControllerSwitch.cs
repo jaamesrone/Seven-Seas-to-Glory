@@ -11,6 +11,7 @@ public class ControllerSwitch : MonoBehaviour
     public bool InCannon = false;
     public bool InCharacter = false;
     public bool InShip = false;
+    public bool CanDriveShip = false;
 
     //Locations for cam stored in gameobjects so they can move with ship and character
     public GameObject CharacterCam;
@@ -20,9 +21,8 @@ public class ControllerSwitch : MonoBehaviour
 
     private void Start()
     {
-        //InCharacter = true;
-        InShip = true;
-        Character.GetComponent<PlayerController>().enabled = false;
+        InCharacter = true;
+        //Character.GetComponent<PlayerController>().enabled = false;
         //Ship.GetComponent<FiringMode>().enabled = false;
     }
 
@@ -41,14 +41,53 @@ public class ControllerSwitch : MonoBehaviour
                 SwitchToCannon();
             }
         }
-        //Cannon side switch/ Character & Ship switch
-        //if (Input.GetKeyDown(KeyCode.E))
-        //{
-        //
-        //}
+        //Cannon side switch/ Switch to Character
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if(InCharacter && CanDriveShip && !InCannon && !InShip)
+            {
+                SwitchToShip();
+            }
+            else if(InShip && !InCannon && !InCharacter)
+            {
+                SwitchToCharacter();
+            }
+        }
     }
 
-    void SwitchToShip()
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Wheel")
+        {
+            Debug.Log("Drive Ship?");
+            CanDriveShip = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "Wheel")
+        {
+            Debug.Log("Can't Drive");
+            CanDriveShip = false;
+        }
+    }
+
+    private void SwitchToCharacter()
+    {
+        Camera.transform.parent = Character.transform;
+        Camera.transform.localPosition = CharacterCam.transform.localPosition;
+        Camera.transform.localEulerAngles = CharacterCam.transform.localEulerAngles;
+        //Ship.GetComponent<FiringMode>().enabled = false;
+        //Ship.GetComponent<ShipController>().enabled = false;
+        Character.GetComponent<PlayerController>().enabled = true;
+        Debug.Log("In Ship");
+        InCannon = false;
+        InShip = false;
+        InCharacter = true;
+    }
+
+    private void SwitchToShip()
     {
         Camera.transform.parent = Ship.transform;
         Camera.transform.localPosition = ShipCam.transform.localPosition;
@@ -57,11 +96,12 @@ public class ControllerSwitch : MonoBehaviour
         //Ship.GetComponent<FiringMode>().enabled = false;
         //Ship.GetComponent<ShipController>().enabled = true;
         Debug.Log("In Ship");
+        InCharacter = false;
         InCannon = false;
         InShip = true;
     }
 
-    void SwitchToCannon()
+    private void SwitchToCannon()
     {
         Camera.transform.parent = Ship.transform;
         Camera.transform.localPosition = LeftCannonCam.transform.localPosition;
@@ -70,6 +110,7 @@ public class ControllerSwitch : MonoBehaviour
         //Ship.GetComponent<ShipController>().enabled = false;
         //Ship.GetComponent<FiringMode>().enabled = true;
         Debug.Log("In Cannon");
+        InCharacter = false;
         InShip = false;
         InCannon = true;
     }
