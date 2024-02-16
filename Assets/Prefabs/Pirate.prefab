@@ -822,7 +822,7 @@ MonoBehaviour:
   detectionRadius: 20
   speed: 0
   rotationSpeed: 5
-  attackRange: 5
+  attackRange: 3
   isAttacking: 0
   healthBar: {fileID: 6710064884006435828}
   damageTextPrefab: {fileID: 5281128670619460247}
