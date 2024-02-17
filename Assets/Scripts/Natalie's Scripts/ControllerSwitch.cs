@@ -12,6 +12,7 @@ public class ControllerSwitch : MonoBehaviour
     public bool InCharacter = false;
     public bool InShip = false;
     public bool CanDriveShip = false;
+    public bool LeftCannon = false;
 
     //Locations for cam stored in gameobjects so they can move with ship and character
     public GameObject CharacterCam;
@@ -22,8 +23,8 @@ public class ControllerSwitch : MonoBehaviour
     private void Start()
     {
         InCharacter = true;
-        //Character.GetComponent<PlayerController>().enabled = false;
         //Ship.GetComponent<FiringMode>().enabled = false;
+        //Ship.GetComponent<ShipController>().enabled = false;
     }
 
     void Update()
@@ -51,6 +52,10 @@ public class ControllerSwitch : MonoBehaviour
             else if(InShip && !InCannon && !InCharacter)
             {
                 SwitchToCharacter();
+            }
+            else if (InCannon && !InShip && !InCharacter)
+            {
+                SwitchSides();
             }
         }
     }
@@ -104,8 +109,17 @@ public class ControllerSwitch : MonoBehaviour
     private void SwitchToCannon()
     {
         Camera.transform.parent = Ship.transform;
-        Camera.transform.localPosition = LeftCannonCam.transform.localPosition;
-        Camera.transform.localEulerAngles = LeftCannonCam.transform.localEulerAngles;
+        //switch to cannon last used
+        if(LeftCannon)
+        {
+            Camera.transform.localPosition = LeftCannonCam.transform.localPosition;
+            Camera.transform.localEulerAngles = LeftCannonCam.transform.localEulerAngles;
+        }
+        else
+        {
+            Camera.transform.localPosition = RightCannonCam.transform.localPosition;
+            Camera.transform.localEulerAngles = RightCannonCam.transform.localEulerAngles;
+        }
         Character.GetComponent<PlayerController>().enabled = false;
         //Ship.GetComponent<ShipController>().enabled = false;
         //Ship.GetComponent<FiringMode>().enabled = true;
@@ -115,8 +129,19 @@ public class ControllerSwitch : MonoBehaviour
         InCannon = true;
     }
 
-    //void SwitchSides()
-    //{
-    //
-    //}
+    void SwitchSides()
+    {
+        if(LeftCannon)
+        {
+            Camera.transform.localPosition = RightCannonCam.transform.localPosition;
+            Camera.transform.localEulerAngles = RightCannonCam.transform.localEulerAngles;
+            LeftCannon = false;
+        }
+        else
+        {
+            Camera.transform.localPosition = LeftCannonCam.transform.localPosition;
+            Camera.transform.localEulerAngles = LeftCannonCam.transform.localEulerAngles;
+            LeftCannon = true;
+        }
+    }
 }
