@@ -19,8 +19,19 @@ public class PlayerController : MonoBehaviour
 
     private Animator playerAnimation;
 
+    //Natalie's HealthBar
+    public HealthBar healthBar;
+    public Player player;
+    //Natalie's save
+    public GameObject saveObj;
+
     public void Start()
     {
+        healthBar.SetMaxHealth(player.health);
+        //Natalie's save script
+        saveObj.GetComponent<SaveAndLoad>().LoadPlayer();
+        healthBar.SetHealth(player.health);
+
         ActionControls();
         
         Camera.main.transform.localRotation = Quaternion.Euler(Vector3.zero);

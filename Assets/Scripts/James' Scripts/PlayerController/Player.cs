@@ -7,11 +7,6 @@ public class Player : PlayerClass
     //Natalie's HealthBar
     public HealthBar healthBar;
 
-    private void Start()
-    {
-        healthBar.SetMaxHealth(health);
-    }
-
     public void TakeDamage(float damage)
     {
         // player takes dmg
