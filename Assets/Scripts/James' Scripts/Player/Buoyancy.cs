@@ -14,6 +14,7 @@ public class BuoyancyWithRocking : MonoBehaviour
 
     private void Update()
     {
+     //   Debug.Log("disable?");
         float angle = rockingAngle * Mathf.Sin(Time.time * rockingSpeed);
         transform.localRotation = initialRotation * Quaternion.Euler(0f, 0f, angle);
         
