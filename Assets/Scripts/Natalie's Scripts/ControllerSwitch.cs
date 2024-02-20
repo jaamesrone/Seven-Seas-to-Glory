@@ -23,8 +23,9 @@ public class ControllerSwitch : MonoBehaviour
     private void Start()
     {
         InCharacter = true;
-        //Ship.GetComponent<FiringMode>().enabled = false;
-        //Ship.GetComponent<ShipController>().enabled = false;
+        Camera.GetComponent<FiringModue>().enabled = false;
+        Ship.GetComponent<ShipController>().enabled = false;
+        Character.GetComponent<PlayerController>().enabled = true;
     }
 
     void Update()
@@ -80,11 +81,12 @@ public class ControllerSwitch : MonoBehaviour
 
     private void SwitchToCharacter()
     {
+        Character.transform.parent = null;
         Camera.transform.parent = Character.transform;
         Camera.transform.localPosition = CharacterCam.transform.localPosition;
         Camera.transform.localEulerAngles = CharacterCam.transform.localEulerAngles;
-        //Ship.GetComponent<FiringMode>().enabled = false;
-        //Ship.GetComponent<ShipController>().enabled = false;
+        Camera.GetComponent<FiringModue>().enabled = false;
+        Ship.GetComponent<ShipController>().enabled = false;
         Character.GetComponent<PlayerController>().enabled = true;
         Debug.Log("In Ship");
         InCannon = false;
@@ -94,12 +96,13 @@ public class ControllerSwitch : MonoBehaviour
 
     private void SwitchToShip()
     {
+        Character.transform.parent = Ship.transform;
         Camera.transform.parent = Ship.transform;
         Camera.transform.localPosition = ShipCam.transform.localPosition;
         Camera.transform.localEulerAngles = ShipCam.transform.localEulerAngles;
         Character.GetComponent<PlayerController>().enabled = false;
-        //Ship.GetComponent<FiringMode>().enabled = false;
-        //Ship.GetComponent<ShipController>().enabled = true;
+        Camera.GetComponent<FiringModue>().enabled = false;
+        Ship.GetComponent<ShipController>().enabled = true;
         Debug.Log("In Ship");
         InCharacter = false;
         InCannon = false;
@@ -121,8 +124,8 @@ public class ControllerSwitch : MonoBehaviour
             Camera.transform.localEulerAngles = RightCannonCam.transform.localEulerAngles;
         }
         Character.GetComponent<PlayerController>().enabled = false;
-        //Ship.GetComponent<ShipController>().enabled = false;
-        //Ship.GetComponent<FiringMode>().enabled = true;
+        Ship.GetComponent<ShipController>().enabled = false;
+        Camera.GetComponent<FiringModue>().enabled = true;
         Debug.Log("In Cannon");
         InCharacter = false;
         InShip = false;
