@@ -61,12 +61,12 @@ public class FiringModue : MonoBehaviour
         canFire = true;
     }
 
-    void OnCollisionEnter(Collision collision) //Currently Experimenting
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
-        }
-    }
+    //void OnCollisionEnter(Collision collision) //Currently Experimenting
+    //{
+    //    if (collision.gameObject.CompareTag("Enemy"))
+    //    {
+    //        Destroy(collision.gameObject);
+    //        Destroy(cannonballPrefab);
+    //    }
+    //}
 }
