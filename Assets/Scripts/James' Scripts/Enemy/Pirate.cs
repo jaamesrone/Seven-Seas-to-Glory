@@ -27,9 +27,9 @@ public class Pirate : EnemyClass
         // set max health for health bar
         healthBar.SetMaxHealth(health);
 
-        // disable NavMeshAgent on Awake
+        /*// disable NavMeshAgent on Awake
         agent.enabled = false;
-        StartCoroutine(EnableAgentAfterDelay(2f));
+        StartCoroutine(EnableAgentAfterDelay(2f));*/
     }
 
     IEnumerator EnableAgentAfterDelay(float delay)

@@ -4,6 +4,7 @@ public class EnemyShipSpawner : MonoBehaviour
 {
     public GameObject enemyShipPrefab; // enemy ship model
     public GameObject piratePrefab; // pirate model
+   
     public int numberOfShipsToSpawn; // number of enemy ships to spawn
     public int numberOfPirates; 
     public float spawnRadius; // radius within which enemy ships will be spawned
@@ -48,7 +49,7 @@ public class EnemyShipSpawner : MonoBehaviour
             GameObject pirate = Instantiate(piratePrefab, piratePosition, Quaternion.identity);
 
             // Parent the pirate to the ship
-            pirate.transform.parent = ship.transform;
+            pirate.transform.parent = ship.transform.Find("Ship").Find("ship_main");
         }
     }
 }
