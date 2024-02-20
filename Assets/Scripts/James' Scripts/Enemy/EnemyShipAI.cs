@@ -9,10 +9,6 @@ public class EnemyShipAI : MonoBehaviour
         // Calculate the new position of the ship based on its right direction and speed
         Vector3 newPosition = transform.position + transform.forward * speed * Time.deltaTime;
 
-        // Rotate the ship to face the new position
-    //    transform.LookAt();
-
-        // Move the ship to the new position
         transform.position = newPosition;
     }
 }

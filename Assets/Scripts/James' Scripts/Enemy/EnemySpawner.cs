@@ -1,30 +1,31 @@
-using System.Collections;
 using UnityEngine;
+
 public class EnemySpawner : MonoBehaviour
 {
-    public float minimumX;
-    public float max_X;
-    public float minimumZ;
-    public float max_Z;
-
-    public GameObject enemySpawner;
+    public GameObject enemyPrefab;
     public int numberOfEnemies = 6;
+    public float spawnRadius = 5f; // Adjust this radius as needed
 
     void Start()
     {
-        InvokeRepeating("Spawner", 1, 300);
+        InvokeRepeating("SpawnEnemies", 1, 300);
     }
 
-    void Spawner()
+    void SpawnEnemies()
     {
         for (int i = 0; i < numberOfEnemies; i++)
         {
-            float randomX = Random.Range(minimumX, max_X);
-            float randomY = Random.Range(minimumZ, max_Z);
+            // Calculate random offset within spawnRadius
+            Vector2 randomOffset = Random.insideUnitCircle * spawnRadius;
 
-            Vector3 pos = new Vector3(randomX, 15, randomY);
+            // Use the position of the parent game object for spawning
+            Vector3 spawnPosition = transform.position + new Vector3(randomOffset.x, 0, randomOffset.y);
 
-            Instantiate(enemySpawner,pos,Quaternion.identity);
+            // Set the y-coordinate to 0
+            spawnPosition.y = 5;
+
+            // Instantiate enemy at the spawn position
+            Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
         }
     }
 }

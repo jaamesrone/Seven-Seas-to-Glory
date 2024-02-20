@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     {
         healthBar.SetMaxHealth(player.health);
         //Natalie's save script
-        saveObj.GetComponent<SaveAndLoad>().LoadPlayer();
+        //saveObj.GetComponent<SaveAndLoad>().LoadPlayer();
         healthBar.SetHealth(player.health);
 
         ActionControls();
