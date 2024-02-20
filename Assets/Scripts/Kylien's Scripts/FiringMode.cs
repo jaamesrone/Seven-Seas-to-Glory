@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
-public class FiringMode : MonoBehaviour
+public class FiringModue : MonoBehaviour
 {
     public float reloadTime = 3f;
     public GameObject cannonballPrefab;
-    public Text cooldownText; 
+    public TextMeshProUGUI cooldownText; 
 
     private bool canFire = true;
 
