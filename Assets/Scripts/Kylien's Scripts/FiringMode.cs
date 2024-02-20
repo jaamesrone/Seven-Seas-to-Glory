@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.Burst.Intrinsics;
 
 public class FiringModue : MonoBehaviour
 {
@@ -11,6 +12,12 @@ public class FiringModue : MonoBehaviour
 
     private bool canFire = true;
 
+    //Natalie's aiming
+    public float maxHeight = 10;
+    public float increment = 1;
+    public float wait = 2;
+    public float aim = 1;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && canFire)
@@ -18,12 +25,21 @@ public class FiringModue : MonoBehaviour
             FireCannonball();
             StartCoroutine(ReloadCannon());
         }
+        //Natalie's aiming
+        if (Input.GetKey(KeyCode.W) && aim < maxHeight)
+        {
+            aim += increment;
+        }
+        if (Input.GetKey(KeyCode.S) && aim > 1)
+        {
+            aim -= increment;
+        }
     }
 
     void FireCannonball() //Mechanic to shoot cannon ball
     {
         Vector3 firingPosition = transform.position + transform.forward * 1.5f;
-        Vector3 firingDirection = transform.forward;
+        Vector3 firingDirection = transform.forward * aim;
 
         GameObject cannonball = Instantiate(cannonballPrefab, firingPosition, Quaternion.identity);
         Rigidbody rb = cannonball.GetComponent<Rigidbody>();
