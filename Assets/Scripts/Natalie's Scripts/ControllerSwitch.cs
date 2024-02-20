@@ -68,6 +68,11 @@ public class ControllerSwitch : MonoBehaviour
             Debug.Log("Drive Ship?");
             CanDriveShip = true;
         }
+        if (other.tag == "HandtoHand")
+        {
+            Debug.Log("Switching to Hand-to-Hand");
+            SwitchToCharacter();
+        }
     }
 
     void OnTriggerExit(Collider other)
@@ -78,6 +83,7 @@ public class ControllerSwitch : MonoBehaviour
             CanDriveShip = false;
         }
     }
+
 
     private void SwitchToCharacter()
     {
