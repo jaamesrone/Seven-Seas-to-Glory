@@ -15,7 +15,6 @@ public class FiringModue : MonoBehaviour
     //Natalie's aiming
     public float maxHeight = 10;
     public float increment = 1;
-    public float wait = 2;
     public float aim = 1;
 
     void Update()
