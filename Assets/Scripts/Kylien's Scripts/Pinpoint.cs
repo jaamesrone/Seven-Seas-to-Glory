@@ -4,41 +4,27 @@ using UnityEngine;
 
 public class Pinpoint : MonoBehaviour
 {
-    public Transform target;
-    public Camera mainCamera;
-    public KeyCode toggleKey = KeyCode.M;
-    public KeyCode confirmKey = KeyCode.Return;
-
-    private bool placingCylinder;
-    private GameObject cylinder;
+    public GameObject waypoint;
+    public float rotationSpeed = 180f;
 
     void Update()
     {
-        if (Input.GetKeyDown(toggleKey))
+        if (waypoint != null)
         {
-            if (!placingCylinder)
-            {
-                placingCylinder = true;
-                Vector3 spawnPosition = mainCamera.transform.position + mainCamera.transform.forward * 2.0f; // Adjust the spawn position as needed
-                cylinder = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-                cylinder.transform.position = spawnPosition;
-            }
-        }
+            // Calculate the direction to the waypoint
+            Vector3 directionToWaypoint = waypoint.transform.position - transform.position;
 
-        if (Input.GetKeyDown(confirmKey) && placingCylinder)
-        {
-            placingCylinder = false;
-        }
+            // Calculate the angle between the camera's forward direction and the direction to the waypoint
+            Vector3 directionToCamera = Camera.main.transform.forward;
+            directionToCamera.y = 0; // Ignore vertical component
+            float angle = Vector3.SignedAngle(directionToCamera, directionToWaypoint, Vector3.up);
 
-        if (target != null && cylinder != null)
-        {
-            Vector3 targetDir = target.position - mainCamera.transform.position;
-            Vector3 forward = mainCamera.transform.forward;
-            float angle = Vector3.Angle(targetDir, forward);
-            Vector3 cross = Vector3.Cross(targetDir, forward);
-            if (cross.y < 0) angle = -angle;
+            // Rotate the arrow smoothly based on the angle
+            float targetZRotation = Mathf.Clamp(angle, -180f, 180f); // Clamp the angle to -180 to 180 range
+            Quaternion targetRotation = Quaternion.Euler(0, 0, -targetZRotation); // Negative rotation for left, positive for right
 
-            transform.rotation = Quaternion.Euler(0, 0, angle);
+            // Smoothly rotate the arrow towards the target rotation
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
     }
 }
