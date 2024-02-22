@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ShipController : MonoBehaviour
 {
@@ -23,14 +24,14 @@ public class ShipController : MonoBehaviour
     public Vector2 seaSpeed = Vector2.zero;
 
     // Resultant Variables
-    public Vector3 desiredPosition = Vector3.zero;
-    public Vector3 desiredRotation = Vector3.zero;
+    private Vector3 desiredRotation = Vector3.zero;
 
     void DoInput()
     {
         inputForwardPercent = Input.GetAxis("Vertical");
         inputYawPercent = Input.GetAxis("Horizontal");
     }
+
 
     void UpdateDesiredVelocities()
     {
@@ -47,11 +48,10 @@ public class ShipController : MonoBehaviour
         UpdateDesiredVelocities();
 
         // Update Rotation
-        desiredRotation.y += currentYawPerSecond * inputYawPercent * Time.deltaTime;
+        transform.Rotate(Vector3.up, currentYawPerSecond * inputYawPercent * Time.deltaTime);
 
         // Update Position
-        Vector3 forwardVector = new Vector3(0, desiredRotation.y, 0);
-        Vector3 positionDelta = new Vector3(currentForwardSpeed, 0, 0); //* forwardVector;
+        transform.Translate(Vector3.left * currentForwardSpeed * Time.deltaTime);
 
         // Ocean pushing along
         //movedPosition += seaSpeed;
@@ -63,7 +63,6 @@ public class ShipController : MonoBehaviour
         float t = Time.deltaTime * 2.0f; // By feel, magic number
 
         // Apply the desired position and rotation
-        transform.position = Vector3.Lerp(transform.position, desiredPosition, t);
-        transform.rotation = Quaternion.Euler(Vector3.Lerp(transform.rotation.eulerAngles, desiredRotation, t));
+        transform.rotation = Quaternion.Euler(desiredRotation);
     }
 }

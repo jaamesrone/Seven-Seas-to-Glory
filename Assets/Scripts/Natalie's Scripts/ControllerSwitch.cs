@@ -1,9 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ControllerSwitch : MonoBehaviour
 {
+    //Trmporary Tutorial
+    public TextMeshProUGUI GuideText;
+
+    public GameObject EnemySpawner;
+
     public GameObject Ship;
     public GameObject Character;
     public GameObject Camera;
@@ -24,7 +30,7 @@ public class ControllerSwitch : MonoBehaviour
     {
         InCharacter = true;
         Camera.GetComponent<FiringModue>().enabled = false;
-        //Ship.GetComponent<ShipController>().enabled = false;
+        Ship.GetComponent<ShipController>().enabled = false;
         Character.GetComponent<PlayerController>().enabled = true;
     }
 
@@ -53,6 +59,7 @@ public class ControllerSwitch : MonoBehaviour
             else if (InShip && !InCannon && !InCharacter)
             {
                 SwitchToCharacter();
+                GuideText.text = "Press E at wheel to drive ship";
             }
             else if (InCannon && !InShip && !InCharacter)
             {
@@ -70,8 +77,11 @@ public class ControllerSwitch : MonoBehaviour
         }
         else if (other.tag == "HandtoHand")
         {
+            other.gameObject.transform.parent.GetComponent<EnemyShipAI>().speed = 0;
             Debug.Log("Switching to Hand-to-Hand");
             SwitchToCharacter();
+            GuideText.text = "Fight with the LMB and block with Shift";
+            EnemySpawner.SetActive(true);
         }
     }
 
@@ -92,7 +102,7 @@ public class ControllerSwitch : MonoBehaviour
         Camera.transform.localPosition = CharacterCam.transform.localPosition;
         Camera.transform.localEulerAngles = CharacterCam.transform.localEulerAngles;
         Camera.GetComponent<FiringModue>().enabled = false;
-        //Ship.GetComponent<ShipController>().enabled = false;
+        Ship.GetComponent<ShipController>().enabled = false;
         Character.GetComponent<PlayerController>().enabled = true;
         InCannon = false;
         InShip = false;
@@ -108,10 +118,12 @@ public class ControllerSwitch : MonoBehaviour
         Camera.transform.localEulerAngles = ShipCam.transform.localEulerAngles;
         Character.GetComponent<PlayerController>().enabled = false;
         Camera.GetComponent<FiringModue>().enabled = false;
-        //Ship.GetComponent<ShipController>().enabled = true;
+        Ship.GetComponent<ShipController>().enabled = true;
         InCharacter = false;
         InCannon = false;
         InShip = true;
+        GuideText.text = "Press Shift to switch to cannon or sail close to enemies for hand-to-hand combat";
+        EnemySpawner.SetActive(false);
         Debug.Log("In Ship");
     }
 
@@ -129,11 +141,12 @@ public class ControllerSwitch : MonoBehaviour
             Camera.transform.localEulerAngles = RightCannonCam.transform.localEulerAngles;
         }
         Character.GetComponent<PlayerController>().enabled = false;
-        //Ship.GetComponent<ShipController>().enabled = false;
+        Ship.GetComponent<ShipController>().enabled = false;
         Camera.GetComponent<FiringModue>().enabled = true;
         InCharacter = false;
         InShip = false;
         InCannon = true;
+        GuideText.text = "Press Space to shoot and Press E to switch sides";
         Debug.Log("In Cannon");
     }
 
