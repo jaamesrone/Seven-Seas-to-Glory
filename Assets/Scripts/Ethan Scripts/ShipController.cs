@@ -11,7 +11,7 @@ public class ShipController : MonoBehaviour
 
 
     public float minYawPerSecond = 15.0f;
-    public float maxYawPerSecond = 5.0f;
+    public float maxYawPerSecond = 2.5f;
 
     // Current
     public float currentForwardSpeed = 0;
@@ -39,6 +39,9 @@ public class ShipController : MonoBehaviour
 
         // Yaw Per Second is mapped max at -maxForwardSpeed and maxForward Sppeed. It is minYawPerSecond 0.
         currentYawPerSecond = Mathf.Lerp(minYawPerSecond, maxYawPerSecond, Mathf.Abs(currentForwardSpeed) / maxForwardSpeed);
+
+        float yawRotation = inputYawPercent * currentYawPerSecond * Time.deltaTime;
+        desiredRotation += new Vector3(0, yawRotation, 0);
     }
 
     // Per Frame

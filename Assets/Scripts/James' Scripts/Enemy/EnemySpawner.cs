@@ -19,10 +19,11 @@ public class EnemySpawner : MonoBehaviour
     {
         for (int i = 0; i < numberOfEnemies; i++)
         {
-            float randomX = Random.Range(minimumX, max_X);
-            float randomY = Random.Range(minimumZ, max_Z);
+            //float randomX = Random.Range(minimumX, max_X);
+            //float randomY = Random.Range(minimumZ, max_Z);
 
-            Vector3 pos = new Vector3(randomX, 15, randomY);
+            //Vector3 pos = new Vector3(randomX, 15, randomY);
+            Vector3 pos = gameObject.transform.position;
 
             Instantiate(enemySpawner,pos,Quaternion.identity);
         }

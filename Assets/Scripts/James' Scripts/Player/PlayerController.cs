@@ -22,14 +22,14 @@ public class PlayerController : MonoBehaviour
     //Natalie's HealthBar
     public HealthBar healthBar;
     public Player player;
-    //Natalie's save
-    public GameObject saveObj;
+    ////Natalie's save
+    //public GameObject saveObj;
 
     public void Start()
     {
         healthBar.SetMaxHealth(player.health);
-        //Natalie's save script
-        saveObj.GetComponent<SaveAndLoad>().LoadPlayer();
+        ////Natalie's save script
+        //saveObj.GetComponent<SaveAndLoad>().LoadPlayer();
         healthBar.SetHealth(player.health);
 
         ActionControls();
