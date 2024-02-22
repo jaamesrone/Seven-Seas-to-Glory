@@ -23,8 +23,8 @@ public class ControllerSwitch : MonoBehaviour
     private void Start()
     {
         InCharacter = true;
-        Camera.GetComponent<FiringModue>().enabled = false;
-        Ship.GetComponent<ShipController>().enabled = false;
+        //Camera.GetComponent<FiringModue>().enabled = false;
+//        Ship.GetComponent<ShipController>().enabled = false;
         Character.GetComponent<PlayerController>().enabled = true;
     }
 
