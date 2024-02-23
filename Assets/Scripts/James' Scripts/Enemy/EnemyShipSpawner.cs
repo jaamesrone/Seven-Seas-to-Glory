@@ -27,10 +27,10 @@ public class EnemyShipSpawner : MonoBehaviour
             // setting a random rotation for the enemy ships so each ship runs in a random direction
             Quaternion randomRotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
 
-            // Instantiate the enemy ship prefab at the random position with the random rotation
+            // spawn the enemy ship prefab at the random position with the random rotation
             GameObject enemyShip = Instantiate(enemyShipPrefab, randomPosition, randomRotation);
 
-            // Instantiate pirate prefabs on the enemy ship
+            // instantiate pirate prefabs on the enemy ship
             SpawnPiratesOnShip(enemyShip);
         }
     }
@@ -39,16 +39,16 @@ public class EnemyShipSpawner : MonoBehaviour
     {
         for (int i = 0; i < numberOfPirates; i++)
         {
-            // Calculate a random position within the ship's bounds
+            // a random position within the ship's bounds
             Vector3 piratePosition = ship.transform.position + Random.insideUnitSphere * 5f; // Adjust the radius as needed
 
-            // Ensure the pirate is positioned above the ship's surface
+            // the pirate is positioned above the ship's surface
             piratePosition.y = ship.transform.position.y + 6f; // Adjust the height as needed
 
-            // Instantiate the pirate prefab on the ship
+            // instantiate the pirate prefab on the ship
             GameObject pirate = Instantiate(piratePrefab, piratePosition, Quaternion.identity);
 
-            // Parent the pirate to the ship
+            // parenting the pirate's to the ship
             pirate.transform.parent = ship.transform.Find("Ship").Find("ship_main");
         }
     }

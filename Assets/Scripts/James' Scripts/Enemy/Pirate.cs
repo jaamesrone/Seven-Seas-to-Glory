@@ -134,10 +134,10 @@ public class Pirate : EnemyClass
         // offset the position to be above the pirate's head
         Vector3 aboveHeadPosition = position + Vector3.up * 0.7f;
 
-        // instantiate the damage text prefab at the adjusted position
+        // instantiate the damage text prefab above the head.
         TextMeshPro damageText = Instantiate(damageTextPrefab, aboveHeadPosition, Quaternion.identity);
 
-        // calculate the direction to the camera
+        // move damage numbers the direction to the camera
         Vector3 toCamera = Camera.main.transform.position - damageText.transform.position;
 
         // make the damage text face the camera

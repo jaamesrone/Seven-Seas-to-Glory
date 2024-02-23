@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class EnemyShipAI : MonoBehaviour
 {
-    public float speed = 5f; // The speed at which the enemy ship moves
-    public float rotationSpeed = 2f; // The speed at which the enemy ship rotates
+    public float speed = 5f; // speed at which the enemy ship moves
+    public float rotationSpeed = 2f; // speed at which the enemy ship rotates
 
     private bool isTurningLeft = false;
     private bool isTurningRight = false;
@@ -33,7 +33,7 @@ public class EnemyShipAI : MonoBehaviour
     void ShipAIMovement()
     {
         // vector 3 new position of the ship is based on its forward direction and speed
-        Vector3 newPosition = transform.position + transform.forward * speed * Time.deltaTime;
+        Vector3 shipsMovement = transform.position + transform.forward * speed * Time.deltaTime;
 
         // update turn timer
         turnTimer += Time.deltaTime;
@@ -49,7 +49,7 @@ public class EnemyShipAI : MonoBehaviour
         {
             transform.Rotate(Vector3.up, -rotationSpeed * Time.deltaTime);
 
-            // Check if turn duration is reached
+            // check if turn duration is reached
             if (turnTimer >= turnDuration)
             {
                 isTurningLeft = false;
@@ -70,6 +70,6 @@ public class EnemyShipAI : MonoBehaviour
         }
 
         // Apply the new position
-        transform.position = newPosition;
+        transform.position = shipsMovement;
     }
 }

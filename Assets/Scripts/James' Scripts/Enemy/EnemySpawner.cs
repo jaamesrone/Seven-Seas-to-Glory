@@ -15,16 +15,16 @@ public class EnemySpawner : MonoBehaviour
     {
         for (int i = 0; i < numberOfEnemies; i++)
         {
-            // Calculate random offset within spawnRadius
+            // random offset between a circle
             Vector2 randomOffset = Random.insideUnitCircle * spawnRadius;
 
-            // Use the position of the parent game object for spawning
+            // a vector3 for the position of the parent game object for spawning
             Vector3 spawnPosition = transform.position + new Vector3(randomOffset.x, 0, randomOffset.y);
 
-            // Set the y-coordinate to 0
+            // setting the y cordinate to 5 so pirates can spawn above the ship.
             spawnPosition.y = 5;
 
-            // Instantiate enemy at the spawn position
+            // instantiate the pirates at the spawn position
             Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
         }
     }
