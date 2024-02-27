@@ -5,10 +5,8 @@ using TMPro;
 
 public class ControllerSwitch : MonoBehaviour
 {
-    //Trmporary Tutorial
+    //Temporary Tutorial
     public TextMeshProUGUI GuideText;
-
-    public GameObject EnemySpawner;
 
     public GameObject Ship;
     public GameObject Character;
@@ -81,7 +79,6 @@ public class ControllerSwitch : MonoBehaviour
             Debug.Log("Switching to Hand-to-Hand");
             SwitchToCharacter();
             GuideText.text = "Fight with the LMB and block with Shift";
-            EnemySpawner.SetActive(true);
         }
     }
 
@@ -123,7 +120,6 @@ public class ControllerSwitch : MonoBehaviour
         InCannon = false;
         InShip = true;
         GuideText.text = "Press Shift to switch to cannon or sail close to enemies for hand-to-hand combat";
-        EnemySpawner.SetActive(false);
         Debug.Log("In Ship");
     }
 
