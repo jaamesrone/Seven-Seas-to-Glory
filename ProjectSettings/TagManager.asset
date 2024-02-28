@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Wheel
   - HandtoHand
+  - PlayerShip
   layers:
   - Default
   - TransparentFX

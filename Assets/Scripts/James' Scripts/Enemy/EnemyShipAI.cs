@@ -4,14 +4,25 @@ public class EnemyShipAI : MonoBehaviour
 {
     public float speed;
     public float rotationSpeed;
-    public LayerMask obstacleLayer; // Define which layers are considered obstacles
-    public float detectionDistance; // How far ahead the ship checks for obstacles
+    public LayerMask obstacleLayer; // this is for unity to know whats an obstacle for the ship
+    public float detectionDistance; // how far ship checks for obstacles
+    public float shootingRadius; // shooting radius to detect player ship
+    public GameObject cannonballPrefab; // prefab of the cannonball
+    public Transform[] cannonSpawnPoints; // array of empty gameobjects where cannonballs shoot from
+    public float shootingCooldown = 2f; // cooldown between shots
 
-    private enum State { Patrolling, AvoidingObstacle }
+    private enum State { Patrolling, AvoidingObstacle, Attacking }
     private State currentState = State.Patrolling;
 
     private float turnDuration = 7f;
     private float turnTimer;
+    private float shootingTimer;
+    private GameObject playerShip;
+
+    void Start()
+    {
+        playerShip = GameObject.FindGameObjectWithTag("PlayerShip");
+    }
 
     void Update()
     {
@@ -23,6 +34,9 @@ public class EnemyShipAI : MonoBehaviour
             case State.AvoidingObstacle:
                 AvoidingObstacle();
                 break;
+            case State.Attacking:
+                Attacking();
+                break;
         }
     }
 
@@ -33,17 +47,24 @@ public class EnemyShipAI : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.forward, out hit, detectionDistance, obstacleLayer))
         {
             currentState = State.AvoidingObstacle;
-            turnTimer = 0; // Reset timer for turning
-            return; // Skip the rest of the patrolling logic this frame
+            turnTimer = 0; // reset timer for turning
+            return;
         }
 
-        // Continue moving forward
+        // Check for player ship within the shooting radius
+        if (Vector3.Distance(transform.position, playerShip.transform.position) <= shootingRadius)
+        {
+            currentState = State.Attacking;
+            return;
+        }
+
+        // continue moving forward
         MoveForward();
 
-        // Randomly decide to turn
+        // randomly decide to turn
         if (turnTimer <= 0)
         {
-            DecideTurn(); // Decide whether and when to turn
+            DecideTurn();
         }
         else
         {
@@ -53,26 +74,46 @@ public class EnemyShipAI : MonoBehaviour
 
     void AvoidingObstacle()
     {
-        // Rotate away from the obstacle
+        // rotate away from the obstacle
         transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
 
-        // Continue moving forward
+        // continue moving forward
         MoveForward();
 
-        // Increment turn timer
+        // turn timer
         turnTimer += Time.deltaTime;
 
-        // Check if it's time to resume patrolling
+        // check if it's time to resume patrolling
         if (turnTimer >= turnDuration || IsPathClear())
         {
             currentState = State.Patrolling;
-            turnTimer = 0; // Reset turn timer
+            turnTimer = 0;
         }
     }
 
+    void Attacking()
+    {
+        // Shoot cannonballs at the player ship with cooldown
+        shootingTimer += Time.deltaTime;
+        if (shootingTimer >= shootingCooldown)
+        {
+            ShootCannonballs();
+            shootingTimer = 0f; // Reset shooting timer
+        }
+
+        // Check if the player ship is out of the shooting radius
+        if (Vector3.Distance(transform.position, playerShip.transform.position) > shootingRadius)
+        {
+            currentState = State.Patrolling;
+        }
+    }
+
+
+
+
     bool IsPathClear()
     {
-        // Perform a raycast to check if the path ahead is clear
+        // a raycast to check if the path ahead is clear
         return !Physics.Raycast(transform.position, transform.forward, detectionDistance, obstacleLayer);
     }
 
@@ -83,16 +124,28 @@ public class EnemyShipAI : MonoBehaviour
 
     void DecideTurn()
     {
-        // Randomly choose a direction and duration for turning
+        // randomly choose a direction and duration for turning
         if (Random.value <= 0.5f)
         {
-            rotationSpeed = -Mathf.Abs(rotationSpeed); // Turn left
+            rotationSpeed = -Mathf.Abs(rotationSpeed); // turn left
         }
         else
         {
-            rotationSpeed = Mathf.Abs(rotationSpeed); // Turn right
+            rotationSpeed = Mathf.Abs(rotationSpeed); // turn right
         }
 
-        turnTimer = Random.Range(2f, turnDuration); // Randomize turn duration for more dynamic behavior
+        turnTimer = Random.Range(2f, turnDuration); // randomize turn duration for more dynamic behavior
+    }
+
+    void ShootCannonballs()
+    {
+        float cannonballSpeed = 100f;
+        // Shoot cannonballs straight out from each cannon spawn point
+        foreach (Transform cannonSpawnPoint in cannonSpawnPoints)
+        {
+            GameObject cannonball = Instantiate(cannonballPrefab, cannonSpawnPoint.position, cannonSpawnPoint.rotation);
+            Rigidbody cannonballRb = cannonball.GetComponent<Rigidbody>();
+            cannonballRb.velocity = cannonSpawnPoint.forward * cannonballSpeed; // Adjust 'cannonballSpeed' according to your desired speed
+        }
     }
 }
