@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7643655056284570880}
   - component: {fileID: 3259590276206717044}
   - component: {fileID: 8738183833346130971}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ship_chest_top
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2070896252743072824}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Colliders
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2301271365792878543}
   - component: {fileID: 584632126762770448}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HandtoHandCombatTrigger
   m_TagString: HandtoHand
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 897658393967044813}
   - component: {fileID: 1501607665931870243}
   - component: {fileID: 8895336190240231745}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (9)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -296,7 +296,7 @@ GameObject:
   - component: {fileID: 2331359655451211725}
   - component: {fileID: 8709402851864882019}
   - component: {fileID: 2502873744007119661}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: grate
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -377,7 +377,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7389952920289262314}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ship_chest_center
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -412,7 +412,7 @@ GameObject:
   - component: {fileID: 2008644026526727985}
   - component: {fileID: 8396452507018040953}
   - component: {fileID: 350601602292211089}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ship_main
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -524,7 +524,7 @@ GameObject:
   - component: {fileID: 6105489115291751824}
   - component: {fileID: 1801926592806698596}
   - component: {fileID: 7482016204549204327}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (10)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -628,7 +628,7 @@ GameObject:
   - component: {fileID: 9089187504660188180}
   - component: {fileID: 6477284698367333399}
   - component: {fileID: 1673731376000415502}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ship_mast_rear
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -711,7 +711,7 @@ GameObject:
   - component: {fileID: 7083917414615530206}
   - component: {fileID: 8894370658684077987}
   - component: {fileID: 4637353503617509614}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ship_crowsnest
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -794,7 +794,7 @@ GameObject:
   - component: {fileID: 821762382933196422}
   - component: {fileID: 2081388313805268730}
   - component: {fileID: 8948794085726828288}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rudder_hinge1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -877,7 +877,7 @@ GameObject:
   - component: {fileID: 5712178727253860299}
   - component: {fileID: 7355302225774363543}
   - component: {fileID: 5383213863301649333}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemyShip
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -940,7 +940,7 @@ GameObject:
   - component: {fileID: 8492721205593111869}
   - component: {fileID: 2591900912082392441}
   - component: {fileID: 3585233126351268248}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ship_mast_front
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1022,7 +1022,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5320951381090124992}
   - component: {fileID: 7742494804775664845}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ship
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1088,7 +1088,7 @@ GameObject:
   - component: {fileID: 6205725915428169057}
   - component: {fileID: 7185609447239904638}
   - component: {fileID: 759457516707032459}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rudder
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1172,7 +1172,7 @@ GameObject:
   - component: {fileID: 5549345991766838385}
   - component: {fileID: 6712730374286735763}
   - component: {fileID: 7810384534919767331}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (8)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1277,7 +1277,7 @@ GameObject:
   - component: {fileID: 4164187120731335930}
   - component: {fileID: 7599115903447898867}
   - component: {fileID: 7528560898892867254}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (7)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1382,7 +1382,7 @@ GameObject:
   - component: {fileID: 1059917988015211216}
   - component: {fileID: 887863871416039121}
   - component: {fileID: 729079304946422098}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (3)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1486,7 +1486,7 @@ GameObject:
   - component: {fileID: 1717133102382898558}
   - component: {fileID: 4385663219814738074}
   - component: {fileID: 7329184041456119016}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ship_chest_main
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1570,7 +1570,7 @@ GameObject:
   - component: {fileID: 7014302765539063138}
   - component: {fileID: 1252237838015843969}
   - component: {fileID: 778468810989575324}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ship_chest_main
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1652,7 +1652,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1418500685924356329}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ship_chest_r
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1684,7 +1684,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1135411107476211755}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ship_chest_l
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1719,7 +1719,7 @@ GameObject:
   - component: {fileID: 213527387616625359}
   - component: {fileID: 7116315768550680910}
   - component: {fileID: 7163528626174288716}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1823,7 +1823,7 @@ GameObject:
   - component: {fileID: 1202714131188038999}
   - component: {fileID: 6088123549362210257}
   - component: {fileID: 3709486781820049710}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ship_chest_top
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1904,7 +1904,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2170671881175942486}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: masts
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1941,7 +1941,7 @@ GameObject:
   - component: {fileID: 1120595991776295744}
   - component: {fileID: 2909063850020810650}
   - component: {fileID: 5170324175377046194}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (4)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -2045,7 +2045,7 @@ GameObject:
   - component: {fileID: 2105640292083735348}
   - component: {fileID: 1779779604950881301}
   - component: {fileID: 2526777686347053702}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ship_mast_center
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -2129,7 +2129,7 @@ GameObject:
   - component: {fileID: 5226411489813668833}
   - component: {fileID: 4776388074717372920}
   - component: {fileID: 3534335189050922187}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rudder_beam
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -2210,7 +2210,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8321431297290380939}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rudder
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -2245,7 +2245,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4990429295964724914}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: chests
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -2281,7 +2281,7 @@ GameObject:
   - component: {fileID: 6225350993015599165}
   - component: {fileID: 2669685608149739068}
   - component: {fileID: 1023587492337015429}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ship_wheel
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -2365,7 +2365,7 @@ GameObject:
   - component: {fileID: 6439956945747081889}
   - component: {fileID: 4785301240954766836}
   - component: {fileID: 2427754201699298928}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -2469,7 +2469,7 @@ GameObject:
   - component: {fileID: 1634623351426565522}
   - component: {fileID: 2961174596645051058}
   - component: {fileID: 2484112645343308994}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ship_chest_main
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -2554,7 +2554,7 @@ GameObject:
   - component: {fileID: 3845813664526800900}
   - component: {fileID: 8043775402922595900}
   - component: {fileID: 3869221268516647988}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (6)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -2659,7 +2659,7 @@ GameObject:
   - component: {fileID: 7873240197923538193}
   - component: {fileID: 7157953293737343146}
   - component: {fileID: 6289329912863723598}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (2)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -2761,7 +2761,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4793511581146067717}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ship_wheel
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -2795,7 +2795,7 @@ GameObject:
   - component: {fileID: 8829316416437484111}
   - component: {fileID: 3038477243688176258}
   - component: {fileID: 6508407410942250633}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ship_wheel_base
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -2880,7 +2880,7 @@ GameObject:
   - component: {fileID: 7822050460834904648}
   - component: {fileID: 2455305048885888267}
   - component: {fileID: 7392525349851204803}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (5)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -2984,7 +2984,7 @@ GameObject:
   - component: {fileID: 5992054603948798769}
   - component: {fileID: 1849303515117787963}
   - component: {fileID: 3435707771997236732}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ship_chest_top
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -3067,7 +3067,7 @@ GameObject:
   - component: {fileID: 8461624543013683801}
   - component: {fileID: 7870540582078819565}
   - component: {fileID: 4159701271615716128}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ship_upgrade_0
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -3150,7 +3150,7 @@ GameObject:
   - component: {fileID: 7848979483853607259}
   - component: {fileID: 2110736148189688837}
   - component: {fileID: 8245678103992133907}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rudder_hinge
   m_TagString: Enemy
   m_Icon: {fileID: 0}

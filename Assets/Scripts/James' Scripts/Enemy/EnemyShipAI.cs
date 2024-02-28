@@ -2,74 +2,97 @@ using UnityEngine;
 
 public class EnemyShipAI : MonoBehaviour
 {
-    public float speed = 5f; // speed at which the enemy ship moves
-    public float rotationSpeed = 2f; // speed at which the enemy ship rotates
+    public float speed = 5f;
+    public float rotationSpeed = 2f;
+    public LayerMask obstacleLayer; // Define which layers are considered obstacles
+    public float detectionDistance = 10f; // How far ahead the ship checks for obstacles
 
-    private bool isTurningLeft = false;
-    private bool isTurningRight = false;
+    private enum State { Patrolling, AvoidingObstacle }
+    private State currentState = State.Patrolling;
+
     private float turnDuration = 7f;
-    private float turnTimer = 0f;
+    private float turnTimer;
 
     void Update()
     {
-        ShipAIMovement(); //ships ai movement
+        switch (currentState)
+        {
+            case State.Patrolling:
+                Patrolling();
+                break;
+            case State.AvoidingObstacle:
+                AvoidingObstacle();
+                break;
+        }
     }
 
-    // decision about turning left or right
-    void DecideTurn()
+    void Patrolling()
     {
-        // there's a 30% chance of turning left and a 70% chance of turning right
-        float randomValue = Random.value;
-        if (randomValue <= 0.3f)
+        // Check for obstacles ahead
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, detectionDistance, obstacleLayer))
         {
-            isTurningLeft = true;
+            currentState = State.AvoidingObstacle;
+            turnTimer = 0; // Reset timer for turning
+            return; // Skip the rest of the patrolling logic this frame
+        }
+
+        // Continue moving forward
+        MoveForward();
+
+        // Randomly decide to turn
+        if (turnTimer <= 0)
+        {
+            DecideTurn(); // Decide whether and when to turn
         }
         else
         {
-            isTurningRight = true;
+            turnTimer -= Time.deltaTime;
         }
     }
 
-    void ShipAIMovement()
+    void AvoidingObstacle()
     {
-        // vector 3 new position of the ship is based on its forward direction and speed
-        Vector3 shipsMovement = transform.position + transform.forward * speed * Time.deltaTime;
+        // Rotate away from the obstacle
+        transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
 
-        // update turn timer
+        // Continue moving forward
+        MoveForward();
+
+        // Increment turn timer
         turnTimer += Time.deltaTime;
 
-        // if no turns is in progress, decide whether to turn left or right
-        if (!isTurningLeft && !isTurningRight)
+        // Check if it's time to resume patrolling
+        if (turnTimer >= turnDuration || IsPathClear())
         {
-            DecideTurn();
+            currentState = State.Patrolling;
+            turnTimer = 0; // Reset turn timer
+        }
+    }
+
+    bool IsPathClear()
+    {
+        // Perform a raycast to check if the path ahead is clear
+        return !Physics.Raycast(transform.position, transform.forward, detectionDistance, obstacleLayer);
+    }
+
+    void MoveForward()
+    {
+        transform.position += transform.forward * speed * Time.deltaTime;
+    }
+
+    void DecideTurn()
+    {
+        // Randomly choose a direction and duration for turning
+        if (Random.value <= 0.5f)
+        {
+            rotationSpeed = -Mathf.Abs(rotationSpeed); // Turn left
+        }
+        else
+        {
+            rotationSpeed = Mathf.Abs(rotationSpeed); // Turn right
         }
 
-        // turning left, rotate left
-        if (isTurningLeft)
-        {
-            transform.Rotate(Vector3.up, -rotationSpeed * Time.deltaTime);
-
-            // check if turn duration is reached
-            if (turnTimer >= turnDuration)
-            {
-                isTurningLeft = false;
-                turnTimer = 0f;
-            }
-        }
-        // turning right, rotate right
-        else if (isTurningRight)
-        {
-            transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
-
-            // check if turn duration is reached
-            if (turnTimer >= turnDuration)
-            {
-                isTurningRight = false;
-                turnTimer = 0f;
-            }
-        }
-
-        // Apply the new position
-        transform.position = shipsMovement;
+        turnTimer = Random.Range(2f, turnDuration); // Randomize turn duration for more dynamic behavior
     }
 }
