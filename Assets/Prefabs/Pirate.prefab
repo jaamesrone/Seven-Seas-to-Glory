@@ -362,6 +362,7 @@ GameObject:
   - component: {fileID: 2140356690241173460}
   - component: {fileID: 3423725641034343429}
   - component: {fileID: 1093818120287013358}
+  - component: {fileID: 898528373427134131}
   m_Layer: 5
   m_Name: HealthUI
   m_TagString: Untagged
@@ -452,6 +453,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &898528373427134131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6267587866036618319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bac8e8bcd81b44ff8b6f0ec9ae1f4722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 6267587866036618319}
+  cam: {fileID: 0}
 --- !u!1 &7581357958216830002
 GameObject:
   m_ObjectHideFlags: 0
