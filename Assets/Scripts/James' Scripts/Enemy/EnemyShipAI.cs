@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class EnemyShipAI : MonoBehaviour
 {
-    public float speed = 5f;
-    public float rotationSpeed = 2f;
+    public float speed;
+    public float rotationSpeed;
     public LayerMask obstacleLayer; // Define which layers are considered obstacles
-    public float detectionDistance = 10f; // How far ahead the ship checks for obstacles
+    public float detectionDistance; // How far ahead the ship checks for obstacles
 
     private enum State { Patrolling, AvoidingObstacle }
     private State currentState = State.Patrolling;

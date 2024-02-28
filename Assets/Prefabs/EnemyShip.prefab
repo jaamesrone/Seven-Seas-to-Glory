@@ -928,7 +928,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  rotationSpeed: 2
+  rotationSpeed: 10
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 72
+  detectionDistance: 75
 --- !u!1 &2004803309379865018
 GameObject:
   m_ObjectHideFlags: 0

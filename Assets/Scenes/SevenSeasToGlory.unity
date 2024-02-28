@@ -1229,7 +1229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26be82ef0841e40399933c7e21adac00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!84 &991517935
+--- !u!84 &853109999
 RenderTexture:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2550,9 +2550,12 @@ MonoBehaviour:
     type: 3}
   piratePrefab: {fileID: 2872997683106807374, guid: 1bc92d4e0266edb41a720244e3743cc7,
     type: 3}
+  playerShip: {fileID: 1994448289}
   numberOfShipsToSpawn: 8
   numberOfPirates: 2
-  spawnRadius: 250
+  spawnRadius: 400
+  minDistanceFromPlayer: 50
+  minDistanceFromOtherShips: 30
 --- !u!1001 &1725199702
 PrefabInstance:
   m_ObjectHideFlags: 0
