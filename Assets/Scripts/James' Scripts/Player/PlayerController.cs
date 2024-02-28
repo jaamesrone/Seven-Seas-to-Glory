@@ -4,71 +4,88 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Player Settings")]
     public float speed = 5f;
     public float sensitivity = 2f;
     public float jumpForce = 10f;
-    public float groundCheckDistance = 1.0f; // distance for the raycast to check if grounded
+    public float groundCheckDistance = 1.0f;
 
-    public bool isBlocking = false;
+    [Header("State")]
+    private bool isBlocking = false;
     private bool isAttacking = false;
     private bool isGrounded = true;
-    private Rigidbody rb;
 
+    [Header("Components")]
+    private Rigidbody rb;
+    private Animator animator;
+    private PlayerInput playerInput;
+
+    [Header("Input")]
     private Vector2 moveInput;
     private Vector2 lookInput;
 
-    private Animator playerAnimation;
-
-    //Natalie's HealthBar
+    [Header("UI")]
     public HealthBar healthBar;
     public Player player;
-    ////Natalie's save
-    //public GameObject saveObj;
 
-    public void Start()
+    private void Awake()
     {
-        healthBar.SetMaxHealth(player.health);
-        ////Natalie's save script
-        //saveObj.GetComponent<SaveAndLoad>().LoadPlayer();
-        healthBar.SetHealth(player.health);
-
-        ActionControls();
-        
-        Camera.main.transform.localRotation = Quaternion.Euler(Vector3.zero);
-
-        playerAnimation = GetComponent<Animator>();
-
         rb = GetComponent<Rigidbody>();
-
-        // lock and hide the cursor
+        animator = GetComponent<Animator>();
+        playerInput = GetComponent<PlayerInput>();
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    public void FixedUpdate()
+    private void Start()
     {
-        // move the player based on moveInput
-        Vector3 movement = new Vector3(moveInput.x, 0f, moveInput.y) * speed * Time.deltaTime;
-        transform.Translate(movement, Space.Self);
-
-        // rotate the player based on mouse movement
-        Vector3 playerRotation = new Vector3(0f, lookInput.x, 0f) * sensitivity;
-        transform.Rotate(playerRotation);
-
-        // rotate the camera based on mouse movement
-        Vector3 cameraRotation = new Vector3(-lookInput.y, 0f, 0f) * sensitivity;
-        float currentRotationX = Camera.main.transform.localEulerAngles.x;
-        float newRotationX = currentRotationX + cameraRotation.x;
-        // clamp the rotation within the specified range
-        if (newRotationX > 180)// if new rotationX goes above 180 degrees (beyond straight up), subtract 360 degrees to keep it within the [-180, 180] range.
-            newRotationX -= 360;
-        newRotationX = Mathf.Clamp(newRotationX, -30f, 40f);
-        Camera.main.transform.localEulerAngles = new Vector3(newRotationX, 0f, 0f);
-
-        CheckGrounded();
-
-        UpdateAnimation();
+        healthBar.SetMaxHealth(player.health);
+        healthBar.SetHealth(player.health);
+        InitializeActionControls();
     }
 
+    private void FixedUpdate()
+    {
+        MovePlayer();
+        RotatePlayerAndCamera();
+        CheckGroundedStatus();
+        UpdateAnimationStates();
+    }
+
+    private void MovePlayer()
+    {
+        Vector3 movement = new Vector3(moveInput.x, 0f, moveInput.y) * speed * Time.deltaTime;
+        transform.Translate(movement, Space.Self);
+    }
+
+    private void RotatePlayerAndCamera()
+    {
+        transform.Rotate(0f, lookInput.x * sensitivity, 0f);
+
+        float cameraRotationX = -lookInput.y * sensitivity;
+        float currentRotationX = Camera.main.transform.localEulerAngles.x;
+        float newRotationX = currentRotationX + cameraRotationX;
+
+        if (newRotationX > 180) newRotationX -= 360;
+        newRotationX = Mathf.Clamp(newRotationX, -30f, 40f);
+
+        Camera.main.transform.localEulerAngles = new Vector3(newRotationX, 0f, 0f);
+    }
+
+    private void CheckGroundedStatus()
+    {
+        RaycastHit hit;
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, out hit, groundCheckDistance);
+    }
+
+    private void UpdateAnimationStates()
+    {
+        animator.SetBool("Running", moveInput.y > 0 && !isBlocking);
+        animator.SetBool("Backwards", moveInput.y < 0 && !isBlocking);
+        animator.SetBool("IsBlocking", isBlocking);
+        animator.SetBool("Idle", moveInput == Vector2.zero && !isBlocking);
+    }
+
+    // Input System Handlers
     public void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
@@ -90,94 +107,40 @@ public class PlayerController : MonoBehaviour
 
     public void OnFire()
     {
-        // check if the player is moving forward or backward and not currently attacking
-        if ((!isAttacking || moveInput.y > 0 || moveInput.y < 0) && !isAttacking)
+        if (!isAttacking)
         {
-            playerAnimation.SetBool("IsAttacking", true);
+            animator.SetBool("IsAttacking", true);
             isAttacking = true;
-
-            StartCoroutine(ResetIsAttackingAfterDelay(1f)); //dont change that float because right now it's perfect omegalul
+            StartCoroutine(ResetIsAttackingAfterDelay(1f));
         }
     }
 
     public void OnBlock()
     {
-        // trigger the block animation
-        playerAnimation.SetBool("IsBlocking", true);
         isBlocking = true;
+        animator.SetBool("IsBlocking", true);
     }
 
     public void StopBlock()
     {
-        // stopping the block animation
-        playerAnimation.SetBool("IsBlocking", false);
         isBlocking = false;
+        animator.SetBool("IsBlocking", false);
     }
 
     IEnumerator ResetIsAttackingAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        playerAnimation.SetBool("IsAttacking", false);
         isAttacking = false;
+        animator.SetBool("IsAttacking", false);
     }
 
-    public void CheckGrounded()
+    private void InitializeActionControls()
     {
-        // checks to see if i am on the ground
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, groundCheckDistance))
-        {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
-        }
-    }
+        var jumpAction = playerInput.actions["Jump"];
+        jumpAction.performed += _ => OnJump();
 
-    public void UpdateAnimation()
-    {
-        // checking if the block action is currently performed
-        bool isBlocking = BlockActionIsPerformed();
-
-        // checking if the player is moving forward or backward
-        bool isMovingForward = moveInput.y > 0;
-        bool isMovingBackward = moveInput.y < 0;
-
-        // making sure the overall movement state of the player
-        bool isMoving = isMovingForward || isMovingBackward;
-
-        // setting my animation parameters based on input
-        playerAnimation.SetBool("Running", isMovingForward && !isBlocking);
-        playerAnimation.SetBool("Backwards", isMovingBackward && !isBlocking);
-        playerAnimation.SetBool("IsBlocking", isBlocking);
-
-        //if the player is not moving or blocking, set the idle animation
-        if (!isMoving && !isBlocking)
-        {
-            playerAnimation.SetBool("Idle", true);
-        }
-        else
-        {
-            playerAnimation.SetBool("Idle", false);
-        }
-    }
-
-    public bool BlockActionIsPerformed()
-    {
-        // get the block action map
-        var blockActionMap = GetComponent<PlayerInput>().actions.FindActionMap("Player");
-
-        // check if the block action is currently performed
-        return blockActionMap["Block"].ReadValue<float>() > 0.5f;
-    }
-
-    public void ActionControls()
-    {
-        InputAction jumpAction = GetComponent<PlayerInput>().actions.FindAction("Jump");
-        jumpAction.performed += ctx => OnJump();
-        InputAction blockAction = GetComponent<PlayerInput>().actions.FindAction("Block");
-        blockAction.started += ctx => OnBlock();
-        blockAction.canceled += ctx => StopBlock();
+        var blockAction = playerInput.actions["Block"];
+        blockAction.started += _ => OnBlock();
+        blockAction.canceled += _ => StopBlock();
     }
 }
