@@ -7,6 +7,11 @@ public class ShipHealth : MonoBehaviour
     public HealthBar healthBar;
     public float health = 100f;
 
+    void Start()
+    {
+        healthBar.SetMaxHealth(health);
+    }
+
     public void TakeDamage(float damage)
     {
         // player takes dmg

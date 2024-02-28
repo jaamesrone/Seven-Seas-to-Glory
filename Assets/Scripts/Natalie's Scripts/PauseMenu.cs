@@ -14,6 +14,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject controlsMenuUI;
     public GameObject GameOverUI;
     public Player player;
+    public GameObject Ship;
     //public GameObject settingsMenuUI;
 
     public object ScreenManager { get; private set; }
@@ -39,7 +40,7 @@ public class PauseMenu : MonoBehaviour
                 Pause();
             }
         }
-        if (player.health <= 0)
+        if (player.health <= 0 || Ship.GetComponent<PlayerShipHealth>().health <= 0)
         {
             DisplayGameOver();
         }

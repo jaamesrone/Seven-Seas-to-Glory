@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 8803385253077783395}
   - component: {fileID: 624697987155429540}
   - component: {fileID: 3647917223534915075}
-  - component: {fileID: 350294436084733746}
+  - component: {fileID: -217443226922351360}
   m_Layer: 0
-  m_Name: TempCannonBall
+  m_Name: TempEnemyCannonBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -134,7 +134,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &350294436084733746
+--- !u!114 &-217443226922351360
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,6 +143,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9108547772088463925}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7c3b181e036545939b29ab41f24f917, type: 3}
+  m_Script: {fileID: 11500000, guid: 37702f2395c82486cbb70429b2e534da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 10
