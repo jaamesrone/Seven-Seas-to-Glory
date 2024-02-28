@@ -7,14 +7,15 @@ TagManager:
   - Enemy
   - Wheel
   - HandtoHand
+  - PlayerShip
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - PlayerShip
   - Water
   - UI
-  - 
+  - EnemyShip
   - 
   - 
   - 

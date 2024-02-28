@@ -1,13 +1,18 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyShipSpawner : MonoBehaviour
 {
-    public GameObject enemyShipPrefab; // enemy ship model
-    public GameObject piratePrefab; // pirate model
-   
-    public int numberOfShipsToSpawn; // number of enemy ships to spawn
-    public int numberOfPirates; 
-    public float spawnRadius; // radius within which enemy ships will be spawned
+    public GameObject enemyShipPrefab;
+    public GameObject piratePrefab;
+    public GameObject playerShip; // Reference to the player's ship to avoid spawning near it
+    public int numberOfShipsToSpawn;
+    public int numberOfPirates;
+    public float spawnRadius;
+    public float minDistanceFromPlayer = 50f; // Minimum distance from the player ship
+    public float minDistanceFromOtherShips = 30f; // Minimum distance from other enemy ships
+
+    private List<Vector3> spawnedShipPositions = new List<Vector3>(); // To keep track of spawned ship positions
 
     void Start()
     {
@@ -18,37 +23,56 @@ public class EnemyShipSpawner : MonoBehaviour
     {
         for (int i = 0; i < numberOfShipsToSpawn; i++)
         {
-            // vector 3 random position within the spawn radius
-            Vector3 randomPosition = transform.position + Random.insideUnitSphere * spawnRadius;
+            Vector3 randomPosition = Vector3.zero;
+            bool positionFound = false;
+            int attemptCounter = 0;
 
-            // setting the enemy ships at y = 0 so it's on the ocean surface.
-            randomPosition.y = 0f;
+            while (!positionFound && attemptCounter < 100) // Prevent infinite loop, attempt up to 100 times
+            {
+                attemptCounter++;
+                randomPosition = transform.position + Random.insideUnitSphere * spawnRadius;
+                randomPosition.y = 0f; // Ensure it's on the ocean surface
 
-            // setting a random rotation for the enemy ships so each ship runs in a random direction
-            Quaternion randomRotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
+                if (Vector3.Distance(randomPosition, playerShip.transform.position) >= minDistanceFromPlayer && IsFarFromOtherShips(randomPosition))
+                {
+                    positionFound = true;
+                }
+            }
 
-            // spawn the enemy ship prefab at the random position with the random rotation
-            GameObject enemyShip = Instantiate(enemyShipPrefab, randomPosition, randomRotation);
+            if (positionFound)
+            {
+                Quaternion randomRotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
+                GameObject enemyShip = Instantiate(enemyShipPrefab, randomPosition, randomRotation);
+                spawnedShipPositions.Add(randomPosition); // Keep track of spawned ship position
 
-            // instantiate pirate prefabs on the enemy ship
-            SpawnPiratesOnShip(enemyShip);
+                SpawnPiratesOnShip(enemyShip);
+            }
+            else
+            {
+                Debug.LogWarning("Could not find a suitable position for enemy ship #" + (i + 1));
+            }
         }
+    }
+
+    bool IsFarFromOtherShips(Vector3 position)
+    {
+        foreach (Vector3 otherPosition in spawnedShipPositions)
+        {
+            if (Vector3.Distance(position, otherPosition) < minDistanceFromOtherShips)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     void SpawnPiratesOnShip(GameObject ship)
     {
         for (int i = 0; i < numberOfPirates; i++)
         {
-            // a random position within the ship's bounds
-            Vector3 piratePosition = ship.transform.position + Random.insideUnitSphere * 5f; // Adjust the radius as needed
-
-            // the pirate is positioned above the ship's surface
-            piratePosition.y = ship.transform.position.y + 6f; // Adjust the height as needed
-
-            // instantiate the pirate prefab on the ship
+            Vector3 piratePosition = ship.transform.position + Random.insideUnitSphere * 5f;
+            piratePosition.y = ship.transform.position.y + 6f;
             GameObject pirate = Instantiate(piratePrefab, piratePosition, Quaternion.identity);
-
-            // parenting the pirate's to the ship
             pirate.transform.parent = ship.transform.Find("Ship").Find("ship_main");
         }
     }

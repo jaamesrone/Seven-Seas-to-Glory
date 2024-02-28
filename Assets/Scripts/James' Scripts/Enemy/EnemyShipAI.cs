@@ -2,74 +2,150 @@ using UnityEngine;
 
 public class EnemyShipAI : MonoBehaviour
 {
-    public float speed = 5f; // speed at which the enemy ship moves
-    public float rotationSpeed = 2f; // speed at which the enemy ship rotates
+    public float speed;
+    public float rotationSpeed;
+    public LayerMask obstacleLayer; // this is for unity to know whats an obstacle for the ship
+    public float detectionDistance; // how far ship checks for obstacles
+    public float shootingRadius; // shooting radius to detect player ship
+    public GameObject cannonballPrefab; // prefab of the cannonball
+    public Transform[] cannonSpawnPoints; // array of empty gameobjects where cannonballs shoot from
+    public float shootingCooldown = 2f; // cooldown between shots
 
-    private bool isTurningLeft = false;
-    private bool isTurningRight = false;
+    private enum State { Patrolling, AvoidingObstacle, Attacking }
+    private State currentState = State.Patrolling;
+
     private float turnDuration = 7f;
-    private float turnTimer = 0f;
+    private float turnTimer;
+    private float shootingTimer;
+    private GameObject playerShip;
+
+    void Start()
+    {
+        playerShip = GameObject.FindGameObjectWithTag("PlayerShip");
+    }
 
     void Update()
     {
-        ShipAIMovement(); //ships ai movement
-    }
-
-    // decision about turning left or right
-    void DecideTurn()
-    {
-        // there's a 30% chance of turning left and a 70% chance of turning right
-        float randomValue = Random.value;
-        if (randomValue <= 0.3f)
+        switch (currentState)
         {
-            isTurningLeft = true;
-        }
-        else
-        {
-            isTurningRight = true;
+            case State.Patrolling:
+                Patrolling();
+                break;
+            case State.AvoidingObstacle:
+                AvoidingObstacle();
+                break;
+            case State.Attacking:
+                Attacking();
+                break;
         }
     }
 
-    void ShipAIMovement()
+    void Patrolling()
     {
-        // vector 3 new position of the ship is based on its forward direction and speed
-        Vector3 shipsMovement = transform.position + transform.forward * speed * Time.deltaTime;
+        // Check for obstacles ahead
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, detectionDistance, obstacleLayer))
+        {
+            currentState = State.AvoidingObstacle;
+            turnTimer = 0; // reset timer for turning
+            return;
+        }
 
-        // update turn timer
-        turnTimer += Time.deltaTime;
+        // Check for player ship within the shooting radius
+        if (Vector3.Distance(transform.position, playerShip.transform.position) <= shootingRadius)
+        {
+            currentState = State.Attacking;
+            return;
+        }
 
-        // if no turns is in progress, decide whether to turn left or right
-        if (!isTurningLeft && !isTurningRight)
+        // continue moving forward
+        MoveForward();
+
+        // randomly decide to turn
+        if (turnTimer <= 0)
         {
             DecideTurn();
         }
-
-        // turning left, rotate left
-        if (isTurningLeft)
+        else
         {
-            transform.Rotate(Vector3.up, -rotationSpeed * Time.deltaTime);
-
-            // check if turn duration is reached
-            if (turnTimer >= turnDuration)
-            {
-                isTurningLeft = false;
-                turnTimer = 0f;
-            }
+            turnTimer -= Time.deltaTime;
         }
-        // turning right, rotate right
-        else if (isTurningRight)
+    }
+
+    void AvoidingObstacle()
+    {
+        // rotate away from the obstacle
+        transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
+
+        // continue moving forward
+        MoveForward();
+
+        // turn timer
+        turnTimer += Time.deltaTime;
+
+        // check if it's time to resume patrolling
+        if (turnTimer >= turnDuration || IsPathClear())
         {
-            transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
+            currentState = State.Patrolling;
+            turnTimer = 0;
+        }
+    }
 
-            // check if turn duration is reached
-            if (turnTimer >= turnDuration)
-            {
-                isTurningRight = false;
-                turnTimer = 0f;
-            }
+    void Attacking()
+    {
+        // Shoot cannonballs at the player ship with cooldown
+        shootingTimer += Time.deltaTime;
+        if (shootingTimer >= shootingCooldown)
+        {
+            ShootCannonballs();
+            shootingTimer = 0f; // Reset shooting timer
         }
 
-        // Apply the new position
-        transform.position = shipsMovement;
+        // Check if the player ship is out of the shooting radius
+        if (Vector3.Distance(transform.position, playerShip.transform.position) > shootingRadius)
+        {
+            currentState = State.Patrolling;
+        }
+    }
+
+
+
+
+    bool IsPathClear()
+    {
+        // a raycast to check if the path ahead is clear
+        return !Physics.Raycast(transform.position, transform.forward, detectionDistance, obstacleLayer);
+    }
+
+    void MoveForward()
+    {
+        transform.position += transform.forward * speed * Time.deltaTime;
+    }
+
+    void DecideTurn()
+    {
+        // randomly choose a direction and duration for turning
+        if (Random.value <= 0.5f)
+        {
+            rotationSpeed = -Mathf.Abs(rotationSpeed); // turn left
+        }
+        else
+        {
+            rotationSpeed = Mathf.Abs(rotationSpeed); // turn right
+        }
+
+        turnTimer = Random.Range(2f, turnDuration); // randomize turn duration for more dynamic behavior
+    }
+
+    void ShootCannonballs()
+    {
+        float cannonballSpeed = 100f;
+        // Shoot cannonballs straight out from each cannon spawn point
+        foreach (Transform cannonSpawnPoint in cannonSpawnPoints)
+        {
+            GameObject cannonball = Instantiate(cannonballPrefab, cannonSpawnPoint.position, cannonSpawnPoint.rotation);
+            Rigidbody cannonballRb = cannonball.GetComponent<Rigidbody>();
+            cannonballRb.velocity = cannonSpawnPoint.forward * cannonballSpeed; // Adjust 'cannonballSpeed' according to your desired speed
+        }
     }
 }
