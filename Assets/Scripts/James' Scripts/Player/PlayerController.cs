@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public float groundCheckDistance = 1.0f;
 
     [Header("State")]
-    private bool isBlocking = false;
+    public bool isBlocking = false;
     private bool isAttacking = false;
     private bool isGrounded = true;
 
