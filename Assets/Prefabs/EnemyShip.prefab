@@ -1087,9 +1087,9 @@ MonoBehaviour:
   rotationSpeed: 10
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 8
   detectionDistance: 100
-  shootingRadius: 50
+  shootingRadius: 80
   cannonballPrefab: {fileID: 9108547772088463925, guid: 5cbd67b348f2b4ccb83e7e1d3dff8870,
     type: 3}
   leftCannonSpawnPoints:
