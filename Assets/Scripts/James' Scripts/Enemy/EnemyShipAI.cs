@@ -26,7 +26,7 @@ public class EnemyShipAI : MonoBehaviour
 
     void Update()
     {
-        switch (currentState)
+        switch (currentState)//AI state's
         {
             case State.Patrolling:
                 Patrolling();
@@ -42,7 +42,7 @@ public class EnemyShipAI : MonoBehaviour
 
     void Patrolling()
     {
-        // Check for obstacles ahead
+        // check for obstacles ahead
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, detectionDistance, obstacleLayer))
         {
@@ -51,7 +51,7 @@ public class EnemyShipAI : MonoBehaviour
             return;
         }
 
-        // Check for player ship within the shooting radius
+        // check for player ship within the shooting radius
         if (Vector3.Distance(transform.position, playerShip.transform.position) <= shootingRadius)
         {
             currentState = State.Attacking;
@@ -93,15 +93,15 @@ public class EnemyShipAI : MonoBehaviour
 
     void Attacking()
     {
-        // Shoot cannonballs at the player ship with cooldown
+        // shoot cannonballs at the player ship with cooldown
         shootingTimer += Time.deltaTime;
         if (shootingTimer >= shootingCooldown)
         {
             ShootCannonballs();
-            shootingTimer = 0f; // Reset shooting timer
+            shootingTimer = 0f; // reset shooting timer
         }
 
-        // Check if the player ship is out of the shooting radius
+        // check if the player ship is out of the shooting radius
         if (Vector3.Distance(transform.position, playerShip.transform.position) > shootingRadius)
         {
             currentState = State.Patrolling;
@@ -140,12 +140,12 @@ public class EnemyShipAI : MonoBehaviour
     void ShootCannonballs()
     {
         float cannonballSpeed = 100f;
-        // Shoot cannonballs straight out from each cannon spawn point
+        // shoot cannonballs from cannonSpawnPoint
         foreach (Transform cannonSpawnPoint in cannonSpawnPoints)
         {
             GameObject cannonball = Instantiate(cannonballPrefab, cannonSpawnPoint.position, cannonSpawnPoint.rotation);
             Rigidbody cannonballRb = cannonball.GetComponent<Rigidbody>();
-            cannonballRb.velocity = cannonSpawnPoint.forward * cannonballSpeed; // Adjust 'cannonballSpeed' according to your desired speed
+            cannonballRb.velocity = cannonSpawnPoint.forward * cannonballSpeed; 
         }
     }
 }
