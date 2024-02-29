@@ -166,6 +166,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2301271365792878543}
   - component: {fileID: 584632126762770448}
+  - component: {fileID: 3722641760907260995}
   m_Layer: 6
   m_Name: HandtoHandCombatTrigger
   m_TagString: HandtoHand
@@ -211,6 +212,20 @@ CapsuleCollider:
   m_Height: 55.270596
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3722641760907260995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309546043964388756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c2e2106977234286aa6b7e3b36b23e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popup: {fileID: 3710892905738632740, guid: 3e167c14c891d4e55bf19083e60746f5, type: 3}
+  message: Press E to board enemy
 --- !u!1 &382131528327701562
 GameObject:
   m_ObjectHideFlags: 0
