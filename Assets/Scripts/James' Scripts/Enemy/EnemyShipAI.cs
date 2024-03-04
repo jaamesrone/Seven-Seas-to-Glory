@@ -8,7 +8,8 @@ public class EnemyShipAI : MonoBehaviour
     public float detectionDistance; // how far ship checks for obstacles
     public float shootingRadius; // shooting radius to detect player ship
     public GameObject cannonballPrefab; // prefab of the cannonball
-    public Transform[] cannonSpawnPoints; // array of empty gameobjects where cannonballs shoot from
+    public Transform[] leftCannonSpawnPoints; // left side cannon spawn points
+    public Transform[] rightCannonSpawnPoints; // right side cannon spawn points
     public float shootingCooldown = 2f; // cooldown between shots
 
     private enum State { Patrolling, AvoidingObstacle, Attacking }
@@ -91,22 +92,65 @@ public class EnemyShipAI : MonoBehaviour
         }
     }
 
+    // the attacking behavior of the ship
     void Attacking()
     {
-        // shoot cannonballs at the player ship with cooldown
+        // shooting timer 
         shootingTimer += Time.deltaTime;
+        // if the shooting timer has passed the cooldown period
         if (shootingTimer >= shootingCooldown)
         {
-            ShootCannonballs();
-            shootingTimer = 0f; // reset shooting timer
+            // which side of the ship the player is on and shoot from that side
+            if (IsPlayerOnLeftSide())
+            {
+                // if the player is on the left side, shoot cannonballs from left side
+                ShootCannonballs(leftCannonSpawnPoints);
+            }
+            else
+            {
+                // if the player is not on the left side, shoot from right side
+                ShootCannonballs(rightCannonSpawnPoints);
+            }
+            // resets shooting timer
+            shootingTimer = 0f;
         }
 
-        // check if the player ship is out of the shooting radius
+        // check to see if the player ship is outside the shooting radius
         if (Vector3.Distance(transform.position, playerShip.transform.position) > shootingRadius)
         {
+            // if the player is out of range, patrolling state is now activated >:D
             currentState = State.Patrolling;
         }
     }
+
+    bool IsPlayerOnLeftSide()
+    {
+        // vec3 for the direction vector from pirate ship to the player ship
+        Vector3 toPlayer = playerShip.transform.position - transform.position;
+        // a right vec3 towards the player from the ship's forward direction
+        Vector3 toPlayerRight = Vector3.Cross(transform.forward, toPlayer);
+        // return true if the vec3dot is less than 0.. just means the player is on the left side
+        return Vector3.Dot(transform.up, toPlayerRight) < 0;
+    }
+
+    // shoots cannonballs from specified spawn points
+    void ShootCannonballs(Transform[] cannonSpawnPoints)
+    {
+        // float for the speed
+        float cannonballSpeed = 100f;
+        // goes through each spawn point
+        foreach (Transform cannonSpawnPoint in cannonSpawnPoints)
+        {
+            // spawns a cannonball
+            GameObject cannonball = Instantiate(cannonballPrefab, cannonSpawnPoint.position, cannonSpawnPoint.rotation);
+            // gets the rb
+            Rigidbody cannonballRb = cannonball.GetComponent<Rigidbody>();
+            // adds velocity for the shooting
+            cannonballRb.velocity = cannonSpawnPoint.forward * cannonballSpeed;
+        }
+    }
+
+
 
 
 
@@ -135,17 +179,5 @@ public class EnemyShipAI : MonoBehaviour
         }
 
         turnTimer = Random.Range(2f, turnDuration); // randomize turn duration for more dynamic behavior
-    }
-
-    void ShootCannonballs()
-    {
-        float cannonballSpeed = 100f;
-        // shoot cannonballs from cannonSpawnPoint
-        foreach (Transform cannonSpawnPoint in cannonSpawnPoints)
-        {
-            GameObject cannonball = Instantiate(cannonballPrefab, cannonSpawnPoint.position, cannonSpawnPoint.rotation);
-            Rigidbody cannonballRb = cannonball.GetComponent<Rigidbody>();
-            cannonballRb.velocity = cannonSpawnPoint.forward * cannonballSpeed; 
-        }
     }
 }
