@@ -8,6 +8,7 @@ TagManager:
   - Wheel
   - HandtoHand
   - PlayerShip
+  - popup
   layers:
   - Default
   - TransparentFX

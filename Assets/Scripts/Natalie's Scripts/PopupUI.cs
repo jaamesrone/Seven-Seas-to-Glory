@@ -6,22 +6,19 @@ using UnityEngine.UI;
 
 public class PopupUI : MonoBehaviour
 {
-    public TextMeshProUGUI popup;
-    public string message = "";
-
-    public void OnCollisionEnter(Collision other)
+    public void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("PlayerShip"))
+        if(other.gameObject.CompareTag("popup"))
         {
-            popup.text = message;
+            other.gameObject.transform.GetChild(0).gameObject.SetActive(true);
         }
     }
 
-    public void OnCollisionExit(Collision other)
+    public void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("PlayerShip"))
+        if (other.gameObject.CompareTag("popup"))
         {
-            popup.text = "";
+            other.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         }
     }
 }
