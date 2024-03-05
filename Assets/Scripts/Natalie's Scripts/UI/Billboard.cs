@@ -9,10 +9,16 @@ public class Billboard : MonoBehaviour
 
     void Start()
     {
-        cam = GameObject.FindWithTag("MainCamera").GetComponent<Transform>();
+        if (cam == null)
+        {
+            cam = GameObject.FindWithTag("MainCamera").GetComponent<Transform>();
+        }
     }
     void LateUpdate()
     {
-        canvas.transform.LookAt(transform.position + cam.forward);
+        if (cam != null)
+        {
+            canvas.transform.LookAt(transform.position + cam.forward);
+        }
     }
 }
