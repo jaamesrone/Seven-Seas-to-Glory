@@ -82,7 +82,6 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Running", moveInput.y > 0 && !isBlocking);
         animator.SetBool("Backwards", moveInput.y < 0 && !isBlocking);
         animator.SetBool("IsBlocking", isBlocking);
-        animator.SetBool("Idle", moveInput == Vector2.zero && !isBlocking);
     }
 
     // Input System Handlers
