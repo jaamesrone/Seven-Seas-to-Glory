@@ -224,8 +224,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c2e2106977234286aa6b7e3b36b23e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popup: {fileID: 3710892905738632740, guid: 3e167c14c891d4e55bf19083e60746f5, type: 3}
-  message: Press E to board enemy
 --- !u!1 &382131528327701562
 GameObject:
   m_ObjectHideFlags: 0
@@ -561,7 +559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bac8e8bcd81b44ff8b6f0ec9ae1f4722, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 1028808676484281883}
+  canvas: {fileID: 0}
   cam: {fileID: 0}
 --- !u!1 &1241852553457189044
 GameObject:
