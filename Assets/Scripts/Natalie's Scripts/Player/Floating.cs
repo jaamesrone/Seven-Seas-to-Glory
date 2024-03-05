@@ -32,7 +32,7 @@ public class Floating : MonoBehaviour
 
         if(floating == true && Input.GetKeyDown(KeyCode.F))
         {
-            gameObject.transform.position = shipReturn.transform.position;
+            this.gameObject.transform.position = shipReturn.transform.position;
             floating = false;
             returnToShip.enabled = false;
         }
