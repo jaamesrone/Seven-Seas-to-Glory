@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Billboard : MonoBehaviour
 {
-    public GameObject healthBar;
+    public GameObject canvas;
     public Transform cam = null;
 
     void Start()
@@ -13,6 +13,6 @@ public class Billboard : MonoBehaviour
     }
     void LateUpdate()
     {
-        healthBar.transform.LookAt(transform.position + cam.forward);
+        canvas.transform.LookAt(transform.position + cam.forward);
     }
 }

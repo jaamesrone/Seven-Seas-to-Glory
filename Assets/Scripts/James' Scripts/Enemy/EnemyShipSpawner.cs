@@ -5,14 +5,14 @@ public class EnemyShipSpawner : MonoBehaviour
 {
     public GameObject enemyShipPrefab;
     public GameObject piratePrefab;
-    public GameObject playerShip; // Reference to the player's ship to avoid spawning near it
+    public GameObject playerShip; // reference to the player's ship to avoid spawning near it
     public int numberOfShipsToSpawn;
     public int numberOfPirates;
     public float spawnRadius;
-    public float minDistanceFromPlayer = 50f; // Minimum distance from the player ship
-    public float minDistanceFromOtherShips = 30f; // Minimum distance from other enemy ships
+    public float minDistanceFromPlayer = 50f; // minimum distance from the player ship
+    public float minDistanceFromOtherShips = 30f; // minimum distance from other enemy ships
 
-    private List<Vector3> spawnedShipPositions = new List<Vector3>(); // To keep track of spawned ship positions
+    private List<Vector3> spawnedShipPositions = new List<Vector3>(); // to keep track of spawned ship positions
 
     void Start()
     {
@@ -27,11 +27,11 @@ public class EnemyShipSpawner : MonoBehaviour
             bool positionFound = false;
             int attemptCounter = 0;
 
-            while (!positionFound && attemptCounter < 100) // Prevent infinite loop, attempt up to 100 times
+            while (!positionFound && attemptCounter < 100) // prevent infinite loop, attempt up to 100 times
             {
                 attemptCounter++;
                 randomPosition = transform.position + Random.insideUnitSphere * spawnRadius;
-                randomPosition.y = 0f; // Ensure it's on the ocean surface
+                randomPosition.y = 0f; // ensure it's on the ocean surface
 
                 if (Vector3.Distance(randomPosition, playerShip.transform.position) >= minDistanceFromPlayer && IsFarFromOtherShips(randomPosition))
                 {
@@ -43,7 +43,7 @@ public class EnemyShipSpawner : MonoBehaviour
             {
                 Quaternion randomRotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
                 GameObject enemyShip = Instantiate(enemyShipPrefab, randomPosition, randomRotation);
-                spawnedShipPositions.Add(randomPosition); // Keep track of spawned ship position
+                spawnedShipPositions.Add(randomPosition); // keep track of spawned ship position
 
                 SpawnPiratesOnShip(enemyShip);
             }
