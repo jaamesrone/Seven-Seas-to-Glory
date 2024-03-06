@@ -1103,7 +1103,7 @@ MonoBehaviour:
     m_Bits: 8
   detectionDistance: 100
   shootingRadius: 80
-  cannonballPrefab: {fileID: 9108547772088463925, guid: 5cbd67b348f2b4ccb83e7e1d3dff8870,
+  cannonballPrefab: {fileID: 5399790467148293810, guid: f0dfa74a56974414ba7b7581446500d9,
     type: 3}
   leftCannonSpawnPoints:
   - {fileID: 6369700617480894004}
