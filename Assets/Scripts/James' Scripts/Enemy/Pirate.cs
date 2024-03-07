@@ -9,7 +9,8 @@ public class Pirate : EnemyClass
     private NavMeshAgent agent;
     private Animator pirateAnimation;
     public float attackRange = 5f;
-
+    [SerializeField]
+    private float blockChance = 0.2f; // 20% chance to block
     public bool isAttacking = false;
 
     // natalie's HealthBar
@@ -44,6 +45,9 @@ public class Pirate : EnemyClass
         CheckPlayerRadius();
         UpdateAnimation();
     }
+
+    
+
 
     void LookAtPlayer()
     {
@@ -111,6 +115,15 @@ public class Pirate : EnemyClass
 
     public void TakeDamage(float damage)
     {
+
+        // Determine if the attack is blocked
+        if (Random.value < blockChance)
+        {
+            // Successfully blocked the attack
+            BlockAttack(); // Play block animation
+            Debug.Log("Attack was blocked!");
+            return; // Exit the method to avoid taking damage
+        }
         // deal damage to the pirate
         health -= damage;
 
@@ -185,5 +198,23 @@ public class Pirate : EnemyClass
     {
         Debug.Log("Pirate died!");
         Destroy(gameObject);
+    }
+
+    void BlockAttack()
+    {
+        // Trigger block animation
+        pirateAnimation.SetTrigger("Block");
+
+        // Start coroutine to reset trigger after animation
+        StartCoroutine(ResetBlockTriggerAfterAnimation());
+    }
+
+    IEnumerator ResetBlockTriggerAfterAnimation()
+    {
+        // Wait for the time the animation takes, possibly add a little extra to ensure it's finished
+        yield return new WaitForSeconds(1.0f); // Use the actual length of your blocking animation
+
+        // Reset the Block trigger
+        pirateAnimation.ResetTrigger("Block");
     }
 }
