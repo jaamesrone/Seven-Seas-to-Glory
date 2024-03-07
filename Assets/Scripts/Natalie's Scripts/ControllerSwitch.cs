@@ -7,6 +7,7 @@ public class ControllerSwitch : MonoBehaviour
 {
     //Temporary Tutorial
     public TextMeshProUGUI GuideText;
+    public TextMeshProUGUI cannonballDisplay;
 
     public GameObject Ship;
     public GameObject Character;
@@ -27,8 +28,8 @@ public class ControllerSwitch : MonoBehaviour
     private void Start()
     {
         InCharacter = true;
-        //Camera.GetComponent<FiringModue>().enabled = false;
-//        Ship.GetComponent<ShipController>().enabled = false;
+        Camera.GetComponent<FiringModue>().enabled = false;
+        Ship.GetComponent<ShipController>().enabled = false;
         Character.GetComponent<PlayerController>().enabled = true;
     }
 
@@ -101,6 +102,7 @@ public class ControllerSwitch : MonoBehaviour
         Camera.GetComponent<FiringModue>().enabled = false;
         Ship.GetComponent<ShipController>().enabled = false;
         Character.GetComponent<PlayerController>().enabled = true;
+        cannonballDisplay.enabled = false;
         InCannon = false;
         InShip = false;
         InCharacter = true;
@@ -116,6 +118,7 @@ public class ControllerSwitch : MonoBehaviour
         Character.GetComponent<PlayerController>().enabled = false;
         Camera.GetComponent<FiringModue>().enabled = false;
         Ship.GetComponent<ShipController>().enabled = true;
+        cannonballDisplay.enabled = false;
         InCharacter = false;
         InCannon = false;
         InShip = true;
@@ -139,6 +142,7 @@ public class ControllerSwitch : MonoBehaviour
         Character.GetComponent<PlayerController>().enabled = false;
         Ship.GetComponent<ShipController>().enabled = false;
         Camera.GetComponent<FiringModue>().enabled = true;
+        cannonballDisplay.enabled = true;
         InCharacter = false;
         InShip = false;
         InCannon = true;

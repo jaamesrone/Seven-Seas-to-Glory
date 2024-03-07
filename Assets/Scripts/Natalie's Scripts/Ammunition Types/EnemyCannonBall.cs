@@ -9,7 +9,7 @@ public class EnemyCannonBall : AmmoClass
         if (collision.gameObject.CompareTag("PlayerShip"))
         {
             GameObject player = collision.gameObject;
-            player.transform.root.GetComponent<ShipHealth>().TakeDamage(baseDamage);
+            player.transform.root.GetComponent<PlayerShipHealth>().TakeDamage(baseDamage);
             Destroy(gameObject);
         }
     }
