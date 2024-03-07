@@ -9,8 +9,8 @@ public class NormalCannonBall : AmmoClass
         if (collision.gameObject.CompareTag("EnemyShip"))
         {
             GameObject enemy = collision.gameObject;
-            enemy.transform.root.GetComponent<ShipHealth>().TakeDamage(baseDamage);
             Destroy(gameObject);
+            enemy.transform.root.GetComponent<ShipHealth>().TakeDamage(baseDamage);
         }
     }
 }
