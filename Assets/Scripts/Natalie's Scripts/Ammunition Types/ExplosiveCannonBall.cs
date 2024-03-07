@@ -9,9 +9,9 @@ public class ExplosiveCannonBall : AmmoClass
         if (collision.gameObject.CompareTag("EnemyShip"))
         {
             GameObject enemy = collision.gameObject;
+            Destroy(gameObject);
             enemy.transform.root.GetComponent<ShipHealth>().TakeDamage(baseDamage);
             enemy.transform.root.GetComponent<ShipHealth>().TakeIncrementalDamage(addedDamage, timeCount, timeBetweenDamage);
-            Destroy(gameObject);
         }
     }
 }

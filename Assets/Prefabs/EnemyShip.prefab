@@ -600,7 +600,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
-  cam: {fileID: 0}
 --- !u!1 &1241852553457189044
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,7 +1143,7 @@ MonoBehaviour:
     m_Bits: 64
   detectionDistance: 100
   shootingRadius: 80
-  cannonballPrefab: {fileID: 5399790467148293810, guid: f0dfa74a56974414ba7b7581446500d9,
+  cannonballPrefab: {fileID: 4291721095273098591, guid: 73cdda0f08a4c4ddbb0f9c41a4441616,
     type: 3}
   leftCannonSpawnPoints:
   - {fileID: 6369700617480894004}

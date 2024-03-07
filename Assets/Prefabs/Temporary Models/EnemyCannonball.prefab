@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1462336481129127684
+--- !u!1 &4291721095273098591
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8625812290464629935}
-  - component: {fileID: 7982774298555597772}
-  - component: {fileID: 5528224333464659257}
-  - component: {fileID: 8656431405336131220}
-  - component: {fileID: -497105327434795095}
-  - component: {fileID: 6212264404842496403}
+  - component: {fileID: 3296545799611388972}
+  - component: {fileID: 1938409592292801559}
+  - component: {fileID: 6434126486272237826}
+  - component: {fileID: 617833244858653649}
+  - component: {fileID: 2866034557063180264}
+  - component: {fileID: 3057984992466217283}
   m_Layer: 0
-  m_Name: TempNormalCannonBall
+  m_Name: EnemyCannonball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8625812290464629935
+--- !u!4 &3296545799611388972
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1462336481129127684}
+  m_GameObject: {fileID: 4291721095273098591}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -350.43646, y: -17.2, z: 134.9}
+  m_LocalPosition: {x: 367.18088, y: 104.81561, z: 28.290161}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7982774298555597772
+--- !u!33 &1938409592292801559
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1462336481129127684}
+  m_GameObject: {fileID: 4291721095273098591}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &5528224333464659257
+--- !u!23 &6434126486272237826
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1462336481129127684}
+  m_GameObject: {fileID: 4291721095273098591}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -86,13 +86,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &8656431405336131220
+--- !u!135 &617833244858653649
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1462336481129127684}
+  m_GameObject: {fileID: 4291721095273098591}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -107,13 +107,31 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &-497105327434795095
+--- !u!114 &2866034557063180264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4291721095273098591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa2a22bc24ce5456e83cdd37d37cceaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseDamage: 3
+  addedDamage: 0
+  timeCount: 0
+  timeBetweenDamage: 0
+  shotSpeedDecrease: 0
+  shotSpeedDecreaseTime: 0
+--- !u!54 &3057984992466217283
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1462336481129127684}
+  m_GameObject: {fileID: 4291721095273098591}
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
@@ -128,27 +146,9 @@ Rigidbody:
     serializedVersion: 2
     m_Bits: 0
   m_ImplicitCom: 1
-  m_ImplicitTensor: 1
+  m_ImplicitTensor: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6212264404842496403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1462336481129127684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df827ca628c584cdeaa3b490bddf6263, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseDamage: 10
-  addedDamage: 0
-  timeCount: 0
-  timeBetweenDamage: 0
-  shotSpeedDecrease: 0
-  shotSpeedDecreaseTime: 0
