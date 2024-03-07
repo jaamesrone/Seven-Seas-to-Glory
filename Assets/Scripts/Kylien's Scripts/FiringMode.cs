@@ -5,7 +5,7 @@ using TMPro;
 using Unity.Burst.Intrinsics;
 using UnityEngine.UI;
 
-public class FiringModue : MonoBehaviour
+public class FiringMode : MonoBehaviour
 {
     public float reloadTime = 3f;
     public GameObject cannonballPrefab;
@@ -13,6 +13,7 @@ public class FiringModue : MonoBehaviour
     public GameObject reloadReticle;
 
     private bool canFire = true;
+    private GameObject activeCannonball;
 
     // Natalie's aiming
     public float maxHeight = 10;
@@ -32,6 +33,15 @@ public class FiringModue : MonoBehaviour
             StartCoroutine(ReloadCannon());
         }
 
+        // Check if the active cannonball is destroyed and cancel the reload coroutine if it is
+        if (activeCannonball == null)
+        {
+            StopCoroutine(ReloadCannon());
+            reloadReticle.SetActive(false);
+            cooldownText.text = "";
+            canFire = true;
+        }
+
         // Natalie's aiming
         if (Input.GetKey(KeyCode.W) && aim < maxHeight)
         {
@@ -46,10 +56,11 @@ public class FiringModue : MonoBehaviour
     void FireCannonball()
     {
         Vector3 firingPosition = transform.position + transform.forward * 1.5f;
-        Vector3 firingDirection = transform.TransformDirection(Vector3.forward) * aim;
+        Vector3 firingDirection = transform.forward; // Use the player's forward direction
 
         GameObject cannonball = Instantiate(cannonballPrefab, firingPosition, Quaternion.identity);
-        Rigidbody2D rb = cannonball.GetComponent<Rigidbody2D>();
+        activeCannonball = cannonball; // Set the active cannonball
+        Rigidbody rb = cannonball.GetComponent<Rigidbody>();
         rb.velocity = firingDirection * 20f;
 
         canFire = false;

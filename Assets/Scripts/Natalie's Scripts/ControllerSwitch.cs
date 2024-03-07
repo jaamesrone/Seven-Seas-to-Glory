@@ -7,7 +7,7 @@ public class ControllerSwitch : MonoBehaviour
 {
     //Temporary Tutorial
     public TextMeshProUGUI GuideText;
-    public TextMeshProUGUI cannonballDisplay;
+    public GameObject ReticleImage; // Reference to the reticle image
 
     public GameObject Ship;
     public GameObject Character;
@@ -28,14 +28,14 @@ public class ControllerSwitch : MonoBehaviour
     private void Start()
     {
         InCharacter = true;
-        Camera.GetComponent<FiringModue>().enabled = false;
-        Ship.GetComponent<ShipController>().enabled = false;
         Character.GetComponent<PlayerController>().enabled = true;
+
+        // Disable the reticle image at the start of the game
+        ReticleImage.SetActive(false);
     }
 
     void Update()
     {
-
         //Ship & Cannon switch
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -71,13 +71,11 @@ public class ControllerSwitch : MonoBehaviour
     {
         if (other.tag == "Wheel")
         {
-            Debug.Log("Drive Ship?");
             CanDriveShip = true;
         }
         else if (other.tag == "HandtoHand")
         {
             other.gameObject.transform.parent.GetComponent<EnemyShipAI>().speed = 0;
-            Debug.Log("Switching to Hand-to-Hand");
             SwitchToCharacter();
             GuideText.text = "Fight with the LMB and block with RMB";
         }
@@ -85,13 +83,11 @@ public class ControllerSwitch : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if(other.tag == "Wheel")
+        if (other.tag == "Wheel")
         {
-            Debug.Log("Can't Drive");
             CanDriveShip = false;
         }
     }
-
 
     void SwitchToCharacter()
     {
@@ -99,14 +95,12 @@ public class ControllerSwitch : MonoBehaviour
         Camera.transform.parent = Character.transform;
         Camera.transform.localPosition = CharacterCam.transform.localPosition;
         Camera.transform.localEulerAngles = CharacterCam.transform.localEulerAngles;
-        Camera.GetComponent<FiringModue>().enabled = false;
         Ship.GetComponent<ShipController>().enabled = false;
         Character.GetComponent<PlayerController>().enabled = true;
-        cannonballDisplay.enabled = false;
         InCannon = false;
         InShip = false;
         InCharacter = true;
-        Debug.Log("In Character");
+        ReticleImage.SetActive(false); // Hide the reticle image
     }
 
     void SwitchToShip()
@@ -116,20 +110,17 @@ public class ControllerSwitch : MonoBehaviour
         Camera.transform.localPosition = ShipCam.transform.localPosition;
         Camera.transform.localEulerAngles = ShipCam.transform.localEulerAngles;
         Character.GetComponent<PlayerController>().enabled = false;
-        Camera.GetComponent<FiringModue>().enabled = false;
         Ship.GetComponent<ShipController>().enabled = true;
-        cannonballDisplay.enabled = false;
         InCharacter = false;
         InCannon = false;
         InShip = true;
         GuideText.text = "Press Shift to switch to cannon or sail close to enemies for hand-to-hand combat";
-        Debug.Log("In Ship");
+        ReticleImage.SetActive(false); // Hide the reticle image
     }
 
     void SwitchToCannon()
     {
-        //switch to cannon last used
-        if(LeftCannon)
+        if (LeftCannon)
         {
             Camera.transform.localPosition = LeftCannonCam.transform.localPosition;
             Camera.transform.localEulerAngles = LeftCannonCam.transform.localEulerAngles;
@@ -141,18 +132,16 @@ public class ControllerSwitch : MonoBehaviour
         }
         Character.GetComponent<PlayerController>().enabled = false;
         Ship.GetComponent<ShipController>().enabled = false;
-        Camera.GetComponent<FiringModue>().enabled = true;
-        cannonballDisplay.enabled = true;
+        ReticleImage.SetActive(true); // Show the reticle image
         InCharacter = false;
         InShip = false;
         InCannon = true;
         GuideText.text = "Press Space to shoot and Press E to switch sides. Use 1, 2, 3 to switch ammo.";
-        Debug.Log("In Cannon");
     }
 
     void SwitchSides()
     {
-        if(LeftCannon)
+        if (LeftCannon)
         {
             Camera.transform.localPosition = RightCannonCam.transform.localPosition;
             Camera.transform.localEulerAngles = RightCannonCam.transform.localEulerAngles;
