@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class ExplosiveCannonBall : AmmoClass
 {
+
+    private void Start()
+    {
+        StartCoroutine(destroyCannonBall());
+    }
+
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("EnemyShip"))
@@ -14,4 +20,11 @@ public class ExplosiveCannonBall : AmmoClass
             enemy.transform.root.GetComponent<ShipHealth>().TakeIncrementalDamage(addedDamage, timeCount, timeBetweenDamage);
         }
     }
+
+    private IEnumerator destroyCannonBall()
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(gameObject);
+    }
+
 }
