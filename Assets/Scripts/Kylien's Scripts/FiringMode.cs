@@ -70,12 +70,13 @@ public class FiringMode : MonoBehaviour
     {
         reloadReticle.SetActive(true); // Show reload reticle when reloading
         float cooldownTimer = reloadTime;
+        float rotationSpeed = 360f / reloadTime; // Calculate rotation speed to complete a full circle in reloadTime seconds
         while (cooldownTimer > 0)
         {
             cooldownText.text = "Cooldown: " + Mathf.Ceil(cooldownTimer).ToString();
-            reloadReticle.transform.Rotate(Vector3.forward * Time.deltaTime * 100f); // Rotate reload reticle
-            yield return new WaitForSeconds(1f);
-            cooldownTimer -= 1f;
+            reloadReticle.transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime); // Rotate reload reticle
+            yield return null;
+            cooldownTimer -= Time.deltaTime;
         }
         cooldownText.text = "";
         canFire = true;
