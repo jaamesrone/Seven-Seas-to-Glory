@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyShipAI : MonoBehaviour
@@ -150,10 +151,18 @@ public class EnemyShipAI : MonoBehaviour
         }
     }
 
-
-
-
-
+    //freezing cannon affecting the reload speed
+    public void slowReload(float decreaseValue, float decreaseDuration)
+    {
+        StartCoroutine(ReduceShotSpeed(decreaseValue, decreaseDuration));
+    }
+    IEnumerator ReduceShotSpeed(float value, float duration)
+    {
+        float originalSpeed = shootingCooldown;
+        shootingCooldown += value;
+        yield return new WaitForSecondsRealtime(duration);
+        shootingCooldown = originalSpeed;
+    }
 
     bool IsPathClear()
     {
