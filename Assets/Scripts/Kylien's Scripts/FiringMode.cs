@@ -7,10 +7,15 @@ using Unity.Burst.Intrinsics;
 public class FiringModue : MonoBehaviour
 {
     public float reloadTime = 3f;
-    public GameObject cannonballPrefab;
+    public GameObject normalCannonballPrefab;
+    public GameObject explodingCannonballPrefab;
+    public GameObject freezingCannonballPrefab;
+    public TextMeshProUGUI cannonballDisplay;
     public TextMeshProUGUI cooldownText; 
 
     private bool canFire = true;
+
+    private GameObject currentCannonball;
 
     //Natalie's aiming
     public float maxHeight = 10;
@@ -19,6 +24,13 @@ public class FiringModue : MonoBehaviour
 
     void Update()
     {
+        //ensures that there's always a cannonball for currentCannonball. will be esspecially useful for special cannonball running out
+        if (currentCannonball == null)
+        {
+            currentCannonball = normalCannonballPrefab;
+            cannonballDisplay.text = "Normal Cannonball";
+        }
+
         if (Input.GetKeyDown(KeyCode.Space) && canFire)
         {
             FireCannonball();
@@ -33,6 +45,23 @@ public class FiringModue : MonoBehaviour
         {
             aim -= increment;
         }
+
+        //switching cannonballs
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            currentCannonball = normalCannonballPrefab;
+            cannonballDisplay.text = "Normal Cannonball";
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            currentCannonball = explodingCannonballPrefab;
+            cannonballDisplay.text = "Exploding Cannonball";
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            currentCannonball = freezingCannonballPrefab;
+            cannonballDisplay.text = "Freezing Cannonball";
+        }
     }
 
     void FireCannonball() //Mechanic to shoot cannon ball
@@ -40,7 +69,7 @@ public class FiringModue : MonoBehaviour
         Vector3 firingPosition = transform.position + transform.forward * 1.5f;
         Vector3 firingDirection = transform.forward * aim;
 
-        GameObject cannonball = Instantiate(cannonballPrefab, firingPosition, Quaternion.identity);
+        GameObject cannonball = Instantiate(currentCannonball, firingPosition, Quaternion.identity);
         Rigidbody rb = cannonball.GetComponent<Rigidbody>();
         rb.velocity = firingDirection * 20f;
 

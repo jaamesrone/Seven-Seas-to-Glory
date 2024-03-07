@@ -78,7 +78,7 @@ public class ControllerSwitch : MonoBehaviour
             other.gameObject.transform.parent.GetComponent<EnemyShipAI>().speed = 0;
             Debug.Log("Switching to Hand-to-Hand");
             SwitchToCharacter();
-            GuideText.text = "Fight with the LMB and block with Shift";
+            GuideText.text = "Fight with the LMB and block with RMB";
         }
     }
 
@@ -142,7 +142,7 @@ public class ControllerSwitch : MonoBehaviour
         InCharacter = false;
         InShip = false;
         InCannon = true;
-        GuideText.text = "Press Space to shoot and Press E to switch sides";
+        GuideText.text = "Press Space to shoot and Press E to switch sides. Use 1, 2, 3 to switch ammo.";
         Debug.Log("In Cannon");
     }
 
