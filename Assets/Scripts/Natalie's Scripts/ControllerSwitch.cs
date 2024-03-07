@@ -79,7 +79,7 @@ public class ControllerSwitch : MonoBehaviour
         {
             CanDriveShip = true;
         }
-        else if (other.tag == "HandtoHand")
+        else if (other.tag == "HandtoHand")//switch function
         {
             other.gameObject.transform.parent.GetComponent<EnemyShipAI>().speed = 0;
             SwitchToCharacter();
