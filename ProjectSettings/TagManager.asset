@@ -10,6 +10,7 @@ TagManager:
   - PlayerShip
   - popup
   - water
+  - EnemyShip
   layers:
   - Default
   - TransparentFX

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class ShipHealth : MonoBehaviour
@@ -24,6 +25,21 @@ public class ShipHealth : MonoBehaviour
         if (health <= 0f)
         {
             Die();
+        }
+    }
+
+    public void TakeIncrementalDamage(float damage, float time, float increment)
+    {
+        StartCoroutine(IncrementalDamageRoutine(damage, time, increment));
+    }
+
+    IEnumerator IncrementalDamageRoutine(float damage, float time, float increment)
+    {
+        float startTime = Time.realtimeSinceStartup;
+        while (Time.realtimeSinceStartup - startTime < time)
+        {
+            yield return new WaitForSecondsRealtime(increment);
+            TakeDamage(damage);
         }
     }
 

@@ -5,20 +5,26 @@ using UnityEngine;
 public class Billboard : MonoBehaviour
 {
     public GameObject canvas;
-    public Transform cam = null;
+    private Transform camTransform;
 
     void Start()
     {
-        if (cam == null)
+        GameObject mainCamera = GameObject.FindWithTag("MainCamera");
+        if (mainCamera != null)
         {
-            cam = GameObject.FindWithTag("MainCamera").GetComponent<Transform>();
+            camTransform = mainCamera.transform;
+        }
+        else
+        {
+            Debug.LogError("Main Camera not found.");
         }
     }
     void LateUpdate()
     {
-        if (cam != null)
+        if (canvas == null || camTransform == null)
         {
-            canvas.transform.LookAt(transform.position + cam.forward);
+            return;
         }
+        canvas.transform.LookAt(transform.position + camTransform.forward);
     }
 }

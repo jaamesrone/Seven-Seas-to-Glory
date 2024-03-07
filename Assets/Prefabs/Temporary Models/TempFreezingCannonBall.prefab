@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 4163148475084324634}
   - component: {fileID: 982128153119203563}
   - component: {fileID: 5362745381918356}
-  - component: {fileID: 8170958635482572457}
   - component: {fileID: 1191899130538272168}
+  - component: {fileID: 4042405381894314345}
   m_Layer: 0
   m_Name: TempFreezingCannonBall
   m_TagString: Untagged
@@ -107,24 +107,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8170958635482572457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2911863705069182719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02fed51bff3554a87b4219752717e509, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseDamage: 10
-  addedDamage: 0
-  timeCount: 0
-  timeBetweenDamage: 0
-  shotSpeedDecrease: 6
-  shotSpeedDecreaseTime: 5
 --- !u!54 &1191899130538272168
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -152,3 +134,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4042405381894314345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2911863705069182719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3de3206177ff44f01a57d7c4794b7e7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseDamage: 10
+  addedDamage: 0
+  timeCount: 0
+  timeBetweenDamage: 0
+  shotSpeedDecrease: 2
+  shotSpeedDecreaseTime: 10
