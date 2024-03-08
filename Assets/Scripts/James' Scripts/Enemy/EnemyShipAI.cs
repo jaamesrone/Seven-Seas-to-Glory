@@ -3,23 +3,26 @@ using UnityEngine;
 
 public class EnemyShipAI : MonoBehaviour
 {
-    public float speed;
-    public float rotationSpeed;
-    public LayerMask obstacleLayer; // this is for unity to know whats an obstacle for the ship
-    public float detectionDistance; // how far ship checks for obstacles
-    public float shootingRadius; // shooting radius to detect player ship
-    public GameObject cannonballPrefab; // prefab of the cannonball
-    public Transform[] leftCannonSpawnPoints; // left side cannon spawn points
-    public Transform[] rightCannonSpawnPoints; // right side cannon spawn points
-    public float shootingCooldown = 2f; // cooldown between shots
-
     private enum State { Patrolling, AvoidingObstacle, Attacking }
     private State currentState = State.Patrolling;
+
+    public float speed;
+    public float rotationSpeed;
+    public float detectionDistance; // how far ship checks for obstacles
+    public float shootingRadius; // shooting radius to detect player ship
+
+    public float shootingCooldown = 2f; // cooldown between shots
+    public bool isInHandToHandCombat = false;
 
     private float turnDuration = 7f;
     private float turnTimer;
     private float shootingTimer;
+
+    public LayerMask obstacleLayer; // this is for unity to know whats an obstacle for the ship
     private GameObject playerShip;
+    public GameObject cannonballPrefab; // prefab of the cannonball
+    public Transform[] leftCannonSpawnPoints; // left side cannon spawn points
+    public Transform[] rightCannonSpawnPoints; // right side cannon spawn points
 
     void Start()
     {
@@ -94,8 +97,13 @@ public class EnemyShipAI : MonoBehaviour
     }
 
     // the attacking behavior of the ship
-    void Attacking()
+   public void Attacking()
     {
+        if (isInHandToHandCombat)
+        {
+            // stop attacking if in handtohand combat
+            return;
+        }
         // shooting timer 
         shootingTimer += Time.deltaTime;
         // if the shooting timer has passed the cooldown period
@@ -189,4 +197,9 @@ public class EnemyShipAI : MonoBehaviour
 
         turnTimer = Random.Range(2f, turnDuration); // randomize turn duration for more dynamic behavior
     }
+    public void SetHandToHandCombat(bool isInCombat)
+    {
+        isInHandToHandCombat = isInCombat;
+    }
+
 }

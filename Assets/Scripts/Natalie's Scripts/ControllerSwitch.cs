@@ -9,6 +9,9 @@ public class ControllerSwitch : MonoBehaviour
     public TextMeshProUGUI GuideText;
     public GameObject ReticleImage; // Reference to the reticle image
 
+    [SerializeField] private Transform playerSpawnPoint; 
+    [SerializeField] private TMP_Text dialogueText;
+
     public GameObject Ship;
     public GameObject Character;
     public GameObject Camera;
@@ -18,6 +21,9 @@ public class ControllerSwitch : MonoBehaviour
     public bool InShip = false;
     public bool CanDriveShip = false;
     public bool LeftCannon = false;
+    private bool awaitingCombatDecision = false;
+    private bool isCooldownActive = false;
+
 
     //Locations for cam stored in gameobjects so they can move with ship and character
     public GameObject CharacterCam;
@@ -71,19 +77,22 @@ public class ControllerSwitch : MonoBehaviour
                 SwitchSides();
             }
         }
-    }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Wheel")
+        if (awaitingCombatDecision)//james' script
         {
-            CanDriveShip = true;
-        }
-        else if (other.tag == "HandtoHand")//switch function
-        {
-            other.gameObject.transform.parent.GetComponent<EnemyShipAI>().speed = 0;
-            SwitchToCharacter();
-            GuideText.text = "Fight with the LMB and block with RMB";
+            if (Input.GetKeyDown(KeyCode.Y))//if player presses Y switch to combat mode and spawn on the ship
+            {
+                SwitchToCombat();
+                Character.transform.position = playerSpawnPoint.position;
+                dialogueText.text = ""; 
+                awaitingCombatDecision = false;
+            }
+            else if (Input.GetKeyDown(KeyCode.N))
+            {
+                // ignore combat and stay in ship
+                dialogueText.text = ""; 
+                awaitingCombatDecision = false;
+            }
         }
     }
 
@@ -93,7 +102,53 @@ public class ControllerSwitch : MonoBehaviour
         {
             CanDriveShip = false;
         }
+        if (other.CompareTag("HandtoHand"))//james' script
+        {
+            other.GetComponentInParent<EnemyShipAI>().SetHandToHandCombat(false);//pirate ai ship goes back to ai state
+        }
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Wheel")
+        {
+            CanDriveShip = true;
+        }
+        else if (other.tag == "HandtoHand" && !isCooldownActive) //if player enters the trigger dialogue pops up asking a question
+        {//james' script
+            other.GetComponentInParent<EnemyShipAI>().SetHandToHandCombat(true);//stops the pirate ai ship from shooting cannonballs
+            other.gameObject.transform.parent.GetComponent<EnemyShipAI>().speed = 0;
+            dialogueText.text = "Do you want to engage in hand-to-hand combat? (Y/N)";
+            awaitingCombatDecision = true;
+            StartCoroutine(DialogueCooldown());
+        }
+    }
+
+    IEnumerator DialogueCooldown() //60second cooldown timer for the dialoguetext to pop up again if in the collider
+    {//james' script
+        isCooldownActive = true; 
+        yield return new WaitForSeconds(60); 
+        isCooldownActive = false; 
+    }
+
+
+    void SwitchToCombat() //james' script
+    {
+        // this function only happens if player presses Y
+        Character.transform.parent = null;
+        Camera.transform.parent = Character.transform;
+        Camera.transform.localPosition = CharacterCam.transform.localPosition;
+        Camera.transform.localEulerAngles = CharacterCam.transform.localEulerAngles;
+        Ship.GetComponent<ShipController>().enabled = false;
+        Camera.GetComponent<FiringMode>().enabled = false;
+        Character.GetComponent<PlayerController>().enabled = true;
+        cannonballDisplay.enabled = false;
+        InCannon = false;
+        InShip = false;
+        InCharacter = true;
+        ReticleImage.SetActive(false); // Hide the reticle image
+    }
+
 
     void SwitchToCharacter()
     {
