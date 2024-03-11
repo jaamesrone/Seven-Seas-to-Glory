@@ -45,7 +45,7 @@ public class EnemyShipAI : MonoBehaviour
         }
     }
 
-    void Patrolling()
+   public void Patrolling()
     {
         // check for obstacles ahead
         RaycastHit hit;

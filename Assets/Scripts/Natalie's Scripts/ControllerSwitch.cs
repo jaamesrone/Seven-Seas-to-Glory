@@ -104,7 +104,11 @@ public class ControllerSwitch : MonoBehaviour
         }
         if (other.CompareTag("HandtoHand"))//james' script
         {
+            dialogueText.text = "";
+            awaitingCombatDecision = false;
             other.GetComponentInParent<EnemyShipAI>().SetHandToHandCombat(false);//pirate ai ship goes back to ai state
+            other.gameObject.transform.parent.GetComponent<EnemyShipAI>().speed = 2;
+
         }
     }
 
@@ -114,7 +118,7 @@ public class ControllerSwitch : MonoBehaviour
         {
             CanDriveShip = true;
         }
-        else if (other.tag == "HandtoHand" && !isCooldownActive) //if player enters the trigger dialogue pops up asking a question
+        else if (other.tag == "HandtoHand" && !isCooldownActive && !awaitingCombatDecision) //if player enters the trigger dialogue pops up asking a question
         {//james' script
             other.GetComponentInParent<EnemyShipAI>().SetHandToHandCombat(true);//stops the pirate ai ship from shooting cannonballs
             other.gameObject.transform.parent.GetComponent<EnemyShipAI>().speed = 0;
@@ -127,8 +131,9 @@ public class ControllerSwitch : MonoBehaviour
     IEnumerator DialogueCooldown() //60second cooldown timer for the dialoguetext to pop up again if in the collider
     {//james' script
         isCooldownActive = true; 
-        yield return new WaitForSeconds(60); 
-        isCooldownActive = false; 
+        yield return new WaitForSeconds(2); 
+        isCooldownActive = false;
+        awaitingCombatDecision = false;
     }
 
 
