@@ -10,7 +10,7 @@ public class Pirate : EnemyClass
     private Animator pirateAnimation;
     public float attackRange = 5f;
     [SerializeField]
-    private float blockChance = 0.2f; // 20% chance to block
+    private float blockChance = 0.3f; // 30% chance to block
     public bool isAttacking = false;
 
     // natalie's HealthBar
@@ -28,26 +28,14 @@ public class Pirate : EnemyClass
         // set max health for health bar
         healthBar.SetMaxHealth(health);
 
-        /*// disable NavMeshAgent on Awake
-        agent.enabled = false;
-        StartCoroutine(EnableAgentAfterDelay(2f));*/
     }
 
-    IEnumerator EnableAgentAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        // re-enable NavMeshAgent after a couple of seconds
-        agent.enabled = true;
-    }
 
     void Update()
     {
         CheckPlayerRadius();
         UpdateAnimation();
     }
-
-    
-
 
     void LookAtPlayer()
     {
@@ -116,13 +104,13 @@ public class Pirate : EnemyClass
     public void TakeDamage(float damage)
     {
 
-        // Determine if the attack is blocked
+        // random value to determine if the pirate blocks the player attack.
         if (Random.value < blockChance)
         {
-            // Successfully blocked the attack
-            BlockAttack(); // Play block animation
+            // pirate blocked the attack
+            BlockAttack(); 
             Debug.Log("Attack was blocked!");
-            return; // Exit the method to avoid taking damage
+            return; 
         }
         // deal damage to the pirate
         health -= damage;
@@ -202,19 +190,19 @@ public class Pirate : EnemyClass
 
     void BlockAttack()
     {
-        // Trigger block animation
+        // pirate blocks
         pirateAnimation.SetTrigger("Block");
 
-        // Start coroutine to reset trigger after animation
+        // resets trigger after animation
         StartCoroutine(ResetBlockTriggerAfterAnimation());
     }
 
     IEnumerator ResetBlockTriggerAfterAnimation()
     {
-        // Wait for the time the animation takes, possibly add a little extra to ensure it's finished
-        yield return new WaitForSeconds(1.0f); // Use the actual length of your blocking animation
+        // resets the trigger after 1 second.
+        yield return new WaitForSeconds(1.0f); 
 
-        // Reset the Block trigger
+        // reset the trigger "Block"
         pirateAnimation.ResetTrigger("Block");
     }
 }

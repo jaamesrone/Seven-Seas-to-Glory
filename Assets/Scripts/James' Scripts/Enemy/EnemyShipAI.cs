@@ -9,20 +9,20 @@ public class EnemyShipAI : MonoBehaviour
     public float speed;
     public float rotationSpeed;
     public float detectionDistance; // how far ship checks for obstacles
-    public float shootingRadius; // shooting radius to detect player ship
+    public float shootingRadius; // radius to detect player ship
 
-    public float shootingCooldown = 2f; // cooldown between shots
+    public float shootingCooldown = 2f; 
     public bool isInHandToHandCombat = false;
 
     private float turnDuration = 7f;
     private float turnTimer;
     private float shootingTimer;
 
-    public LayerMask obstacleLayer; // this is for unity to know whats an obstacle for the ship
+    public LayerMask obstacleLayer; // this is for unity to know whats an obstacle to avoid for the pirate ship
     private GameObject playerShip;
-    public GameObject cannonballPrefab; // prefab of the cannonball
-    public Transform[] leftCannonSpawnPoints; // left side cannon spawn points
-    public Transform[] rightCannonSpawnPoints; // right side cannon spawn points
+    public GameObject cannonballPrefab; 
+    public Transform[] leftCannonSpawnPoints; 
+    public Transform[] rightCannonSpawnPoints; 
 
     void Start()
     {
