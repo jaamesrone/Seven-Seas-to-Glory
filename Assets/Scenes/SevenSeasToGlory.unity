@@ -3454,7 +3454,7 @@ MonoBehaviour:
   m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 72fea08cd2eca4abaac2f12523f4d82d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3685,7 +3685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac8c5f6e35c8042b6966126196cdb7b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GuideText: {fileID: 1593517591}
+  GuideText: {fileID: 1413686239}
   ReticleImage: {fileID: 2079190896}
   playerSpawnPoint: {fileID: 785576539}
   dialogueText: {fileID: 1593517591}
