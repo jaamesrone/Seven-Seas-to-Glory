@@ -28,11 +28,9 @@ public class PlayerController : MonoBehaviour
     public HealthBar healthBar;
     public Player player;
 
-    [Header("Weapon Switch")]
-    public Sword sword;
+    [Header("Gun")]
     public Gun gun;
-    public GameObject reticleImage;
-    public GameObject reload;
+    public GameObject ReticleImage;
     private bool isUsingSword = true;
 
     private void Awake()
@@ -48,7 +46,7 @@ public class PlayerController : MonoBehaviour
         healthBar.SetMaxHealth(player.health);
         healthBar.SetHealth(player.health);
         InitializeActionControls();
-        reticleImage.SetActive(false);
+        ReticleImage.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -104,17 +102,14 @@ public class PlayerController : MonoBehaviour
     private void SwitchToSword()
     {
         isUsingSword = true;
-        reload.SetActive(false);
-        reticleImage.SetActive(false);
+        ReticleImage.SetActive(false);
         gun.gameObject.SetActive(false);
-        sword.gameObject.SetActive(true);
     }
 
     private void SwitchToGun()
     {
         isUsingSword = false;
-        sword.gameObject.SetActive(false);
-        reticleImage.SetActive(true);
+        ReticleImage.SetActive(true);
         gun.gameObject.SetActive(true);
     }
 

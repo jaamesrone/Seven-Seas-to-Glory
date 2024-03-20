@@ -1120,7 +1120,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1928012374}
         m_TargetAssemblyTypeName: SaveAndLoad, Assembly-CSharp
         m_MethodName: SavePLayer
         m_Mode: 1
@@ -1840,17 +1840,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 75fa03ed0d55181478a1f0e7451e6011,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.28700036
+      value: 0.287
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 75fa03ed0d55181478a1f0e7451e6011,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5280004
+      value: 1.528
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 75fa03ed0d55181478a1f0e7451e6011,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.6950003
+      value: 0.695
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 75fa03ed0d55181478a1f0e7451e6011,
         type: 3}
@@ -1860,17 +1860,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 75fa03ed0d55181478a1f0e7451e6011,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.00000006426124
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 75fa03ed0d55181478a1f0e7451e6011,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000029802312
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 75fa03ed0d55181478a1f0e7451e6011,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00000004434026
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 75fa03ed0d55181478a1f0e7451e6011,
         type: 3}
@@ -3686,10 +3686,8 @@ MonoBehaviour:
   isBlocking: 0
   healthBar: {fileID: 2039541563}
   player: {fileID: 1602085095}
-  sword: {fileID: 302611133}
   gun: {fileID: 476558748}
-  reticleImage: {fileID: 2079190896}
-  reload: {fileID: 885230541}
+  ReticleImage: {fileID: 2079190896}
 --- !u!114 &1602085097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4746,7 +4744,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1928012374}
     - target: {fileID: 7149900252382396303, guid: abcf39b9f46ad410fadd1603b9de3c32,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
@@ -4859,6 +4857,10 @@ PrefabInstance:
         type: 3}
       insertIndex: 4
       addedObject: {fileID: 1928012380}
+    - targetCorrespondingSourceObject: {fileID: 2197152641409998896, guid: abcf39b9f46ad410fadd1603b9de3c32,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1928012374}
   m_SourcePrefab: {fileID: 100100000, guid: abcf39b9f46ad410fadd1603b9de3c32, type: 3}
 --- !u!1 &1928012372 stripped
 GameObject:
@@ -4872,6 +4874,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1928012371}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1928012374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928012372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8438b7cc92271498cb4f1601bbcc6f66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1928012380
 MonoBehaviour:
   m_ObjectHideFlags: 0
