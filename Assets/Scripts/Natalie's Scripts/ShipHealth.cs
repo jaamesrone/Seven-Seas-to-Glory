@@ -8,6 +8,8 @@ public class ShipHealth : MonoBehaviour
     public HealthBar healthBar;
     public float health = 100f;
 
+    public KillGain killGain;
+
     void Start()
     {
         healthBar.SetMaxHealth(health);
@@ -25,6 +27,7 @@ public class ShipHealth : MonoBehaviour
         if (health <= 0f)
         {
             Die();
+            killGain.Spare();
         }
     }
 

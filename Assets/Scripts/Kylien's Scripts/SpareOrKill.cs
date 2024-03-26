@@ -14,6 +14,9 @@ public class SpareOrKill : MonoBehaviour
     public TextMeshProUGUI recruitText;
     public TextMeshProUGUI choiceText;
 
+    //For death drops
+    public KillGain killGain;
+
     private void Start()
     {
         UpdateRecruitText();
@@ -46,6 +49,7 @@ public class SpareOrKill : MonoBehaviour
                 choiceText.gameObject.SetActive(false);
                 isPaused = false;
                 Time.timeScale = 1f;
+                killGain.Spare();
             }
             else if (Input.GetKeyDown(KeyCode.D))
             {
@@ -55,6 +59,7 @@ public class SpareOrKill : MonoBehaviour
                 choiceText.gameObject.SetActive(false);
                 isPaused = false;
                 Time.timeScale = 1f;
+                killGain.Kill();
             }
         }
     }
