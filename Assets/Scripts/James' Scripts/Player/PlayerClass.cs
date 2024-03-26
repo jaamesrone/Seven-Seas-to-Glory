@@ -7,5 +7,5 @@ public class PlayerClass : MonoBehaviour
     public float health;
     public float defense;
     public float stamina;
-    public float money;
+    public int money;
 }

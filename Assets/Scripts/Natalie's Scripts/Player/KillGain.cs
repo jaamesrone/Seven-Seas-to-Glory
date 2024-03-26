@@ -5,8 +5,8 @@ using UnityEngine;
 public class KillGain : MonoBehaviour
 {
     public Player player;
-    public float upperBound;
-    public float lowerBound;
+    public int upperBound;
+    public int lowerBound;
     
     public void Spare()
     {
@@ -23,7 +23,7 @@ public class KillGain : MonoBehaviour
         player.money += GetRandomNum();
     }
 
-    private float GetRandomNum()
+    private int GetRandomNum()
     {
         return Random.Range(lowerBound, upperBound);
     }
