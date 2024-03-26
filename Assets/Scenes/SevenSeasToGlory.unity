@@ -2557,6 +2557,16 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 2039541563}
+    - target: {fileID: 2858106136578065465, guid: 2b57b9c5fc74c4b4fa95d4abce2990ec,
+        type: 3}
+      propertyPath: numExplodeCannonballs
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2858106136578065465, guid: 2b57b9c5fc74c4b4fa95d4abce2990ec,
+        type: 3}
+      propertyPath: numFreezingCannonballs
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3036221683501934350, guid: 2b57b9c5fc74c4b4fa95d4abce2990ec,
         type: 3}
       propertyPath: Ship
@@ -2612,6 +2622,11 @@ PrefabInstance:
       propertyPath: returnToShip
       value: 
       objectReference: {fileID: 529633581}
+    - target: {fileID: 3178149786923297011, guid: 2b57b9c5fc74c4b4fa95d4abce2990ec,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1602085095}
     - target: {fileID: 3178149786923297011, guid: 2b57b9c5fc74c4b4fa95d4abce2990ec,
         type: 3}
       propertyPath: cooldownText

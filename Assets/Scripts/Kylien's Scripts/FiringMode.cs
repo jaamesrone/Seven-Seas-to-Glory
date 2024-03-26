@@ -25,19 +25,16 @@ public class FiringMode : MonoBehaviour
     public float increment = 1;
     public float aim = 1;
 
+    // Natalie's special Ammo count
+    public Player player;
+    
     void Start()
     {
- 
         reloadReticle.SetActive(false); // Start with reload reticle disabled
     }
 
     void Update()
     {
-        if (currentCannonball == null)
-        {
-            currentCannonball = normalCannonballPrefab;
-            cannonballDisplay.text = "Normal Cannonball";
-        }
         if (Input.GetKeyDown(KeyCode.Space) && canFire)
         {
             FireCannonball();
@@ -64,17 +61,17 @@ public class FiringMode : MonoBehaviour
         }
 
         //switching cannonballs
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1) || currentCannonball == null)
         {
             currentCannonball = normalCannonballPrefab;
             cannonballDisplay.text = "Normal Cannonball";
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2) && player.numExplodeCannonballs > 0)
         {
             currentCannonball = explodingCannonballPrefab;
             cannonballDisplay.text = "Exploding Cannonball";
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.Alpha3) && player.numFreezingCannonballs > 0)
         {
             currentCannonball = freezingCannonballPrefab;
             cannonballDisplay.text = "Freezing Cannonball";
@@ -90,6 +87,25 @@ public class FiringMode : MonoBehaviour
         activeCannonball = cannonball; // Set the active cannonball
         Rigidbody rb = cannonball.GetComponent<Rigidbody>();
         rb.velocity = firingDirection * 20f;
+
+        //adjust special ammo values if being used
+        if (currentCannonball == explodingCannonballPrefab)
+        {
+            player.numExplodeCannonballs--;
+            if (player.numExplodeCannonballs <= 0)
+            {
+                currentCannonball = normalCannonballPrefab;
+            }
+        }
+        else if (currentCannonball == freezingCannonballPrefab)
+        {
+            player.numFreezingCannonballs--;
+            if (player.numFreezingCannonballs <= 0)
+            {
+                currentCannonball = normalCannonballPrefab;
+            }
+        }
+
 
         canFire = false;
     }
