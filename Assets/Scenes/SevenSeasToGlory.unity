@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.639
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1875797620}
-  m_IndirectSpecularColor: {r: 0.12505952, g: 0.1514896, b: 0.19847815, a: 0.639}
+  m_IndirectSpecularColor: {r: 0.12496591, g: 0.15140215, b: 0.19843225, a: 0.639}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1212,7 +1212,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   directionalLight: {fileID: 1875797620}
   skyboxMaterial: {fileID: 2100000, guid: 01f4eb1c73693428d923f1520032e7f9, type: 2}
-  dayDurationInSeconds: 120
+  dayDurationInSeconds: 240
   rotationSpeed: 1
 --- !u!4 &401813345
 Transform:
@@ -4023,7 +4023,7 @@ Transform:
   m_GameObject: {fileID: 1722354645}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.055, y: 1.77, z: -1.53}
+  m_LocalPosition: {x: 8.57, y: 1.77, z: 0.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
