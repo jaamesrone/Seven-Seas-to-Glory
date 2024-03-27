@@ -11,7 +11,6 @@ public class FiringMode : MonoBehaviour
     public GameObject normalCannonballPrefab;
     public GameObject explodingCannonballPrefab;
     public GameObject freezingCannonballPrefab;
-    public TextMeshProUGUI cannonballDisplay;
     public TextMeshProUGUI cooldownText;
     public GameObject reloadReticle;
 
@@ -66,19 +65,16 @@ public class FiringMode : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha3) || currentCannonball == null)
         {
             currentCannonball = normalCannonballPrefab;
-            cannonballDisplay.text = "Normal Cannonball";
             inventoryActive.UpdateActive(2);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4) && player.numExplodeCannonballs > 0)
         {
             currentCannonball = explodingCannonballPrefab;
-            cannonballDisplay.text = "Exploding Cannonball";
             inventoryActive.UpdateActive(3);
         }
         if (Input.GetKeyDown(KeyCode.Alpha5) && player.numFreezingCannonballs > 0)
         {
             currentCannonball = freezingCannonballPrefab;
-            cannonballDisplay.text = "Freezing Cannonball";
             inventoryActive.UpdateActive(4);
         }
     }

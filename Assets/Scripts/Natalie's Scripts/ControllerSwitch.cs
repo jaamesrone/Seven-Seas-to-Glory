@@ -31,8 +31,6 @@ public class ControllerSwitch : MonoBehaviour
     public GameObject LeftCannonCam;
     public GameObject RightCannonCam;
 
-    public TextMeshProUGUI cannonballDisplay;
-
     public InventoryUI inventoryActive;
 
     private void Start()
@@ -41,8 +39,6 @@ public class ControllerSwitch : MonoBehaviour
         Character.GetComponent<PlayerController>().enabled = true;
         Camera.GetComponent<FiringMode>().enabled = false;
         Ship.GetComponent<ShipController>().enabled = false;
-
-        cannonballDisplay.enabled = false;
 
         // Disable the reticle image at the start of the game
         ReticleImage.SetActive(false);
@@ -150,7 +146,6 @@ public class ControllerSwitch : MonoBehaviour
         Camera.GetComponent<FiringMode>().enabled = false;
         Character.GetComponent<PlayerController>().enabled = true;
         inventoryActive.UpdateActive(0);
-        cannonballDisplay.enabled = false;
         InCannon = false;
         InShip = false;
         InCharacter = true;
@@ -168,7 +163,6 @@ public class ControllerSwitch : MonoBehaviour
         Camera.GetComponent<FiringMode>().enabled = false;
         Character.GetComponent<PlayerController>().enabled = true;
         inventoryActive.UpdateActive(0);
-        cannonballDisplay.enabled = false;
         InCannon = false;
         InShip = false;
         InCharacter = true;
@@ -184,7 +178,6 @@ public class ControllerSwitch : MonoBehaviour
         Character.GetComponent<PlayerController>().enabled = false;
         Camera.GetComponent<FiringMode>().enabled = false;
         Ship.GetComponent<ShipController>().enabled = true;
-        cannonballDisplay.enabled = false;
         InCharacter = false;
         InCannon = false;
         InShip = true;
@@ -207,13 +200,12 @@ public class ControllerSwitch : MonoBehaviour
         Character.GetComponent<PlayerController>().enabled = false;
         Ship.GetComponent<ShipController>().enabled = false;
         Camera.GetComponent<FiringMode>().enabled = true;
-        cannonballDisplay.enabled = true;
         inventoryActive.UpdateActive(2);
         ReticleImage.SetActive(true); // Show the reticle image
         InCharacter = false;
         InShip = false;
         InCannon = true;
-        GuideText.text = "Press Space to shoot and Press E to switch sides. Use 1, 2, 3 to switch ammo.";
+        GuideText.text = "Press Space to shoot and Press E to switch sides.";
     }
 
     void SwitchSides()

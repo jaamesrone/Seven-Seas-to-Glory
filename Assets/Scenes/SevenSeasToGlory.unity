@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.639
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1875797620}
-  m_IndirectSpecularColor: {r: 0.07704643, g: 0.12415889, b: 0.16337165, a: 0.639}
+  m_IndirectSpecularColor: {r: 0.07704652, g: 0.124159046, b: 0.16337182, a: 0.639}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -628,18 +628,6 @@ GameObject:
 --- !u!114 &1152634735 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1389549616224050343, guid: 9b37db723520f43519599d1f73c309a2,
-    type: 3}
-  m_PrefabInstance: {fileID: 2859462013043463079}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1358179739 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1196758772838613851, guid: 9b37db723520f43519599d1f73c309a2,
     type: 3}
   m_PrefabInstance: {fileID: 2859462013043463079}
   m_PrefabAsset: {fileID: 0}
@@ -1455,7 +1443,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -50.6
       objectReference: {fileID: 0}
+    - target: {fileID: 834373740392657712, guid: 9b37db723520f43519599d1f73c309a2,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -26.2081
+      objectReference: {fileID: 0}
     - target: {fileID: 1088411781146474402, guid: 9b37db723520f43519599d1f73c309a2,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1602085095}
+    - target: {fileID: 1238298209377234060, guid: 9b37db723520f43519599d1f73c309a2,
         type: 3}
       propertyPath: player
       value: 
@@ -1498,7 +1496,7 @@ PrefabInstance:
     - target: {fileID: 2933874151723211947, guid: 9b37db723520f43519599d1f73c309a2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 9
+      value: 8.9999695
       objectReference: {fileID: 0}
     - target: {fileID: 4519817621045373674, guid: 9b37db723520f43519599d1f73c309a2,
         type: 3}
@@ -2504,7 +2502,7 @@ PrefabInstance:
         type: 3}
       propertyPath: cannonballDisplay
       value: 
-      objectReference: {fileID: 1358179739}
+      objectReference: {fileID: 0}
     - target: {fileID: 3066908730362846133, guid: 2b57b9c5fc74c4b4fa95d4abce2990ec,
         type: 3}
       propertyPath: shipReturn
@@ -2539,7 +2537,7 @@ PrefabInstance:
         type: 3}
       propertyPath: cannonballDisplay
       value: 
-      objectReference: {fileID: 1358179739}
+      objectReference: {fileID: 0}
     - target: {fileID: 3276538131411267854, guid: 2b57b9c5fc74c4b4fa95d4abce2990ec,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class InventoryUI : MonoBehaviour
 {
+    public Player player;
     public GameObject[] inventory;
     public int activeIndex = 0;
+    public TextMeshProUGUI explodeCount;
+    public TextMeshProUGUI freezeCount;
 
     void Start()
     {
@@ -15,6 +19,13 @@ public class InventoryUI : MonoBehaviour
             inventory[i].SetActive(i == activeIndex);
         }
     }
+
+    private void Update()
+    {
+        explodeCount.text = player.numExplodeCannonballs.ToString();
+        freezeCount.text = player.numFreezingCannonballs.ToString();
+    }
+
     public void UpdateActive(int index)
     {
         //Deactivate all but first item
