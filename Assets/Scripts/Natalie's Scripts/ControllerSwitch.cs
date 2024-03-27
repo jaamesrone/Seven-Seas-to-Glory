@@ -33,6 +33,8 @@ public class ControllerSwitch : MonoBehaviour
 
     public TextMeshProUGUI cannonballDisplay;
 
+    public InventoryUI inventoryActive;
+
     private void Start()
     {
         InCharacter = true;
@@ -147,6 +149,8 @@ public class ControllerSwitch : MonoBehaviour
         Ship.GetComponent<ShipController>().enabled = false;
         Camera.GetComponent<FiringMode>().enabled = false;
         Character.GetComponent<PlayerController>().enabled = true;
+        inventoryActive.activeIndex = 0;
+        inventoryActive.Start();
         cannonballDisplay.enabled = false;
         InCannon = false;
         InShip = false;
@@ -164,6 +168,8 @@ public class ControllerSwitch : MonoBehaviour
         Ship.GetComponent<ShipController>().enabled = false;
         Camera.GetComponent<FiringMode>().enabled = false;
         Character.GetComponent<PlayerController>().enabled = true;
+        inventoryActive.activeIndex = 0;
+        inventoryActive.Start();
         cannonballDisplay.enabled = false;
         InCannon = false;
         InShip = false;
@@ -204,6 +210,8 @@ public class ControllerSwitch : MonoBehaviour
         Ship.GetComponent<ShipController>().enabled = false;
         Camera.GetComponent<FiringMode>().enabled = true;
         cannonballDisplay.enabled = true;
+        inventoryActive.activeIndex = 2;
+        inventoryActive.Start();
         ReticleImage.SetActive(true); // Show the reticle image
         InCharacter = false;
         InShip = false;

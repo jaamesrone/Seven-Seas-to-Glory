@@ -27,7 +27,9 @@ public class FiringMode : MonoBehaviour
 
     // Natalie's special Ammo count
     public Player player;
-    
+
+    public InventoryUI inventoryActive;
+
     void Start()
     {
         reloadReticle.SetActive(false); // Start with reload reticle disabled
@@ -61,17 +63,17 @@ public class FiringMode : MonoBehaviour
         }
 
         //switching cannonballs
-        if (Input.GetKeyDown(KeyCode.Alpha1) || currentCannonball == null)
+        if (Input.GetKeyDown(KeyCode.Alpha3) || currentCannonball == null)
         {
             currentCannonball = normalCannonballPrefab;
             cannonballDisplay.text = "Normal Cannonball";
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2) && player.numExplodeCannonballs > 0)
+        if (Input.GetKeyDown(KeyCode.Alpha4) && player.numExplodeCannonballs > 0)
         {
             currentCannonball = explodingCannonballPrefab;
             cannonballDisplay.text = "Exploding Cannonball";
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3) && player.numFreezingCannonballs > 0)
+        if (Input.GetKeyDown(KeyCode.Alpha5) && player.numFreezingCannonballs > 0)
         {
             currentCannonball = freezingCannonballPrefab;
             cannonballDisplay.text = "Freezing Cannonball";
@@ -95,6 +97,8 @@ public class FiringMode : MonoBehaviour
             if (player.numExplodeCannonballs <= 0)
             {
                 currentCannonball = normalCannonballPrefab;
+                inventoryActive.activeIndex = 2;
+                inventoryActive.Start();
             }
         }
         else if (currentCannonball == freezingCannonballPrefab)
@@ -103,6 +107,8 @@ public class FiringMode : MonoBehaviour
             if (player.numFreezingCannonballs <= 0)
             {
                 currentCannonball = normalCannonballPrefab;
+                inventoryActive.activeIndex = 2;
+                inventoryActive.Start();
             }
         }
 
