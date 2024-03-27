@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     [Header("UI")]
     public HealthBar healthBar;
     public Player player;
+    public InventoryUI inventoryActive;
 
     [Header("Weapon Switch")]
     public Sword sword;
@@ -107,6 +108,7 @@ public class PlayerController : MonoBehaviour
         reticleImage.SetActive(false);
         reload.SetActive(false);
         gun.gameObject.SetActive(false);
+        inventoryActive.UpdateActive(0);
         sword.gameObject.SetActive(true);
     }
 
@@ -115,6 +117,7 @@ public class PlayerController : MonoBehaviour
         isUsingSword = false;
         sword.gameObject.SetActive(false);
         reticleImage.SetActive(true);
+        inventoryActive.UpdateActive(1);
         gun.gameObject.SetActive(true);
     }
 
