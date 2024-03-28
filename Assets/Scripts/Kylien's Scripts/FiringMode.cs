@@ -7,9 +7,6 @@ using UnityEngine.UI;
 
 public class FiringMode : MonoBehaviour
 {
-    public RectTransform reticleRectTransform;
-
-
     public float reloadTime = 3f;
     public GameObject normalCannonballPrefab;
     public GameObject explodingCannonballPrefab;
@@ -64,8 +61,6 @@ public class FiringMode : MonoBehaviour
             aim -= increment;
         }
 
-        UpdateReticlePosition();
-
         //switching cannonballs
         if (Input.GetKeyDown(KeyCode.Alpha3) || currentCannonball == null)
         {
@@ -82,20 +77,6 @@ public class FiringMode : MonoBehaviour
             currentCannonball = freezingCannonballPrefab;
             inventoryActive.UpdateActive(4);
         }
-    }
-
-    void UpdateReticlePosition() //james' scriptS
-    {
-        
-        float screenRange = Screen.height / 50;
-
-        // newYPosition is consistent and clamped
-        float newYPosition = Mathf.Lerp(0, screenRange, (aim - 1) / (maxHeight - 1)); // Linearly interpolate position based on aim
-
-        // Update the reticle's position
-        Vector3 newPosition = reticleRectTransform.anchoredPosition;
-        newPosition.y = newYPosition;
-        reticleRectTransform.anchoredPosition = newPosition;
     }
 
     void FireCannonball()
