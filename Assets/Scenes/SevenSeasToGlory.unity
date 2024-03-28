@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.639
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1875797620}
-  m_IndirectSpecularColor: {r: 0.12496591, g: 0.15140215, b: 0.19843225, a: 0.639}
+  m_IndirectSpecularColor: {r: 0.12507908, g: 0.15151694, b: 0.19853786, a: 0.639}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1212,7 +1212,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   directionalLight: {fileID: 1875797620}
   skyboxMaterial: {fileID: 2100000, guid: 01f4eb1c73693428d923f1520032e7f9, type: 2}
-  dayDurationInSeconds: 32
+  dayDurationInSeconds: 240
   rotationSpeed: 1
 --- !u!4 &401813345
 Transform:
@@ -4649,6 +4649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a1ee22007d5419499f1e00e166f8e69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reticleRectTransform: {fileID: 2079190897}
   reloadTime: 3
   normalCannonballPrefab: {fileID: 1462336481129127684, guid: 0b0f2198905b54540b156fa346a7dbe1,
     type: 3}
