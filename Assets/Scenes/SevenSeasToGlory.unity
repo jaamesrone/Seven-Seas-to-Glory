@@ -1212,7 +1212,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   directionalLight: {fileID: 1875797620}
   skyboxMaterial: {fileID: 2100000, guid: 01f4eb1c73693428d923f1520032e7f9, type: 2}
-  dayDurationInSeconds: 240
+  dayDurationInSeconds: 32
   rotationSpeed: 1
 --- !u!4 &401813345
 Transform:
