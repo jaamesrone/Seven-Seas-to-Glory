@@ -38,7 +38,7 @@ public class ControllerSwitch : MonoBehaviour
         InCharacter = true;
         Character.GetComponent<PlayerController>().enabled = true;
         Camera.GetComponent<FiringMode>().enabled = false;
-        Ship.GetComponent<ShipController>().enabled = false;
+        Ship.GetComponent<ShipController>().isDriving = false;
 
         // Disable the reticle image at the start of the game
         ReticleImage.SetActive(false);
@@ -142,7 +142,8 @@ public class ControllerSwitch : MonoBehaviour
         Camera.transform.parent = Character.transform;
         Camera.transform.localPosition = CharacterCam.transform.localPosition;
         Camera.transform.localEulerAngles = CharacterCam.transform.localEulerAngles;
-        Ship.GetComponent<ShipController>().enabled = false;
+        Ship.GetComponent<ShipController>().isDriving = false;
+        Ship.GetComponent<ShipController>().currentForwardSpeed = 0;
         Camera.GetComponent<FiringMode>().enabled = false;
         Character.GetComponent<PlayerController>().enabled = true;
         inventoryActive.UpdateActive(0);
@@ -159,7 +160,8 @@ public class ControllerSwitch : MonoBehaviour
         Camera.transform.parent = Character.transform;
         Camera.transform.localPosition = CharacterCam.transform.localPosition;
         Camera.transform.localEulerAngles = CharacterCam.transform.localEulerAngles;
-        Ship.GetComponent<ShipController>().enabled = false;
+        Ship.GetComponent<ShipController>().isDriving = false;
+        Ship.GetComponent<ShipController>().currentForwardSpeed = 0;
         Camera.GetComponent<FiringMode>().enabled = false;
         Character.GetComponent<PlayerController>().enabled = true;
         inventoryActive.UpdateActive(0);
@@ -177,7 +179,7 @@ public class ControllerSwitch : MonoBehaviour
         Camera.transform.localEulerAngles = ShipCam.transform.localEulerAngles;
         Character.GetComponent<PlayerController>().enabled = false;
         Camera.GetComponent<FiringMode>().enabled = false;
-        Ship.GetComponent<ShipController>().enabled = true;
+        Ship.GetComponent<ShipController>().isDriving = true;
         InCharacter = false;
         InCannon = false;
         InShip = true;
@@ -198,7 +200,7 @@ public class ControllerSwitch : MonoBehaviour
             Camera.transform.localEulerAngles = RightCannonCam.transform.localEulerAngles;
         }
         Character.GetComponent<PlayerController>().enabled = false;
-        Ship.GetComponent<ShipController>().enabled = false;
+        Ship.GetComponent<ShipController>().isDriving = false;
         Camera.GetComponent<FiringMode>().enabled = true;
         inventoryActive.UpdateActive(2);
         ReticleImage.SetActive(true); // Show the reticle image

@@ -7,8 +7,8 @@ public class ShipController : MonoBehaviour
 {
     // Constants
     public float maxForwardSpeed = 10;
-    public float forwardSpeedInertia = 0.5f;
-
+    public float forwardSpeedInertia = 2.0f;
+    public float forwardSpeedDeceleration = 1.0f;
 
     public float minYawPerSecond = 15.0f;
     public float maxYawPerSecond = 2.5f;
@@ -20,22 +20,43 @@ public class ShipController : MonoBehaviour
     public float inputForwardPercent = 0; // -1 to 1
     public float inputYawPercent = 0;     // -1 to 1
 
+    public bool isDriving;
+
     // External Variables
     public Vector2 seaSpeed = Vector2.zero;
 
     // Resultant Variables
     private Vector3 desiredRotation = Vector3.zero;
 
+    public float currentInertia;
+
     void DoInput()
     {
-        inputForwardPercent = Input.GetAxis("Vertical");
-        inputYawPercent = Input.GetAxis("Horizontal");
+        if (isDriving)
+        {
+            inputForwardPercent = Input.GetAxis("Vertical");
+            inputYawPercent = Input.GetAxis("Horizontal");
+        }
+        else
+        {
+            inputForwardPercent = 0;
+            inputYawPercent = 0;
+        }
     }
 
 
     void UpdateDesiredVelocities()
     {
-        currentForwardSpeed = Mathf.MoveTowards(currentForwardSpeed, inputForwardPercent * maxForwardSpeed, forwardSpeedInertia * Time.deltaTime);
+        //changes acceleration/deceleration rate based on speeding up or slowing down
+        if(inputForwardPercent > 0)
+        {
+            currentInertia = forwardSpeedInertia;
+        }
+        else
+        {
+            currentInertia = forwardSpeedDeceleration;
+        }
+        currentForwardSpeed = Mathf.MoveTowards(currentForwardSpeed, inputForwardPercent * maxForwardSpeed, currentInertia * Time.deltaTime);
 
         // Yaw Per Second is mapped max at -maxForwardSpeed and maxForward Sppeed. It is minYawPerSecond 0.
         currentYawPerSecond = Mathf.Lerp(minYawPerSecond, maxYawPerSecond, Mathf.Abs(currentForwardSpeed) / maxForwardSpeed);

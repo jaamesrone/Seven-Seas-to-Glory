@@ -1319,20 +1319,23 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1994448289}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb1354ab91830f94cb37036dadb7f0e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxForwardSpeed: 5
-  forwardSpeedInertia: 10
+  maxForwardSpeed: 10
+  forwardSpeedInertia: 2
+  forwardSpeedDeceleration: 0.5
   minYawPerSecond: 5
   maxYawPerSecond: 5
   currentForwardSpeed: 0
   currentYawPerSecond: 0
   inputForwardPercent: 0
   inputYawPercent: 0
+  isDriving: 0
   seaSpeed: {x: 0, y: 0}
+  currentInertia: 0
 --- !u!114 &2039541563 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1593400095914570918, guid: 9b37db723520f43519599d1f73c309a2,
@@ -1446,7 +1449,7 @@ PrefabInstance:
     - target: {fileID: 834373740392657712, guid: 9b37db723520f43519599d1f73c309a2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -26.2081
+      value: -26.20813
       objectReference: {fileID: 0}
     - target: {fileID: 1088411781146474402, guid: 9b37db723520f43519599d1f73c309a2,
         type: 3}
@@ -1496,7 +1499,7 @@ PrefabInstance:
     - target: {fileID: 2933874151723211947, guid: 9b37db723520f43519599d1f73c309a2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 8.9999695
+      value: 9.000015
       objectReference: {fileID: 0}
     - target: {fileID: 4519817621045373674, guid: 9b37db723520f43519599d1f73c309a2,
         type: 3}
