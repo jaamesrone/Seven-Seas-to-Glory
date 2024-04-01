@@ -11,6 +11,7 @@ TagManager:
   - popup
   - water
   - EnemyShip
+  - Shop
   layers:
   - Default
   - TransparentFX
