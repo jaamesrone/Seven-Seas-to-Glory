@@ -31,6 +31,8 @@ public class ControllerSwitch : MonoBehaviour
     public GameObject LeftCannonCam;
     public GameObject RightCannonCam;
 
+    public PauseMenu menuOption;
+
     public InventoryUI inventoryActive;
 
     private void Start()
@@ -108,6 +110,11 @@ public class ControllerSwitch : MonoBehaviour
             other.gameObject.transform.parent.GetComponent<EnemyShipAI>().speed = 2;
 
         }
+        //shop no longer available
+        if (other.gameObject.CompareTag("Shop"))
+        {
+            menuOption.Shop = false;
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -124,9 +131,15 @@ public class ControllerSwitch : MonoBehaviour
             awaitingCombatDecision = true;
             StartCoroutine(DialogueCooldown());
         }
+        //allows for shop
+        if (other.gameObject.CompareTag("Shop"))
+        {
+            menuOption.Shop = true;
+
+        }
     }
 
-    IEnumerator DialogueCooldown() //60second cooldown timer for the dialoguetext to pop up again if in the collider
+        IEnumerator DialogueCooldown() //60second cooldown timer for the dialoguetext to pop up again if in the collider
     {//james' script
         isCooldownActive = true; 
         yield return new WaitForSeconds(2); 

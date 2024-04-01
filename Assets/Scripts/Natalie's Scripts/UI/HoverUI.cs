@@ -1,20 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using TMPro;
 
-public class HoverUI : MonoBehaviour
+public class HoverUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public string description;
     public GameObject descriptionPanel;
     public TextMeshProUGUI text;
 
-    private void OnMouseEnter()
+    public void OnPointerEnter(PointerEventData eventData)
     {
         text.text = description;
         descriptionPanel.SetActive(true);
     }
-    private void OnMouseExit()
+    public void OnPointerExit(PointerEventData eventData)
     {
         descriptionPanel.SetActive(false);
     }
