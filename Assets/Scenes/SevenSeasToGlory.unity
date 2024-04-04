@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.639
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1875797620}
-  m_IndirectSpecularColor: {r: 0.124983825, g: 0.15143125, b: 0.19846897, a: 0.639}
+  m_IndirectSpecularColor: {r: 0.09018072, g: 0.12219857, b: 0.16036867, a: 0.639}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -916,6 +916,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1032744470 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2906228677325898430, guid: 9b37db723520f43519599d1f73c309a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2046121896}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1189053989 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 631706813680767213, guid: 9b37db723520f43519599d1f73c309a2,
@@ -1102,7 +1114,7 @@ MonoBehaviour:
   GuideText: {fileID: 964083229}
   ReticleImage: {fileID: 215677280}
   playerSpawnPoint: {fileID: 785576539}
-  dialogueText: {fileID: 0}
+  dialogueText: {fileID: 1032744470}
   Ship: {fileID: 1994448289}
   Character: {fileID: 1602085093}
   Camera: {fileID: 1919759224}
@@ -1115,6 +1127,7 @@ MonoBehaviour:
   ShipCam: {fileID: 61723154}
   LeftCannonCam: {fileID: 1990486273}
   RightCannonCam: {fileID: 765292300}
+  menuOption: {fileID: 1953032275}
   inventoryActive: {fileID: 667756611}
 --- !u!114 &1602085106
 MonoBehaviour:
@@ -1997,6 +2010,18 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 956185103}
   m_SourcePrefab: {fileID: 100100000, guid: 75fa03ed0d55181478a1f0e7451e6011, type: 3}
+--- !u!114 &1953032275 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2694086851995108585, guid: 9b37db723520f43519599d1f73c309a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2046121896}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26be82ef0841e40399933c7e21adac00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1966418560
 GameObject:
   m_ObjectHideFlags: 0
@@ -2416,6 +2441,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7460685002814482600, guid: 9b37db723520f43519599d1f73c309a2,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1602085095}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

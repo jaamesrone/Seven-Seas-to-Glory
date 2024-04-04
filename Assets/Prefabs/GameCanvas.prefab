@@ -2891,7 +2891,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recruitText: {fileID: 4716789487014543839}
   choiceText: {fileID: 6480797150424132966}
-  killGain: {fileID: 0}
 --- !u!114 &2694086851995108585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5642,7 +5641,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -26.207794, y: 132.6}
+  m_AnchoredPosition: {x: -26.207764, y: 132.6}
   m_SizeDelta: {x: -196.645, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5097355452645478311
