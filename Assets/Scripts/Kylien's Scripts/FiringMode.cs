@@ -14,7 +14,6 @@ public class FiringMode : MonoBehaviour
     public GameObject normalCannonballPrefab;
     public GameObject explodingCannonballPrefab;
     public GameObject freezingCannonballPrefab;
-    public TextMeshProUGUI cannonballDisplay;
     public TextMeshProUGUI cooldownText;
     public GameObject reloadReticle;
 
@@ -23,6 +22,9 @@ public class FiringMode : MonoBehaviour
     private GameObject currentCannonball;
     private GameObject activeCannonball;
 
+    public InventoryUI inventoryActive;
+    public Player player;
+
     // Natalie's aiming
     public float maxHeight = 10;
     public float increment = 1;
@@ -30,7 +32,6 @@ public class FiringMode : MonoBehaviour
 
     void Start()
     {
- 
         reloadReticle.SetActive(false); // Start with reload reticle disabled
     }
 
@@ -39,7 +40,7 @@ public class FiringMode : MonoBehaviour
         if (currentCannonball == null)
         {
             currentCannonball = normalCannonballPrefab;
-            cannonballDisplay.text = "Normal Cannonball";
+            inventoryActive.UpdateActive(2);
         }
         if (Input.GetKeyDown(KeyCode.Space) && canFire)
         {
@@ -69,20 +70,20 @@ public class FiringMode : MonoBehaviour
         UpdateReticlePosition();
 
         //switching cannonballs
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            currentCannonball = normalCannonballPrefab;
-            cannonballDisplay.text = "Normal Cannonball";
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            currentCannonball = explodingCannonballPrefab;
-            cannonballDisplay.text = "Exploding Cannonball";
-        }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
+            currentCannonball = normalCannonballPrefab;
+            inventoryActive.UpdateActive(2);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            currentCannonball = explodingCannonballPrefab;
+            inventoryActive.UpdateActive(3);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
             currentCannonball = freezingCannonballPrefab;
-            cannonballDisplay.text = "Freezing Cannonball";
+            inventoryActive.UpdateActive(4);
         }
     }
 
@@ -109,6 +110,17 @@ public class FiringMode : MonoBehaviour
         activeCannonball = cannonball; // Set the active cannonball
         Rigidbody rb = cannonball.GetComponent<Rigidbody>();
         rb.velocity = firingDirection * 20f;
+
+        if(currentCannonball == explodingCannonballPrefab && player.numExplodeCannonballs <= 0)
+        {
+            currentCannonball = normalCannonballPrefab;
+            inventoryActive.UpdateActive(2);
+        }
+        if (currentCannonball == freezingCannonballPrefab && player.numFreezingCannonballs <= 0)
+        {
+            currentCannonball = normalCannonballPrefab;
+            inventoryActive.UpdateActive(2);
+        }
 
         canFire = false;
     }
