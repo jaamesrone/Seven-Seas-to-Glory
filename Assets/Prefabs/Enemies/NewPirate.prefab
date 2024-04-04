@@ -690,10 +690,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1748926984311272719}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 560f42c2e55d8ed40b786d6052390345,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8541982538215568153}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 560f42c2e55d8ed40b786d6052390345,
         type: 3}
@@ -761,13 +757,19 @@ Animator:
   m_GameObject: {fileID: 1700602343450920729}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 2ce92ce88e537584b9f73b506405c8fc, type: 3}
-  m_Controller: {fileID: 9100000, guid: 9b055d4cbf5bb7c40a90c53bae5d60b9, type: 2}
+  m_Controller: {fileID: 9100000, guid: 57cf5903c0fd20e4392193cfadd41d4d, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
+    'mixamorig:RightHandRing2'\n\tTransform 'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform
+    'mixamorig:RightArm'\n\tTransform 'mixamorig:LeftLeg'\n\tTransform 'mixamorig:LeftShoulder'\n\tTransform
+    'mixamorig:RightHandRing1'\n\tTransform 'mixamorig:RightHandIndex3'\n\tand more
+    ...\n\tFrom animation clip 'Mutant Swiping'"
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -862,93 +864,4 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 560f42c2e55d8ed40b786d6052390345,
     type: 3}
   m_PrefabInstance: {fileID: 1970510671042574920}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &8142946423626847474
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 2076740514260360611}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 3483ed9174bf47f47b737f2a66f437ea,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3483ed9174bf47f47b737f2a66f437ea,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3483ed9174bf47f47b737f2a66f437ea,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3483ed9174bf47f47b737f2a66f437ea,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.72
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3483ed9174bf47f47b737f2a66f437ea,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.623
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3483ed9174bf47f47b737f2a66f437ea,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.141
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3483ed9174bf47f47b737f2a66f437ea,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3483ed9174bf47f47b737f2a66f437ea,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3483ed9174bf47f47b737f2a66f437ea,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3483ed9174bf47f47b737f2a66f437ea,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3483ed9174bf47f47b737f2a66f437ea,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3483ed9174bf47f47b737f2a66f437ea,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3483ed9174bf47f47b737f2a66f437ea,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 3483ed9174bf47f47b737f2a66f437ea,
-        type: 3}
-      propertyPath: m_Name
-      value: Sword
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3483ed9174bf47f47b737f2a66f437ea, type: 3}
---- !u!4 &8541982538215568153 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3483ed9174bf47f47b737f2a66f437ea,
-    type: 3}
-  m_PrefabInstance: {fileID: 8142946423626847474}
   m_PrefabAsset: {fileID: 0}
