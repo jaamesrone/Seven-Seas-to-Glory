@@ -31,16 +31,12 @@ public class ControllerSwitch : MonoBehaviour
     public GameObject LeftCannonCam;
     public GameObject RightCannonCam;
 
-    public TextMeshProUGUI cannonballDisplay;
-
     private void Start()
     {
         InCharacter = true;
         Character.GetComponent<PlayerController>().enabled = true;
         Camera.GetComponent<FiringMode>().enabled = false;
         Ship.GetComponent<ShipController>().enabled = false;
-
-        cannonballDisplay.enabled = false;
 
         // Disable the reticle image at the start of the game
         ReticleImage.SetActive(false);
@@ -147,7 +143,6 @@ public class ControllerSwitch : MonoBehaviour
         Ship.GetComponent<ShipController>().enabled = false;
         Camera.GetComponent<FiringMode>().enabled = false;
         Character.GetComponent<PlayerController>().enabled = true;
-        cannonballDisplay.enabled = false;
         InCannon = false;
         InShip = false;
         InCharacter = true;
@@ -164,7 +159,6 @@ public class ControllerSwitch : MonoBehaviour
         Ship.GetComponent<ShipController>().enabled = false;
         Camera.GetComponent<FiringMode>().enabled = false;
         Character.GetComponent<PlayerController>().enabled = true;
-        cannonballDisplay.enabled = false;
         InCannon = false;
         InShip = false;
         InCharacter = true;
@@ -180,7 +174,6 @@ public class ControllerSwitch : MonoBehaviour
         Character.GetComponent<PlayerController>().enabled = false;
         Camera.GetComponent<FiringMode>().enabled = false;
         Ship.GetComponent<ShipController>().enabled = true;
-        cannonballDisplay.enabled = false;
         InCharacter = false;
         InCannon = false;
         InShip = true;
@@ -203,7 +196,6 @@ public class ControllerSwitch : MonoBehaviour
         Character.GetComponent<PlayerController>().enabled = false;
         Ship.GetComponent<ShipController>().enabled = false;
         Camera.GetComponent<FiringMode>().enabled = true;
-        cannonballDisplay.enabled = true;
         ReticleImage.SetActive(true); // Show the reticle image
         InCharacter = false;
         InShip = false;
