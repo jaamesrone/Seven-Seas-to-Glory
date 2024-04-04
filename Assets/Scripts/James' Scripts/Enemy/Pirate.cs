@@ -98,7 +98,7 @@ public class Pirate : EnemyClass
 
     void AttackPlayer()
     {
-        pirateAnimation.SetTrigger("pirateAttack");
+        pirateAnimation.SetBool("pirateAttack",true);
     }
 
     public void TakeDamage(float damage)
