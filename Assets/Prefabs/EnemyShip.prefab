@@ -1138,13 +1138,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   rotationSpeed: 10
-  detectionDistance: 100
-  shootingRadius: 80
-  shootingCooldown: 2
-  isInHandToHandCombat: 0
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 64
+  detectionDistance: 100
+  shootingRadius: 80
   cannonballPrefab: {fileID: 4291721095273098591, guid: 73cdda0f08a4c4ddbb0f9c41a4441616,
     type: 3}
   leftCannonSpawnPoints:
@@ -1155,6 +1153,7 @@ MonoBehaviour:
   - {fileID: 5461170432294395218}
   - {fileID: 2910962210543705400}
   - {fileID: 4745497411041820577}
+  shootingCooldown: 2
 --- !u!114 &7763978884561281053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1169,8 +1168,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 8699597107415782830}
   health: 100
-  killGain: {fileID: 3782193114634976815, guid: 2b57b9c5fc74c4b4fa95d4abce2990ec,
-    type: 3}
 --- !u!1 &2004803309379865018
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NormalCannonBall : AmmoClass
 {
+
     private void Start()
     {
         StartCoroutine(destroyCannonBall());

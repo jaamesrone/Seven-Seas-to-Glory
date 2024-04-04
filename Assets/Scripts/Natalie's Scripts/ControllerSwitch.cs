@@ -31,16 +31,16 @@ public class ControllerSwitch : MonoBehaviour
     public GameObject LeftCannonCam;
     public GameObject RightCannonCam;
 
-    public PauseMenu menuOption;
-
-    public InventoryUI inventoryActive;
+    public TextMeshProUGUI cannonballDisplay;
 
     private void Start()
     {
         InCharacter = true;
         Character.GetComponent<PlayerController>().enabled = true;
         Camera.GetComponent<FiringMode>().enabled = false;
-        Ship.GetComponent<ShipController>().isDriving = false;
+        Ship.GetComponent<ShipController>().enabled = false;
+
+        cannonballDisplay.enabled = false;
 
         // Disable the reticle image at the start of the game
         ReticleImage.SetActive(false);
@@ -110,11 +110,6 @@ public class ControllerSwitch : MonoBehaviour
             other.gameObject.transform.parent.GetComponent<EnemyShipAI>().speed = 2;
 
         }
-        //shop no longer available
-        if (other.gameObject.CompareTag("Shop"))
-        {
-            menuOption.Shop = false;
-        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -131,15 +126,9 @@ public class ControllerSwitch : MonoBehaviour
             awaitingCombatDecision = true;
             StartCoroutine(DialogueCooldown());
         }
-        //allows for shop
-        if (other.gameObject.CompareTag("Shop"))
-        {
-            menuOption.Shop = true;
-
-        }
     }
 
-        IEnumerator DialogueCooldown() //60second cooldown timer for the dialoguetext to pop up again if in the collider
+    IEnumerator DialogueCooldown() //60second cooldown timer for the dialoguetext to pop up again if you're in the collider
     {//james' script
         isCooldownActive = true; 
         yield return new WaitForSeconds(2); 
@@ -155,11 +144,10 @@ public class ControllerSwitch : MonoBehaviour
         Camera.transform.parent = Character.transform;
         Camera.transform.localPosition = CharacterCam.transform.localPosition;
         Camera.transform.localEulerAngles = CharacterCam.transform.localEulerAngles;
-        Ship.GetComponent<ShipController>().isDriving = false;
-        Ship.GetComponent<ShipController>().currentForwardSpeed = 0;
+        Ship.GetComponent<ShipController>().enabled = false;
         Camera.GetComponent<FiringMode>().enabled = false;
         Character.GetComponent<PlayerController>().enabled = true;
-        inventoryActive.UpdateActive(0);
+        cannonballDisplay.enabled = false;
         InCannon = false;
         InShip = false;
         InCharacter = true;
@@ -173,11 +161,10 @@ public class ControllerSwitch : MonoBehaviour
         Camera.transform.parent = Character.transform;
         Camera.transform.localPosition = CharacterCam.transform.localPosition;
         Camera.transform.localEulerAngles = CharacterCam.transform.localEulerAngles;
-        Ship.GetComponent<ShipController>().isDriving = false;
-        Ship.GetComponent<ShipController>().currentForwardSpeed = 0;
+        Ship.GetComponent<ShipController>().enabled = false;
         Camera.GetComponent<FiringMode>().enabled = false;
         Character.GetComponent<PlayerController>().enabled = true;
-        inventoryActive.UpdateActive(0);
+        cannonballDisplay.enabled = false;
         InCannon = false;
         InShip = false;
         InCharacter = true;
@@ -192,7 +179,8 @@ public class ControllerSwitch : MonoBehaviour
         Camera.transform.localEulerAngles = ShipCam.transform.localEulerAngles;
         Character.GetComponent<PlayerController>().enabled = false;
         Camera.GetComponent<FiringMode>().enabled = false;
-        Ship.GetComponent<ShipController>().isDriving = true;
+        Ship.GetComponent<ShipController>().enabled = true;
+        cannonballDisplay.enabled = false;
         InCharacter = false;
         InCannon = false;
         InShip = true;
@@ -213,14 +201,14 @@ public class ControllerSwitch : MonoBehaviour
             Camera.transform.localEulerAngles = RightCannonCam.transform.localEulerAngles;
         }
         Character.GetComponent<PlayerController>().enabled = false;
-        Ship.GetComponent<ShipController>().isDriving = false;
+        Ship.GetComponent<ShipController>().enabled = false;
         Camera.GetComponent<FiringMode>().enabled = true;
-        inventoryActive.UpdateActive(2);
+        cannonballDisplay.enabled = true;
         ReticleImage.SetActive(true); // Show the reticle image
         InCharacter = false;
         InShip = false;
         InCannon = true;
-        GuideText.text = "Press Space to shoot and Press E to switch sides.";
+        GuideText.text = "Press Space to shoot and Press E to switch sides. Use 1, 2, 3 to switch ammo.";
     }
 
     void SwitchSides()

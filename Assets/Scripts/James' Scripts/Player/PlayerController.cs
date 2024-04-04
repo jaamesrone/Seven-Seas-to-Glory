@@ -27,14 +27,6 @@ public class PlayerController : MonoBehaviour
     [Header("UI")]
     public HealthBar healthBar;
     public Player player;
-    public InventoryUI inventoryActive;
-
-    [Header("Weapon Switch")]
-    public Sword sword;
-    public Gun gun;
-    public GameObject reticleImage;
-    public GameObject reload;
-    private bool isUsingSword = true;
 
     private void Awake()
     {
@@ -49,7 +41,6 @@ public class PlayerController : MonoBehaviour
         healthBar.SetMaxHealth(player.health);
         healthBar.SetHealth(player.health);
         InitializeActionControls();
-        reticleImage.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -58,15 +49,6 @@ public class PlayerController : MonoBehaviour
         RotatePlayerAndCamera();
         CheckGroundedStatus();
         UpdateAnimationStates();
-
-        if (Keyboard.current[Key.Digit1].wasPressedThisFrame)
-        {
-            SwitchToSword();
-        }
-        if (Keyboard.current[Key.Digit2].wasPressedThisFrame)
-        {
-            SwitchToGun();
-        }
     }
 
     private void MovePlayer()
@@ -102,25 +84,6 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("IsBlocking", isBlocking);
     }
 
-    private void SwitchToSword()
-    {
-        isUsingSword = true;
-        reticleImage.SetActive(false);
-        reload.SetActive(false);
-        gun.gameObject.SetActive(false);
-        inventoryActive.UpdateActive(0);
-        sword.gameObject.SetActive(true);
-    }
-
-    private void SwitchToGun()
-    {
-        isUsingSword = false;
-        sword.gameObject.SetActive(false);
-        reticleImage.SetActive(true);
-        inventoryActive.UpdateActive(1);
-        gun.gameObject.SetActive(true);
-    }
-
     // Input System Handlers
     public void OnMove(InputValue value)
     {
@@ -143,23 +106,11 @@ public class PlayerController : MonoBehaviour
 
     public void OnFire()
     {
-        if (isUsingSword)
+        if (!isAttacking)
         {
-            if (!isAttacking)
-            {
-                animator.SetBool("IsAttacking", true);
-                isAttacking = true;
-                StartCoroutine(ResetIsAttackingAfterDelay(1f));
-            }
-        }
-        else
-        {
-            if (!isAttacking)
-            {
-                gun.Fire();
-                isAttacking = true;
-                StartCoroutine(ResetIsAttackingAfterDelay(gun.reloadTime));
-            }
+            animator.SetBool("IsAttacking", true);
+            isAttacking = true;
+            StartCoroutine(ResetIsAttackingAfterDelay(1f));
         }
     }
 

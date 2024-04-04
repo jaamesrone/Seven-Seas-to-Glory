@@ -7,9 +7,7 @@ public class PlayerClass : MonoBehaviour
     public float health;
     public float defense;
     public float stamina;
-
-    //enemy drops
-    public int money;
     public int numExplodeCannonballs;
     public int numFreezingCannonballs;
+    public int money;
 }

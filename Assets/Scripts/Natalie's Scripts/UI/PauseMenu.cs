@@ -9,8 +9,6 @@ public class PauseMenu : MonoBehaviour
     public static bool ControlsUp = false;
     public static bool GameOver = false;
     //public static bool SettingsUp = false;
-    public static bool inShop = false;
-    public bool Shop = false;
 
     public GameObject pauseMenuUI;
     public GameObject controlsMenuUI;
@@ -18,8 +16,6 @@ public class PauseMenu : MonoBehaviour
     public Player player;
     public GameObject Ship;
     //public GameObject settingsMenuUI;
-    public GameObject shopUI;
-    public GameObject[] shopNames;
 
     public object ScreenManager { get; private set; }
 
@@ -28,8 +24,6 @@ public class PauseMenu : MonoBehaviour
         GamePaused = false;
         ControlsUp = false;
         GameOver = false;
-        inShop = false;
-        Shop = false;
         Time.timeScale = 1f;
     }
     // Update is called once per frame
@@ -50,10 +44,6 @@ public class PauseMenu : MonoBehaviour
         {
             DisplayGameOver();
         }
-        if(Shop && !inShop && Input.GetKeyDown(KeyCode.E))
-        {
-            DisplayShop();
-        }
     }
 
     public void Resume()
@@ -65,35 +55,25 @@ public class PauseMenu : MonoBehaviour
         //settingsMenuUI.SetActive(false);
         //SettingsUp = false;
         pauseMenuUI.SetActive(false);
-        shopUI.SetActive(false);
-        inShop = false;
         Time.timeScale = 1f;
         GamePaused = false;
     }
 
     void Pause()
     {
-        SetPauseState();
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
         pauseMenuUI.SetActive(true);
+        Time.timeScale = 0f;
         GamePaused = true;
-    }
-
-    void DisplayShop()
-    {
-        SetPauseState();
-        int randIndex = Random.Range(0, shopNames.Length);
-        for (int i = 0; i < shopNames.Length; i++)
-        {
-            shopNames[i].SetActive(i == randIndex);
-        }
-        shopUI.SetActive(true);
-        inShop = true;
     }
 
     void DisplayGameOver()
     {
-        SetPauseState();
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
         GameOverUI.SetActive(true);
+        Time.timeScale = 0f;
         GameOver = true;
     }
 
@@ -131,14 +111,6 @@ public class PauseMenu : MonoBehaviour
         }
     }
     */
-
-    private void SetPauseState()
-    {
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
-        Time.timeScale = 0f;
-    }
-
     public void Menu()
     {
         Cursor.lockState = CursorLockMode.Confined;
