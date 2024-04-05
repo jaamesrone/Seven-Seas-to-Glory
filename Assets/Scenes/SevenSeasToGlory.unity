@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.639
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1875797620}
-  m_IndirectSpecularColor: {r: 0.12493405, g: 0.1514014, b: 0.1984348, a: 0.639}
+  m_IndirectSpecularColor: {r: 0.12505244, g: 0.15147354, b: 0.19847481, a: 0.639}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -425,11 +425,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyShipPrefab: {fileID: 1957038960406089557, guid: c19abc8e3597aec459ac08ad66f4ecb4,
     type: 3}
-  piratePrefab: {fileID: 4348251542659445264, guid: 6102adfb01613c842b652c0eb6be1eb2,
-    type: 3}
+  piratePrefab: {fileID: 0}
   playerShip: {fileID: 1994448289}
   numberOfShipsToSpawn: 7
-  numberOfPirates: 4
+  numberOfPirates: 0
   spawnRadius: 400
   minDistanceFromPlayer: 50
   minDistanceFromOtherShips: 30

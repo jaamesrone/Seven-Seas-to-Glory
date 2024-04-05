@@ -22,6 +22,7 @@ public class DayAndNight : MonoBehaviour
     [SerializeField] private float rotationSpeed = 1f;
 
     private float currentTime = 0;
+    public float CurrentTime => currentTime;
 
     private void Update()
     {

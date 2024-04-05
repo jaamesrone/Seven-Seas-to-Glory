@@ -94,8 +94,8 @@ public class SharkPirate : EnemyClass
     {
         if (Time.time - lastLungeTime >= lungeCooldown && Vector3.Distance(transform.position, player.position) <= lungeAttackRange && !isAttacking)
         {
-            lastLungeTime = Time.time; // Update the last lunge time
-            isAttacking = true; // This will be reset in the coroutine
+            lastLungeTime = Time.time; 
+            isAttacking = true; 
             StartCoroutine(PerformLungeAttack());
         }
     }
