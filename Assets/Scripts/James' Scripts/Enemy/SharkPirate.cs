@@ -5,34 +5,33 @@ using TMPro;
 
 public class SharkPirate : EnemyClass
 {
-    public Transform player;
-    public NavMeshAgent agent;
-    public Animator sharkAnimation;
-    public float blockChance = 0.3f; // 30% chance to block
-    public bool isCharging = false;
-    public float chargeSpeedMultiplier = 2f;
-    public float stealthDetectionMultiplier = 0.5f;
-    public float chargeRange = 10f;
-    public HealthBar healthBar;
-    public TextMeshPro damageTextPrefab;
+    [SerializeField] private Transform player;
+    [SerializeField] private NavMeshAgent agent;
+    [SerializeField] private Animator pirateAnimation;
+    [SerializeField] private float lungeAttackRange = 10f;
+    [SerializeField] private float lungeCooldown = 5f; 
+    [SerializeField] private float lastLungeTime = -5f;
+    [SerializeField] private float attackDelay = 0.7f; 
+    [SerializeField] private float attackRange = 5f;
+    [SerializeField] private float blockChance = 0.2f;
+    [SerializeField] private HealthBar healthBar;
+    [SerializeField] private TextMeshPro damageTextPrefab;
+    public bool isAttacking = false;
 
-    // Constructor to initialize the SharkPirate
-    public SharkPirate(Transform player, NavMeshAgent agent, Animator sharkAnimation, HealthBar healthBar, TextMeshPro damageTextPrefab)
+    void Start()
     {
-        this.player = player;
-        this.agent = agent;
-        this.sharkAnimation = sharkAnimation;
-        this.healthBar = healthBar;
-        this.damageTextPrefab = damageTextPrefab;
-
+        base.health = 50f; // Lower health
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        agent = GetComponent<NavMeshAgent>();
+        pirateAnimation = GetComponent<Animator>();
         healthBar.SetMaxHealth(health);
     }
 
-    // Function to be called from MonoBehaviour's Update
-    public void OnUpdate()
+    void Update()
     {
         CheckPlayerRadius();
         UpdateAnimation();
+        LungeAttack();
     }
 
     void LookAtPlayer()
@@ -45,127 +44,133 @@ public class SharkPirate : EnemyClass
     void CheckPlayerRadius()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        bool inStealthRange = distanceToPlayer < detectionRadius * stealthDetectionMultiplier;
-
-        if (!inStealthRange)
+        if (distanceToPlayer < detectionRadius)
         {
             LookAtPlayer();
-        }
-
-        if (distanceToPlayer < chargeRange && !isCharging)
-        {
-            isCharging = true;
-            ChargeAttack();
-        }
-        else if (distanceToPlayer >= chargeRange && isCharging)
-        {
-            isCharging = false;
-            sharkAnimation.SetBool("isCharging", false);
-            agent.speed /= chargeSpeedMultiplier; // Reset speed after charge
-        }
-
-        if (!isCharging)
-        {
-            agent.isStopped = distanceToPlayer < detectionRadius;
             agent.destination = player.position;
+            agent.isStopped = distanceToPlayer <= attackRange;
+
+            if (distanceToPlayer <= attackRange && !isAttacking)
+            {
+                isAttacking = true;
+                AttackPlayer();
+            }
+            else if (distanceToPlayer > attackRange && isAttacking)
+            {
+                isAttacking = false;
+                pirateAnimation.SetBool("pirateAttack", false);
+            }
+        }
+        else if (isAttacking)
+        {
+            isAttacking = false;
+            pirateAnimation.SetBool("pirateAttack", false);
+            agent.isStopped = true;
         }
     }
 
     void UpdateAnimation()
     {
-        float speed = agent.velocity.magnitude;
-        sharkAnimation.SetBool("isSwimming", speed > 0);
+        pirateAnimation.SetBool("isRunning", agent.velocity.magnitude > 0);
     }
 
-    void ChargeAttack()
+    void AttackPlayer()
     {
-        agent.speed *= chargeSpeedMultiplier; // Increase speed for the charge
-        sharkAnimation.SetTrigger("sharkCharge");
-        // Logic to move towards the player quickly, simulating a charge attack
+        StartCoroutine(AttackPlayerRepeatedly());
     }
 
-    public void TakeDamage(float damage)
+    IEnumerator AttackPlayerRepeatedly()
     {
-
-        // random value to determine if the pirate blocks the player attack.
-        if (Random.value < blockChance)
+        while (player && Vector3.Distance(transform.position, player.position) <= attackRange)
         {
-            // pirate blocked the attack
-            BlockAttack();
-            Debug.Log("Attack was blocked!");
-            return;
+            pirateAnimation.SetBool("pirateAttack", true);
+            yield return new WaitForSeconds(attackDelay);
         }
-        // deal damage to the pirate
-        health -= damage;
+        isAttacking = false;
+        pirateAnimation.SetBool("pirateAttack", false);
+    }
 
-        //More of Natalie's Healthbar
-        healthBar.SetHealth(health);
-
-        // check if the pirate's health is below or equal to zero
-        if (health <= 0f)
+    void LungeAttack()
+    {
+        if (Time.time - lastLungeTime >= lungeCooldown && Vector3.Distance(transform.position, player.position) <= lungeAttackRange && !isAttacking)
         {
-            Die();
-        }
-        else
-        {
-            // display damage indicator
-            DisplayDamageIndicator(transform.position, damage);
+            lastLungeTime = Time.time; 
+            isAttacking = true; 
+            StartCoroutine(PerformLungeAttack());
         }
     }
 
-    private void DisplayDamageIndicator(Vector3 position, float damage)
+    IEnumerator PerformLungeAttack()
     {
-        // offset the position to be above the pirate's head
-        Vector3 aboveHeadPosition = position + Vector3.up * 0.7f;
+        Vector3 startPosition = transform.position;
+        Vector3 targetPosition = player.position;
 
-        // instantiate the damage text prefab above the head.
-        TextMeshPro damageText = Instantiate(damageTextPrefab, aboveHeadPosition, Quaternion.identity);
+        float originalSpeed = agent.speed;
+        agent.speed *= 5;
 
-        // move damage numbers the direction to the camera
-        Vector3 toCamera = Camera.main.transform.position - damageText.transform.position;
+        float lungeTime = 0.5f; 
+        float startTime = Time.time;
 
-        // make the damage text face the camera
-        damageText.transform.rotation = Quaternion.LookRotation(toCamera);
-
-        // set the damage text
-        damageText.text = damage.ToString();
-
-        // start the floating coroutine
-        StartCoroutine(FloatDamageText(damageText));
-
-        // destroy the text after a certain time
-        Destroy(damageText.gameObject, 1.0f); // change that float number for longer time.
-    }
-
-
-    private IEnumerator FloatDamageText(TextMeshPro damageText)
-    {
-        float elapsedTime = 0f;
-        float floatDuration = 1.0f; // adjust this value to control the duration of floating
-
-        Vector3 startPosition = damageText.transform.position;
-        Vector3 endPosition = startPosition + Vector3.up * 2.0f; // adjust the float height
-
-        while (elapsedTime < floatDuration)
+        while (Time.time < startTime + lungeTime)
         {
-            // calculate the new position based on interpolation
-            Vector3 newPosition = Vector3.Lerp(startPosition, endPosition, elapsedTime / floatDuration);
-
-            // update the text's position
-            damageText.transform.position = newPosition;
-
-            // increment the elapsed time
-            elapsedTime += Time.deltaTime;
-
+            agent.destination = Vector3.Lerp(startPosition, targetPosition, (Time.time - startTime) / lungeTime);
             yield return null;
         }
 
-        // making sure text is at the final position
-        damageText.transform.position = endPosition;
+        // Reset agent's speed and state
+        agent.speed = originalSpeed;
+        isAttacking = false;
+
+        if (Vector3.Distance(transform.position, player.position) <= attackRange)
+        {
+            player.GetComponent<Player>().TakeDamage(damage); 
+        }
+
     }
 
 
-    private void Die()
+    public void TakeDamage(float damage)
+    {
+        if (Random.value < blockChance)
+        {
+            BlockAttack();
+            return;
+        }
+        health -= damage;
+        healthBar.SetHealth(health);
+        if (health <= 0f) Die();
+        else DisplayDamageIndicator(transform.position, damage);
+    }
+
+    void DisplayDamageIndicator(Vector3 position, float damage)
+    {
+        Vector3 aboveHeadPosition = position + Vector3.up * 0.7f;
+        TextMeshPro damageText = Instantiate(damageTextPrefab, aboveHeadPosition, Quaternion.identity);
+        Vector3 toCamera = Camera.main.transform.position - damageText.transform.position;
+        damageText.transform.rotation = Quaternion.LookRotation(toCamera);
+        damageText.text = damage.ToString();
+        StartCoroutine(FloatDamageText(damageText));
+        Destroy(damageText.gameObject, 1.0f);
+    }
+
+    IEnumerator FloatDamageText(TextMeshPro damageText)
+    {
+        float elapsedTime = 0f;
+        float floatDuration = 1.0f;
+        Vector3 startPosition = damageText.transform.position;
+        Vector3 endPosition = startPosition + Vector3.up * 2.0f;
+
+        while (elapsedTime < floatDuration)
+        {
+            Vector3 newPosition = Vector3.Lerp(startPosition, endPosition, elapsedTime / floatDuration);
+            damageText.transform.position = newPosition;
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        damageText.transform.position = endPosition;
+    }
+
+    void Die()
     {
         Debug.Log("Pirate died!");
         Destroy(gameObject);
@@ -173,21 +178,13 @@ public class SharkPirate : EnemyClass
 
     void BlockAttack()
     {
-        // pirate blocks
-        sharkAnimation.SetTrigger("Block");
-
-        // resets trigger after animation
+        pirateAnimation.SetTrigger("Block");
         StartCoroutine(ResetBlockTriggerAfterAnimation());
     }
 
     IEnumerator ResetBlockTriggerAfterAnimation()
     {
-        // resets the trigger after 1 second.
         yield return new WaitForSeconds(1.0f);
-
-        // reset the trigger "Block"
-        sharkAnimation.ResetTrigger("Block");
+        pirateAnimation.ResetTrigger("Block");
     }
-
-    // TakeDamage, Die, DisplayDamageIndicator, and other methods would be similar to the ImperialPirate class, adjusted for shark-specific behavior
 }

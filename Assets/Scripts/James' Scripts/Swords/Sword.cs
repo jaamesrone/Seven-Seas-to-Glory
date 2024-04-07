@@ -9,6 +9,8 @@ public class Sword : WeaponClass
     {
         // Check if the collided object has an enemy script
         Pirate enemy = other.GetComponent<Pirate>();
+        SharkPirate sharkPirate = other.GetComponent<SharkPirate>();
+        ImperialPirate royal = other.GetComponent<ImperialPirate>();
         if (enemy != null)
         {
             // Deal damage to the enemy
@@ -18,6 +20,26 @@ public class Sword : WeaponClass
             ReduceDurability();
 
             Debug.Log("Hitting pirate?");
+        }
+        else if (sharkPirate != null)
+        {
+            // Deal damage to the enemy
+            sharkPirate.TakeDamage(damage);
+
+            // Reduce durability
+            ReduceDurability();
+
+            Debug.Log("Hitting sharkpirate?");
+        }
+        else if (royal != null)
+        {
+            // Deal damage to the enemy
+            royal.TakeDamage(damage);
+
+            // Reduce durability
+            ReduceDurability();
+
+            Debug.Log("Hitting royal?");
         }
     }
     private void ReduceDurability()
