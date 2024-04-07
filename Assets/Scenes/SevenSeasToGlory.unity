@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.639
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1875797620}
-  m_IndirectSpecularColor: {r: 0.12505244, g: 0.15147354, b: 0.19847481, a: 0.639}
+  m_IndirectSpecularColor: {r: 0.12500955, g: 0.15149185, b: 0.19850871, a: 0.639}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -425,10 +425,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyShipPrefab: {fileID: 1957038960406089557, guid: c19abc8e3597aec459ac08ad66f4ecb4,
     type: 3}
-  piratePrefab: {fileID: 0}
+  dayPiratePrefabs:
+  - {fileID: 4348251542659445264, guid: 6102adfb01613c842b652c0eb6be1eb2, type: 3}
+  nightPiratePrefabs:
+  - {fileID: 4593104008606389339, guid: 73012fcd7932d514ea2d7d3f8433e592, type: 3}
+  - {fileID: 1700602343450920729, guid: 7f254c3589d3252439897997ed4222a4, type: 3}
   playerShip: {fileID: 1994448289}
   numberOfShipsToSpawn: 7
-  numberOfPirates: 0
   spawnRadius: 400
   minDistanceFromPlayer: 50
   minDistanceFromOtherShips: 30
@@ -996,6 +999,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1457601003}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1457601006 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1438987860745581567, guid: 22b34227f68f5504aaef1ad1f51ffbc4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1457601003}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 584d0759704d2a149b12975abf4b1ab9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1465807662 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2342746150416154815, guid: 9b37db723520f43519599d1f73c309a2,
@@ -1053,7 +1068,7 @@ MonoBehaviour:
   healthBar: {fileID: 72900778}
   player: {fileID: 1602085095}
   inventoryActive: {fileID: 667756611}
-  sword: {fileID: 0}
+  sword: {fileID: 1457601006}
   gun: {fileID: 956185103}
   reticleImage: {fileID: 215677280}
   reload: {fileID: 1465807662}
