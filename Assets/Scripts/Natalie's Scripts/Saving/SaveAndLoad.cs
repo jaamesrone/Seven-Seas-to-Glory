@@ -33,13 +33,6 @@ public class SaveAndLoad : MonoBehaviour
         position.y = data.position[1];
         position.z = data.position[2];
         player.ship.transform.position = position;
-
-        //spawns player at spawn point
-        Vector3 spawn;
-        spawn.x = data.spawn[0];
-        spawn.y = data.spawn[1];
-        spawn.z = data.spawn[2];
-        player.transform.position = spawn;
     }
 
     public void LoadShip()
@@ -47,6 +40,6 @@ public class SaveAndLoad : MonoBehaviour
         PlayerData data = Saving.LoadPlayer();
 
         //Vector3 ship rotation
-        player.ship.transform.rotation = Quaternion.Euler(0f, data.euler, 0f);
+        player.ship.transform.localEulerAngles = new Vector3(0f, data.euler, 0f);
     }
 }

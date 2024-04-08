@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.639
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1875797620}
-  m_IndirectSpecularColor: {r: 0.09016166, g: 0.122191064, b: 0.16036192, a: 0.639}
+  m_IndirectSpecularColor: {r: 0.12508984, g: 0.15150636, b: 0.19846644, a: 0.639}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1154,6 +1154,7 @@ MonoBehaviour:
   money: 1000
   recruits: 0
   ship: {fileID: 1994448289}
+  spawnPoint: {fileID: 1968200945}
   healthBar: {fileID: 72900778}
 --- !u!114 &1602085096
 MonoBehaviour:
@@ -1172,7 +1173,6 @@ MonoBehaviour:
   jumpForce: 5
   groundCheckDistance: 0.5
   isBlocking: 0
-  spawnPoint: {fileID: 1968200945}
   loading: {fileID: 1420732199}
   healthBar: {fileID: 72900778}
   player: {fileID: 1602085095}
@@ -2398,6 +2398,7 @@ MonoBehaviour:
   inputYawPercent: 0
   seaSpeed: {x: 0, y: 0}
   isDriving: 0
+  loading: {fileID: 1420732199}
 --- !u!114 &2032342391 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4153437503138871687, guid: 9b37db723520f43519599d1f73c309a2,
@@ -2432,7 +2433,7 @@ PrefabInstance:
     - target: {fileID: 834373740392657712, guid: 9b37db723520f43519599d1f73c309a2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -26.207764
+      value: -26.207886
       objectReference: {fileID: 0}
     - target: {fileID: 834373740392657712, guid: 9b37db723520f43519599d1f73c309a2,
         type: 3}
@@ -2877,6 +2878,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: PlayerShip
       objectReference: {fileID: 0}
+    - target: {fileID: 1606157994839281920, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: m_Name
+      value: spawnPoint
+      objectReference: {fileID: 0}
     - target: {fileID: 1950476721728499525, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
         type: 3}
       propertyPath: m_Layer
@@ -3250,17 +3256,17 @@ PrefabInstance:
     - target: {fileID: 6785873292908934005, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 6785873292908934005, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 6785873292908934005, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 7144245913235551484, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
         type: 3}

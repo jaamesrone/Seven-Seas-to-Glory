@@ -12,7 +12,6 @@ public class PlayerData
     public int freeze;
     public int money;
     public int recruits;
-    public float[] spawn;
 
     //collects player data when called in SaveAndLoad
     public PlayerData(Player player)
@@ -36,11 +35,5 @@ public class PlayerData
 
         //Vector3 ship rotation
         euler = player.ship.transform.eulerAngles.y;
-
-        //spawnpoint location
-        spawn = new float[3];
-        spawn [0] = player.spawnPoint.transform.position.x;
-        spawn [1] = player.spawnPoint.transform.position.y;
-        spawn [2] = player.spawnPoint.transform.position.z;
     }
 }

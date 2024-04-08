@@ -46,6 +46,10 @@ public class PlayerController : MonoBehaviour
 
         //load save values
         loading.LoadPlayer();
+
+        //spawn player on ship
+        player.transform.position = player.spawnPoint.transform.position;
+        player.transform.localEulerAngles = player.spawnPoint.transform.localEulerAngles;
     }
 
     private void Start()
