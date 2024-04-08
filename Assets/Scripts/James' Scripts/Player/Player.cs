@@ -4,18 +4,40 @@ using UnityEngine;
 
 public class Player : PlayerClass
 {
-    //Natalie's HealthBar
     public HealthBar healthBar;
+    private bool isHealing = false;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            health = 50f;
+            healthBar.SetHealth(health);
+        }
+
+        if (health < 100f && !isHealing)
+        {
+            StartCoroutine(HealOverTime());
+        }
+    }
+
+    private IEnumerator HealOverTime()
+    {
+        isHealing = true;
+        while (health < 100f)
+        {
+            health += 5f;
+            healthBar.SetHealth(health);
+            yield return new WaitForSeconds(1f);
+        }
+        isHealing = false;
+    }
 
     public void TakeDamage(float damage)
     {
-        // player takes dmg
         health -= damage;
-
-        //More of Natalie's Healthbar
         healthBar.SetHealth(health);
 
-        // Check if the pirate's health is below or equal to zero
         if (health <= 0f)
         {
             Die();
@@ -24,7 +46,7 @@ public class Player : PlayerClass
 
     private void Die()
     {
-        Debug.Log("player died!");
+        Debug.Log("Player died!");
         //Destroy(gameObject);
     }
 }

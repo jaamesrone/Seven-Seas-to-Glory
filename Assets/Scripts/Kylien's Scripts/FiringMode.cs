@@ -12,7 +12,16 @@ public class FiringModue : MonoBehaviour
 
     private bool canFire = true;
 
+<<<<<<< Updated upstream
     //Natalie's aiming
+=======
+    public AudioClip cannonFiringSound;
+
+    private GameObject currentCannonball;
+    private GameObject activeCannonball;
+
+    // Natalie's aiming
+>>>>>>> Stashed changes
     public float maxHeight = 10;
     public float increment = 1;
     public float aim = 1;
@@ -22,6 +31,10 @@ public class FiringModue : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && canFire)
         {
             FireCannonball();
+            if (cannonFiringSound != null)
+            {
+                AudioSource.PlayClipAtPoint(cannonFiringSound, transform.position);
+            }
             StartCoroutine(ReloadCannon());
         }
         //Natalie's aiming
