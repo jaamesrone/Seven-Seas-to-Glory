@@ -8,7 +8,7 @@ public class SpareOrKill : MonoBehaviour
 {
     private bool isPaused = false;
     private GameObject currentEnemy;
-    private int recruits = 0;
+    public Player player;
     private bool hasMadeChoice = false;
 
     public TextMeshProUGUI recruitText;
@@ -39,7 +39,7 @@ public class SpareOrKill : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.A))
             {
                 // Implement the logic for sparing the enemy
-                recruits++;
+                player.recruits++;
                 UpdateRecruitText();
                 Debug.Log("Sparing enemy");
                 hasMadeChoice = true;
@@ -61,6 +61,6 @@ public class SpareOrKill : MonoBehaviour
 
     private void UpdateRecruitText()
     {
-        recruitText.text = "Recruits: " + recruits;
+        recruitText.text = "Recruits: " + player.recruits;
     }
 }

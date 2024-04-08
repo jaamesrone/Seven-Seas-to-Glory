@@ -5,20 +5,42 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerData
 {
-    //player data
     public float[] position;
-    public float health;
+    public float euler;
+    public int bullets;
+    public int explode;
+    public int freeze;
+    public int money;
+    public int recruits;
+    public float[] spawn;
 
     //collects player data when called in SaveAndLoad
     public PlayerData(Player player)
     {
-        //Vector3 stored in 3 float variables
-        position = new float[3];
-        position [0] = player.transform.position.x;
-        position [1] = player.transform.position.y;
-        position [2] = player.transform.position.z;
+        //ammo count
+        bullets = player.numBullets;
+        explode = player.numExplodeCannonballs;
+        freeze = player.numFreezingCannonballs;
 
-        //player health
-        health = player.health;
+        //money
+        money = player.money;
+
+        //recruits
+        recruits = player.recruits;
+
+        //Vector3 ship position stored in 3 float variables
+        position = new float[3];
+        position [0] = player.ship.transform.position.x;
+        position [1] = player.ship.transform.position.y;
+        position [2] = player.ship.transform.position.z;
+
+        //Vector3 ship rotation
+        euler = player.ship.transform.eulerAngles.y;
+
+        //spawnpoint location
+        spawn = new float[3];
+        spawn [0] = player.spawnPoint.transform.position.x;
+        spawn [1] = player.spawnPoint.transform.position.y;
+        spawn [2] = player.spawnPoint.transform.position.z;
     }
 }

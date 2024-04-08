@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private Animator animator;
     private PlayerInput playerInput;
+    public SaveAndLoad loading;
 
     [Header("Input")]
     private Vector2 moveInput;
@@ -42,12 +43,14 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         playerInput = GetComponent<PlayerInput>();
         Cursor.lockState = CursorLockMode.Locked;
+
+        //load save values
+        loading.LoadPlayer();
     }
 
     private void Start()
     {
         healthBar.SetMaxHealth(player.health);
-        healthBar.SetHealth(player.health);
         InitializeActionControls();
         reticleImage.SetActive(false);
     }

@@ -29,6 +29,13 @@ public class ShipController : MonoBehaviour
     public bool isDriving;
     private float currentInertia;
 
+    public SaveAndLoad loading;
+
+    private void Start()
+    {
+        loading.LoadShip();
+    }
+
     void DoInput()
     {
         if (isDriving)

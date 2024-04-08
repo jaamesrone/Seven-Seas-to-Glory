@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.639
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1875797620}
-  m_IndirectSpecularColor: {r: 0.09005559, g: 0.12207434, b: 0.16027811, a: 0.639}
+  m_IndirectSpecularColor: {r: 0.09016166, g: 0.122191064, b: 0.16036192, a: 0.639}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1007,6 +1007,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26be82ef0841e40399933c7e21adac00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1420732199 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5405312009742601481, guid: 9b37db723520f43519599d1f73c309a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2046121896}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8438b7cc92271498cb4f1601bbcc6f66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1457601003
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1140,6 +1152,8 @@ MonoBehaviour:
   numExplodeCannonballs: 0
   numFreezingCannonballs: 0
   money: 1000
+  recruits: 0
+  ship: {fileID: 1994448289}
   healthBar: {fileID: 72900778}
 --- !u!114 &1602085096
 MonoBehaviour:
@@ -1158,6 +1172,8 @@ MonoBehaviour:
   jumpForce: 5
   groundCheckDistance: 0.5
   isBlocking: 0
+  spawnPoint: {fileID: 1968200945}
+  loading: {fileID: 1420732199}
   healthBar: {fileID: 72900778}
   player: {fileID: 1602085095}
   inventoryActive: {fileID: 667756611}
@@ -2316,37 +2332,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1602085094}
---- !u!1 &1968200945
+--- !u!1 &1968200945 stripped
 GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 1606157994839281920, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+    type: 3}
+  m_PrefabInstance: {fileID: 7691423016944292131}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1968200946}
-  m_Layer: 0
-  m_Name: ShipReturnLoc
-  m_TagString: Wheel
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1968200946
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1968200945}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.681, y: 7.581, z: 0.097}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 799144559}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1990486273
 GameObject:
   m_ObjectHideFlags: 0
@@ -2433,6 +2424,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 45645960957374247, guid: 9b37db723520f43519599d1f73c309a2,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1602085095}
     - target: {fileID: 834373740392657712, guid: 9b37db723520f43519599d1f73c309a2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -2518,6 +2514,16 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5405312009742601481, guid: 9b37db723520f43519599d1f73c309a2,
+        type: 3}
+      propertyPath: ship
+      value: 
+      objectReference: {fileID: 1994448289}
+    - target: {fileID: 5405312009742601481, guid: 9b37db723520f43519599d1f73c309a2,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1602085095}
     - target: {fileID: 6123729001523996318, guid: 9b37db723520f43519599d1f73c309a2,
         type: 3}
       propertyPath: m_text
@@ -3226,6 +3232,36 @@ PrefabInstance:
       propertyPath: m_TagString
       value: PlayerShip
       objectReference: {fileID: 0}
+    - target: {fileID: 6785873292908934005, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 14.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 6785873292908934005, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 6785873292908934005, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 6785873292908934005, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6785873292908934005, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6785873292908934005, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7144245913235551484, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
         type: 3}
       propertyPath: m_TagString
@@ -3360,10 +3396,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1775544750}
-    - targetCorrespondingSourceObject: {fileID: 5712178727253860299, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1968200946}
     - targetCorrespondingSourceObject: {fileID: 5712178727253860299, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
         type: 3}
       insertIndex: -1
