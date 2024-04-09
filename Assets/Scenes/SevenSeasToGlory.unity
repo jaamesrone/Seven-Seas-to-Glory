@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.639
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1875797620}
-  m_IndirectSpecularColor: {r: 0.09011623, g: 0.122142635, b: 0.16033971, a: 0.639}
+  m_IndirectSpecularColor: {r: 0.12499981, g: 0.15145104, b: 0.19846174, a: 0.639}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2398,7 +2398,6 @@ MonoBehaviour:
   inputYawPercent: 0
   seaSpeed: {x: 0, y: 0}
   isDriving: 0
-  loading: {fileID: 1420732199}
 --- !u!114 &2032342391 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4153437503138871687, guid: 9b37db723520f43519599d1f73c309a2,
@@ -2433,7 +2432,7 @@ PrefabInstance:
     - target: {fileID: 834373740392657712, guid: 9b37db723520f43519599d1f73c309a2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -26.207886
+      value: -26.208008
       objectReference: {fileID: 0}
     - target: {fileID: 834373740392657712, guid: 9b37db723520f43519599d1f73c309a2,
         type: 3}

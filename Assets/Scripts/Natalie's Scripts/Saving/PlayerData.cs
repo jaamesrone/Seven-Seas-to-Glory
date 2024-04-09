@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerData
 {
     public float[] position;
-    public float euler;
+    public float[] quaternion;
     public int bullets;
     public int explode;
     public int freeze;
@@ -34,6 +34,10 @@ public class PlayerData
         position [2] = player.ship.transform.position.z;
 
         //Vector3 ship rotation
-        euler = player.ship.transform.eulerAngles.y;
+        quaternion = new float[4];
+        quaternion [0] = player.ship.transform.rotation.x;
+        quaternion [1] = player.ship.transform.rotation.y;
+        quaternion [2] = player.ship.transform.rotation.z;
+        quaternion [3] = player.ship.transform.rotation.w;
     }
 }

@@ -33,13 +33,13 @@ public class SaveAndLoad : MonoBehaviour
         position.y = data.position[1];
         position.z = data.position[2];
         player.ship.transform.position = position;
-    }
-
-    public void LoadShip()
-    {
-        PlayerData data = Saving.LoadPlayer();
 
         //Vector3 ship rotation
-        player.ship.transform.localEulerAngles = new Vector3(0f, data.euler, 0f);
+        Debug.Log(data.quaternion[0]);
+        Debug.Log(data.quaternion[1]);
+        Debug.Log(data.quaternion[2]);
+        Debug.Log(data.quaternion[3]);
+        Quaternion quaternion = new Quaternion(data.quaternion[0], data.quaternion[1], data.quaternion[2], data.quaternion[3]);
+        player.ship.transform.rotation = quaternion;
     }
 }
