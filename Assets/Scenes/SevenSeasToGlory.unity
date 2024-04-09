@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.639
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1875797620}
-  m_IndirectSpecularColor: {r: 0.12500955, g: 0.15149185, b: 0.19850871, a: 0.639}
+  m_IndirectSpecularColor: {r: 0.12506956, g: 0.15150313, b: 0.19850159, a: 0.639}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -728,7 +728,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   directionalLight: {fileID: 1875797620}
   skyboxMaterial: {fileID: 2100000, guid: 01f4eb1c73693428d923f1520032e7f9, type: 2}
-  dayDurationInSeconds: 240
+  dayDurationInSeconds: 3
   rotationSpeed: 1
 --- !u!4 &401813345
 Transform:
