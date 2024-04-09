@@ -7,12 +7,16 @@ public class EnemyShipSpawner : MonoBehaviour
     public GameObject sharkPiratePrefab, piratePrefab, royalPiratePrefab;
     public GameObject playerShip;
     public int numberOfShipsToSpawn;
+    public int numberOfSharkPiratesPerShip;
+    public int numberOfRoyalPiratesPerShip;
+    public int numberOfNormalPiratesPerShip;
     public float spawnRadius;
     public float minDistanceFromPlayer = 50f;
     public float minDistanceFromOtherShips = 30f;
 
+
     private DayAndNight dayAndNight;
-    private List<GameObject> spawnedShips = new List<GameObject>(); // Store all spawned ships
+    private List<GameObject> spawnedShips = new List<GameObject>(); 
 
     void Start()
     {
@@ -49,31 +53,37 @@ public class EnemyShipSpawner : MonoBehaviour
             {
                 Quaternion randomRotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
                 GameObject enemyShip = null;
-                GameObject selectedPiratePrefab = null; // Use a different variable to select the prefab
+                GameObject selectedPiratePrefab = null;
+                int numberOfPiratesToSpawn = 0;
 
-                // Randomly select the type of ship and its corresponding pirate
-                int shipType = Random.Range(0, 3); // Random number between 0 and 2
+                int shipType = Random.Range(0, 3); 
                 switch (shipType)
                 {
                     case 0: // Shark Ship
                         enemyShip = Instantiate(sharkShipPrefab, randomPosition, randomRotation);
                         selectedPiratePrefab = sharkPiratePrefab;
+                        numberOfPiratesToSpawn = numberOfSharkPiratesPerShip;
                         break;
                     case 1: // Imperial Ship
                         enemyShip = Instantiate(royalShipPrefab, randomPosition, randomRotation);
                         selectedPiratePrefab = royalPiratePrefab;
+                        numberOfPiratesToSpawn = numberOfRoyalPiratesPerShip;
                         break;
                     case 2: // Pirate Ship
                         enemyShip = Instantiate(pirateShipPrefab, randomPosition, randomRotation);
-                        selectedPiratePrefab = piratePrefab; // Directly use class-level piratePrefab
+                        selectedPiratePrefab = piratePrefab;
+                        numberOfPiratesToSpawn = numberOfNormalPiratesPerShip;
                         break;
                 }
 
                 if (enemyShip != null && selectedPiratePrefab != null)
                 {
-                    Vector3 piratePosition = enemyShip.transform.position;
-                    piratePosition.y += 6f; // Adjust the y-position for the pirate to spawn above the ship
-                    Instantiate(selectedPiratePrefab, piratePosition, Quaternion.identity, enemyShip.transform);
+                    for (int j = 0; j < numberOfPiratesToSpawn; j++)
+                    {
+                        Vector3 piratePosition = enemyShip.transform.position;
+                        piratePosition.y += 6f; 
+                        Instantiate(selectedPiratePrefab, piratePosition, Quaternion.identity, enemyShip.transform);
+                    }
                     spawnedShips.Add(enemyShip);
                 }
             }
@@ -83,8 +93,6 @@ public class EnemyShipSpawner : MonoBehaviour
             }
         }
     }
-
-
 
     bool IsFarFromOtherShips(Vector3 position)
     {
@@ -101,19 +109,17 @@ public class EnemyShipSpawner : MonoBehaviour
         bool isDaytime = dayAndNight.IsDaytime;
         foreach (GameObject ship in spawnedShips)
         {
-            // Check the tag of the ship to determine its visibility based on the time of day
-            bool shouldBeVisible = true; // Default visibility
+            bool shouldBeVisible = true; 
 
             if (ship.CompareTag("RoyalShip"))
             {
-                shouldBeVisible = isDaytime; // Imperial ships are visible during the day
+                shouldBeVisible = isDaytime; 
             }
             else if (ship.CompareTag("SharkShip") || ship.CompareTag("PirateShip"))
             {
-                shouldBeVisible = !isDaytime; // Shark and Pirate ships are visible during the night
+                shouldBeVisible = !isDaytime;
             }
 
-            // Set the visibility of the entire ship
             ship.SetActive(shouldBeVisible);
         }
     }
