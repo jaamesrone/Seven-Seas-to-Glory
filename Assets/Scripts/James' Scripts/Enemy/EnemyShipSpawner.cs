@@ -4,6 +4,8 @@ using UnityEngine;
 public class EnemyShipSpawner : MonoBehaviour
 {
     public GameObject enemyShipPrefab;
+    public GameObject sharkShip, imperialShip, pirateShip;
+    public GameObject sharkPirate, piratePrefab, imperialPrefab;
     public List<GameObject> dayPiratePrefabs;
     public List<GameObject> nightPiratePrefabs;
     public GameObject playerShip;
