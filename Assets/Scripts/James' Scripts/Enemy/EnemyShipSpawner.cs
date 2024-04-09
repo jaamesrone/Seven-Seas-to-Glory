@@ -3,11 +3,8 @@ using UnityEngine;
 
 public class EnemyShipSpawner : MonoBehaviour
 {
-    public GameObject enemyShipPrefab;
-    public GameObject sharkShip, imperialShip, pirateShip;
-    public GameObject sharkPirate, piratePrefab, imperialPrefab;
-    public List<GameObject> dayPiratePrefabs;
-    public List<GameObject> nightPiratePrefabs;
+    public GameObject sharkShipPrefab, royalShipPrefab, pirateShipPrefab;
+    public GameObject sharkPiratePrefab, piratePrefab, royalPiratePrefab;
     public GameObject playerShip;
     public int numberOfShipsToSpawn;
     public float spawnRadius;
@@ -15,9 +12,7 @@ public class EnemyShipSpawner : MonoBehaviour
     public float minDistanceFromOtherShips = 30f;
 
     private DayAndNight dayAndNight;
-    private List<GameObject> allDayPirates = new List<GameObject>();
-    private List<GameObject> allNightPirates = new List<GameObject>();
-    private List<Vector3> spawnedShipPositions = new List<Vector3>(); 
+    private List<GameObject> spawnedShips = new List<GameObject>(); // Store all spawned ships
 
     void Start()
     {
@@ -53,9 +48,34 @@ public class EnemyShipSpawner : MonoBehaviour
             if (positionFound)
             {
                 Quaternion randomRotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
-                GameObject enemyShip = Instantiate(enemyShipPrefab, randomPosition, randomRotation);
-                SpawnPiratesOnShip(enemyShip, dayPiratePrefabs, allDayPirates);
-                SpawnPiratesOnShip(enemyShip, nightPiratePrefabs, allNightPirates);
+                GameObject enemyShip = null;
+                GameObject selectedPiratePrefab = null; // Use a different variable to select the prefab
+
+                // Randomly select the type of ship and its corresponding pirate
+                int shipType = Random.Range(0, 3); // Random number between 0 and 2
+                switch (shipType)
+                {
+                    case 0: // Shark Ship
+                        enemyShip = Instantiate(sharkShipPrefab, randomPosition, randomRotation);
+                        selectedPiratePrefab = sharkPiratePrefab;
+                        break;
+                    case 1: // Imperial Ship
+                        enemyShip = Instantiate(royalShipPrefab, randomPosition, randomRotation);
+                        selectedPiratePrefab = royalPiratePrefab;
+                        break;
+                    case 2: // Pirate Ship
+                        enemyShip = Instantiate(pirateShipPrefab, randomPosition, randomRotation);
+                        selectedPiratePrefab = piratePrefab; // Directly use class-level piratePrefab
+                        break;
+                }
+
+                if (enemyShip != null && selectedPiratePrefab != null)
+                {
+                    Vector3 piratePosition = enemyShip.transform.position;
+                    piratePosition.y += 6f; // Adjust the y-position for the pirate to spawn above the ship
+                    Instantiate(selectedPiratePrefab, piratePosition, Quaternion.identity, enemyShip.transform);
+                    spawnedShips.Add(enemyShip);
+                }
             }
             else
             {
@@ -64,38 +84,37 @@ public class EnemyShipSpawner : MonoBehaviour
         }
     }
 
+
+
     bool IsFarFromOtherShips(Vector3 position)
     {
-        foreach (Vector3 otherPosition in spawnedShipPositions) 
+        foreach (GameObject ship in spawnedShips)
         {
-            if (Vector3.Distance(position, otherPosition) < minDistanceFromOtherShips)
+            if (Vector3.Distance(position, ship.transform.position) < minDistanceFromOtherShips)
                 return false;
         }
         return true;
     }
 
-    void SpawnPiratesOnShip(GameObject ship, List<GameObject> piratePrefabs, List<GameObject> pirateList)
-    {
-        foreach (GameObject piratePrefab in piratePrefabs)
-        {
-            Vector3 piratePosition = ship.transform.position + Random.insideUnitSphere * 5f;
-            piratePosition.y = ship.transform.position.y + 6f;
-            GameObject pirate = Instantiate(piratePrefab, piratePosition, Quaternion.identity, ship.transform);
-            pirateList.Add(pirate);
-            pirate.SetActive(false);
-        }
-    }
-
     void UpdatePirateVisibility()
     {
         bool isDaytime = dayAndNight.IsDaytime;
-        foreach (GameObject pirate in allDayPirates)
+        foreach (GameObject ship in spawnedShips)
         {
-            pirate.SetActive(isDaytime);
-        }
-        foreach (GameObject pirate in allNightPirates)
-        {
-            pirate.SetActive(!isDaytime);
+            // Check the tag of the ship to determine its visibility based on the time of day
+            bool shouldBeVisible = true; // Default visibility
+
+            if (ship.CompareTag("RoyalShip"))
+            {
+                shouldBeVisible = isDaytime; // Imperial ships are visible during the day
+            }
+            else if (ship.CompareTag("SharkShip") || ship.CompareTag("PirateShip"))
+            {
+                shouldBeVisible = !isDaytime; // Shark and Pirate ships are visible during the night
+            }
+
+            // Set the visibility of the entire ship
+            ship.SetActive(shouldBeVisible);
         }
     }
 }

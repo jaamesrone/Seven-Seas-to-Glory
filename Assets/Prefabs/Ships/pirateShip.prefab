@@ -1080,8 +1080,8 @@ GameObject:
   - component: {fileID: 5383213863301649333}
   - component: {fileID: 7763978884561281053}
   m_Layer: 6
-  m_Name: EnemyShip
-  m_TagString: Untagged
+  m_Name: pirateShip
+  m_TagString: PirateShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

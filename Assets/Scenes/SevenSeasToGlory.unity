@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.639
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1875797620}
-  m_IndirectSpecularColor: {r: 0.12506956, g: 0.15150313, b: 0.19850159, a: 0.639}
+  m_IndirectSpecularColor: {r: 0.12496223, g: 0.15142249, b: 0.1984572, a: 0.639}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -423,15 +423,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d51a1aa47b6eef74eab8659a92423cf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyShipPrefab: {fileID: 1957038960406089557, guid: c19abc8e3597aec459ac08ad66f4ecb4,
+  sharkShipPrefab: {fileID: 1957038960406089557, guid: c19abc8e3597aec459ac08ad66f4ecb4,
     type: 3}
-  dayPiratePrefabs:
-  - {fileID: 4348251542659445264, guid: 6102adfb01613c842b652c0eb6be1eb2, type: 3}
-  nightPiratePrefabs:
-  - {fileID: 4593104008606389339, guid: 73012fcd7932d514ea2d7d3f8433e592, type: 3}
-  - {fileID: 1700602343450920729, guid: 7f254c3589d3252439897997ed4222a4, type: 3}
+  royalShipPrefab: {fileID: 1957038960406089557, guid: cd07a3d7335534b4fb833c913ff4f495,
+    type: 3}
+  pirateShipPrefab: {fileID: 1957038960406089557, guid: 5333d757acabf334db462b63f691a2a6,
+    type: 3}
+  sharkPiratePrefab: {fileID: 4593104008606389339, guid: 73012fcd7932d514ea2d7d3f8433e592,
+    type: 3}
+  piratePrefab: {fileID: 1700602343450920729, guid: 7f254c3589d3252439897997ed4222a4,
+    type: 3}
+  royalPiratePrefab: {fileID: 4348251542659445264, guid: 6102adfb01613c842b652c0eb6be1eb2,
+    type: 3}
   playerShip: {fileID: 1994448289}
-  numberOfShipsToSpawn: 7
+  numberOfShipsToSpawn: 10
   spawnRadius: 400
   minDistanceFromPlayer: 50
   minDistanceFromOtherShips: 30
@@ -728,7 +733,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   directionalLight: {fileID: 1875797620}
   skyboxMaterial: {fileID: 2100000, guid: 01f4eb1c73693428d923f1520032e7f9, type: 2}
-  dayDurationInSeconds: 3
+  dayDurationInSeconds: 360
   rotationSpeed: 1
 --- !u!4 &401813345
 Transform:

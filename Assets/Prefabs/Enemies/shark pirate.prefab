@@ -682,7 +682,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f6516e0e0240fec408fd0ddb4df83a90,
         type: 3}
       propertyPath: m_TagString
-      value: NightPirate
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
