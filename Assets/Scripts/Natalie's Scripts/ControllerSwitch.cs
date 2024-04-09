@@ -170,6 +170,7 @@ public class ControllerSwitch : MonoBehaviour
     void SwitchToCharacter()
     {
         Character.transform.parent = null;
+        Character.transform.position = playerSpawnPoint.position;
         Camera.transform.parent = Character.transform;
         Camera.transform.localPosition = CharacterCam.transform.localPosition;
         Camera.transform.localEulerAngles = CharacterCam.transform.localEulerAngles;
@@ -187,6 +188,7 @@ public class ControllerSwitch : MonoBehaviour
     void SwitchToShip()
     {
         Character.transform.parent = Ship.transform;
+        Character.transform.position = playerSpawnPoint.position;
         Camera.transform.parent = Ship.transform;
         Camera.transform.localPosition = ShipCam.transform.localPosition;
         Camera.transform.localEulerAngles = ShipCam.transform.localEulerAngles;
