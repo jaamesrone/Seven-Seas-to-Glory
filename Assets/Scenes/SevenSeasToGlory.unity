@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.639
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1875797620}
-  m_IndirectSpecularColor: {r: 0.12499981, g: 0.15145104, b: 0.19846174, a: 0.639}
+  m_IndirectSpecularColor: {r: 0.090142675, g: 0.12219319, b: 0.16041394, a: 0.639}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2397,6 +2397,7 @@ MonoBehaviour:
   inputForwardPercent: 0
   inputYawPercent: 0
   seaSpeed: {x: 0, y: 0}
+  desiredRotation: {x: 0, y: 0, z: 0}
   isDriving: 0
 --- !u!114 &2032342391 stripped
 MonoBehaviour:

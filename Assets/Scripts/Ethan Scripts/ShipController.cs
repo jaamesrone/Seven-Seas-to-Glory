@@ -24,7 +24,7 @@ public class ShipController : MonoBehaviour
     public Vector2 seaSpeed = Vector2.zero;
 
     // Resultant Variables
-    private Vector3 desiredRotation = Vector3.zero;
+    public Vector3 desiredRotation;
 
     public bool isDriving;
     private float currentInertia;
