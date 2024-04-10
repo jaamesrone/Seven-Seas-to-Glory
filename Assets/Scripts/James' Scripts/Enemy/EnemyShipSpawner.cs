@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class EnemyShipSpawner : MonoBehaviour
 {
-    public GameObject sharkShipPrefab, royalShipPrefab, pirateShipPrefab;
-    public GameObject sharkPiratePrefab, piratePrefab, royalPiratePrefab;
+    public GameObject sharkShipPrefab, royalShipPrefab, pirateShipPrefab, zombieShip;
+    public GameObject sharkPiratePrefab, piratePrefab, royalPiratePrefab, zombiePrefab;
     public GameObject playerShip;
     public int numberOfShipsToSpawn;
     public int numberOfSharkPiratesPerShip;
@@ -26,7 +26,7 @@ public class EnemyShipSpawner : MonoBehaviour
 
     void Update()
     {
-        UpdatePirateVisibility();
+       // UpdatePirateVisibility();
     }
 
     void SpawnEnemyShips()
@@ -56,7 +56,7 @@ public class EnemyShipSpawner : MonoBehaviour
                 GameObject selectedPiratePrefab = null;
                 int numberOfPiratesToSpawn = 0;
 
-                int shipType = Random.Range(0, 3); 
+                int shipType = Random.Range(0, 4); 
                 switch (shipType)
                 {
                     case 0: // Shark Ship
@@ -72,6 +72,11 @@ public class EnemyShipSpawner : MonoBehaviour
                     case 2: // Pirate Ship
                         enemyShip = Instantiate(pirateShipPrefab, randomPosition, randomRotation);
                         selectedPiratePrefab = piratePrefab;
+                        numberOfPiratesToSpawn = numberOfNormalPiratesPerShip;
+                        break;
+                    case 3: // Pirate Ship
+                        enemyShip = Instantiate(zombieShip, randomPosition, randomRotation);
+                        selectedPiratePrefab = zombiePrefab;
                         numberOfPiratesToSpawn = numberOfNormalPiratesPerShip;
                         break;
                 }
@@ -115,7 +120,7 @@ public class EnemyShipSpawner : MonoBehaviour
             {
                 shouldBeVisible = isDaytime; 
             }
-            else if (ship.CompareTag("SharkShip") || ship.CompareTag("PirateShip"))
+            else if (ship.CompareTag("SharkShip") || ship.CompareTag("PirateShip") || ship.CompareTag("zombieShip")) 
             {
                 shouldBeVisible = !isDaytime;
             }

@@ -429,20 +429,24 @@ MonoBehaviour:
     type: 3}
   pirateShipPrefab: {fileID: 1957038960406089557, guid: 5333d757acabf334db462b63f691a2a6,
     type: 3}
+  zombieShip: {fileID: 1957038960406089557, guid: 959c272556828564ba6d2bd8fd287c72,
+    type: 3}
   sharkPiratePrefab: {fileID: 4593104008606389339, guid: 73012fcd7932d514ea2d7d3f8433e592,
     type: 3}
   piratePrefab: {fileID: 1700602343450920729, guid: 7f254c3589d3252439897997ed4222a4,
     type: 3}
   royalPiratePrefab: {fileID: 4348251542659445264, guid: 6102adfb01613c842b652c0eb6be1eb2,
     type: 3}
+  zombiePrefab: {fileID: 2482709083809364001, guid: 259a49cc3fd51b64893aaad7aadac096,
+    type: 3}
   playerShip: {fileID: 1994448289}
   numberOfShipsToSpawn: 10
-  spawnRadius: 400
-  minDistanceFromPlayer: 50
-  minDistanceFromOtherShips: 30
   numberOfSharkPiratesPerShip: 4
   numberOfRoyalPiratesPerShip: 4
   numberOfNormalPiratesPerShip: 4
+  spawnRadius: 400
+  minDistanceFromPlayer: 50
+  minDistanceFromOtherShips: 30
 --- !u!1 &215677280 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 277136594406624698, guid: 9b37db723520f43519599d1f73c309a2,
