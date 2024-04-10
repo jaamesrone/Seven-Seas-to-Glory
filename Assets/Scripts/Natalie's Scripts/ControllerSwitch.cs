@@ -9,7 +9,7 @@ public class ControllerSwitch : MonoBehaviour
     public TextMeshProUGUI GuideText;
     public GameObject ReticleImage; // Reference to the reticle image
 
-    [SerializeField] private Transform playerSpawnPoint; 
+    [SerializeField] private Transform playerSpawnPoint;
     [SerializeField] private TMP_Text dialogueText;
 
     public GameObject Ship;
@@ -94,7 +94,7 @@ public class ControllerSwitch : MonoBehaviour
                 dialogueText.text = ""; 
                 awaitingCombatDecision = false;
             }
-        }
+        }     
     }
 
     void OnTriggerExit(Collider other)
@@ -151,7 +151,6 @@ public class ControllerSwitch : MonoBehaviour
     void SwitchToCombat() //james' script
     {
         // this function only happens if player presses Y
-        Character.transform.parent = null;
         Camera.transform.parent = Character.transform;
         Camera.transform.localPosition = CharacterCam.transform.localPosition;
         Camera.transform.localEulerAngles = CharacterCam.transform.localEulerAngles;
@@ -169,8 +168,7 @@ public class ControllerSwitch : MonoBehaviour
 
     void SwitchToCharacter()
     {
-        Character.transform.parent = null;
-        Character.transform.position = playerSpawnPoint.position;
+        Character.transform.localPosition = playerSpawnPoint.localPosition;
         Camera.transform.parent = Character.transform;
         Camera.transform.localPosition = CharacterCam.transform.localPosition;
         Camera.transform.localEulerAngles = CharacterCam.transform.localEulerAngles;
@@ -186,8 +184,7 @@ public class ControllerSwitch : MonoBehaviour
     }
 
     void SwitchToShip()
-    {
-        Character.transform.parent = Ship.transform;
+    { 
         Character.transform.position = playerSpawnPoint.position;
         Camera.transform.parent = Ship.transform;
         Camera.transform.localPosition = ShipCam.transform.localPosition;

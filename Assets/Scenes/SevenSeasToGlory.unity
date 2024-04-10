@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.639
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1875797620}
-  m_IndirectSpecularColor: {r: 0.09014355, g: 0.12215731, b: 0.16033229, a: 0.639}
+  m_IndirectSpecularColor: {r: 0.09019629, g: 0.12220726, b: 0.16039295, a: 0.639}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1456,22 +1456,22 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 799144559}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 9fa4a278e5c0c5a4b95193f1c4db250a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.5
+      value: 16.880001
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9fa4a278e5c0c5a4b95193f1c4db250a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.02
+      value: 5.92
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9fa4a278e5c0c5a4b95193f1c4db250a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.2
+      value: -0.35000038
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9fa4a278e5c0c5a4b95193f1c4db250a,
         type: 3}
@@ -3416,6 +3416,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 785576539}
+    - targetCorrespondingSourceObject: {fileID: 5712178727253860299, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1602085094}
     - targetCorrespondingSourceObject: {fileID: 5685067066601110162, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
         type: 3}
       insertIndex: 1
@@ -3577,7 +3581,6 @@ SceneRoots:
   - {fileID: 1751630319}
   - {fileID: 1875797621}
   - {fileID: 344690079}
-  - {fileID: 1725199702}
   - {fileID: 39748782}
   - {fileID: 2046121896}
   - {fileID: 73720847}
