@@ -31,6 +31,7 @@ public class ControllerSwitch : MonoBehaviour
     public GameObject LeftCannonCam;
     public GameObject RightCannonCam;
 
+    public PauseMenu menuOption;
     public InventoryUI inventoryActive;
 
     private void Start()
@@ -108,7 +109,11 @@ public class ControllerSwitch : MonoBehaviour
             awaitingCombatDecision = false;
             other.GetComponentInParent<EnemyShipAI>().SetHandToHandCombat(false);//pirate ai ship goes back to ai state
             other.gameObject.transform.parent.GetComponent<EnemyShipAI>().speed = 2;
-
+        }
+        //shop no longer available
+        if (other.gameObject.CompareTag("Shop"))
+        {
+            menuOption.Shop = false;
         }
     }
 
@@ -125,6 +130,12 @@ public class ControllerSwitch : MonoBehaviour
             dialogueText.text = "Do you want to engage in hand-to-hand combat? (Y/N)";
             awaitingCombatDecision = true;
             StartCoroutine(DialogueCooldown());
+        }
+        //allows for shop
+        if (other.gameObject.CompareTag("Shop"))
+        {
+            menuOption.Shop = true;
+
         }
     }
 
@@ -159,6 +170,7 @@ public class ControllerSwitch : MonoBehaviour
     void SwitchToCharacter()
     {
         Character.transform.parent = null;
+        Character.transform.position = playerSpawnPoint.position;
         Camera.transform.parent = Character.transform;
         Camera.transform.localPosition = CharacterCam.transform.localPosition;
         Camera.transform.localEulerAngles = CharacterCam.transform.localEulerAngles;
@@ -176,6 +188,7 @@ public class ControllerSwitch : MonoBehaviour
     void SwitchToShip()
     {
         Character.transform.parent = Ship.transform;
+        Character.transform.position = playerSpawnPoint.position;
         Camera.transform.parent = Ship.transform;
         Camera.transform.localPosition = ShipCam.transform.localPosition;
         Camera.transform.localEulerAngles = ShipCam.transform.localEulerAngles;

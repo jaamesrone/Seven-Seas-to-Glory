@@ -1,0 +1,190 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &307067401251869943
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1570205475835836339}
+    m_Modifications:
+    - target: {fileID: 1319917591228916168, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319917591228916168, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319917591228916168, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319917591228916168, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319917591228916168, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319917591228916168, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319917591228916168, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319917591228916168, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319917591228916168, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319917591228916168, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593245433695508343, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2.1423974
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593245433695508343, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.10104108
+      objectReference: {fileID: 0}
+    - target: {fileID: 8304322077037747089, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+        type: 3}
+      propertyPath: m_text
+      value: Press E to Enter Shop
+      objectReference: {fileID: 0}
+    - target: {fileID: 8724522451843894622, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+        type: 3}
+      propertyPath: m_Name
+      value: PopupUI
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c61b1c98fe9ea4c37838d84fc823b3bf, type: 3}
+--- !u!4 &1590797762516317503 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1319917591228916168, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+    type: 3}
+  m_PrefabInstance: {fileID: 307067401251869943}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &548092810309162619
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1319917591228916168, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11.46986
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319917591228916168, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.152
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319917591228916168, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 11.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319917591228916168, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319917591228916168, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319917591228916168, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319917591228916168, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319917591228916168, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319917591228916168, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319917591228916168, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593245433695508343, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2.1423974
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593245433695508343, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.10104108
+      objectReference: {fileID: 0}
+    - target: {fileID: 8304322077037747089, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+        type: 3}
+      propertyPath: m_text
+      value: Press E to Enter Shop
+      objectReference: {fileID: 0}
+    - target: {fileID: 8724522451843894622, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+        type: 3}
+      propertyPath: m_Name
+      value: EnterShopCollider Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8724522451843894622, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+        type: 3}
+      propertyPath: m_TagString
+      value: Shop
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 4228361102202875385, guid: c61b1c98fe9ea4c37838d84fc823b3bf, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1319917591228916168, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1590797762516317503}
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c61b1c98fe9ea4c37838d84fc823b3bf, type: 3}
+--- !u!4 &1570205475835836339 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1319917591228916168, guid: c61b1c98fe9ea4c37838d84fc823b3bf,
+    type: 3}
+  m_PrefabInstance: {fileID: 548092810309162619}
+  m_PrefabAsset: {fileID: 0}

@@ -13,12 +13,14 @@ public class PlayerController : MonoBehaviour
     [Header("State")]
     public bool isBlocking = false;
     private bool isAttacking = false;
+    public bool isAiming = false;
     private bool isGrounded = true;
 
     [Header("Components")]
     private Rigidbody rb;
     private Animator animator;
     private PlayerInput playerInput;
+    public SaveAndLoad loading;
 
     [Header("Input")]
     private Vector2 moveInput;
@@ -42,12 +44,18 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         playerInput = GetComponent<PlayerInput>();
         Cursor.lockState = CursorLockMode.Locked;
+
+        //load save values
+        loading.LoadPlayer();
+
+        //spawn player on ship
+        player.transform.position = player.spawnPoint.transform.position;
+        player.transform.localEulerAngles = player.spawnPoint.transform.localEulerAngles;
     }
 
     private void Start()
     {
         healthBar.SetMaxHealth(player.health);
-        healthBar.SetHealth(player.health);
         InitializeActionControls();
         reticleImage.SetActive(false);
     }
@@ -59,11 +67,11 @@ public class PlayerController : MonoBehaviour
         CheckGroundedStatus();
         UpdateAnimationStates();
 
-        if (Keyboard.current[Key.Digit1].wasPressedThisFrame)
+        if (Keyboard.current[Key.Digit1].wasPressedThisFrame || player.numBullets <= 0)
         {
             SwitchToSword();
         }
-        if (Keyboard.current[Key.Digit2].wasPressedThisFrame)
+        if (Keyboard.current[Key.Digit2].wasPressedThisFrame && player.numBullets > 0)
         {
             SwitchToGun();
         }
@@ -102,17 +110,6 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("IsBlocking", isBlocking);
     }
 
-    // Input System Handlers
-    public void OnMove(InputValue value)
-    {
-        moveInput = value.Get<Vector2>();
-    }
-
-    public void OnLook(InputValue value)
-    {
-        lookInput = value.Get<Vector2>();
-    }
-
     private void SwitchToSword()
     {
         isUsingSword = true;
@@ -130,6 +127,17 @@ public class PlayerController : MonoBehaviour
         reticleImage.SetActive(true);
         gun.gameObject.SetActive(true);
         inventoryActive.UpdateActive(1);
+    }
+
+    // Input System Handlers
+    public void OnMove(InputValue value)
+    {
+        moveInput = value.Get<Vector2>();
+    }
+
+    public void OnLook(InputValue value)
+    {
+        lookInput = value.Get<Vector2>();
     }
 
     public void OnJump()
@@ -157,22 +165,45 @@ public class PlayerController : MonoBehaviour
             if(!isAttacking)
             {
                 gun.Fire();
-                isAttacking = true;
                 StartCoroutine(ResetIsAttackingAfterDelay(gun.reloadTime));
+                player.numBullets -= 1;
+                isAttacking = true;
             }
         }
     }
 
     public void OnBlock()
     {
-        isBlocking = true;
-        animator.SetBool("IsBlocking", true);
+        if (isUsingSword)
+        {
+            isBlocking = true;
+            animator.SetBool("IsBlocking", true);
+        }
     }
 
     public void StopBlock()
     {
-        isBlocking = false;
-        animator.SetBool("IsBlocking", false);
+        if (isUsingSword)
+        {
+            isBlocking = false;
+            animator.SetBool("IsBlocking", false);
+        }
+    }
+
+    public void OnAim()
+    {
+        if (!isUsingSword)
+        {
+            isAiming = true;
+        }
+    }
+
+    public void StopAim()
+    {
+        if(!isUsingSword)
+        {
+            isAiming = false;
+        }
     }
 
     IEnumerator ResetIsAttackingAfterDelay(float delay)
@@ -190,5 +221,9 @@ public class PlayerController : MonoBehaviour
         var blockAction = playerInput.actions["Block"];
         blockAction.started += _ => OnBlock();
         blockAction.canceled += _ => StopBlock();
+
+        var aimAction = playerInput.actions["Aim"];
+        aimAction.started += _ => OnAim();
+        aimAction.canceled += _ => StopAim();
     }
 }

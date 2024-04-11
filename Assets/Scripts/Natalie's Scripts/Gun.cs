@@ -5,13 +5,16 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    public float reloadTime = 3f;
+    public float reloadTime = 2f;
     public GameObject normalBulletPrefab;
     public GameObject reloadReticle;
     public float distance;
 
     private bool canFire = true;
     private GameObject activeBullet;
+
+    private Vector3 firingPosition;
+    private Vector3 firingDirection;
 
     void Start()
     {
@@ -37,13 +40,13 @@ public class Gun : MonoBehaviour
         }
     }
 
-    void FireBullet()
+    public void Aim()
     {
-        Vector3 firingPosition = transform.position + transform.forward * 1.5f;
+
+        firingPosition = transform.position + transform.forward * 1.5f;
         Vector3 mousePosition = Input.mousePosition;
         Ray ray = Camera.main.ScreenPointToRay(mousePosition);
         RaycastHit hit;
-        Vector3 firingDirection;
 
         //Aim's based on mouse position
         if (Physics.Raycast(ray, out hit))
@@ -54,7 +57,10 @@ public class Gun : MonoBehaviour
         {
             firingDirection = ray.direction;
         }
+    }
 
+    void FireBullet()
+    {
         GameObject bullet = Instantiate(normalBulletPrefab, firingPosition, Quaternion.identity);
         activeBullet = bullet;
         Rigidbody rb = bullet.GetComponent<Rigidbody>();

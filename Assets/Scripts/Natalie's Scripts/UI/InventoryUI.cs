@@ -8,8 +8,10 @@ public class InventoryUI : MonoBehaviour
     public Player player;
     public GameObject[] inventory;
     public int activeIndex = 0;
+    public TextMeshProUGUI moneyText;
     public TextMeshProUGUI explodeCount;
     public TextMeshProUGUI freezeCount;
+    public TextMeshProUGUI bulletCount;
 
     void Start()
     {
@@ -18,12 +20,18 @@ public class InventoryUI : MonoBehaviour
         {
             inventory[i].SetActive(i == activeIndex);
         }
+        moneyText.text = "$" + player.money;
+        explodeCount.text = player.numExplodeCannonballs.ToString();
+        freezeCount.text = player.numFreezingCannonballs.ToString();
+        bulletCount.text = player.numBullets.ToString();
     }
 
     private void Update()
     {
+        moneyText.text = "$" + player.money;
         explodeCount.text = player.numExplodeCannonballs.ToString();
         freezeCount.text = player.numFreezingCannonballs.ToString();
+        bulletCount.text = player.numBullets.ToString();
     }
 
     public void UpdateActive(int index)
