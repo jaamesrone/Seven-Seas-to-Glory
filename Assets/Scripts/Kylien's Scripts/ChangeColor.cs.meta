@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Kylien's Scripts/ChangeColor.cs.meta
 guid: 828802f6f89fea647b493daaecc16a8b
+========
+guid: 23506389110b4044b86c25d1de6cd630
+>>>>>>>> parent of 8c09f4a (All my scripts):Assets/Scripts/Kylien's Scripts/NewBehaviourScript.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

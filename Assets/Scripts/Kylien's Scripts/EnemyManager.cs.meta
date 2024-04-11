@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Kylien's Scripts/EnemyManager.cs.meta
 guid: ca3bda9d2ad2a7945a7815e7c9da4714
+========
+guid: 00f969b6a3bf1ae458cd3624bc6a9ed8
+>>>>>>>> parent of 8c09f4a (All my scripts):Assets/Scripts/Kylien's Scripts/SpareOrKill.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
