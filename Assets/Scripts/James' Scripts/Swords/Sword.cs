@@ -11,6 +11,8 @@ public class Sword : WeaponClass
         Pirate enemy = other.GetComponent<Pirate>();
         SharkPirate sharkPirate = other.GetComponent<SharkPirate>();
         ImperialPirate royal = other.GetComponent<ImperialPirate>();
+        SkeletonPirate zombie = other.GetComponent<SkeletonPirate>();
+
         if (enemy != null)
         {
             // Deal damage to the enemy
@@ -40,6 +42,16 @@ public class Sword : WeaponClass
             ReduceDurability();
 
             Debug.Log("Hitting royal?");
+        }
+        else if (zombie != null)
+        {
+            // Deal damage to the enemy
+            zombie.TakeDamage(damage);
+
+            // Reduce durability
+            ReduceDurability();
+
+            Debug.Log("Hitting zombie?");
         }
     }
     private void ReduceDurability()

@@ -12,8 +12,9 @@ TagManager:
   - water
   - EnemyShip
   - Shop
-  - NightPirate
-  - DayPirate
+  - SharkShip
+  - PirateShip
+  - RoyalShip
   layers:
   - Default
   - TransparentFX
