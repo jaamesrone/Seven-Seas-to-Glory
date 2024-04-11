@@ -9,37 +9,13 @@ public class NormalBullet : AmmoClass
         StartCoroutine(destroyBullet());
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision collision)
     {
-        // Check if the collided object has an enemy script
-        Pirate enemy = other.GetComponent<Pirate>();
-        SharkPirate sharkPirate = other.GetComponent<SharkPirate>();
-        ImperialPirate royal = other.GetComponent<ImperialPirate>();
-        SkeletonPirate zombie = other.GetComponent<SkeletonPirate>();
-
-        if (enemy != null)
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            // Deal damage to the enemy
-            enemy.TakeDamage(baseDamage);
-            Debug.Log("Hitting pirate?");
-        }
-        else if (sharkPirate != null)
-        {
-            // Deal damage to the enemy
-            sharkPirate.TakeDamage(baseDamage);
-            Debug.Log("Hitting sharkpirate?");
-        }
-        else if (royal != null)
-        {
-            // Deal damage to the enemy
-            royal.TakeDamage(baseDamage);
-            Debug.Log("Hitting royal?");
-        }
-        else if (zombie != null)
-        {
-            // Deal damage to the enemy
-            zombie.TakeDamage(baseDamage);
-            Debug.Log("Hitting zombie?");
+            GameObject enemy = collision.gameObject;
+            Destroy(gameObject);
+            enemy.transform.root.GetComponent<Pirate>().TakeDamage(baseDamage);
         }
     }
 
