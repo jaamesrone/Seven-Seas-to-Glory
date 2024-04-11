@@ -21,9 +21,6 @@ public class PauseMenu : MonoBehaviour
     public GameObject shopUI;
     public GameObject[] shopNames;
 
-    public AudioSource resumeSound;
-    public AudioSource menuSound;
-
     public object ScreenManager { get; private set; }
 
     void Start()
@@ -42,12 +39,10 @@ public class PauseMenu : MonoBehaviour
         {
             if (GamePaused)
             {
-                menuSound.Play();
                 Resume();
             }
             else
             {
-                resumeSound.Play();
                 Pause();
             }
         }
