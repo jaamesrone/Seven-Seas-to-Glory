@@ -30,8 +30,6 @@ public class FiringMode : MonoBehaviour
     public float increment = 1;
     public float aim = 1;
 
-    public AudioSource audioSource;
-
     void Start()
     {
         reloadReticle.SetActive(false); // Start with reload reticle disabled
@@ -47,7 +45,6 @@ public class FiringMode : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && canFire)
         {
             FireCannonball();
-            audioSource.Play();
             StartCoroutine(ReloadCannon());
         }
 
