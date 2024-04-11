@@ -10,6 +10,7 @@ public class EnemyShipSpawner : MonoBehaviour
     public int numberOfSharkPiratesPerShip;
     public int numberOfRoyalPiratesPerShip;
     public int numberOfNormalPiratesPerShip;
+    public int numberOfZombiePiratesPerShip;
     public float spawnRadius;
     public float minDistanceFromPlayer = 50f;
     public float minDistanceFromOtherShips = 30f;
@@ -74,10 +75,10 @@ public class EnemyShipSpawner : MonoBehaviour
                         selectedPiratePrefab = piratePrefab;
                         numberOfPiratesToSpawn = numberOfNormalPiratesPerShip;
                         break;
-                    case 3: // Pirate Ship
+                    case 3: // Zombies Ship
                         enemyShip = Instantiate(zombieShip, randomPosition, randomRotation);
                         selectedPiratePrefab = zombiePrefab;
-                        numberOfPiratesToSpawn = numberOfNormalPiratesPerShip;
+                        numberOfPiratesToSpawn = numberOfZombiePiratesPerShip;
                         break;
                 }
 
