@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.639
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1875797620}
-  m_IndirectSpecularColor: {r: 0.12497869, g: 0.15142329, b: 0.1984496, a: 0.639}
+  m_IndirectSpecularColor: {r: 0.12503806, g: 0.15148999, b: 0.19851132, a: 0.639}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2620,6 +2620,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2123706646555848575, guid: 9b37db723520f43519599d1f73c309a2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2694086851995108585, guid: 9b37db723520f43519599d1f73c309a2,
         type: 3}
       propertyPath: Ship
@@ -2678,6 +2683,11 @@ PrefabInstance:
     - target: {fileID: 4715600061649618155, guid: 9b37db723520f43519599d1f73c309a2,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4797736046835773144, guid: 9b37db723520f43519599d1f73c309a2,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5405312009742601481, guid: 9b37db723520f43519599d1f73c309a2,
