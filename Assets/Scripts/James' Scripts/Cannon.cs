@@ -25,7 +25,7 @@ public class Cannon : MonoBehaviour
 
         if (rb != null)
         {
-            rb.AddForce(cannonBall.transform.forward * power, ForceMode.Impulse);
+            rb.AddForce(cannonBall.transform.localPosition * power, ForceMode.Impulse);
         }
     }
 }
