@@ -682,7 +682,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f6516e0e0240fec408fd0ddb4df83a90,
         type: 3}
       propertyPath: m_TagString
-      value: Enemy
+      value: NightPirate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -755,7 +755,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 946f73dab2fa8334eb63f940b3a63072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
+  health: 60
   defense: 20
   reloadTime: 0
   attackTime: 1
