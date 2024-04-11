@@ -41,7 +41,8 @@ public class ControllerSwitch : MonoBehaviour
     {
         InCharacter = true;
         Character.GetComponent<PlayerController>().enabled = true;
-        Camera.GetComponent<FiringMode>().enabled = false;
+        cannonLeft.GetComponent<Cannon>().enabled = false;
+        cannonRight.GetComponent<Cannon>().enabled = false;
         Ship.GetComponent<ShipController>().isDriving = false;
 
         inventoryActive.UpdateActive(0);
@@ -159,8 +160,8 @@ public class ControllerSwitch : MonoBehaviour
         Camera.transform.localEulerAngles = CharacterCam.transform.localEulerAngles;
         Ship.GetComponent<ShipController>().isDriving = false;
         Ship.GetComponent<ShipController>().currentForwardSpeed = 0;
-        cannonLeft.GetComponent<FiringMode>().enabled = false;
-        cannonRight.GetComponent<FiringMode>().enabled = false;
+        cannonLeft.GetComponent<Cannon>().enabled = false;
+        cannonRight.GetComponent<Cannon>().enabled = false;
         Character.GetComponent<PlayerController>().enabled = true;
         inventoryActive.UpdateActive(0);
         InCannon = false;
@@ -179,8 +180,8 @@ public class ControllerSwitch : MonoBehaviour
         Camera.transform.localEulerAngles = CharacterCam.transform.localEulerAngles;
         Ship.GetComponent<ShipController>().isDriving = false;
         Ship.GetComponent<ShipController>().currentForwardSpeed = 0;
-        cannonLeft.GetComponent<FiringMode>().enabled = false;
-        cannonRight.GetComponent<FiringMode>().enabled = false;
+        cannonLeft.GetComponent<Cannon>().enabled = false;
+        cannonRight.GetComponent<Cannon>().enabled = false;
         Character.GetComponent<PlayerController>().enabled = true;
         inventoryActive.UpdateActive(0);
         InCannon = false;
@@ -197,8 +198,8 @@ public class ControllerSwitch : MonoBehaviour
         Camera.transform.localPosition = ShipCam.transform.localPosition;
         Camera.transform.localEulerAngles = ShipCam.transform.localEulerAngles;
         Character.GetComponent<PlayerController>().enabled = false;
-        cannonLeft.GetComponent<FiringMode>().enabled = false;
-        cannonRight.GetComponent<FiringMode>().enabled = false;
+        cannonLeft.GetComponent<Cannon>().enabled = false;
+        cannonRight.GetComponent<Cannon>().enabled = false;
         Ship.GetComponent<ShipController>().isDriving = true;
         inventoryActive.UpdateActive(0);
         InCharacter = false;
@@ -215,13 +216,13 @@ public class ControllerSwitch : MonoBehaviour
         {
             Camera.transform.localPosition = LeftCannonCam.transform.localPosition;
             Camera.transform.localEulerAngles = LeftCannonCam.transform.localEulerAngles;
-            cannonLeft.GetComponent<FiringMode>().enabled = true;
+            cannonLeft.GetComponent<Cannon>().enabled = true;
         }
         else
         {
             Camera.transform.localPosition = RightCannonCam.transform.localPosition;
             Camera.transform.localEulerAngles = RightCannonCam.transform.localEulerAngles;
-            cannonRight.GetComponent<FiringMode>().enabled = true;
+            cannonRight.GetComponent<Cannon>().enabled = true;
         }
         Character.GetComponent<PlayerController>().enabled = false;
         Ship.GetComponent<ShipController>().isDriving = false;
@@ -239,16 +240,16 @@ public class ControllerSwitch : MonoBehaviour
         {
             Camera.transform.localPosition = RightCannonCam.transform.localPosition;
             Camera.transform.localEulerAngles = RightCannonCam.transform.localEulerAngles;
-            cannonLeft.GetComponent<FiringMode>().enabled = false;
-            cannonRight.GetComponent<FiringMode>().enabled = true;
+            cannonLeft.GetComponent<Cannon>().enabled = false;
+            cannonRight.GetComponent<Cannon>().enabled = true;
             LeftCannon = false;
         }
         else
         {
             Camera.transform.localPosition = LeftCannonCam.transform.localPosition;
             Camera.transform.localEulerAngles = LeftCannonCam.transform.localEulerAngles;
-            cannonRight.GetComponent<FiringMode>().enabled = false;
-            cannonLeft.GetComponent<FiringMode>().enabled = true;
+            cannonRight.GetComponent<Cannon>().enabled = false;
+            cannonLeft.GetComponent<Cannon>().enabled = true;
             LeftCannon = true;
         }
     }

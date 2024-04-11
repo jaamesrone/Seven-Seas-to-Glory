@@ -40,7 +40,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8102067960504648971}
-  - component: {fileID: 6909918864772010587}
   m_Layer: 0
   m_Name: cannonPrefabRight
   m_TagString: Untagged
@@ -68,34 +67,6 @@ Transform:
   - {fileID: 9010714986379762361}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6909918864772010587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7760804967614250011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a1ee22007d5419499f1e00e166f8e69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  reticleRectTransform: {fileID: 0}
-  reloadTime: 3
-  normalCannonballPrefab: {fileID: 1462336481129127684, guid: 0b0f2198905b54540b156fa346a7dbe1,
-    type: 3}
-  explodingCannonballPrefab: {fileID: 9101307182618971111, guid: d5e3dbb7d3c774d998a2e6d4ede76f5f,
-    type: 3}
-  freezingCannonballPrefab: {fileID: 2911863705069182719, guid: c1a3413850fad46438e7deb5ddba7597,
-    type: 3}
-  cooldownText: {fileID: 0}
-  reloadReticle: {fileID: 0}
-  cannonSpawn: {fileID: 9010714986379762361}
-  inventoryActive: {fileID: 0}
-  player: {fileID: 0}
-  maxHeight: 10
-  increment: 1
-  aim: 1
 --- !u!1001 &1966355128462460368
 PrefabInstance:
   m_ObjectHideFlags: 0
