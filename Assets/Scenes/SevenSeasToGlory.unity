@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.639
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1875797620}
-  m_IndirectSpecularColor: {r: 0.09019629, g: 0.12220726, b: 0.16039295, a: 0.639}
+  m_IndirectSpecularColor: {r: 0.12499963, g: 0.15146296, b: 0.19847515, a: 0.639}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1299,6 +1299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GuideText: {fileID: 964083229}
   ReticleImage: {fileID: 215677280}
+  reload: {fileID: 1465807662}
   playerSpawnPoint: {fileID: 785576539}
   dialogueText: {fileID: 321485734}
   Ship: {fileID: 1994448289}

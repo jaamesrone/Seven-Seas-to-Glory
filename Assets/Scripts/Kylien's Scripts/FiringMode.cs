@@ -104,12 +104,15 @@ public class FiringMode : MonoBehaviour
     void FireCannonball()
     {
         Vector3 firingPosition = transform.position + transform.forward * 1.5f;
-        Vector3 firingDirection = transform.forward * aim; // Use the player's forward direction
+        Vector3 firingDirection = Camera.main.transform.forward;
+
+        firingDirection = transform.InverseTransformDirection(firingDirection);
 
         GameObject cannonball = Instantiate(currentCannonball, firingPosition, Quaternion.identity);
         activeCannonball = cannonball; // Set the active cannonball
         Rigidbody rb = cannonball.GetComponent<Rigidbody>();
-        rb.velocity = firingDirection * 20f;
+        firingDirection = transform.TransformDirection(firingDirection);
+        rb.velocity = firingDirection * 20f * aim;
 
         if(currentCannonball == explodingCannonballPrefab && player.numExplodeCannonballs <= 0)
         {

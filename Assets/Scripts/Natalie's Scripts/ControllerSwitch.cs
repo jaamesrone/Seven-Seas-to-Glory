@@ -8,6 +8,7 @@ public class ControllerSwitch : MonoBehaviour
     //Temporary Tutorial
     public TextMeshProUGUI GuideText;
     public GameObject ReticleImage; // Reference to the reticle image
+    public GameObject reload;
 
     [SerializeField] private Transform playerSpawnPoint;
     [SerializeField] private TMP_Text dialogueText;
@@ -163,6 +164,7 @@ public class ControllerSwitch : MonoBehaviour
         InShip = false;
         InCharacter = true;
         ReticleImage.SetActive(false); // Hide the reticle image
+        reload.SetActive(false);
     }
 
 
@@ -181,6 +183,7 @@ public class ControllerSwitch : MonoBehaviour
         InShip = false;
         InCharacter = true;
         ReticleImage.SetActive(false); // Hide the reticle image
+        reload.SetActive(false);
     }
 
     void SwitchToShip()
@@ -198,6 +201,7 @@ public class ControllerSwitch : MonoBehaviour
         InShip = true;
         GuideText.text = "Press Shift to switch to cannon or sail close to enemies for hand-to-hand combat";
         ReticleImage.SetActive(false); // Hide the reticle image
+        reload.SetActive(false);
     }
 
     void SwitchToCannon()
