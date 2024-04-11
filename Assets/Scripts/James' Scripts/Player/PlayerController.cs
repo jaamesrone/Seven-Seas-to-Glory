@@ -9,12 +9,15 @@ public class PlayerController : MonoBehaviour
     public float sensitivity = 2f;
     public float jumpForce = 10f;
     public float groundCheckDistance = 1.0f;
+    public float bulletForce;
 
     [Header("State")]
     public bool isBlocking = false;
     private bool isAttacking = false;
     public bool isAiming = false;
     private bool isGrounded = true;
+    private bool isUsingGun = false;
+    private bool isUsingSword = true;
 
     [Header("Components")]
     private Rigidbody rb;
@@ -34,9 +37,11 @@ public class PlayerController : MonoBehaviour
     [Header("Weapon Switch")]
     public Sword sword;
     public Gun gun;
+    public GameObject normalBulletPrefab;
+    public GameObject firingPoint;
     public GameObject reticleImage;
     public GameObject reload;
-    private bool isUsingSword = true;
+    
 
     private void Awake()
     {
@@ -46,7 +51,7 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         //load save values
-        loading.LoadPlayer();
+        //loading.LoadPlayer();
 
         //spawn player on ship
         player.transform.position = player.spawnPoint.transform.position;
@@ -67,11 +72,11 @@ public class PlayerController : MonoBehaviour
         CheckGroundedStatus();
         UpdateAnimationStates();
 
-        if (Keyboard.current[Key.Digit1].wasPressedThisFrame || player.numBullets <= 0)
+        if (Input.GetKeyDown(KeyCode.Alpha1) || player.numBullets <= 0)
         {
             SwitchToSword();
         }
-        if (Keyboard.current[Key.Digit2].wasPressedThisFrame && player.numBullets > 0)
+        if ((Input.GetKeyDown(KeyCode.Alpha2) && player.numBullets > 0))
         {
             SwitchToGun();
         }
@@ -108,11 +113,13 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Running", moveInput.y > 0 && !isBlocking);
         animator.SetBool("Backwards", moveInput.y < 0 && !isBlocking);
         animator.SetBool("IsBlocking", isBlocking);
+        animator.SetBool("IsAiming", isAiming);
     }
 
     private void SwitchToSword()
     {
         isUsingSword = true;
+        isUsingGun = false;
         reload.SetActive(false);
         reticleImage.SetActive(false);
         gun.gameObject.SetActive(false);
@@ -123,6 +130,7 @@ public class PlayerController : MonoBehaviour
     private void SwitchToGun()
     {
         isUsingSword = false;
+        isUsingGun = true;
         sword.gameObject.SetActive(false);
         reticleImage.SetActive(true);
         gun.gameObject.SetActive(true);
@@ -160,16 +168,30 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(ResetIsAttackingAfterDelay(1f));
             }
         }
-        else
-        {
-            if(!isAttacking)
+        else if(isUsingGun)
             {
-                gun.Fire();
-                StartCoroutine(ResetIsAttackingAfterDelay(gun.reloadTime));
+                GameObject bullet = Instantiate(normalBulletPrefab, firingPoint.transform.position, firingPoint.transform.rotation);
+                Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
+                if (bulletRigidbody != null)
+                {
+                    bulletRigidbody.AddForce(bullet.transform.forward * bulletForce, ForceMode.Impulse);
+                }
                 player.numBullets -= 1;
                 isAttacking = true;
+                StartCoroutine(ResetBullet(0.1f));
             }
+        if (player.numBullets <= 0)
+        {
+            StopAim();
+            SwitchToSword();
         }
+    }
+
+    private IEnumerator ResetBullet(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        isAttacking = false;
+        
     }
 
     public void OnBlock()
@@ -192,17 +214,19 @@ public class PlayerController : MonoBehaviour
 
     public void OnAim()
     {
-        if (!isUsingSword)
+        if (isUsingGun)
         {
             isAiming = true;
+            animator.SetBool("IsAiming", true);
         }
     }
 
     public void StopAim()
     {
-        if(!isUsingSword)
+        if(isUsingGun)
         {
             isAiming = false;
+            animator.SetBool("IsAiming", false);
         }
     }
 
@@ -223,7 +247,7 @@ public class PlayerController : MonoBehaviour
         blockAction.canceled += _ => StopBlock();
 
         var aimAction = playerInput.actions["Aim"];
-        aimAction.started += _ => OnAim();
+        aimAction.performed += _ => OnAim();
         aimAction.canceled += _ => StopAim();
     }
 }
