@@ -8,19 +8,22 @@ public class ControllerSwitch : MonoBehaviour
     //Temporary Tutorial
     public TextMeshProUGUI GuideText;
     public GameObject ReticleImage; // Reference to the reticle image
+    public GameObject reload;
 
-    [SerializeField] private Transform playerSpawnPoint; 
+    [SerializeField] private Transform playerSpawnPoint;
     [SerializeField] private TMP_Text dialogueText;
 
     public GameObject Ship;
     public GameObject Character;
     public GameObject Camera;
+    public GameObject cannonLeft;
+    public GameObject cannonRight;
 
     public bool InCannon = false;
     public bool InCharacter = false;
     public bool InShip = false;
     public bool CanDriveShip = false;
-    public bool LeftCannon = false;
+    public bool LeftCannon = true;
     private bool awaitingCombatDecision = false;
     private bool isCooldownActive = false;
 
@@ -38,7 +41,8 @@ public class ControllerSwitch : MonoBehaviour
     {
         InCharacter = true;
         Character.GetComponent<PlayerController>().enabled = true;
-        Camera.GetComponent<FiringMode>().enabled = false;
+        cannonLeft.GetComponent<Cannon>().enabled = false;
+        cannonRight.GetComponent<Cannon>().enabled = false;
         Ship.GetComponent<ShipController>().isDriving = false;
 
         inventoryActive.UpdateActive(0);
@@ -94,7 +98,7 @@ public class ControllerSwitch : MonoBehaviour
                 dialogueText.text = ""; 
                 awaitingCombatDecision = false;
             }
-        }
+        }     
     }
 
     void OnTriggerExit(Collider other)
@@ -151,49 +155,51 @@ public class ControllerSwitch : MonoBehaviour
     void SwitchToCombat() //james' script
     {
         // this function only happens if player presses Y
-        Character.transform.parent = null;
         Camera.transform.parent = Character.transform;
         Camera.transform.localPosition = CharacterCam.transform.localPosition;
         Camera.transform.localEulerAngles = CharacterCam.transform.localEulerAngles;
         Ship.GetComponent<ShipController>().isDriving = false;
         Ship.GetComponent<ShipController>().currentForwardSpeed = 0;
-        Camera.GetComponent<FiringMode>().enabled = false;
+        cannonLeft.GetComponent<Cannon>().enabled = false;
+        cannonRight.GetComponent<Cannon>().enabled = false;
         Character.GetComponent<PlayerController>().enabled = true;
         inventoryActive.UpdateActive(0);
         InCannon = false;
         InShip = false;
         InCharacter = true;
         ReticleImage.SetActive(false); // Hide the reticle image
+        reload.SetActive(false);
     }
 
 
     void SwitchToCharacter()
     {
-        Character.transform.parent = null;
-        Character.transform.position = playerSpawnPoint.position;
+        Character.transform.localPosition = playerSpawnPoint.localPosition;
         Camera.transform.parent = Character.transform;
         Camera.transform.localPosition = CharacterCam.transform.localPosition;
         Camera.transform.localEulerAngles = CharacterCam.transform.localEulerAngles;
         Ship.GetComponent<ShipController>().isDriving = false;
         Ship.GetComponent<ShipController>().currentForwardSpeed = 0;
-        Camera.GetComponent<FiringMode>().enabled = false;
+        cannonLeft.GetComponent<Cannon>().enabled = false;
+        cannonRight.GetComponent<Cannon>().enabled = false;
         Character.GetComponent<PlayerController>().enabled = true;
         inventoryActive.UpdateActive(0);
         InCannon = false;
         InShip = false;
         InCharacter = true;
         ReticleImage.SetActive(false); // Hide the reticle image
+        reload.SetActive(false);
     }
 
     void SwitchToShip()
-    {
-        Character.transform.parent = Ship.transform;
+    { 
         Character.transform.position = playerSpawnPoint.position;
         Camera.transform.parent = Ship.transform;
         Camera.transform.localPosition = ShipCam.transform.localPosition;
         Camera.transform.localEulerAngles = ShipCam.transform.localEulerAngles;
         Character.GetComponent<PlayerController>().enabled = false;
-        Camera.GetComponent<FiringMode>().enabled = false;
+        cannonLeft.GetComponent<Cannon>().enabled = false;
+        cannonRight.GetComponent<Cannon>().enabled = false;
         Ship.GetComponent<ShipController>().isDriving = true;
         inventoryActive.UpdateActive(0);
         InCharacter = false;
@@ -201,6 +207,7 @@ public class ControllerSwitch : MonoBehaviour
         InShip = true;
         GuideText.text = "Press Shift to switch to cannon or sail close to enemies for hand-to-hand combat";
         ReticleImage.SetActive(false); // Hide the reticle image
+        reload.SetActive(false);
     }
 
     void SwitchToCannon()
@@ -209,15 +216,16 @@ public class ControllerSwitch : MonoBehaviour
         {
             Camera.transform.localPosition = LeftCannonCam.transform.localPosition;
             Camera.transform.localEulerAngles = LeftCannonCam.transform.localEulerAngles;
+            cannonLeft.GetComponent<Cannon>().enabled = true;
         }
         else
         {
             Camera.transform.localPosition = RightCannonCam.transform.localPosition;
             Camera.transform.localEulerAngles = RightCannonCam.transform.localEulerAngles;
+            cannonRight.GetComponent<Cannon>().enabled = true;
         }
         Character.GetComponent<PlayerController>().enabled = false;
         Ship.GetComponent<ShipController>().isDriving = false;
-        Camera.GetComponent<FiringMode>().enabled = true;
         inventoryActive.UpdateActive(2);
         ReticleImage.SetActive(true); // Show the reticle image
         InCharacter = false;
@@ -232,12 +240,16 @@ public class ControllerSwitch : MonoBehaviour
         {
             Camera.transform.localPosition = RightCannonCam.transform.localPosition;
             Camera.transform.localEulerAngles = RightCannonCam.transform.localEulerAngles;
+            cannonLeft.GetComponent<Cannon>().enabled = false;
+            cannonRight.GetComponent<Cannon>().enabled = true;
             LeftCannon = false;
         }
         else
         {
             Camera.transform.localPosition = LeftCannonCam.transform.localPosition;
             Camera.transform.localEulerAngles = LeftCannonCam.transform.localEulerAngles;
+            cannonRight.GetComponent<Cannon>().enabled = false;
+            cannonLeft.GetComponent<Cannon>().enabled = true;
             LeftCannon = true;
         }
     }
