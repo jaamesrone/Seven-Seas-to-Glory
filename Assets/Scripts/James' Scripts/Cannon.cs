@@ -19,13 +19,15 @@ public class Cannon : MonoBehaviour
 
     void FireCannonBall()
     {
-        GameObject cannonBall = Instantiate(cannon, firing.transform.position, firing.transform.rotation);
-
+        GameObject cannonBall = Instantiate(cannon, firing.transform.position, Quaternion.identity,firing.transform);
+        cannonBall.transform.rotation = firing.transform.rotation;
         Rigidbody rb = cannonBall.GetComponent<Rigidbody>();
 
         if (rb != null)
         {
-            rb.AddForce(cannonBall.transform.localPosition * power, ForceMode.Impulse);
+
+             rb.AddForce(cannonBall.transform.TransformDirection(Vector3.forward) * power, ForceMode.Impulse);
+           // rb.velocity = cannonBall.transform.TransformDirection(Vector3.forward) * power;
         }
     }
 }
