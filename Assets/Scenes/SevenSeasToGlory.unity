@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.639
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1875797620}
-  m_IndirectSpecularColor: {r: 0.12497846, g: 0.15141867, b: 0.19845071, a: 0.639}
+  m_IndirectSpecularColor: {r: 0.12496665, g: 0.15144232, b: 0.19847001, a: 0.639}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -530,12 +530,6 @@ PrefabInstance:
 --- !u!1 &215677280 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 277136594406624698, guid: 9b37db723520f43519599d1f73c309a2,
-    type: 3}
-  m_PrefabInstance: {fileID: 2046121896}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &215677281 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7543543372771581058, guid: 9b37db723520f43519599d1f73c309a2,
     type: 3}
   m_PrefabInstance: {fileID: 2046121896}
   m_PrefabAsset: {fileID: 0}
@@ -1420,7 +1414,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1420362774
 Transform:
   m_ObjectHideFlags: 0
@@ -2406,18 +2400,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 14.385, y: 877.245, z: 724.178}
---- !u!114 &1875938446 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1389549616224050343, guid: 9b37db723520f43519599d1f73c309a2,
-    type: 3}
-  m_PrefabInstance: {fileID: 2046121896}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1919759224
 GameObject:
   m_ObjectHideFlags: 0
@@ -2430,7 +2412,6 @@ GameObject:
   - component: {fileID: 1919759226}
   - component: {fileID: 1919759225}
   - component: {fileID: 1919759228}
-  - component: {fileID: 1919759229}
   - component: {fileID: 1919759230}
   m_Layer: 0
   m_Name: Main Camera
@@ -2558,34 +2539,6 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!114 &1919759229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1919759224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a1ee22007d5419499f1e00e166f8e69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  reticleRectTransform: {fileID: 215677281}
-  reloadTime: 3
-  normalCannonballPrefab: {fileID: 1462336481129127684, guid: 0b0f2198905b54540b156fa346a7dbe1,
-    type: 3}
-  explodingCannonballPrefab: {fileID: 9101307182618971111, guid: d5e3dbb7d3c774d998a2e6d4ede76f5f,
-    type: 3}
-  freezingCannonballPrefab: {fileID: 2911863705069182719, guid: c1a3413850fad46438e7deb5ddba7597,
-    type: 3}
-  firingPoint: {fileID: 0}
-  cooldownText: {fileID: 1875938446}
-  reloadReticle: {fileID: 1465807662}
-  inventoryActive: {fileID: 667756611}
-  player: {fileID: 1602085095}
-  maxHeight: 10
-  increment: 1
-  aim: 1
 --- !u!124 &1919759230
 Behaviour:
   m_ObjectHideFlags: 0
@@ -2862,7 +2815,7 @@ PrefabInstance:
     - target: {fileID: 834373740392657712, guid: 9b37db723520f43519599d1f73c309a2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -26.207825
+      value: -26.207886
       objectReference: {fileID: 0}
     - target: {fileID: 834373740392657712, guid: 9b37db723520f43519599d1f73c309a2,
         type: 3}

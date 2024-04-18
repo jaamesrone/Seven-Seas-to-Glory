@@ -19,8 +19,9 @@ public class Cannon : MonoBehaviour
     public Player player;
 
     public float maxHeight = 10;
-    public float minHeight = 1;
+    public float minHeight = 0;
     public float increment = 1;
+    private float restraint = 0.0f;
 
     private GameObject currentCannonball;
     private bool canFire = true;
@@ -112,15 +113,28 @@ public class Cannon : MonoBehaviour
     void AimCannon()
     {
         //Reversed because cannon is upside down
-        if (cannon.transform.localRotation.x > -maxHeight && Input.GetKey(KeyCode.W))
+        cannon.transform.localRotation = Quaternion.Lerp(Quaternion.Euler(minHeight, 0, 0), Quaternion.Euler(-maxHeight, 0, 0), restraint / increment);
+        if (Input.GetKey(KeyCode.W))
         {
-            Debug.Log("cannon: " + cannon.transform.localRotation.x);
-            cannon.transform.localEulerAngles += new Vector3(-increment, 0, 0);
+            if (restraint < increment)
+            {
+                restraint += Time.deltaTime;
+            }
+            else
+            {
+                cannon.transform.localRotation = Quaternion.Euler(-maxHeight, 0, 0);
+            }
         }
-        if (cannon.transform.localRotation.x <= minHeight && Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S))
         {
-            Debug.Log("cannon: " + cannon.transform.localRotation.x);
-            cannon.transform.localEulerAngles += new Vector3(increment, 0, 0);
+            if (restraint > 0)
+            {
+                restraint -= Time.deltaTime;
+            }
+            else
+            {
+                cannon.transform.localRotation = Quaternion.Euler(minHeight, 0, 0);
+            }
         }
     }
 }
