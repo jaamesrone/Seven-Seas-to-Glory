@@ -19,6 +19,7 @@ public class Cannon : MonoBehaviour
     public Player player;
 
     public float maxHeight = 10;
+    public float minHeight = 1;
     public float increment = 1;
 
     private GameObject currentCannonball;
@@ -111,12 +112,14 @@ public class Cannon : MonoBehaviour
     void AimCannon()
     {
         //Reversed because cannon is upside down
-        if (cannon.transform.localEulerAngles.x > -maxHeight && Input.GetKey(KeyCode.W))
+        if (cannon.transform.localRotation.x > -maxHeight && Input.GetKey(KeyCode.W))
         {
+            Debug.Log("cannon: " + cannon.transform.localRotation.x);
             cannon.transform.localEulerAngles += new Vector3(-increment, 0, 0);
         }
-        if (cannon.transform.localEulerAngles.x < 0 && Input.GetKey(KeyCode.S))
+        if (cannon.transform.localRotation.x <= minHeight && Input.GetKey(KeyCode.S))
         {
+            Debug.Log("cannon: " + cannon.transform.localRotation.x);
             cannon.transform.localEulerAngles += new Vector3(increment, 0, 0);
         }
     }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.639
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1875797620}
-  m_IndirectSpecularColor: {r: 0.12503837, g: 0.15149496, b: 0.19851018, a: 0.639}
+  m_IndirectSpecularColor: {r: 0.12497846, g: 0.15141867, b: 0.19845071, a: 0.639}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2862,7 +2862,7 @@ PrefabInstance:
     - target: {fileID: 834373740392657712, guid: 9b37db723520f43519599d1f73c309a2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -26.207642
+      value: -26.207825
       objectReference: {fileID: 0}
     - target: {fileID: 834373740392657712, guid: 9b37db723520f43519599d1f73c309a2,
         type: 3}
@@ -3282,6 +3282,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: PlayerShip
+      objectReference: {fileID: 0}
+    - target: {fileID: 1394049667404030813, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1394049667404030813, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1394049667404030813, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1394049667404030813, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1394049667404030813, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1511448580167951554, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
         type: 3}
