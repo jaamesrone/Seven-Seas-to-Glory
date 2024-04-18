@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.639
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1875797620}
-  m_IndirectSpecularColor: {r: 0.124934025, g: 0.15139227, b: 0.19841228, a: 0.639}
+  m_IndirectSpecularColor: {r: 0.12508489, g: 0.15150972, b: 0.19850354, a: 0.639}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -429,15 +429,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d51a1aa47b6eef74eab8659a92423cf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyShipPrefab: {fileID: 1957038960406089557, guid: c19abc8e3597aec459ac08ad66f4ecb4,
-    type: 3}
-  dayPiratePrefabs:
-  - {fileID: 4348251542659445264, guid: 6102adfb01613c842b652c0eb6be1eb2, type: 3}
-  nightPiratePrefabs:
-  - {fileID: 4593104008606389339, guid: 73012fcd7932d514ea2d7d3f8433e592, type: 3}
-  - {fileID: 1700602343450920729, guid: 7f254c3589d3252439897997ed4222a4, type: 3}
+  sharkShipPrefab: {fileID: 0}
+  royalShipPrefab: {fileID: 0}
+  pirateShipPrefab: {fileID: 0}
+  zombieShip: {fileID: 0}
+  sharkPiratePrefab: {fileID: 0}
+  piratePrefab: {fileID: 0}
+  royalPiratePrefab: {fileID: 0}
+  zombiePrefab: {fileID: 0}
   playerShip: {fileID: 1994448289}
   numberOfShipsToSpawn: 7
+  numberOfSharkPiratesPerShip: 0
+  numberOfRoyalPiratesPerShip: 0
+  numberOfNormalPiratesPerShip: 0
+  numberOfZombiePiratesPerShip: 0
   spawnRadius: 400
   minDistanceFromPlayer: 50
   minDistanceFromOtherShips: 30
@@ -1214,11 +1219,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 440f48a03b48041658da328ef8857555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reloadTime: 3
   normalBulletPrefab: {fileID: 5029666804414887254, guid: af9a7f567dc144bf19387a9a81e3d2c2,
     type: 3}
-  reloadReticle: {fileID: 1465807662}
-  distance: 0
+  firingPoint: {fileID: 0}
 --- !u!4 &956185106 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 75fa03ed0d55181478a1f0e7451e6011,
@@ -1237,6 +1240,99 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1183162948
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: ec894229cb63d074eb7a401706dab39b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.026014918
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ec894229cb63d074eb7a401706dab39b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.026014918
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ec894229cb63d074eb7a401706dab39b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.026014918
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ec894229cb63d074eb7a401706dab39b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ec894229cb63d074eb7a401706dab39b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ec894229cb63d074eb7a401706dab39b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ec894229cb63d074eb7a401706dab39b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ec894229cb63d074eb7a401706dab39b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ec894229cb63d074eb7a401706dab39b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ec894229cb63d074eb7a401706dab39b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ec894229cb63d074eb7a401706dab39b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ec894229cb63d074eb7a401706dab39b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ec894229cb63d074eb7a401706dab39b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3929815555322694799, guid: ec894229cb63d074eb7a401706dab39b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2c9ce40f8669b264b9eb4a5921a7a603, type: 2}
+    - target: {fileID: -3929815555322694799, guid: ec894229cb63d074eb7a401706dab39b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: abff59dfaa7eafd49a9c00abcac56c26, type: 2}
+    - target: {fileID: 919132149155446097, guid: ec894229cb63d074eb7a401706dab39b,
+        type: 3}
+      propertyPath: m_Name
+      value: Islands
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ec894229cb63d074eb7a401706dab39b, type: 3}
 --- !u!114 &1189053989 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 631706813680767213, guid: 9b37db723520f43519599d1f73c309a2,
@@ -1452,6 +1548,9 @@ MonoBehaviour:
   numExplodeCannonballs: 0
   numFreezingCannonballs: 0
   money: 1000
+  recruits: 0
+  ship: {fileID: 0}
+  spawnPoint: {fileID: 0}
   healthBar: {fileID: 72900778}
 --- !u!114 &1602085096
 MonoBehaviour:
@@ -1469,12 +1568,17 @@ MonoBehaviour:
   sensitivity: 0.1
   jumpForce: 5
   groundCheckDistance: 0.5
+  bulletForce: 0
   isBlocking: 0
+  isAiming: 0
+  loading: {fileID: 0}
   healthBar: {fileID: 72900778}
   player: {fileID: 1602085095}
   inventoryActive: {fileID: 667756611}
   sword: {fileID: 1457601006}
   gun: {fileID: 956185103}
+  normalBulletPrefab: {fileID: 0}
+  firingPoint: {fileID: 0}
   reticleImage: {fileID: 215677280}
   reload: {fileID: 1465807662}
 --- !u!114 &1602085097
@@ -2393,6 +2497,7 @@ MonoBehaviour:
     type: 3}
   freezingCannonballPrefab: {fileID: 2911863705069182719, guid: c1a3413850fad46438e7deb5ddba7597,
     type: 3}
+  firingPoint: {fileID: 0}
   cooldownText: {fileID: 1875938446}
   reloadReticle: {fileID: 1465807662}
   inventoryActive: {fileID: 667756611}
@@ -2727,6 +2832,7 @@ MonoBehaviour:
   inputForwardPercent: 0
   inputYawPercent: 0
   seaSpeed: {x: 0, y: 0}
+  desiredRotation: {x: 0, y: 0, z: 0}
   isDriving: 0
 --- !u!114 &2032342391 stripped
 MonoBehaviour:
@@ -3864,3 +3970,4 @@ SceneRoots:
   - {fileID: 7691423016944292131}
   - {fileID: 401813345}
   - {fileID: 793864507}
+  - {fileID: 1183162948}
