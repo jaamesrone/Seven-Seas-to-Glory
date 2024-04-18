@@ -101,7 +101,11 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+<<<<<<< HEAD
     - _Rotation: 100.32797
+=======
+    - _Rotation: 159.64865
+>>>>>>> parent of 1c8f709 (please)
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
