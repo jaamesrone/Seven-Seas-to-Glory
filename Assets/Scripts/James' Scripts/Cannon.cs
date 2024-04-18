@@ -10,6 +10,7 @@ public class Cannon : MonoBehaviour
     public GameObject freezeCannonball;
     public GameObject reticle;
     public GameObject reload;
+    public GameObject cannon;
 
     public float power;
     public float reloadTime = 3f;
@@ -33,6 +34,7 @@ public class Cannon : MonoBehaviour
     private void Update()
     {
         HandleCannonballSwitching();
+        AimCannon();
         if (Input.GetKeyDown(KeyCode.Space) && canFire)
         {
             canFire = false;
@@ -104,5 +106,18 @@ public class Cannon : MonoBehaviour
         }
         canFire = true;
         reload.SetActive(false);
+    }
+
+    void AimCannon()
+    {
+        //Reversed because cannon is upside down
+        if (cannon.transform.localEulerAngles.x > -maxHeight && Input.GetKey(KeyCode.W))
+        {
+            cannon.transform.localEulerAngles += new Vector3(-increment, 0, 0);
+        }
+        if (cannon.transform.localEulerAngles.x < 0 && Input.GetKey(KeyCode.S))
+        {
+            cannon.transform.localEulerAngles += new Vector3(increment, 0, 0);
+        }
     }
 }

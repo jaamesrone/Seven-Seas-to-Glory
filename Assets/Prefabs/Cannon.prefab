@@ -217,6 +217,7 @@ MonoBehaviour:
     type: 3}
   reticle: {fileID: 932235452037181816, guid: 5c67eef129c18f04095deb050aabb5fe, type: 3}
   reload: {fileID: 0}
+  cannon: {fileID: 6184112145298664208}
   power: 0
   reloadTime: 3
   inventoryActive: {fileID: 0}
