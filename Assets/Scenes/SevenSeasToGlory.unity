@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.639
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1875797620}
-  m_IndirectSpecularColor: {r: 0.09020134, g: 0.12221208, b: 0.16038153, a: 0.639}
+  m_IndirectSpecularColor: {r: 0.12500806, g: 0.15143874, b: 0.19845764, a: 0.639}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -218,6 +218,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 799144559}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &67787049 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2377175049350764936, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+    type: 3}
+  m_PrefabInstance: {fileID: 7691423016944292131}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &72900778 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1593400095914570918, guid: 9b37db723520f43519599d1f73c309a2,
@@ -709,6 +715,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &466935102 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5365669902757946243, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+    type: 3}
+  m_PrefabInstance: {fileID: 7691423016944292131}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &500480542 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -7497450872967511499, guid: 26d7f69bf4808a043bf06c5f3f0c50d5,
@@ -3241,6 +3253,31 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3072878896991187295, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: cannon
+      value: 
+      objectReference: {fileID: 67787049}
+    - target: {fileID: 3072878896991187295, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1602085095}
+    - target: {fileID: 3072878896991187295, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: reload
+      value: 
+      objectReference: {fileID: 1465807662}
+    - target: {fileID: 3072878896991187295, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: reticle
+      value: 
+      objectReference: {fileID: 215677280}
+    - target: {fileID: 3072878896991187295, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: inventoryActive
+      value: 
+      objectReference: {fileID: 667756611}
     - target: {fileID: 3279640415808491518, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
         type: 3}
       propertyPath: healthBar
@@ -3326,6 +3363,31 @@ PrefabInstance:
       propertyPath: m_TagString
       value: PlayerShip
       objectReference: {fileID: 0}
+    - target: {fileID: 4624866236669954900, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: cannon
+      value: 
+      objectReference: {fileID: 466935102}
+    - target: {fileID: 4624866236669954900, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1602085095}
+    - target: {fileID: 4624866236669954900, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: reload
+      value: 
+      objectReference: {fileID: 1465807662}
+    - target: {fileID: 4624866236669954900, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: reticle
+      value: 
+      objectReference: {fileID: 215677280}
+    - target: {fileID: 4624866236669954900, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: inventoryActive
+      value: 
+      objectReference: {fileID: 667756611}
     - target: {fileID: 4903141221237584432, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
         type: 3}
       propertyPath: m_Layer
