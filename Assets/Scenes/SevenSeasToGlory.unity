@@ -38,11 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.639
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1875797620}
-<<<<<<< HEAD
   m_IndirectSpecularColor: {r: 0.12496665, g: 0.15144232, b: 0.19847001, a: 0.639}
-=======
-  m_IndirectSpecularColor: {r: 0.12503225, g: 0.15147002, b: 0.19846247, a: 0.639}
->>>>>>> parent of 1c8f709 (please)
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -839,23 +835,7 @@ Transform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8346027329627281687, guid: 26d7f69bf4808a043bf06c5f3f0c50d5,
     type: 3}
-<<<<<<< HEAD
   m_PrefabInstance: {fileID: 208080936}
-=======
-  m_PrefabInstance: {fileID: 1872047110}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 440f48a03b48041658da328ef8857555, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &500480543 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4951800468595376282, guid: 26d7f69bf4808a043bf06c5f3f0c50d5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1872047110}
->>>>>>> parent of 1c8f709 (please)
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &521978484
 GameObject:
@@ -2048,7 +2028,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 521978485}
-<<<<<<< HEAD
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9fa4a278e5c0c5a4b95193f1c4db250a,
         type: 3}
       insertIndex: -1
@@ -2057,8 +2036,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1420362774}
-=======
->>>>>>> parent of 1c8f709 (please)
     - targetCorrespondingSourceObject: {fileID: 1852576806548013000, guid: 9fa4a278e5c0c5a4b95193f1c4db250a,
         type: 3}
       insertIndex: 0
@@ -2838,11 +2815,7 @@ PrefabInstance:
     - target: {fileID: 834373740392657712, guid: 9b37db723520f43519599d1f73c309a2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-<<<<<<< HEAD
       value: -26.207886
-=======
-      value: -26.208252
->>>>>>> parent of 1c8f709 (please)
       objectReference: {fileID: 0}
     - target: {fileID: 834373740392657712, guid: 9b37db723520f43519599d1f73c309a2,
         type: 3}
