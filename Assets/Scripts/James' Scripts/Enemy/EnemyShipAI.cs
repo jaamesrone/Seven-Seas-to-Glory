@@ -169,13 +169,13 @@ public class EnemyShipAI : MonoBehaviour
         if (!hit)
         {
             hit = true;
-            StartCoroutine(ReduceShotSpeed(decreaseValue * hitCount, decreaseDuration));
+            StartCoroutine(ReduceShotSpeed(decreaseValue, decreaseDuration));
         }
     }
     IEnumerator ReduceShotSpeed(float value, float duration)
     {
         float originalSpeed = shootingCooldown;
-        shootingCooldown += value;
+        shootingCooldown += value * hitCount;
         yield return new WaitForSecondsRealtime(duration);
         shootingCooldown = originalSpeed;
         hitCount = 0;

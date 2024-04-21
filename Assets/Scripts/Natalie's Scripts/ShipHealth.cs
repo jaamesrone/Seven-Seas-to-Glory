@@ -37,7 +37,7 @@ public class ShipHealth : MonoBehaviour
         if (!hit)
         {
             hit = true;
-            StartCoroutine(IncrementalDamageRoutine(damage * hitCount, time, increment));
+            StartCoroutine(IncrementalDamageRoutine(damage, time, increment));
         }
     }
 
@@ -47,7 +47,7 @@ public class ShipHealth : MonoBehaviour
         while (Time.realtimeSinceStartup - startTime < time)
         {
             yield return new WaitForSecondsRealtime(increment);
-            TakeDamage(damage);
+            TakeDamage(damage * hitCount);
         }
         hitCount = 0;
         hit = false;

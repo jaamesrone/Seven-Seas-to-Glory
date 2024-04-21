@@ -1146,7 +1146,7 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 64
-  cannonballPrefab: {fileID: 4291721095273098591, guid: 73cdda0f08a4c4ddbb0f9c41a4441616,
+  cannonballPrefab: {fileID: 8779211502595034827, guid: 594e220f39690406aa207c4bfde71ca2,
     type: 3}
   leftCannonSpawnPoints:
   - {fileID: 6369700617480894004}
