@@ -8,6 +8,9 @@ public class ShipHealth : MonoBehaviour
     public HealthBar healthBar;
     public float health = 100f;
 
+    private bool hit = false;
+    private int hitCount = 0;
+
     void Start()
     {
         healthBar.SetMaxHealth(health);
@@ -30,7 +33,12 @@ public class ShipHealth : MonoBehaviour
 
     public void TakeIncrementalDamage(float damage, float time, float increment)
     {
-        StartCoroutine(IncrementalDamageRoutine(damage, time, increment));
+        hitCount += 1;
+        if (!hit)
+        {
+            hit = true;
+            StartCoroutine(IncrementalDamageRoutine(damage * hitCount, time, increment));
+        }
     }
 
     IEnumerator IncrementalDamageRoutine(float damage, float time, float increment)
@@ -41,6 +49,8 @@ public class ShipHealth : MonoBehaviour
             yield return new WaitForSecondsRealtime(increment);
             TakeDamage(damage);
         }
+        hitCount = 0;
+        hit = false;
     }
 
     private void Die()

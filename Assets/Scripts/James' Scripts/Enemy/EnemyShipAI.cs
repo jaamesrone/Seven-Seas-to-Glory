@@ -22,7 +22,10 @@ public class EnemyShipAI : MonoBehaviour
     private GameObject playerShip;
     public GameObject cannonballPrefab; 
     public Transform[] leftCannonSpawnPoints; 
-    public Transform[] rightCannonSpawnPoints; 
+    public Transform[] rightCannonSpawnPoints;
+
+    private bool hit = false;
+    private int hitCount = 0;
 
     void Start()
     {
@@ -162,7 +165,12 @@ public class EnemyShipAI : MonoBehaviour
     //freezing cannon affecting the reload speed
     public void slowReload(float decreaseValue, float decreaseDuration)
     {
-        StartCoroutine(ReduceShotSpeed(decreaseValue, decreaseDuration));
+        hitCount += 1;
+        if (!hit)
+        {
+            hit = true;
+            StartCoroutine(ReduceShotSpeed(decreaseValue * hitCount, decreaseDuration));
+        }
     }
     IEnumerator ReduceShotSpeed(float value, float duration)
     {
@@ -170,6 +178,8 @@ public class EnemyShipAI : MonoBehaviour
         shootingCooldown += value;
         yield return new WaitForSecondsRealtime(duration);
         shootingCooldown = originalSpeed;
+        hitCount = 0;
+        hit = false;
     }
 
     bool IsPathClear()
