@@ -19,7 +19,7 @@ public class EnemySpawner : MonoBehaviour
             Vector2 randomOffset = Random.insideUnitCircle * spawnRadius;
 
             // a vector3 for the position of the parent game object for spawning
-            Vector3 spawnPosition = transform.position + new Vector3(randomOffset.x, 0, randomOffset.y);
+            Vector3 spawnPosition = transform.position + new Vector3(randomOffset.x, 1.1f, randomOffset.y);
 
             // setting the y cordinate to 5 so pirates can spawn above the ship.
             spawnPosition.y = 5;

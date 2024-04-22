@@ -9,7 +9,9 @@ public class ShipHealth : MonoBehaviour
     public float health = 100f;
 
     private bool hit = false;
-    private int hitCount = 0;
+    private int addedDamage = 0;
+
+    public KillGain killGain;
 
     void Start()
     {
@@ -27,13 +29,14 @@ public class ShipHealth : MonoBehaviour
         // Check if the pirate's health is below or equal to zero
         if (health <= 0f)
         {
+            killGain.ShipSink();
             Die();
         }
     }
 
     public void TakeIncrementalDamage(float damage, float time, float increment)
     {
-        hitCount += 1;
+        addedDamage += 1;
         if (!hit)
         {
             hit = true;
@@ -47,9 +50,9 @@ public class ShipHealth : MonoBehaviour
         while (Time.realtimeSinceStartup - startTime < time)
         {
             yield return new WaitForSecondsRealtime(increment);
-            TakeDamage(damage * hitCount);
+            TakeDamage(damage * addedDamage);
         }
-        hitCount = 0;
+        addedDamage = 0;
         hit = false;
     }
 
