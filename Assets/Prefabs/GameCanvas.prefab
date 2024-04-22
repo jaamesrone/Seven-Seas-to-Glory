@@ -4506,7 +4506,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -26.207764, y: 132.6}
+  m_AnchoredPosition: {x: -26.207733, y: 132.6}
   m_SizeDelta: {x: -196.645, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5097355452645478311
@@ -7419,6 +7419,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory
       objectReference: {fileID: 0}
+    - target: {fileID: 4139785715448297143, guid: b17c759a2baaa412a811c21996bd930e,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 2858106136578065465, guid: 2b57b9c5fc74c4b4fa95d4abce2990ec,
+        type: 3}
     - target: {fileID: 8173983662068299875, guid: b17c759a2baaa412a811c21996bd930e,
         type: 3}
       propertyPath: m_Pivot.x

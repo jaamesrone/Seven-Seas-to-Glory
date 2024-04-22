@@ -9,7 +9,14 @@ public class KillGain : MonoBehaviour
     public int minMoney = 10;
     public int maxCannonballChance = 4;
     public int maxCannonballGain = 6;
-    
+
+    private void Start()
+    {
+        if (player == null)
+        {
+            Debug.Log("player null");
+        }
+    }
     public void Spare()
     {
         player.money += GetRandomNum();
