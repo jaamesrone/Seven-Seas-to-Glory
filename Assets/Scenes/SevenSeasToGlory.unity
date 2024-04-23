@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.639
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1875797620}
-  m_IndirectSpecularColor: {r: 0.12504873, g: 0.15150075, b: 0.19849159, a: 0.639}
+  m_IndirectSpecularColor: {r: 0.1250279, g: 0.15146194, b: 0.19845232, a: 0.639}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -352,7 +352,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 2046121896}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 799982512}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22c227b39cc38496da6c3fe74e20b9a3, type: 3}
@@ -1407,6 +1407,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1930632990}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &691604883 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2584724593667245926, guid: 9b37db723520f43519599d1f73c309a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2046121896}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &717344928
 GameObject:
   m_ObjectHideFlags: 0
@@ -1670,6 +1676,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5712178727253860299, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
     type: 3}
   m_PrefabInstance: {fileID: 7691423016944292131}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &799982512 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3416692236396917315, guid: 9b37db723520f43519599d1f73c309a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2046121896}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &964083229 stripped
 MonoBehaviour:
@@ -3145,7 +3157,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 2046121896}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 691604883}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22c227b39cc38496da6c3fe74e20b9a3, type: 3}
@@ -3175,10 +3187,15 @@ PrefabInstance:
       propertyPath: killGain
       value: 
       objectReference: {fileID: 1661158378879565589}
+    - target: {fileID: 523346555221492157, guid: 9b37db723520f43519599d1f73c309a2,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -196
+      objectReference: {fileID: 0}
     - target: {fileID: 834373740392657712, guid: 9b37db723520f43519599d1f73c309a2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -26.20813
+      value: -26.208008
       objectReference: {fileID: 0}
     - target: {fileID: 834373740392657712, guid: 9b37db723520f43519599d1f73c309a2,
         type: 3}
@@ -3450,6 +3467,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8149686561121965650, guid: 9b37db723520f43519599d1f73c309a2,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -196.00003
+      objectReference: {fileID: 0}
     - target: {fileID: 8700692118999583145, guid: 9b37db723520f43519599d1f73c309a2,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -3639,6 +3661,11 @@ PrefabInstance:
       objectReference: {fileID: 1990486273}
     - target: {fileID: 4412791536588811117, guid: 5aa8fc16f119247f8b4283560b25190a,
         type: 3}
+      propertyPath: shipHealthBar
+      value: 
+      objectReference: {fileID: 691604883}
+    - target: {fileID: 4412791536588811117, guid: 5aa8fc16f119247f8b4283560b25190a,
+        type: 3}
       propertyPath: RightCannonCam
       value: 
       objectReference: {fileID: 765292300}
@@ -3647,6 +3674,11 @@ PrefabInstance:
       propertyPath: inventoryActive
       value: 
       objectReference: {fileID: 667756611}
+    - target: {fileID: 4412791536588811117, guid: 5aa8fc16f119247f8b4283560b25190a,
+        type: 3}
+      propertyPath: playerHealthBar
+      value: 
+      objectReference: {fileID: 799982512}
     - target: {fileID: 4412791536588811117, guid: 5aa8fc16f119247f8b4283560b25190a,
         type: 3}
       propertyPath: playerSpawnPoint

@@ -36,6 +36,8 @@ public class ControllerSwitch : MonoBehaviour
 
     public PauseMenu menuOption;
     public InventoryUI inventoryActive;
+    public GameObject playerHealthBar;
+    public GameObject shipHealthBar;
 
     private void Start()
     {
@@ -46,6 +48,9 @@ public class ControllerSwitch : MonoBehaviour
         Ship.GetComponent<ShipController>().isDriving = false;
 
         inventoryActive.UpdateActive(0);
+
+        playerHealthBar.SetActive(true);
+        shipHealthBar.SetActive(false);
 
         // Disable the reticle image at the start of the game
         ReticleImage.SetActive(false);
@@ -163,10 +168,12 @@ public class ControllerSwitch : MonoBehaviour
         cannonLeft.GetComponent<Cannon>().enabled = false;
         cannonRight.GetComponent<Cannon>().enabled = false;
         Character.GetComponent<PlayerController>().enabled = true;
-        inventoryActive.UpdateActive(0);
+        inventoryActive.UpdateActive(inventoryActive.lastCombatIndex);
         InCannon = false;
         InShip = false;
         InCharacter = true;
+        playerHealthBar.SetActive(true);
+        shipHealthBar.SetActive(false);
         ReticleImage.SetActive(false); // Hide the reticle image
         reload.SetActive(false);
     }
@@ -183,11 +190,20 @@ public class ControllerSwitch : MonoBehaviour
         cannonLeft.GetComponent<Cannon>().enabled = false;
         cannonRight.GetComponent<Cannon>().enabled = false;
         Character.GetComponent<PlayerController>().enabled = true;
-        inventoryActive.UpdateActive(0);
+        inventoryActive.UpdateActive(inventoryActive.lastCombatIndex);
         InCannon = false;
         InShip = false;
         InCharacter = true;
-        ReticleImage.SetActive(false); // Hide the reticle image
+        playerHealthBar.SetActive(true);
+        shipHealthBar.SetActive(false);
+        if (inventoryActive.lastCombatIndex == 1)
+        {
+            ReticleImage.SetActive(true);
+        }
+        else
+        {
+            ReticleImage.SetActive(false);
+        }
         reload.SetActive(false);
     }
 
@@ -201,11 +217,13 @@ public class ControllerSwitch : MonoBehaviour
         cannonLeft.GetComponent<Cannon>().enabled = false;
         cannonRight.GetComponent<Cannon>().enabled = false;
         Ship.GetComponent<ShipController>().isDriving = true;
-        inventoryActive.UpdateActive(0);
+        inventoryActive.UpdateActive(inventoryActive.lastCombatIndex);
         InCharacter = false;
         InCannon = false;
         InShip = true;
         GuideText.text = "Press Shift to switch to cannon or sail close to enemies for hand-to-hand combat";
+        shipHealthBar.SetActive(true);
+        playerHealthBar.SetActive(false);
         ReticleImage.SetActive(false); // Hide the reticle image
         reload.SetActive(false);
     }
@@ -226,7 +244,7 @@ public class ControllerSwitch : MonoBehaviour
         }
         Character.GetComponent<PlayerController>().enabled = false;
         Ship.GetComponent<ShipController>().isDriving = false;
-        inventoryActive.UpdateActive(2);
+        inventoryActive.UpdateActive(inventoryActive.lastCannonIndex);
         ReticleImage.SetActive(true); // Show the reticle image
         InCharacter = false;
         InShip = false;
