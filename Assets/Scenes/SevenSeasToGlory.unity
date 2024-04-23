@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.639
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1875797620}
-  m_IndirectSpecularColor: {r: 0.12508826, g: 0.15152074, b: 0.1984956, a: 0.639}
+  m_IndirectSpecularColor: {r: 0.12497822, g: 0.15144667, b: 0.19845973, a: 0.639}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1971,6 +1971,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1619657405}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1688361155 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5527409715711381118, guid: 5aa8fc16f119247f8b4283560b25190a,
+    type: 3}
+  m_PrefabInstance: {fileID: 444280567279294862}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 584d0759704d2a149b12975abf4b1ab9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1717230319
 GameObject:
   m_ObjectHideFlags: 0
@@ -3641,6 +3653,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 378655753869842259, guid: 5aa8fc16f119247f8b4283560b25190a,
         type: 3}
+      propertyPath: sword
+      value: 
+      objectReference: {fileID: 1688361155}
+    - target: {fileID: 378655753869842259, guid: 5aa8fc16f119247f8b4283560b25190a,
+        type: 3}
       propertyPath: reload
       value: 
       objectReference: {fileID: 1465807662}
@@ -3673,6 +3690,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3700619104701479125, guid: 5aa8fc16f119247f8b4283560b25190a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3788557175435516317, guid: 5aa8fc16f119247f8b4283560b25190a,
         type: 3}
@@ -3830,7 +3852,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1968200945}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6469848066944133781, guid: 5aa8fc16f119247f8b4283560b25190a, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5aa8fc16f119247f8b4283560b25190a, type: 3}

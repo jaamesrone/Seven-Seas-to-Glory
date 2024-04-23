@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 8064670149924422656}
   - component: {fileID: 8329832767576369690}
   - component: {fileID: 8729506839313558040}
+  - component: {fileID: 419832843912390220}
   m_Layer: 0
-  m_Name: Sword
+  m_Name: sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,3 +126,18 @@ LODGroup:
     renderers:
     - renderer: {fileID: 8064670149924422656}
   m_Enabled: 1
+--- !u!114 &419832843912390220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2805239004850599901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 584d0759704d2a149b12975abf4b1ab9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
+  durability: 100
+  reloadTime: 0
