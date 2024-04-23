@@ -27,7 +27,7 @@ public class EnemyShipSpawner : MonoBehaviour
 
     void Update()
     {
-       // UpdatePirateVisibility();
+       UpdatePirateVisibility();
     }
 
     void SpawnEnemyShips()
