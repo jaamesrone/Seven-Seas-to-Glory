@@ -208,22 +208,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86374527435634b4987ce9d330873309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firing: {fileID: 1562576234603274539}
-  normalCannonball: {fileID: 1462336481129127684, guid: 0b0f2198905b54540b156fa346a7dbe1,
+  firing:
+  - {fileID: 0}
+  normalCannonball: {fileID: 8779211502595034827, guid: d4c494594fcd74096bc0fc224acd8d41,
     type: 3}
-  explodeCannonball: {fileID: 9101307182618971111, guid: d5e3dbb7d3c774d998a2e6d4ede76f5f,
+  explodeCannonball: {fileID: 4574722385259442490, guid: 9c109160aa1a1473489ec73adf3116b0,
     type: 3}
-  freezeCannonball: {fileID: 2911863705069182719, guid: c1a3413850fad46438e7deb5ddba7597,
+  freezeCannonball: {fileID: 4138248134901186002, guid: ce9e249283eee44ea911f88aaada033b,
     type: 3}
   reticle: {fileID: 932235452037181816, guid: 5c67eef129c18f04095deb050aabb5fe, type: 3}
   reload: {fileID: 0}
-  cannon: {fileID: 6184112145298664208}
-  power: 0
+  cannons: []
+  power: 30
   reloadTime: 3
   inventoryActive: {fileID: 0}
   player: {fileID: 0}
   maxHeight: 10
+  minHeight: 0
   increment: 1
+  currentCannonball:
+  - {fileID: 8779211502595034827, guid: d4c494594fcd74096bc0fc224acd8d41, type: 3}
+  - {fileID: 8779211502595034827, guid: d4c494594fcd74096bc0fc224acd8d41, type: 3}
+  - {fileID: 8779211502595034827, guid: d4c494594fcd74096bc0fc224acd8d41, type: 3}
 --- !u!1 &5524807950503071448
 GameObject:
   m_ObjectHideFlags: 0

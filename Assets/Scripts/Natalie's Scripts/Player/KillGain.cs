@@ -5,11 +5,18 @@ using UnityEngine;
 public class KillGain : MonoBehaviour
 {
     public Player player;
-    public int maxMoney;
-    public int minMoney;
-    public int maxCannonballChance;
-    public int maxCannonballGain;
-    
+    public int maxMoney = 100;
+    public int minMoney = 10;
+    public int maxCannonballChance = 4;
+    public int maxCannonballGain = 6;
+
+    private void Start()
+    {
+        if (player == null)
+        {
+            Debug.Log("player null");
+        }
+    }
     public void Spare()
     {
         player.money += GetRandomNum();

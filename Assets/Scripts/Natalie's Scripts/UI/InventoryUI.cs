@@ -12,6 +12,8 @@ public class InventoryUI : MonoBehaviour
     public TextMeshProUGUI explodeCount;
     public TextMeshProUGUI freezeCount;
     public TextMeshProUGUI bulletCount;
+    public int lastCannonIndex;
+    public int lastCombatIndex;
 
     void Start()
     {
@@ -37,6 +39,14 @@ public class InventoryUI : MonoBehaviour
     public void UpdateActive(int index)
     {
         //Deactivate all but first item
+        if(index <= 1)
+        {
+            lastCombatIndex = index;
+        }
+        if(index >= 2)
+        {
+            lastCannonIndex = index;
+        }
         for (int i = 0; i < inventory.Length; i++)
         {
             inventory[i].SetActive(i == index);

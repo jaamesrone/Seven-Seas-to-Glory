@@ -1146,7 +1146,7 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 64
-  cannonballPrefab: {fileID: 4291721095273098591, guid: 73cdda0f08a4c4ddbb0f9c41a4441616,
+  cannonballPrefab: {fileID: 8779211502595034827, guid: 594e220f39690406aa207c4bfde71ca2,
     type: 3}
   leftCannonSpawnPoints:
   - {fileID: 6369700617480894004}
@@ -1170,6 +1170,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 8699597107415782830}
   health: 100
+  killGain: {fileID: 7599052527246959969, guid: 5aa8fc16f119247f8b4283560b25190a,
+    type: 3}
 --- !u!1 &2004803309379865018
 GameObject:
   m_ObjectHideFlags: 0

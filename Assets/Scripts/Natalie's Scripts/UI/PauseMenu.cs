@@ -8,7 +8,6 @@ public class PauseMenu : MonoBehaviour
     public static bool GamePaused = false;
     public static bool ControlsUp = false;
     public static bool GameOver = false;
-    //public static bool SettingsUp = false;
     public static bool inShop = false;
     public bool Shop = false;
 
@@ -17,11 +16,13 @@ public class PauseMenu : MonoBehaviour
     public GameObject GameOverUI;
     public Player player;
     public GameObject Ship;
-    //public GameObject settingsMenuUI;
     public GameObject shopUI;
     public GameObject[] shopNames;
-
-    public object ScreenManager { get; private set; }
+    public AudioSource overworldAudioSource;
+    public AudioSource oceanWaterAudioSource;
+    public AudioSource pauseSFX;
+    public AudioSource unpauseSFX;
+    public AudioSource buttonSFX; // Add this line for the button sound effect
 
     void Start()
     {
@@ -32,7 +33,7 @@ public class PauseMenu : MonoBehaviour
         Shop = false;
         Time.timeScale = 1f;
     }
-    // Update is called once per frame
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && !GameOver)
@@ -50,7 +51,7 @@ public class PauseMenu : MonoBehaviour
         {
             DisplayGameOver();
         }
-        if(Shop && !inShop && Input.GetKeyDown(KeyCode.E))
+        if (Shop && !inShop && Input.GetKeyDown(KeyCode.E))
         {
             DisplayShop();
         }
@@ -62,13 +63,14 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = false;
         controlsMenuUI.SetActive(false);
         ControlsUp = false;
-        //settingsMenuUI.SetActive(false);
-        //SettingsUp = false;
         pauseMenuUI.SetActive(false);
         shopUI.SetActive(false);
         inShop = false;
         Time.timeScale = 1f;
         GamePaused = false;
+        overworldAudioSource.volume = .5f;
+        oceanWaterAudioSource.volume = .5f;
+        unpauseSFX.Play();
     }
 
     void Pause()
@@ -76,6 +78,9 @@ public class PauseMenu : MonoBehaviour
         SetPauseState();
         pauseMenuUI.SetActive(true);
         GamePaused = true;
+        overworldAudioSource.volume = 0.05f;
+        oceanWaterAudioSource.volume = 0.05f;
+        pauseSFX.Play();
     }
 
     void DisplayShop()
@@ -88,6 +93,9 @@ public class PauseMenu : MonoBehaviour
         }
         shopUI.SetActive(true);
         inShop = true;
+        overworldAudioSource.volume = 0.5f;
+        oceanWaterAudioSource.volume = 0.5f;
+        PlayButtonSFX(); // Play button sound effect
     }
 
     void DisplayGameOver()
@@ -95,11 +103,16 @@ public class PauseMenu : MonoBehaviour
         SetPauseState();
         GameOverUI.SetActive(true);
         GameOver = true;
+        overworldAudioSource.volume = 0.5f;
+        oceanWaterAudioSource.volume = 0.5f;
+        // Do not play the button sound effect when displaying game over screen
+        // PlayButtonSFX(); 
     }
 
     public void Reset()
     {
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        PlayButtonSFX(); // Play button sound effect
     }
 
     public void Controls()
@@ -114,23 +127,13 @@ public class PauseMenu : MonoBehaviour
             controlsMenuUI.SetActive(true);
             ControlsUp = true;
         }
+        PlayButtonSFX(); // Play button sound effect
     }
 
-    /*
-    public void Settings()
+    public void SetOceanAudioVolume(float volume)
     {
-        if (SettingsUp)
-        {
-            settingsMenuUI.SetActive(false);
-            SettingsUp = false;
-        }
-        else
-        {
-            settingsMenuUI.SetActive(true);
-            SettingsUp = true;
-        }
+        oceanWaterAudioSource.volume = volume;
     }
-    */
 
     private void SetPauseState()
     {
@@ -147,5 +150,11 @@ public class PauseMenu : MonoBehaviour
         GamePaused = false;
         GameOver = false;
         SceneManager.LoadScene("MainMenu");
+        PlayButtonSFX(); // Play button sound effect
+    }
+
+    public void PlayButtonSFX()
+    {
+        buttonSFX.Play();
     }
 }

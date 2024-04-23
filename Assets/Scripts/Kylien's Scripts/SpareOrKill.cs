@@ -14,6 +14,8 @@ public class SpareOrKill : MonoBehaviour
     public TextMeshProUGUI recruitText;
     public TextMeshProUGUI choiceText;
 
+    public KillGain killGain;
+
     private void Start()
     {
         UpdateRecruitText();
@@ -43,6 +45,7 @@ public class SpareOrKill : MonoBehaviour
                 UpdateRecruitText();
                 Debug.Log("Sparing enemy");
                 hasMadeChoice = true;
+                killGain.Spare();
                 choiceText.gameObject.SetActive(false);
                 isPaused = false;
                 Time.timeScale = 1f;
@@ -52,6 +55,7 @@ public class SpareOrKill : MonoBehaviour
                 // Implement the logic for not sparing the enemy
                 Debug.Log("Not sparing enemy");
                 hasMadeChoice = true;
+                killGain.Kill();
                 choiceText.gameObject.SetActive(false);
                 isPaused = false;
                 Time.timeScale = 1f;
