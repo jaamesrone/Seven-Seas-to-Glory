@@ -5,8 +5,6 @@ using TMPro;
 
 public class ControllerSwitch : MonoBehaviour
 {
-    //Temporary Tutorial
-    public TextMeshProUGUI GuideText;
     public GameObject ReticleImage; // Reference to the reticle image
     public GameObject reload;
 
@@ -80,7 +78,6 @@ public class ControllerSwitch : MonoBehaviour
             else if (InShip && !InCannon && !InCharacter)
             {
                 SwitchToCharacter();
-                GuideText.text = "Press E at wheel to drive ship";
             }
             else if (InCannon && !InShip && !InCharacter)
             {
@@ -221,7 +218,6 @@ public class ControllerSwitch : MonoBehaviour
         InCharacter = false;
         InCannon = false;
         InShip = true;
-        GuideText.text = "Press Shift to switch to cannon or sail close to enemies for hand-to-hand combat";
         shipHealthBar.SetActive(true);
         playerHealthBar.SetActive(false);
         ReticleImage.SetActive(false); // Hide the reticle image
@@ -249,7 +245,6 @@ public class ControllerSwitch : MonoBehaviour
         InCharacter = false;
         InShip = false;
         InCannon = true;
-        GuideText.text = "Press Space to shoot and Press E to switch sides. Use 1, 2, 3 to switch ammo.";
     }
 
     void SwitchSides()
