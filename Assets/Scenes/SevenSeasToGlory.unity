@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.639
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1875797620}
-  m_IndirectSpecularColor: {r: 0.12496566, g: 0.15142412, b: 0.19841607, a: 0.639}
+  m_IndirectSpecularColor: {r: 0.12502535, g: 0.15143889, b: 0.19843504, a: 0.639}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -501,20 +501,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4008531263417591660, guid: 8a3ca2974ac5a4a74adf4b773a6eba4c,
+        type: 3}
+      propertyPath: height
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8128092490076111824, guid: 8a3ca2974ac5a4a74adf4b773a6eba4c,
         type: 3}
       propertyPath: m_Name
       value: Water
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4008531263417591660, guid: 8a3ca2974ac5a4a74adf4b773a6eba4c, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8128092490076111824, guid: 8a3ca2974ac5a4a74adf4b773a6eba4c,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 857563888}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a3ca2974ac5a4a74adf4b773a6eba4c, type: 3}
 --- !u!1 &289430523 stripped
 GameObject:
@@ -1620,28 +1620,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2046121896}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &857563887 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8128092490076111824, guid: 8a3ca2974ac5a4a74adf4b773a6eba4c,
-    type: 3}
-  m_PrefabInstance: {fileID: 280850190}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &857563888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 857563887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a02651d95dca35a48a5bcfaa9625bf55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waterTilePrefab: {fileID: 1024560205301068169, guid: 6d38f28c8f53eb64383bc1dc0b9c8fe4,
-    type: 3}
-  tileCount: 3
-  height: 1
 --- !u!1 &969612907
 GameObject:
   m_ObjectHideFlags: 0
