@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.639
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1875797620}
-  m_IndirectSpecularColor: {r: 0.12501074, g: 0.15145974, b: 0.1984665, a: 0.639}
+  m_IndirectSpecularColor: {r: 0.12496921, g: 0.15142825, b: 0.1984635, a: 0.639}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -627,10 +627,10 @@ MonoBehaviour:
     type: 3}
   playerShip: {fileID: 1994448289}
   numberOfShipsToSpawn: 7
-  numberOfSharkPiratesPerShip: 0
-  numberOfRoyalPiratesPerShip: 0
-  numberOfNormalPiratesPerShip: 0
-  numberOfZombiePiratesPerShip: 0
+  numberOfSharkPiratesPerShip: 3
+  numberOfRoyalPiratesPerShip: 3
+  numberOfNormalPiratesPerShip: 3
+  numberOfZombiePiratesPerShip: 3
   spawnRadius: 400
   minDistanceFromPlayer: 50
   minDistanceFromOtherShips: 30
