@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.639
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1875797620}
-  m_IndirectSpecularColor: {r: 0.12505764, g: 0.15152341, b: 0.19854048, a: 0.639}
+  m_IndirectSpecularColor: {r: 0.1250765, g: 0.15149605, b: 0.19849004, a: 0.639}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -224,7 +224,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 2046121896}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 146497615}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22c227b39cc38496da6c3fe74e20b9a3, type: 3}
@@ -310,6 +310,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 641276731}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &146497615 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3416692236396917315, guid: 9b37db723520f43519599d1f73c309a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2046121896}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &208080936
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -383,6 +389,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26d7f69bf4808a043bf06c5f3f0c50d5, type: 3}
+--- !u!1 &208568741 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2584724593667245926, guid: 9b37db723520f43519599d1f73c309a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2046121896}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &215677280 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 277136594406624698, guid: 9b37db723520f43519599d1f73c309a2,
@@ -1622,8 +1634,8 @@ MonoBehaviour:
   RightCannonCam: {fileID: 765292300}
   menuOption: {fileID: 1420732197}
   inventoryActive: {fileID: 667756611}
-  playerHealthBar: {fileID: 0}
-  shipHealthBar: {fileID: 0}
+  playerHealthBar: {fileID: 146497615}
+  shipHealthBar: {fileID: 208568741}
 --- !u!114 &1602085106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1654,6 +1666,23 @@ MonoBehaviour:
   returnToShip: {fileID: 1189053989}
   shipReturn: {fileID: 1968200945}
   floating: 0
+--- !u!114 &1602085109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602085093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29fbb15505ea542eebf18870d5830a63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1602085095}
+  maxMoney: 100
+  minMoney: 10
+  maxCannonballChance: 4
+  maxCannonballGain: 6
 --- !u!4 &1613640176 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4951800468595376282, guid: 26d7f69bf4808a043bf06c5f3f0c50d5,
@@ -1939,6 +1968,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1602085107}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9fa4a278e5c0c5a4b95193f1c4db250a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1602085109}
   m_SourcePrefab: {fileID: 100100000, guid: 9fa4a278e5c0c5a4b95193f1c4db250a, type: 3}
 --- !u!1 &1751630317
 GameObject:
@@ -2674,7 +2707,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 2046121896}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 208568741}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22c227b39cc38496da6c3fe74e20b9a3, type: 3}
@@ -2699,6 +2732,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1602085095}
+    - target: {fileID: 45645960957374247, guid: 9b37db723520f43519599d1f73c309a2,
+        type: 3}
+      propertyPath: killGain
+      value: 
+      objectReference: {fileID: 1602085109}
     - target: {fileID: 523346555221492157, guid: 9b37db723520f43519599d1f73c309a2,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -2950,6 +2988,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6835852867158044061, guid: 9b37db723520f43519599d1f73c309a2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7460685002814482600, guid: 9b37db723520f43519599d1f73c309a2,
         type: 3}
