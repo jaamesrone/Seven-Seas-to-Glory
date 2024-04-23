@@ -25,7 +25,6 @@ public class ControllerSwitch : MonoBehaviour
     private bool awaitingCombatDecision = false;
     private bool isCooldownActive = false;
 
-
     //Locations for cam stored in gameobjects so they can move with ship and character
     public GameObject CharacterCam;
     public GameObject ShipCam;
@@ -171,7 +170,14 @@ public class ControllerSwitch : MonoBehaviour
         InCharacter = true;
         playerHealthBar.SetActive(true);
         shipHealthBar.SetActive(false);
-        ReticleImage.SetActive(false); // Hide the reticle image
+        if (inventoryActive.lastCombatIndex == 1)
+        {
+            ReticleImage.SetActive(true);
+        }
+        else
+        {
+            ReticleImage.SetActive(false);
+        }
         reload.SetActive(false);
     }
 
