@@ -36,6 +36,8 @@ public class ControllerSwitch : MonoBehaviour
     public GameObject playerHealthBar;
     public GameObject shipHealthBar;
 
+    private GameObject enemyShip = null;
+
     private void Start()
     {
         InCharacter = true;
@@ -110,6 +112,10 @@ public class ControllerSwitch : MonoBehaviour
         }
         if (other.CompareTag("HandtoHand"))//james' script
         {
+            if (enemyShip != null)
+            {
+                enemyShip = null;
+            }
             dialogueText.text = "";
             awaitingCombatDecision = false;
             other.GetComponentInParent<EnemyShipAI>().SetHandToHandCombat(false);//pirate ai ship goes back to ai state
@@ -130,6 +136,7 @@ public class ControllerSwitch : MonoBehaviour
         }
         else if (other.tag == "HandtoHand" && !isCooldownActive && !awaitingCombatDecision) //if player enters the trigger dialogue pops up asking a question
         {//james' script
+            enemyShip = other.gameObject.transform.parent.gameObject;
             other.GetComponentInParent<EnemyShipAI>().SetHandToHandCombat(true);//stops the pirate ai ship from shooting cannonballs
             other.gameObject.transform.parent.GetComponent<EnemyShipAI>().speed = 0;
             dialogueText.text = "Do you want to engage in hand-to-hand combat? (Y/N)";
@@ -140,7 +147,6 @@ public class ControllerSwitch : MonoBehaviour
         if (other.gameObject.CompareTag("Shop"))
         {
             menuOption.Shop = true;
-
         }
     }
 
@@ -161,6 +167,18 @@ public class ControllerSwitch : MonoBehaviour
         Camera.transform.localEulerAngles = CharacterCam.transform.localEulerAngles;
         Ship.GetComponent<ShipController>().isDriving = false;
         Ship.GetComponent<ShipController>().currentForwardSpeed = 0;
+        if (enemyShip != null)
+        {
+            Quaternion targetRotation = new(0f, enemyShip.transform.rotation.y, 0f, Ship.transform.rotation.w);
+            Ship.transform.eulerAngles = targetRotation.eulerAngles;
+            Ship.GetComponent<ShipController>().desiredRotation = targetRotation.eulerAngles;
+            float offset = enemyShip.GetComponent<EnemyShipAI>().IsPlayerOnLeftSide() ? -15f : 15f;
+            Vector3 newPosition = enemyShip.transform.position + enemyShip.transform.right * offset;
+            newPosition.z = Ship.transform.position.z;
+            Ship.transform.position = newPosition;
+
+            enemyShip = null;
+        }
         cannonLeft.GetComponent<Cannon>().enabled = false;
         cannonRight.GetComponent<Cannon>().enabled = false;
         Character.GetComponent<PlayerController>().enabled = true;

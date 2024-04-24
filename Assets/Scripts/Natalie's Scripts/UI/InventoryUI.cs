@@ -12,8 +12,8 @@ public class InventoryUI : MonoBehaviour
     public TextMeshProUGUI explodeCount;
     public TextMeshProUGUI freezeCount;
     public TextMeshProUGUI bulletCount;
-    public int lastCannonIndex;
-    public int lastCombatIndex;
+    public int lastCannonIndex = 2;
+    public int lastCombatIndex = 0;
 
     void Start()
     {
