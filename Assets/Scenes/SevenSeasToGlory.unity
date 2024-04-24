@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.639
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1875797620}
-  m_IndirectSpecularColor: {r: 0.12499015, g: 0.15143174, b: 0.19845834, a: 0.639}
+  m_IndirectSpecularColor: {r: 0.12512039, g: 0.15152855, b: 0.19848558, a: 0.639}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -451,6 +451,11 @@ PrefabInstance:
       propertyPath: playerShip
       value: 
       objectReference: {fileID: 1994448289}
+    - target: {fileID: 2260953092123347876, guid: 8a3ca2974ac5a4a74adf4b773a6eba4c,
+        type: 3}
+      propertyPath: numberOfShipsToSpawn
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 3271287260929239122, guid: 8a3ca2974ac5a4a74adf4b773a6eba4c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1819,6 +1824,11 @@ PrefabInstance:
       objectReference: {fileID: 215677280}
     - target: {fileID: 6884317405204038599, guid: 9aba8f8942aa1ba4fb9ca9ec4de9573b,
         type: 3}
+      propertyPath: minHeight
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6884317405204038599, guid: 9aba8f8942aa1ba4fb9ca9ec4de9573b,
+        type: 3}
       propertyPath: inventoryActive
       value: 
       objectReference: {fileID: 667756611}
@@ -2883,7 +2893,7 @@ MonoBehaviour:
   forwardSpeedInertia: 10
   decelerationSpeed: 1
   minYawPerSecond: 5
-  maxYawPerSecond: 5
+  maxYawPerSecond: 10
   currentForwardSpeed: 0
   currentYawPerSecond: 0
   inputForwardPercent: 0
@@ -3411,6 +3421,11 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 72900778}
+    - target: {fileID: 378655753869842259, guid: 5aa8fc16f119247f8b4283560b25190a,
+        type: 3}
+      propertyPath: bulletForce
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 378655753869842259, guid: 5aa8fc16f119247f8b4283560b25190a,
         type: 3}
       propertyPath: reticleImage
