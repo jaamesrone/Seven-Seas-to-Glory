@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.639
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1875797620}
-  m_IndirectSpecularColor: {r: 0.12512039, g: 0.15152855, b: 0.19848558, a: 0.639}
+  m_IndirectSpecularColor: {r: 0.12500508, g: 0.15144391, b: 0.1984526, a: 0.639}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -454,7 +454,7 @@ PrefabInstance:
     - target: {fileID: 2260953092123347876, guid: 8a3ca2974ac5a4a74adf4b773a6eba4c,
         type: 3}
       propertyPath: numberOfShipsToSpawn
-      value: 12
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3271287260929239122, guid: 8a3ca2974ac5a4a74adf4b773a6eba4c,
         type: 3}
@@ -510,6 +510,11 @@ PrefabInstance:
         type: 3}
       propertyPath: height
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4008531263417591660, guid: 8a3ca2974ac5a4a74adf4b773a6eba4c,
+        type: 3}
+      propertyPath: tileCount
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8128092490076111824, guid: 8a3ca2974ac5a4a74adf4b773a6eba4c,
         type: 3}
@@ -3927,6 +3932,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2945100640029761790, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 3072878896991187295, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
         type: 3}
       propertyPath: cannon
@@ -4152,6 +4162,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5726796319069531573, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5731596535359325891, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
         type: 3}
       propertyPath: m_Layer
@@ -4356,6 +4371,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: PlayerShip
+      objectReference: {fileID: 0}
+    - target: {fileID: 9184921237683333355, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 9188747797714313383, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
         type: 3}
