@@ -153,7 +153,8 @@ public class ControllerSwitch : MonoBehaviour
     IEnumerator DialogueCooldown() //60second cooldown timer for the dialoguetext to pop up again if you're in the collider
     {//james' script
         isCooldownActive = true; 
-        yield return new WaitForSeconds(2); 
+        yield return new WaitForSeconds(10);
+        dialogueText.text = "";
         isCooldownActive = false;
         awaitingCombatDecision = false;
     }
@@ -165,20 +166,21 @@ public class ControllerSwitch : MonoBehaviour
         Camera.transform.parent = Character.transform;
         Camera.transform.localPosition = CharacterCam.transform.localPosition;
         Camera.transform.localEulerAngles = CharacterCam.transform.localEulerAngles;
-        Ship.GetComponent<ShipController>().isDriving = false;
         Ship.GetComponent<ShipController>().currentForwardSpeed = 0;
         if (enemyShip != null)
         {
             Quaternion targetRotation = new(0f, enemyShip.transform.rotation.y, 0f, Ship.transform.rotation.w);
+            targetRotation *= Quaternion.Euler(0f, 90f, 0f);
             Ship.transform.eulerAngles = targetRotation.eulerAngles;
             Ship.GetComponent<ShipController>().desiredRotation = targetRotation.eulerAngles;
-            float offset = enemyShip.GetComponent<EnemyShipAI>().IsPlayerOnLeftSide() ? -15f : 15f;
+            float offset = enemyShip.GetComponent<EnemyShipAI>().IsPlayerOnLeftSide() ? -8f : 8f;
             Vector3 newPosition = enemyShip.transform.position + enemyShip.transform.right * offset;
             newPosition.z = Ship.transform.position.z;
             Ship.transform.position = newPosition;
 
             enemyShip = null;
         }
+        Ship.GetComponent<ShipController>().isDriving = false;
         cannonLeft.GetComponent<Cannon>().enabled = false;
         cannonRight.GetComponent<Cannon>().enabled = false;
         Character.GetComponent<PlayerController>().enabled = true;
