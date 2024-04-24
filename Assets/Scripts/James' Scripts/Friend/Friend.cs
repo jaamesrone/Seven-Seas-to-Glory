@@ -23,9 +23,6 @@ public class Friend : EnemyClass
         {
             player = closestEnemyTransform;
         }
-        else
-        {
-        }
         agent = GetComponent<NavMeshAgent>();
         pirateAnimation = GetComponent<Animator>();
         healthBar.SetMaxHealth(health);
@@ -41,7 +38,6 @@ public class Friend : EnemyClass
                 return;
             }
         }
-
         CheckPlayerRadius();
         UpdateAnimation();
     }
@@ -55,9 +51,12 @@ public class Friend : EnemyClass
 
         foreach (GameObject potentialTarget in enemies)
         {
+            float maxDistance = 50f; 
+            float maxDistanceSqr = maxDistance * maxDistance;
+
             Vector3 directionToTarget = potentialTarget.transform.position - currentPosition;
             float dSqrToTarget = directionToTarget.sqrMagnitude;
-            if (dSqrToTarget < closestDistanceSqr)
+            if (dSqrToTarget < closestDistanceSqr && dSqrToTarget <= maxDistanceSqr)
             {
                 closestDistanceSqr = dSqrToTarget;
                 closestEnemy = potentialTarget.transform;
@@ -185,4 +184,18 @@ public class Friend : EnemyClass
         yield return new WaitForSeconds(1.0f);
         pirateAnimation.ResetTrigger("Block");
     }
+
+    public void TeleportToShip(GameObject destination)
+    {
+        if (destination != null)
+        {
+            transform.position = destination.transform.position;
+            agent.Warp(destination.transform.position);
+        }
+        else
+        {
+            Debug.LogError("Destination for teleport is null.");
+        }
+    }
+
 }

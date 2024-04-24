@@ -16,6 +16,7 @@ TagManager:
   - PirateShip
   - RoyalShip
   - Friend
+  - TeleportPoint
   layers:
   - Default
   - TransparentFX

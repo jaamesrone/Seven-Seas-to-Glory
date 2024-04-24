@@ -16,8 +16,8 @@ public class ImperialPirate : EnemyClass
     [SerializeField] private TextMeshPro damageTextPrefab;
     //[SerializeField] private GameObject backupPiratePrefab; // Prefab for calling backup
     public bool isAttacking = false;
-    [SerializeField] private GameObject friendlyPiratePrefab; // Prefab for recruited pirate
-    [SerializeField] private TMP_Text recruitmentText; // UI element for recruitment message
+    [SerializeField] private GameObject friendlyPiratePrefab; 
+    [SerializeField] private TMP_Text recruitmentText; 
 
     void Start()
     {
@@ -27,7 +27,6 @@ public class ImperialPirate : EnemyClass
         pirateAnimation = GetComponent<Animator>();
         healthBar.SetMaxHealth(health);
 
-        // Find the recruitment text UI element by tag or name
         recruitmentText = GameObject.Find("recruitment").GetComponent<TextMeshProUGUI>();
         if (recruitmentText != null)
         {
@@ -185,12 +184,4 @@ public class ImperialPirate : EnemyClass
         pirateAnimation.ResetTrigger("Block");
     }
 
-    /*    void CallForBackupIfNeeded()
-        {
-            if (health <= 75f) // Call for backup when health is below a certain threshold
-            {
-                // Logic to instantiate backup pirates
-                Instantiate(backupPiratePrefab, transform.position + Vector3.back * 2, Quaternion.identity);
-            }
-        }*/
 }
