@@ -3,9 +3,8 @@ using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
 
-public class ImperialPirate : EnemyClass
+public class Friend : EnemyClass
 {
-    private bool awaitingRecruitmentDecision = false; // Add this line at the beginning of the class
     [SerializeField] private Transform player;
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Animator pirateAnimation;
@@ -14,39 +13,58 @@ public class ImperialPirate : EnemyClass
     [SerializeField] private float attackDelay = 1.5f;
     [SerializeField] private HealthBar healthBar;
     [SerializeField] private TextMeshPro damageTextPrefab;
-    //[SerializeField] private GameObject backupPiratePrefab; // Prefab for calling backup
     public bool isAttacking = false;
-    [SerializeField] private GameObject friendlyPiratePrefab; // Prefab for recruited pirate
-    [SerializeField] private TMP_Text recruitmentText; // UI element for recruitment message
 
     void Start()
     {
         base.health = 150f; // Higher health
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        agent = GetComponent<NavMeshAgent>();
-        pirateAnimation = GetComponent<Animator>();
-        healthBar.SetMaxHealth(health);
-
-        // Find the recruitment text UI element by tag or name
-        recruitmentText = GameObject.Find("recruitment").GetComponent<TextMeshProUGUI>();
-        if (recruitmentText != null)
+        Transform closestEnemyTransform = FindClosestEnemy();
+        if (closestEnemyTransform != null)
         {
-            recruitmentText.text = "";
+            player = closestEnemyTransform;
         }
         else
         {
-            Debug.LogError("Recruitment text UI element not found!");
         }
+        agent = GetComponent<NavMeshAgent>();
+        pirateAnimation = GetComponent<Animator>();
+        healthBar.SetMaxHealth(health);
     }
 
     void Update()
     {
+        if (player == null)
+        {
+            player = FindClosestEnemy();
+            if (player == null)
+            {
+                return;
+            }
+        }
+
         CheckPlayerRadius();
         UpdateAnimation();
-        if (awaitingRecruitmentDecision)
+    }
+
+    Transform FindClosestEnemy()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        Transform closestEnemy = null;
+        float closestDistanceSqr = Mathf.Infinity;
+        Vector3 currentPosition = transform.position;
+
+        foreach (GameObject potentialTarget in enemies)
         {
-            Recruitment();
+            Vector3 directionToTarget = potentialTarget.transform.position - currentPosition;
+            float dSqrToTarget = directionToTarget.sqrMagnitude;
+            if (dSqrToTarget < closestDistanceSqr)
+            {
+                closestDistanceSqr = dSqrToTarget;
+                closestEnemy = potentialTarget.transform;
+            }
         }
+
+        return closestEnemy;
     }
 
     void LookAtPlayer()
@@ -58,6 +76,7 @@ public class ImperialPirate : EnemyClass
 
     void CheckPlayerRadius()
     {
+        if (player == null) return;
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
         if (distanceToPlayer < detectionRadius)
         {
@@ -96,14 +115,16 @@ public class ImperialPirate : EnemyClass
 
     IEnumerator AttackPlayerRepeatedly()
     {
-        while (player && Vector3.Distance(transform.position, player.position) <= attackRange)
+        while (player != null && Vector3.Distance(transform.position, player.position) <= attackRange)
         {
             pirateAnimation.SetBool("pirateAttack", true);
             yield return new WaitForSeconds(attackDelay);
         }
+
         isAttacking = false;
         pirateAnimation.SetBool("pirateAttack", false);
     }
+
 
 
     public void TakeDamage(float damage)
@@ -149,28 +170,8 @@ public class ImperialPirate : EnemyClass
 
     void Die()
     {
-        recruitmentText.text = "Do you want to recruit this pirate? J/M";
-        awaitingRecruitmentDecision = true; // The pirate is now waiting for a decision
-        agent.isStopped = true; 
-    }
-    void Recruitment()
-    {
-        {
-            if (Input.GetKeyDown(KeyCode.J))
-            {
-                awaitingRecruitmentDecision = false;
-                recruitmentText.text = "";
-                Instantiate(friendlyPiratePrefab, transform.position, Quaternion.identity); // Instantiate a friendly pirate
-                Destroy(gameObject); // Destroy the current object
-            }
-            else if (Input.GetKeyDown(KeyCode.M))
-            {
-                awaitingRecruitmentDecision = false;
-                recruitmentText.text = "";
-                Debug.Log("Pirate died!");
-                Destroy(gameObject);
-            }
-        }
+        Debug.Log("Pirate died!");
+        Destroy(gameObject);
     }
 
     void BlockAttack()
@@ -184,13 +185,4 @@ public class ImperialPirate : EnemyClass
         yield return new WaitForSeconds(1.0f);
         pirateAnimation.ResetTrigger("Block");
     }
-
-    /*    void CallForBackupIfNeeded()
-        {
-            if (health <= 75f) // Call for backup when health is below a certain threshold
-            {
-                // Logic to instantiate backup pirates
-                Instantiate(backupPiratePrefab, transform.position + Vector3.back * 2, Quaternion.identity);
-            }
-        }*/
 }

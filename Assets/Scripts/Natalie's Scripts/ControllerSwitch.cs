@@ -147,7 +147,7 @@ public class ControllerSwitch : MonoBehaviour
     IEnumerator DialogueCooldown() //60second cooldown timer for the dialoguetext to pop up again if you're in the collider
     {//james' script
         isCooldownActive = true; 
-        yield return new WaitForSeconds(2); 
+        yield return new WaitForSeconds(5f); 
         isCooldownActive = false;
         awaitingCombatDecision = false;
     }

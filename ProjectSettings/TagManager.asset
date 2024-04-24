@@ -15,6 +15,7 @@ TagManager:
   - SharkShip
   - PirateShip
   - RoyalShip
+  - Friend
   layers:
   - Default
   - TransparentFX
