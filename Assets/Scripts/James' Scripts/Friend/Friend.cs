@@ -75,28 +75,6 @@ public class Friend : EnemyClass
 
         return closestEnemy;
     }
-
-    private void JumpTowardsEnemy()
-    {
-        agent.enabled = false;  // Disable the NavMeshAgent before the jump
-        Rigidbody rb = GetComponent<Rigidbody>();
-        Vector3 directionToPlayer = (player.position - transform.position).normalized;
-        Vector3 jumpVector = Vector3.up * jumpForce + directionToPlayer * jumpForce * 0.5f;
-        rb.AddForce(jumpVector, ForceMode.Impulse);
-        pirateAnimation.SetTrigger("Jump");
-        StartCoroutine(EnableNavMeshAgentAfterJump());  // Re-enable the agent after a delay
-    }
-
-    IEnumerator EnableNavMeshAgentAfterJump()
-    {
-        yield return new WaitForSeconds(1.5f);  // Wait for the duration of the jump
-        agent.enabled = true;
-        if (!agent.isOnNavMesh)
-        {
-            agent.Warp(transform.position);  // Warp to the current position if off the NavMesh
-        }
-    }
-
     void LookAtPlayer()
     {
         Vector3 direction = (player.position - transform.position).normalized;
@@ -113,19 +91,7 @@ public class Friend : EnemyClass
         {
             LookAtPlayer();
             agent.destination = player.position;
-
-            // Stop the agent and jump if within jump distance but outside of attack range
-            if (distanceToPlayer <= jumpDistance && distanceToPlayer > attackRange)
-            {
-                if (!hasJumpedToEnemy)
-                {
-                    agent.isStopped = true;
-                    Debug.Log("Attempting to jump towards enemy."); // Debug line
-                    JumpTowardsEnemy();
-                    hasJumpedToEnemy = true;
-                }
-            }
-            else if (distanceToPlayer <= attackRange)
+            if (distanceToPlayer <= attackRange)
             {
                 agent.isStopped = true;
                 if (!isAttacking)
