@@ -208,8 +208,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 34.365746
-  m_Height: 91.550705
+  m_Radius: 20.534727
+  m_Height: 86.72351
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3722641760907260995
@@ -497,7 +497,7 @@ GameObject:
   - component: {fileID: 696877737276233253}
   - component: {fileID: 3727035664494027730}
   - component: {fileID: 5725532456326543243}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: HealthUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -599,7 +599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bac8e8bcd81b44ff8b6f0ec9ae1f4722, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
+  canvas: {fileID: 1028808676484281883}
 --- !u!1 &1241852553457189044
 GameObject:
   m_ObjectHideFlags: 0
@@ -1079,9 +1079,7 @@ GameObject:
   - component: {fileID: 7355302225774363543}
   - component: {fileID: 5383213863301649333}
   - component: {fileID: 7763978884561281053}
-  - component: {fileID: 9220899195688301064}
-  - component: {fileID: 5233318511306310340}
-  - component: {fileID: 669151028788804555}
+  - component: {fileID: 2008882482285191881}
   m_Layer: 6
   m_Name: royalShip
   m_TagString: RoyalShip
@@ -1175,49 +1173,7 @@ MonoBehaviour:
   health: 100
   killGain: {fileID: 7599052527246959969, guid: 5aa8fc16f119247f8b4283560b25190a,
     type: 3}
---- !u!114 &9220899195688301064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1957038960406089557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ef58d81c608e446d99a9c7800cc0fcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxForce: 1
-  waterLevel: 1
-  dampingFactor: 3
---- !u!54 &5233318511306310340
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1957038960406089557}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 36
-  m_CollisionDetection: 2
---- !u!65 &669151028788804555
+--- !u!65 &2008882482285191881
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1227,17 +1183,17 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 73
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 11.345463, y: 4.595234, z: 35.530067}
-  m_Center: {x: -0.122161865, y: 1.154099, z: -2.6937532}
+  m_Size: {x: 10.867569, y: 7.4504013, z: 33.81729}
+  m_Center: {x: -0.009602547, y: -1.119793, z: -2.998661}
 --- !u!1 &2004803309379865018
 GameObject:
   m_ObjectHideFlags: 0
@@ -1480,7 +1436,7 @@ GameObject:
   - component: {fileID: 3555357366121331918}
   - component: {fileID: 7663931642715842235}
   - component: {fileID: 4827435593456428805}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2755,7 +2711,7 @@ GameObject:
   - component: {fileID: 213897012352831847}
   - component: {fileID: 298054494124256294}
   - component: {fileID: 641744085314126666}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3136,7 +3092,7 @@ GameObject:
   - component: {fileID: 122251269079859342}
   - component: {fileID: 2574294990945695302}
   - component: {fileID: 2437819250948634613}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Boarder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3787,7 +3743,7 @@ GameObject:
   - component: {fileID: 5752360032528398499}
   - component: {fileID: 6876530060449587378}
   - component: {fileID: 8699597107415782830}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}

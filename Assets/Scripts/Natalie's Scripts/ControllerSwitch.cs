@@ -36,8 +36,6 @@ public class ControllerSwitch : MonoBehaviour
     public GameObject playerHealthBar;
     public GameObject shipHealthBar;
 
-    private GameObject enemyShip = null;
-
     private void Start()
     {
         InCharacter = true;
@@ -45,6 +43,7 @@ public class ControllerSwitch : MonoBehaviour
         cannonLeft.GetComponent<Cannon>().enabled = false;
         cannonRight.GetComponent<Cannon>().enabled = false;
         Ship.GetComponent<ShipController>().isDriving = false;
+        Ship.GetComponent<Rigidbody>().isKinematic = true; //Keeps player from being able to move it
 
         inventoryActive.UpdateActive(0);
 
@@ -112,10 +111,6 @@ public class ControllerSwitch : MonoBehaviour
         }
         if (other.CompareTag("HandtoHand"))//james' script
         {
-            if (enemyShip != null)
-            {
-                enemyShip = null;
-            }
             dialogueText.text = "";
             awaitingCombatDecision = false;
             other.GetComponentInParent<EnemyShipAI>().SetHandToHandCombat(false);//pirate ai ship goes back to ai state
@@ -134,9 +129,8 @@ public class ControllerSwitch : MonoBehaviour
         {
             CanDriveShip = true;
         }
-        else if (other.tag == "HandtoHand" && !isCooldownActive && !awaitingCombatDecision) //if player enters the trigger dialogue pops up asking a question
+        else if (other.tag == "HandtoHand" && !isCooldownActive && !awaitingCombatDecision && InShip) //if player enters the trigger dialogue pops up asking a question
         {//james' script
-            enemyShip = other.gameObject.transform.parent.gameObject;
             other.GetComponentInParent<EnemyShipAI>().SetHandToHandCombat(true);//stops the pirate ai ship from shooting cannonballs
             other.gameObject.transform.parent.GetComponent<EnemyShipAI>().speed = 0;
             dialogueText.text = "Do you want to engage in hand-to-hand combat? (Y/N)";
@@ -167,20 +161,8 @@ public class ControllerSwitch : MonoBehaviour
         Camera.transform.localPosition = CharacterCam.transform.localPosition;
         Camera.transform.localEulerAngles = CharacterCam.transform.localEulerAngles;
         Ship.GetComponent<ShipController>().currentForwardSpeed = 0;
-        if (enemyShip != null)
-        {
-            Quaternion targetRotation = new(0f, enemyShip.transform.rotation.y, 0f, Ship.transform.rotation.w);
-            targetRotation *= Quaternion.Euler(0f, 90f, 0f);
-            Ship.transform.eulerAngles = targetRotation.eulerAngles;
-            Ship.GetComponent<ShipController>().desiredRotation = targetRotation.eulerAngles;
-            float offset = enemyShip.GetComponent<EnemyShipAI>().IsPlayerOnLeftSide() ? -8f : 8f;
-            Vector3 newPosition = enemyShip.transform.position + enemyShip.transform.right * offset;
-            newPosition.z = Ship.transform.position.z;
-            Ship.transform.position = newPosition;
-
-            enemyShip = null;
-        }
         Ship.GetComponent<ShipController>().isDriving = false;
+        Ship.GetComponent<Rigidbody>().isKinematic = true;
         cannonLeft.GetComponent<Cannon>().enabled = false;
         cannonRight.GetComponent<Cannon>().enabled = false;
         Character.GetComponent<PlayerController>().enabled = true;
@@ -210,6 +192,7 @@ public class ControllerSwitch : MonoBehaviour
         Camera.transform.localEulerAngles = CharacterCam.transform.localEulerAngles;
         Ship.GetComponent<ShipController>().isDriving = false;
         Ship.GetComponent<ShipController>().currentForwardSpeed = 0;
+        Ship.GetComponent<Rigidbody>().isKinematic = true;
         cannonLeft.GetComponent<Cannon>().enabled = false;
         cannonRight.GetComponent<Cannon>().enabled = false;
         Character.GetComponent<PlayerController>().enabled = true;
@@ -239,6 +222,7 @@ public class ControllerSwitch : MonoBehaviour
         Character.GetComponent<PlayerController>().enabled = false;
         cannonLeft.GetComponent<Cannon>().enabled = false;
         cannonRight.GetComponent<Cannon>().enabled = false;
+        Ship.GetComponent<Rigidbody>().isKinematic = false; //cannonballs don't work unless it's false, don't ask me why
         Ship.GetComponent<ShipController>().isDriving = true;
         inventoryActive.UpdateActive(inventoryActive.lastCombatIndex);
         InCharacter = false;
@@ -265,6 +249,7 @@ public class ControllerSwitch : MonoBehaviour
             cannonRight.GetComponent<Cannon>().enabled = true;
         }
         Character.GetComponent<PlayerController>().enabled = false;
+        Ship.GetComponent<Rigidbody>().isKinematic = false;
         Ship.GetComponent<ShipController>().isDriving = false;
         inventoryActive.UpdateActive(inventoryActive.lastCannonIndex);
         ReticleImage.SetActive(true); // Show the reticle image

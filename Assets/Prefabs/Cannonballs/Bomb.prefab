@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7021106601928464042}
   - component: {fileID: 2642397152099101265}
   - component: {fileID: 6209245742733052572}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 3731371230376000850}
   - component: {fileID: 1477429360830897333}
   - component: {fileID: 6533835123274311499}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -283,7 +283,7 @@ GameObject:
   - component: {fileID: 6825356711125201391}
   - component: {fileID: 473935888099405527}
   - component: {fileID: 8833016501118043713}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
