@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8318537011982772744}
   - component: {fileID: 1018002732805683344}
   - component: {fileID: 9025709255409191797}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: HealthUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -298,7 +298,7 @@ GameObject:
   - component: {fileID: 3085284264911948146}
   - component: {fileID: 4291089928284827821}
   - component: {fileID: 6436517845946482401}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,7 +373,7 @@ GameObject:
   - component: {fileID: 9056007389163533023}
   - component: {fileID: 4110183016476144617}
   - component: {fileID: 6082513194906016926}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -448,7 +448,7 @@ GameObject:
   - component: {fileID: 3522543378418837120}
   - component: {fileID: 6991391504605145863}
   - component: {fileID: 2981095975558607475}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -552,7 +552,7 @@ GameObject:
   - component: {fileID: 4533027235535174703}
   - component: {fileID: 4020099222384331605}
   - component: {fileID: 8861638865939847468}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Boarder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

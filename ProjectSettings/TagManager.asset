@@ -15,9 +15,6 @@ TagManager:
   - SharkShip
   - PirateShip
   - RoyalShip
-  - Friend
-  - TeleportPoint
-  - JumpPoint
   layers:
   - Default
   - TransparentFX
@@ -27,7 +24,7 @@ TagManager:
   - UI
   - EnemyShip
   - Islands
-  - JumpableSurface
+  - HealthBar
   - 
   - 
   - 
