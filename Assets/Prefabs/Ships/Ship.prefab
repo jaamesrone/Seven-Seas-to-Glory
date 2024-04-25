@@ -1156,7 +1156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxForce: 1
-  waterLevel: 1
+  waterLevel: 0.79
   dampingFactor: 3
 --- !u!54 &7789460746371771020
 Rigidbody:

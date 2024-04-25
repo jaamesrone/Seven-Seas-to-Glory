@@ -1,7 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class ControllerSwitch : MonoBehaviour
 {
@@ -91,16 +90,16 @@ public class ControllerSwitch : MonoBehaviour
             {
                 SwitchToCombat();
                 Character.transform.position = playerSpawnPoint.position;
-                dialogueText.text = ""; 
+                dialogueText.text = "";
                 awaitingCombatDecision = false;
             }
             else if (Input.GetKeyDown(KeyCode.N))
             {
                 // ignore combat and stay in ship
-                dialogueText.text = ""; 
+                dialogueText.text = "";
                 awaitingCombatDecision = false;
             }
-        }     
+        }
     }
 
     void OnTriggerExit(Collider other)
@@ -146,7 +145,7 @@ public class ControllerSwitch : MonoBehaviour
 
     IEnumerator DialogueCooldown() //60second cooldown timer for the dialoguetext to pop up again if you're in the collider
     {//james' script
-        isCooldownActive = true; 
+        isCooldownActive = true;
         yield return new WaitForSeconds(10);
         dialogueText.text = "";
         isCooldownActive = false;
@@ -214,7 +213,7 @@ public class ControllerSwitch : MonoBehaviour
     }
 
     void SwitchToShip()
-    { 
+    {
         Character.transform.position = playerSpawnPoint.position;
         Camera.transform.parent = Ship.transform;
         Camera.transform.localPosition = ShipCam.transform.localPosition;

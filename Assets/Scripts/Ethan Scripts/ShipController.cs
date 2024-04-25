@@ -29,12 +29,6 @@ public class ShipController : MonoBehaviour
     public bool isDriving;
     private float currentInertia;
 
-    private Rigidbody rb;
-
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
     void DoInput()
     {
         if (isDriving)
@@ -75,14 +69,11 @@ public class ShipController : MonoBehaviour
         DoInput();
         UpdateDesiredVelocities();
 
-        //// Update Rotation
-        //transform.Rotate(Vector3.up, currentYawPerSecond * inputYawPercent * Time.deltaTime);
+        // Update Rotation
+        transform.Rotate(Vector3.up, currentYawPerSecond * inputYawPercent * Time.deltaTime);
 
-        //// Update Position
-        //transform.Translate(Vector3.left * currentForwardSpeed * Time.deltaTime);
-
-        rb.velocity = -transform.right * currentForwardSpeed;
-        rb.angularVelocity = Vector3.up * currentYawPerSecond * Mathf.Deg2Rad * inputYawPercent;
+        // Update Position
+        transform.Translate(Vector3.left * currentForwardSpeed * Time.deltaTime);
 
         // Ocean pushing along
         //movedPosition += seaSpeed;

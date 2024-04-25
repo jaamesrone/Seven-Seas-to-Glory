@@ -67,7 +67,4 @@ public class SpareOrKill : MonoBehaviour
     {
         recruitText.text = "Recruits: " + player.recruits;
     }
-
-
-
 }
