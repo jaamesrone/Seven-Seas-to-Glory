@@ -27,6 +27,9 @@ public class Cannon : MonoBehaviour
     private bool canFire = true;
     private Coroutine reloadCoroutine;
 
+    public AudioSource cannonFireSource;
+    
+
     private void Start()
     {
         reload.SetActive(false);
@@ -43,6 +46,7 @@ public class Cannon : MonoBehaviour
         {
             canFire = false;
             FireCannonBall();
+            cannonFireSource.Play();
         }
     }
 
