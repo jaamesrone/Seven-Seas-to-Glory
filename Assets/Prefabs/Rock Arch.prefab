@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8631018489109706520}
   - component: {fileID: 7485300569369530341}
   - component: {fileID: 819393047706254471}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: rock_arch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1946750694031741838}
   - component: {fileID: 8771740088822364659}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rock Arch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.0011521945
+  - screenRelativeHeight: 0.0069829
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 7485300569369530341}

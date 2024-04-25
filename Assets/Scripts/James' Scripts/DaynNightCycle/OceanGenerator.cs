@@ -20,7 +20,7 @@ public class OceanGenerator : MonoBehaviour
         {
             for (int j = -tileCount; j <= tileCount; j++)
             {
-                Vector3 position = new Vector3(i * tileSize, height, j * tileSize);
+                Vector3 position = new Vector3(i * tileSize - 1400, height, j * tileSize);
                 Instantiate(waterTilePrefab, position, Quaternion.identity, transform);
             }
         }

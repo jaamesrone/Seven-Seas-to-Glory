@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7300848412427549658}
   - component: {fileID: 19569564342677126}
   - component: {fileID: 553833754423474569}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: rock_plain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2820521579065659900}
   - component: {fileID: 5111572130397353321}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rock Plain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.0037236097
+  - screenRelativeHeight: 0.0052469736
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 19569564342677126}

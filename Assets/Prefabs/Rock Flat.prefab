@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8042298907157216372}
   - component: {fileID: 8409603329583221461}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rock Flat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 4330539913555660297}
   - component: {fileID: 6888797315454158425}
   - component: {fileID: 7174567052393634525}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: rock_flat
   m_TagString: Untagged
   m_Icon: {fileID: 0}

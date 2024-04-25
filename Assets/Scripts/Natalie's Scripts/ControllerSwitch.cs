@@ -1,7 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class ControllerSwitch : MonoBehaviour
 {
@@ -43,6 +42,7 @@ public class ControllerSwitch : MonoBehaviour
         cannonLeft.GetComponent<Cannon>().enabled = false;
         cannonRight.GetComponent<Cannon>().enabled = false;
         Ship.GetComponent<ShipController>().isDriving = false;
+        Ship.GetComponent<Rigidbody>().isKinematic = true; //Keeps player from being able to move it
 
         inventoryActive.UpdateActive(0);
 
@@ -90,16 +90,16 @@ public class ControllerSwitch : MonoBehaviour
             {
                 SwitchToCombat();
                 Character.transform.position = playerSpawnPoint.position;
-                dialogueText.text = ""; 
+                dialogueText.text = "";
                 awaitingCombatDecision = false;
             }
             else if (Input.GetKeyDown(KeyCode.N))
             {
                 // ignore combat and stay in ship
-                dialogueText.text = ""; 
+                dialogueText.text = "";
                 awaitingCombatDecision = false;
             }
-        }     
+        }
     }
 
     void OnTriggerExit(Collider other)
@@ -128,7 +128,7 @@ public class ControllerSwitch : MonoBehaviour
         {
             CanDriveShip = true;
         }
-        else if (other.tag == "HandtoHand" && !isCooldownActive && !awaitingCombatDecision) //if player enters the trigger dialogue pops up asking a question
+        else if (other.tag == "HandtoHand" && !isCooldownActive && !awaitingCombatDecision && InShip) //if player enters the trigger dialogue pops up asking a question
         {//james' script
             other.GetComponentInParent<EnemyShipAI>().SetHandToHandCombat(true);//stops the pirate ai ship from shooting cannonballs
             other.gameObject.transform.parent.GetComponent<EnemyShipAI>().speed = 0;
@@ -140,14 +140,14 @@ public class ControllerSwitch : MonoBehaviour
         if (other.gameObject.CompareTag("Shop"))
         {
             menuOption.Shop = true;
-
         }
     }
 
     IEnumerator DialogueCooldown() //60second cooldown timer for the dialoguetext to pop up again if you're in the collider
     {//james' script
-        isCooldownActive = true; 
-        yield return new WaitForSeconds(2); 
+        isCooldownActive = true;
+        yield return new WaitForSeconds(10);
+        dialogueText.text = "";
         isCooldownActive = false;
         awaitingCombatDecision = false;
     }
@@ -159,8 +159,9 @@ public class ControllerSwitch : MonoBehaviour
         Camera.transform.parent = Character.transform;
         Camera.transform.localPosition = CharacterCam.transform.localPosition;
         Camera.transform.localEulerAngles = CharacterCam.transform.localEulerAngles;
-        Ship.GetComponent<ShipController>().isDriving = false;
         Ship.GetComponent<ShipController>().currentForwardSpeed = 0;
+        Ship.GetComponent<ShipController>().isDriving = false;
+        Ship.GetComponent<Rigidbody>().isKinematic = true;
         cannonLeft.GetComponent<Cannon>().enabled = false;
         cannonRight.GetComponent<Cannon>().enabled = false;
         Character.GetComponent<PlayerController>().enabled = true;
@@ -190,6 +191,7 @@ public class ControllerSwitch : MonoBehaviour
         Camera.transform.localEulerAngles = CharacterCam.transform.localEulerAngles;
         Ship.GetComponent<ShipController>().isDriving = false;
         Ship.GetComponent<ShipController>().currentForwardSpeed = 0;
+        Ship.GetComponent<Rigidbody>().isKinematic = true;
         cannonLeft.GetComponent<Cannon>().enabled = false;
         cannonRight.GetComponent<Cannon>().enabled = false;
         Character.GetComponent<PlayerController>().enabled = true;
@@ -211,7 +213,7 @@ public class ControllerSwitch : MonoBehaviour
     }
 
     void SwitchToShip()
-    { 
+    {
         Character.transform.position = playerSpawnPoint.position;
         Camera.transform.parent = Ship.transform;
         Camera.transform.localPosition = ShipCam.transform.localPosition;
@@ -219,6 +221,7 @@ public class ControllerSwitch : MonoBehaviour
         Character.GetComponent<PlayerController>().enabled = false;
         cannonLeft.GetComponent<Cannon>().enabled = false;
         cannonRight.GetComponent<Cannon>().enabled = false;
+        Ship.GetComponent<Rigidbody>().isKinematic = false; //cannonballs don't work unless it's false, don't ask me why
         Ship.GetComponent<ShipController>().isDriving = true;
         inventoryActive.UpdateActive(inventoryActive.lastCombatIndex);
         InCharacter = false;
@@ -245,6 +248,7 @@ public class ControllerSwitch : MonoBehaviour
             cannonRight.GetComponent<Cannon>().enabled = true;
         }
         Character.GetComponent<PlayerController>().enabled = false;
+        Ship.GetComponent<Rigidbody>().isKinematic = false;
         Ship.GetComponent<ShipController>().isDriving = false;
         inventoryActive.UpdateActive(inventoryActive.lastCannonIndex);
         ReticleImage.SetActive(true); // Show the reticle image

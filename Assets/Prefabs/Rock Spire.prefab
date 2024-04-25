@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2969375589261158709}
   - component: {fileID: 5594656896946532115}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rock Spire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.001837118
+  - screenRelativeHeight: 0.0052469736
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 4390747221373091495}
@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 6824617932536315303}
   - component: {fileID: 4390747221373091495}
   - component: {fileID: 6323748404631333177}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: rock_spire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
