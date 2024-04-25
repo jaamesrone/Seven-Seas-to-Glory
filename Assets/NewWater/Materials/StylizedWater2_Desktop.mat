@@ -15,7 +15,6 @@ Material:
   m_ValidKeywords:
   - _ADVANCED_SHADING
   - _CAUSTICS
-  - _DISTANCE_NORMALS
   - _NORMALMAP
   - _REFRACTION
   - _SMOOTH_INTERSECTION
@@ -148,18 +147,18 @@ Material:
     - _CausticsOn: 1
     - _CausticsSpeed: 0.1
     - _CausticsTiling: 0.1
-    - _ColorAbsorption: 0.063
+    - _ColorAbsorption: 1
     - _CrossPan_IntersectionOn: 0
     - _Cull: 0
     - _Cutoff: 0.5
     - _Depth: 0.94
     - _DepthExp: 1
-    - _DepthHorizontal: 1.46
+    - _DepthHorizontal: 1.42
     - _DepthMode: 0
     - _DepthTexture: 1
-    - _DepthVertical: 7.86
+    - _DepthVertical: 4.74
     - _DisableDepthTexture: 0
-    - _DistanceNormalsOn: 1
+    - _DistanceNormalsOn: 0
     - _DistanceNormalsTiling: 0.25
     - _DstBlend: 0
     - _EdgeFade: 18.7
@@ -190,8 +189,8 @@ Material:
     - _HorizonDistance: 14.5
     - _IntersectionClipping: 0.395
     - _IntersectionDistortion: 0.2
-    - _IntersectionFalloff: 1
-    - _IntersectionLength: 1.52
+    - _IntersectionFalloff: 0.466
+    - _IntersectionLength: 2.55
     - _IntersectionRippleDist: 16
     - _IntersectionRippleStrength: 0.125
     - _IntersectionSize: 0.944
@@ -301,9 +300,9 @@ Material:
     - _FoamTiling: {r: 0.1, g: 0.1, b: 0, a: 0}
     - _HorizonColor: {r: 0.26633143, g: 0.3029468, b: 0.3301887, a: 0.15}
     - _IntersectionColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
-    - _NormalTiling: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _NormalTiling: {r: 0.12, g: 0.06, b: 0, a: 0}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
-    - _ShallowColor: {r: 0.0136169465, g: 0.16981131, b: 0.086507656, a: 0.3764706}
+    - _ShallowColor: {r: 0.12904951, g: 0.86627305, b: 0.9433962, a: 0.3764706}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _WaterColor: {r: 0.21176466, g: 0.6745098, b: 1, a: 1}
     - _WaterShallowColor: {r: 0, g: 0.9394503, b: 1, a: 1}
