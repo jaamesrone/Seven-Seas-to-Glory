@@ -462,8 +462,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4736020481332132705}
   m_Layer: 6
-  m_Name: friendTeleport
-  m_TagString: TeleportPoint
+  m_Name: JumpPoint
+  m_TagString: JumpPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -643,7 +643,7 @@ GameObject:
   - component: {fileID: 2008644026526727985}
   - component: {fileID: 8396452507018040953}
   - component: {fileID: 350601602292211089}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: ship_main
   m_TagString: EnemyShip
   m_Icon: {fileID: 0}

@@ -148,7 +148,7 @@ public class ImperialPirate : EnemyClass
 
     void Die()
     {
-        recruitmentText.text = "Do you want to recruit this pirate? J/M";
+        recruitmentText.text = "\tDo you want to recruit this pirate? J/M.\n\tteleport pirates to you 'T'";
         awaitingRecruitmentDecision = true; // The pirate is now waiting for a decision
         agent.isStopped = true; 
     }
@@ -167,7 +167,7 @@ public class ImperialPirate : EnemyClass
                 awaitingRecruitmentDecision = false;
                 recruitmentText.text = "";
                 Debug.Log("Pirate died!");
-                Destroy(gameObject);
+                Destroy(this.gameObject);
             }
         }
     }

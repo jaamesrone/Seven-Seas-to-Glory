@@ -780,7 +780,7 @@ Rigidbody:
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -875,9 +875,12 @@ MonoBehaviour:
   blockChance: 0.7
   attackRange: 1.5
   attackDelay: 1.5
+  jumpDistance: 10
   healthBar: {fileID: 6391524557897228679}
   damageTextPrefab: {fileID: 3494129963284465212}
   isAttacking: 0
+  jumpForce: 1
+  hasJumpedToEnemy: 0
 --- !u!1001 &5988952419189035611
 PrefabInstance:
   m_ObjectHideFlags: 0

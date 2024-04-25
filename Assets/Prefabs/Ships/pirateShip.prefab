@@ -1729,7 +1729,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6398574355068397984}
   m_Layer: 6
-  m_Name: SpawnPoint
+  m_Name: JumpPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
