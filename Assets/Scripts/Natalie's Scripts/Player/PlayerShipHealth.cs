@@ -12,15 +12,6 @@ public class PlayerShipHealth : MonoBehaviour
         healthBar.SetMaxHealth(health);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Cannonball"))
-        {
-            TakeDamage(other.gameObject.GetComponent<EnemyCannonBall>().baseDamage);
-            Destroy(other.gameObject);
-        }
-    }
-
     public void TakeDamage(float damage)
     {
         // player takes dmg
