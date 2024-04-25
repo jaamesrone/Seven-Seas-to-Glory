@@ -15,6 +15,7 @@ TagManager:
   - SharkShip
   - PirateShip
   - RoyalShip
+  - Cannonball
   layers:
   - Default
   - TransparentFX
@@ -24,8 +25,8 @@ TagManager:
   - UI
   - EnemyShip
   - Islands
-  - 
-  - 
+  - Cannonballs
+  - Healthbars
   - 
   - 
   - 

@@ -135,7 +135,7 @@ public class EnemyShipAI : MonoBehaviour
         }
     }
 
-    bool IsPlayerOnLeftSide()
+    public bool IsPlayerOnLeftSide()
     {
         // vec3 for the direction vector from pirate ship to the player ship
         Vector3 toPlayer = playerShip.transform.position - transform.position;
