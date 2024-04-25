@@ -42,7 +42,7 @@ public class EnemyShipSpawner : MonoBehaviour
             {
                 attemptCounter++;
                 randomPosition = transform.position + Random.insideUnitSphere * spawnRadius;
-                randomPosition.y = 1.1f;
+                randomPosition.y = -0.34f;
 
                 if (Vector3.Distance(randomPosition, playerShip.transform.position) >= minDistanceFromPlayer && IsFarFromOtherShips(randomPosition))
                 {

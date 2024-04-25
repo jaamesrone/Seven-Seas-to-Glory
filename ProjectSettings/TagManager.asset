@@ -15,6 +15,9 @@ TagManager:
   - SharkShip
   - PirateShip
   - RoyalShip
+  - recruitment
+  - Friend
+  - JumpPoint
   - Cannonball
   layers:
   - Default
@@ -25,8 +28,8 @@ TagManager:
   - UI
   - EnemyShip
   - Islands
-  - Cannonballs
-  - Healthbars
+  - HealthBar
+  - 
   - 
   - 
   - 

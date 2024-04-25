@@ -5,6 +5,7 @@ using TMPro;
 
 public class ImperialPirate : EnemyClass
 {
+    private bool awaitingRecruitmentDecision = false; // Add this line at the beginning of the class
     [SerializeField] private Transform player;
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Animator pirateAnimation;
@@ -15,6 +16,8 @@ public class ImperialPirate : EnemyClass
     [SerializeField] private TextMeshPro damageTextPrefab;
     //[SerializeField] private GameObject backupPiratePrefab; // Prefab for calling backup
     public bool isAttacking = false;
+    [SerializeField] private GameObject friendlyPiratePrefab; 
+    [SerializeField] private TMP_Text recruitmentText; 
 
     void Start()
     {
@@ -23,12 +26,26 @@ public class ImperialPirate : EnemyClass
         agent = GetComponent<NavMeshAgent>();
         pirateAnimation = GetComponent<Animator>();
         healthBar.SetMaxHealth(health);
+
+        recruitmentText = GameObject.Find("recruitment").GetComponent<TextMeshProUGUI>();
+        if (recruitmentText != null)
+        {
+            recruitmentText.text = "";
+        }
+        else
+        {
+            Debug.LogError("Recruitment text UI element not found!");
+        }
     }
 
     void Update()
     {
         CheckPlayerRadius();
         UpdateAnimation();
+        if (awaitingRecruitmentDecision)
+        {
+            Recruitment();
+        }
     }
 
     void LookAtPlayer()
@@ -131,8 +148,28 @@ public class ImperialPirate : EnemyClass
 
     void Die()
     {
-        Debug.Log("Pirate died!");
-        Destroy(gameObject);
+        recruitmentText.text = "\tDo you want to recruit this pirate? J/M.\n\tteleport pirates to you 'T'";
+        awaitingRecruitmentDecision = true; // The pirate is now waiting for a decision
+        agent.isStopped = true; 
+    }
+    void Recruitment()
+    {
+        {
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                awaitingRecruitmentDecision = false;
+                recruitmentText.text = "";
+                Instantiate(friendlyPiratePrefab, transform.position, Quaternion.identity); // Instantiate a friendly pirate
+                Destroy(gameObject); // Destroy the current object
+            }
+            else if (Input.GetKeyDown(KeyCode.M))
+            {
+                awaitingRecruitmentDecision = false;
+                recruitmentText.text = "";
+                Debug.Log("Pirate died!");
+                Destroy(this.gameObject);
+            }
+        }
     }
 
     void BlockAttack()
@@ -147,12 +184,4 @@ public class ImperialPirate : EnemyClass
         pirateAnimation.ResetTrigger("Block");
     }
 
-    /*    void CallForBackupIfNeeded()
-        {
-            if (health <= 75f) // Call for backup when health is below a certain threshold
-            {
-                // Logic to instantiate backup pirates
-                Instantiate(backupPiratePrefab, transform.position + Vector3.back * 2, Quaternion.identity);
-            }
-        }*/
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -2715697294290819186}
   - component: {fileID: 4442121914321278954}
   - component: {fileID: 5793835299305513085}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cannonball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
