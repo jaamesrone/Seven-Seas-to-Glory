@@ -11,12 +11,9 @@ public class Friend : EnemyClass
     [SerializeField] private float blockChance = 0.7f; // Higher chance to block attacks
     [SerializeField] private float attackRange = 5f; // Higher chance to block attacks
     [SerializeField] private float attackDelay = 1.5f;
-    [SerializeField] private float jumpDistance = 10f;
     [SerializeField] private HealthBar healthBar;
     [SerializeField] private TextMeshPro damageTextPrefab;
     public bool isAttacking = false;
-    public float jumpForce; // The force of the jump
-    public bool hasJumpedToEnemy = false;
     private Transform lastTarget;
 
     void Start()
@@ -40,7 +37,6 @@ public class Friend : EnemyClass
             if (player != null)
             {
                 lastTarget = player;
-                hasJumpedToEnemy = false; // Reset jump status when new enemy is targeted
             }
             else
             {
@@ -87,22 +83,16 @@ public class Friend : EnemyClass
         if (player == null) return;
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        if (distanceToPlayer < jumpDistance)
+        LookAtPlayer();
+        agent.destination = player.position;
+
+        if (distanceToPlayer <= attackRange)
         {
-            LookAtPlayer();
-            agent.destination = player.position;
-            if (distanceToPlayer <= attackRange)
+            agent.isStopped = true;
+            if (!isAttacking)
             {
-                agent.isStopped = true;
-                if (!isAttacking)
-                {
-                    isAttacking = true;
-                    AttackPlayer();
-                }
-            }
-            else
-            {
-                agent.isStopped = false;
+                isAttacking = true;
+                AttackPlayer();
             }
         }
         else
@@ -112,6 +102,7 @@ public class Friend : EnemyClass
             agent.isStopped = false;
         }
     }
+
 
     public void TeleportToShip(GameObject destination)
     {
@@ -131,7 +122,6 @@ public class Friend : EnemyClass
             transform.position = newPosition;
             agent.Warp(newPosition);
             agent.enabled = true;
-            hasJumpedToEnemy = false;
         }
     }
 

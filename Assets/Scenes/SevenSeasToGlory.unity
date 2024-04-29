@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.639
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1875797620}
-  m_IndirectSpecularColor: {r: 0.12499846, g: 0.15145852, b: 0.1984954, a: 0.639}
+  m_IndirectSpecularColor: {r: 0.12499061, g: 0.15143749, b: 0.19844416, a: 0.639}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5786,6 +5786,16 @@ PrefabInstance:
       propertyPath: killGain
       value: 
       objectReference: {fileID: 1661158378879565589}
+    - target: {fileID: 45645960957374247, guid: 9b37db723520f43519599d1f73c309a2,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 45645960957374247, guid: 9b37db723520f43519599d1f73c309a2,
+        type: 3}
+      propertyPath: choiceText
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 523346555221492157, guid: 9b37db723520f43519599d1f73c309a2,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -6591,7 +6601,7 @@ PrefabInstance:
     - target: {fileID: 5527409715711381118, guid: 5aa8fc16f119247f8b4283560b25190a,
         type: 3}
       propertyPath: damage
-      value: 50
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5527409715711381118, guid: 5aa8fc16f119247f8b4283560b25190a,
         type: 3}
@@ -6613,6 +6623,11 @@ PrefabInstance:
       propertyPath: returnToShip
       value: 
       objectReference: {fileID: 1189053989}
+    - target: {fileID: 7599052527246959969, guid: 5aa8fc16f119247f8b4283560b25190a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8336417370087612253, guid: 5aa8fc16f119247f8b4283560b25190a,
         type: 3}
       propertyPath: ship
@@ -6697,7 +6712,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 444280567279294862}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29fbb15505ea542eebf18870d5830a63, type: 3}
   m_Name: 
@@ -7210,6 +7225,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: PlayerShip
       objectReference: {fileID: 0}
+    - target: {fileID: 350601602292211089, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 382131528327701562, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
         type: 3}
       propertyPath: m_Layer
@@ -7479,6 +7499,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: PlayerShip
+      objectReference: {fileID: 0}
+    - target: {fileID: 3942758208723138491, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.4250643
+      objectReference: {fileID: 0}
+    - target: {fileID: 3942758208723138491, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 19.62
       objectReference: {fileID: 0}
     - target: {fileID: 3983215765355962582, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
         type: 3}

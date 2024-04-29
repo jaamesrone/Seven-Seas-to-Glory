@@ -30,7 +30,7 @@ public class SceneSwitch : MonoBehaviour
     private IEnumerator PlaySFXAndWait(string sceneName)
     {
         audioSource.Play();
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         Cursor.lockState = sceneName != null ? CursorLockMode.Confined : CursorLockMode.Locked;
         Cursor.visible = sceneName != null;
