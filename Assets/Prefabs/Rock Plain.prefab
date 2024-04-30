@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3037651690738371351}
   - component: {fileID: 7300848412427549658}
   - component: {fileID: 19569564342677126}
+  - component: {fileID: 7177911615390046490}
   m_Layer: 0
   m_Name: rock_plain
   m_TagString: Untagged
@@ -84,6 +85,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7177911615390046490
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6187167926236947360}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 153.37305, y: 142.64053, z: 147.77655}
+  m_Center: {x: -6.2155743, y: 13.203736, z: -31.329142}
 --- !u!1 &8018641456067356949
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,6 +220,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2820521579065659900}
+  - component: {fileID: 2968833704988342471}
   m_Layer: 0
   m_Name: Rock Plain
   m_TagString: Untagged
@@ -221,3 +244,22 @@ Transform:
   - {fileID: 3037651690738371351}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!205 &2968833704988342471
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8620560893409791830}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.022214333
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 19569564342677126}
+  m_Enabled: 1
