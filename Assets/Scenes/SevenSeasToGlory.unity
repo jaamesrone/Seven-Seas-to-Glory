@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: 1, g: 1, b: 1, a: 1}
   m_FogMode: 1
   m_FogDensity: 0.01
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.639
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1875797620}
-  m_IndirectSpecularColor: {r: 0.12499061, g: 0.15143749, b: 0.19844416, a: 0.639}
+  m_IndirectSpecularColor: {r: 0.12503281, g: 0.15146764, b: 0.19848663, a: 0.639}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1465,6 +1465,134 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1145885025}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &395631742
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 395631743}
+  - component: {fileID: 395631744}
+  m_Layer: 0
+  m_Name: CannonballFire
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &395631743
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395631742}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 969612908}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &395631744
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395631742}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: b5b1b54f13fab114e9e843e10b29ce5d, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &399735696
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3372,6 +3500,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 340201381}
+  - {fileID: 395631743}
   - {fileID: 717344929}
   - {fileID: 1717230320}
   - {fileID: 612579191}
@@ -7387,6 +7516,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2296877702377393011, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
         type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 7443113026789797569}
+    - target: {fileID: 2296877702377393011, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
       propertyPath: reload
       value: 
       objectReference: {fileID: 1465807662}
@@ -7395,6 +7529,16 @@ PrefabInstance:
       propertyPath: reticle
       value: 
       objectReference: {fileID: 215677280}
+    - target: {fileID: 2296877702377393011, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: inventoryActive
+      value: 
+      objectReference: {fileID: 667756611}
+    - target: {fileID: 2296877702377393011, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: cannonFireSource
+      value: 
+      objectReference: {fileID: 395631744}
     - target: {fileID: 2453706837876705518, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
         type: 3}
       propertyPath: m_Layer
@@ -7572,6 +7716,11 @@ PrefabInstance:
       objectReference: {fileID: 667756611}
     - target: {fileID: 4896840316092270855, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
         type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 7443113026789797569}
+    - target: {fileID: 4896840316092270855, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
       propertyPath: reload
       value: 
       objectReference: {fileID: 1465807662}
@@ -7580,6 +7729,21 @@ PrefabInstance:
       propertyPath: reticle
       value: 
       objectReference: {fileID: 215677280}
+    - target: {fileID: 4896840316092270855, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: minHeight
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4896840316092270855, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: inventoryActive
+      value: 
+      objectReference: {fileID: 667756611}
+    - target: {fileID: 4896840316092270855, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      propertyPath: cannonFireSource
+      value: 
+      objectReference: {fileID: 395631744}
     - target: {fileID: 4903141221237584432, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
         type: 3}
       propertyPath: m_Layer
