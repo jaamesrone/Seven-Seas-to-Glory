@@ -43,6 +43,7 @@ public class ControllerSwitch : MonoBehaviour
         cannonRight.GetComponent<Cannon>().enabled = false;
         Ship.GetComponent<ShipController>().isDriving = false;
         Ship.GetComponent<Rigidbody>().isKinematic = true; //Keeps player from being able to move it
+        Character.GetComponent<Rigidbody>().isKinematic = false; //Ensure player can be moved
 
         inventoryActive.UpdateActive(0);
 
@@ -164,6 +165,7 @@ public class ControllerSwitch : MonoBehaviour
         Ship.GetComponent<Rigidbody>().isKinematic = true;
         cannonLeft.GetComponent<Cannon>().enabled = false;
         cannonRight.GetComponent<Cannon>().enabled = false;
+        Character.GetComponent<Rigidbody>().isKinematic = false;
         Character.GetComponent<PlayerController>().enabled = true;
         inventoryActive.UpdateActive(inventoryActive.lastCombatIndex);
         InCannon = false;
@@ -194,6 +196,7 @@ public class ControllerSwitch : MonoBehaviour
         Ship.GetComponent<Rigidbody>().isKinematic = true;
         cannonLeft.GetComponent<Cannon>().enabled = false;
         cannonRight.GetComponent<Cannon>().enabled = false;
+        Character.GetComponent<Rigidbody>().isKinematic = false;
         Character.GetComponent<PlayerController>().enabled = true;
         inventoryActive.UpdateActive(inventoryActive.lastCombatIndex);
         InCannon = false;
@@ -219,6 +222,7 @@ public class ControllerSwitch : MonoBehaviour
         Camera.transform.localPosition = ShipCam.transform.localPosition;
         Camera.transform.localEulerAngles = ShipCam.transform.localEulerAngles;
         Character.GetComponent<PlayerController>().enabled = false;
+        Character.GetComponent<Rigidbody>().isKinematic = true;
         cannonLeft.GetComponent<Cannon>().enabled = false;
         cannonRight.GetComponent<Cannon>().enabled = false;
         Ship.GetComponent<Rigidbody>().isKinematic = false; //cannonballs don't work unless it's false, don't ask me why
@@ -248,6 +252,7 @@ public class ControllerSwitch : MonoBehaviour
             cannonRight.GetComponent<Cannon>().enabled = true;
         }
         Character.GetComponent<PlayerController>().enabled = false;
+        Character.GetComponent<Rigidbody>().isKinematic = true;
         Ship.GetComponent<Rigidbody>().isKinematic = false;
         Ship.GetComponent<ShipController>().isDriving = false;
         inventoryActive.UpdateActive(inventoryActive.lastCannonIndex);
