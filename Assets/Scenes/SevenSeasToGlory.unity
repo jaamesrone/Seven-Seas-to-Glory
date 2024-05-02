@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.639
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1875797620}
-  m_IndirectSpecularColor: {r: 0.12503612, g: 0.15146796, b: 0.19847731, a: 0.639}
+  m_IndirectSpecularColor: {r: 0.12500693, g: 0.1514581, b: 0.1984491, a: 0.639}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2877,6 +2877,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3416692236396917315, guid: 9b37db723520f43519599d1f73c309a2,
     type: 3}
   m_PrefabInstance: {fileID: 2046121896}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &819431673 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1241852553457189044, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+    type: 3}
+  m_PrefabInstance: {fileID: 7691423016944292131}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &829517846
 PrefabInstance:
@@ -5867,11 +5873,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb1354ab91830f94cb37036dadb7f0e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxForwardSpeed: 7.5
-  forwardSpeedInertia: 10
-  decelerationSpeed: 1
-  minYawPerSecond: 5
-  maxYawPerSecond: 5
+  maxForwardSpeed: 30
+  forwardSpeedInertia: 30
+  decelerationSpeed: 30
+  minYawPerSecond: 30
+  maxYawPerSecond: 30
   currentForwardSpeed: 0
   currentYawPerSecond: 0
   inputForwardPercent: 0
@@ -5897,6 +5903,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7691423016944292131}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2041611466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819431673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 2
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 0a5dd552cdd42b34eb6356cc50422823, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1001 &2046121896
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8127,6 +8164,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1994448290}
+    - targetCorrespondingSourceObject: {fileID: 1241852553457189044, guid: 1ea29e850dde0b540b0ca8d3692dd4b9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2041611466}
   m_SourcePrefab: {fileID: 100100000, guid: 1ea29e850dde0b540b0ca8d3692dd4b9, type: 3}
 --- !u!1 &7993755741345877473
 GameObject:

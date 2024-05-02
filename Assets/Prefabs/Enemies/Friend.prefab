@@ -873,14 +873,13 @@ MonoBehaviour:
   agent: {fileID: 0}
   pirateAnimation: {fileID: 0}
   blockChance: 0.7
-  attackRange: 1.5
+  attackRange: 1
   attackDelay: 1.5
-  jumpDistance: 10
+  maxDistance: 50
+  followDistance: 2
   healthBar: {fileID: 6391524557897228679}
   damageTextPrefab: {fileID: 3494129963284465212}
   isAttacking: 0
-  jumpForce: 1
-  hasJumpedToEnemy: 0
 --- !u!1001 &5988952419189035611
 PrefabInstance:
   m_ObjectHideFlags: 0
