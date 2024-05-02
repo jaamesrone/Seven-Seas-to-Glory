@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SevenSeasToGlory.unity
     guid: 765017c53805ab54b8945755420ed632
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 034f078ac7baf4a33b8dccbe2ac26787
   m_configObjects: {}
