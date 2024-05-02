@@ -5873,11 +5873,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb1354ab91830f94cb37036dadb7f0e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxForwardSpeed: 30
-  forwardSpeedInertia: 30
-  decelerationSpeed: 30
-  minYawPerSecond: 30
-  maxYawPerSecond: 30
+  maxForwardSpeed: 7.5
+  forwardSpeedInertia: 10
+  decelerationSpeed: 1
+  minYawPerSecond: 5
+  maxYawPerSecond: 5
   currentForwardSpeed: 0
   currentYawPerSecond: 0
   inputForwardPercent: 0
