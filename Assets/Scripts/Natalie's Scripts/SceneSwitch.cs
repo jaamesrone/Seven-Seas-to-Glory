@@ -25,6 +25,11 @@ public class SceneSwitch : MonoBehaviour
         SceneManager.LoadScene("MenuControlsScene");
     }
 
+    public void switchToCredits()
+    {
+        SceneManager.LoadScene("Credits");
+    }
+
     public void Quit()
     {
         //StartCoroutine(PlaySFXAndWait(null));
