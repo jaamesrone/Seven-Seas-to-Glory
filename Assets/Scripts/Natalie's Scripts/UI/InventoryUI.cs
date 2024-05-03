@@ -6,22 +6,25 @@ using TMPro;
 public class InventoryUI : MonoBehaviour
 {
     public Player player;
-    public GameObject[] inventory;
+    public GameObject[] inventoryActiveIndicator;
+    public GameObject[] inventoryItems;
     public int activeIndex = 0;
     public TextMeshProUGUI moneyText;
     public TextMeshProUGUI explodeCount;
     public TextMeshProUGUI freezeCount;
     public TextMeshProUGUI bulletCount;
-    public int lastCannonIndex;
-    public int lastCombatIndex;
+    public int lastCannonIndex = 2;
+    public int lastCombatIndex = 0;
 
     void Start()
     {
-        //Deactivate all but first item
-        for(int i=0; i<inventory.Length; i++)
+        //Deactivate indicator on all but first item
+        for(int i=0; i<inventoryActiveIndicator.Length; i++)
         {
-            inventory[i].SetActive(i == activeIndex);
+            inventoryActiveIndicator[i].SetActive(i == activeIndex);
         }
+        //Deactivate all but sword and gun
+        SwitchInventory(true);
         moneyText.text = "$" + player.money;
         explodeCount.text = player.numExplodeCannonballs.ToString();
         freezeCount.text = player.numFreezingCannonballs.ToString();
@@ -47,9 +50,43 @@ public class InventoryUI : MonoBehaviour
         {
             lastCannonIndex = index;
         }
-        for (int i = 0; i < inventory.Length; i++)
+        for (int i = 0; i < inventoryActiveIndicator.Length; i++)
         {
-            inventory[i].SetActive(i == index);
+            inventoryActiveIndicator[i].SetActive(i == index);
+        }
+    }
+
+    public void SwitchInventory(bool inCharacter)
+    {
+        if(inCharacter)
+        {
+            for (int i = 0; i < inventoryItems.Length; i++)
+            {
+                //deactivated all but sword and gun
+                if (i != 0 && i != 1) 
+                {
+                    inventoryItems[i].SetActive(false);
+                }
+                else
+                {
+                    inventoryItems[i].SetActive(true);
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < inventoryItems.Length; i++)
+            {
+                //deactivated all but cannonballs
+                if (i == 0 || i == 1) 
+                {
+                    inventoryItems[i].SetActive(false);
+                }
+                else
+                {
+                    inventoryItems[i].SetActive(true);
+                }
+            }
         }
     }
 }
