@@ -34,6 +34,8 @@ public class ControllerSwitch : MonoBehaviour
     public InventoryUI inventoryActive;
     public GameObject playerHealthBar;
     public GameObject shipHealthBar;
+    public TextMeshProUGUI controlsTop;
+    public TextMeshProUGUI controlsBottom;
 
     private void Start()
     {
@@ -171,17 +173,12 @@ public class ControllerSwitch : MonoBehaviour
         InCannon = false;
         InShip = false;
         InCharacter = true;
+        inventoryActive.SwitchInventory(InCharacter);
         playerHealthBar.SetActive(true);
         shipHealthBar.SetActive(false);
-        if (inventoryActive.lastCombatIndex == 1)
-        {
-            ReticleImage.SetActive(true);
-        }
-        else
-        {
-            ReticleImage.SetActive(false);
-        }
         reload.SetActive(false);
+        controlsTop.text = "Ship: E at Wheel";
+        controlsBottom.text = "";
     }
 
 
@@ -202,17 +199,12 @@ public class ControllerSwitch : MonoBehaviour
         InCannon = false;
         InShip = false;
         InCharacter = true;
+        inventoryActive.SwitchInventory(InCharacter);
         playerHealthBar.SetActive(true);
         shipHealthBar.SetActive(false);
-        if (inventoryActive.lastCombatIndex == 1)
-        {
-            ReticleImage.SetActive(true);
-        }
-        else
-        {
-            ReticleImage.SetActive(false);
-        }
         reload.SetActive(false);
+        controlsTop.text = "Ship: E at Wheel";
+        controlsBottom.text = "";
     }
 
     void SwitchToShip()
@@ -231,10 +223,13 @@ public class ControllerSwitch : MonoBehaviour
         InCharacter = false;
         InCannon = false;
         InShip = true;
+        inventoryActive.SwitchInventory(InCharacter);
         shipHealthBar.SetActive(true);
         playerHealthBar.SetActive(false);
         ReticleImage.SetActive(false); // Hide the reticle image
         reload.SetActive(false);
+        controlsTop.text = "Character: E";
+        controlsBottom.text = "Cannon: Shift";
     }
 
     void SwitchToCannon()
@@ -260,6 +255,8 @@ public class ControllerSwitch : MonoBehaviour
         InCharacter = false;
         InShip = false;
         InCannon = true;
+        controlsTop.text = "Switch Sides: E";
+        controlsBottom.text = "Ship: Shift";
     }
 
     void SwitchSides()
