@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using TMPro;
 
 public class DayAndNight : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class DayAndNight : MonoBehaviour
 
     private float currentTime = 0;
     public float CurrentTime => currentTime;
+    public TextMeshProUGUI despawnWarning;
 
     // Determines if it's daytime (true) or nighttime (false)
     public bool IsDaytime => currentTime < 0.5f;
@@ -28,6 +30,7 @@ public class DayAndNight : MonoBehaviour
         updateTime();
         updateDayNightCycle();
         rotateSkybox();
+        SetSpawnWarning();
     }
 
     private void updateTime()
@@ -59,5 +62,25 @@ public class DayAndNight : MonoBehaviour
     private void OnApplicationQuit()
     {
         skyboxMaterial.SetColor("_Tint", new Color(0.5f, 0.5f, 0.5f));
+    }
+
+    private void SetSpawnWarning()
+    {
+        if(currentTime < 0.501f && currentTime >= 0.5f)
+        {
+            StartCoroutine(ActivateWarning("The Emperials are returning to the barracks."));
+        }
+        if(currentTime >= 0.998f && currentTime < 0.999f)
+        {
+            StartCoroutine(ActivateWarning("The Undead are returning to the depths."));
+        }
+    }
+
+    private IEnumerator ActivateWarning(string warning)
+    {
+        despawnWarning.text = warning;
+        despawnWarning.enabled = true;
+        yield return new WaitForSeconds(3.5f);
+        despawnWarning.enabled = false;
     }
 }
