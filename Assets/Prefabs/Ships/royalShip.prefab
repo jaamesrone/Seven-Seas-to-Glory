@@ -643,6 +643,7 @@ GameObject:
   - component: {fileID: 2008644026526727985}
   - component: {fileID: 8396452507018040953}
   - component: {fileID: 350601602292211089}
+  - component: {fileID: 48351338202793322}
   m_Layer: 8
   m_Name: ship_main
   m_TagString: EnemyShip
@@ -744,6 +745,37 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 3403696064803494963, guid: d780cf51f9f3d83479ab9d6626f7c847, type: 3}
+--- !u!114 &48351338202793322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241852553457189044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 2
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: d79bdcf598db8034e989d1e6094019df, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1 &1317267810622985227
 GameObject:
   m_ObjectHideFlags: 0
@@ -1203,8 +1235,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 8699597107415782830}
   health: 100
-  killGain: {fileID: 7599052527246959969, guid: 5aa8fc16f119247f8b4283560b25190a,
-    type: 3}
 --- !u!65 &2008882482285191881
 BoxCollider:
   m_ObjectHideFlags: 0
