@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.639
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1875797620}
-  m_IndirectSpecularColor: {r: 0.12508322, g: 0.1515278, b: 0.19852309, a: 0.639}
+  m_IndirectSpecularColor: {r: 0.12508035, g: 0.15150629, b: 0.1985185, a: 0.639}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -985,6 +985,11 @@ PrefabInstance:
       objectReference: {fileID: 1994448289}
     - target: {fileID: 2260953092123347876, guid: 8a3ca2974ac5a4a74adf4b773a6eba4c,
         type: 3}
+      propertyPath: despawnWarning
+      value: 
+      objectReference: {fileID: 158778999}
+    - target: {fileID: 2260953092123347876, guid: 8a3ca2974ac5a4a74adf4b773a6eba4c,
+        type: 3}
       propertyPath: numberOfShipsToSpawn
       value: 15
       objectReference: {fileID: 0}
@@ -1834,7 +1839,6 @@ MonoBehaviour:
   skyboxMaterial: {fileID: 2100000, guid: 01f4eb1c73693428d923f1520032e7f9, type: 2}
   dayDurationInSeconds: 559.3
   rotationSpeed: 0.5
-  despawnWarning: {fileID: 158778999}
 --- !u!4 &401813345
 Transform:
   m_ObjectHideFlags: 0
@@ -11189,7 +11193,7 @@ PrefabInstance:
     - target: {fileID: 3586944562322573093, guid: 9b37db723520f43519599d1f73c309a2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -3.9999847
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 3774413428017520268, guid: 9b37db723520f43519599d1f73c309a2,
         type: 3}
@@ -11409,7 +11413,7 @@ PrefabInstance:
     - target: {fileID: 6607256169079352262, guid: 9b37db723520f43519599d1f73c309a2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -3.9999847
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 6833867928212257816, guid: 9b37db723520f43519599d1f73c309a2,
         type: 3}

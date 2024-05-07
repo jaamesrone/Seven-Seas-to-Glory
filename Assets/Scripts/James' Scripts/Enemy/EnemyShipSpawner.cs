@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EnemyShipSpawner : MonoBehaviour
 {
@@ -15,19 +17,25 @@ public class EnemyShipSpawner : MonoBehaviour
     public float minDistanceFromPlayer = 50f;
     public float minDistanceFromOtherShips = 30f;
 
+    public TextMeshProUGUI despawnWarning;
+
 
     private DayAndNight dayAndNight;
-    private List<GameObject> spawnedShips = new List<GameObject>(); 
+    private List<GameObject> spawnedShips = new List<GameObject>();
+
+    private bool previousState;
 
     void Start()
     {
         dayAndNight = FindObjectOfType<DayAndNight>();
+        previousState = dayAndNight.IsDaytime;
         SpawnEnemyShips();
     }
 
     void Update()
     {
        UpdatePirateVisibility();
+       SetSpawnWarning();
     }
 
     void SpawnEnemyShips()
@@ -133,5 +141,26 @@ public class EnemyShipSpawner : MonoBehaviour
                 ship.SetActive(shouldBeVisible);
             }
         }
+    }
+
+    private void SetSpawnWarning()
+    {
+        if (previousState == true && !dayAndNight.IsDaytime)
+        {
+            StartCoroutine(ActivateWarning("The Emperials are returning to the barracks."));
+        }
+        if (previousState == false && dayAndNight.IsDaytime)
+        {
+            StartCoroutine(ActivateWarning("The Undead are returning to the depths."));
+        }
+        previousState = dayAndNight.IsDaytime;
+    }
+
+    private IEnumerator ActivateWarning(string warning)
+    {
+        despawnWarning.text = warning;
+        despawnWarning.enabled = true;
+        yield return new WaitForSeconds(3.5f);
+        despawnWarning.enabled = false;
     }
 }
