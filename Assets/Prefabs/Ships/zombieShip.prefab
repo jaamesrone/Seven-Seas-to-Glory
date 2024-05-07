@@ -1063,7 +1063,7 @@ MonoBehaviour:
   isInHandToHandCombat: 0
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 200
   cannonballPrefab: {fileID: 8779211502595034827, guid: 594e220f39690406aa207c4bfde71ca2,
     type: 3}
   leftCannonSpawnPoints:
