@@ -23,11 +23,7 @@ public class KillGain : MonoBehaviour
 
     public void ShipSink()
     {
-        Debug.Log("Ship sink called");
         gameObject.GetComponent<Player>().money += GetRandomNum();
-        Debug.Log(gameObject);
-        Debug.Log(gameObject.GetComponent<Player>());
-        Debug.Log(gameObject.GetComponent<Player>().money);
         SetAmmoDrop();
     }
 
