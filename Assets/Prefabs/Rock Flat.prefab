@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8042298907157216372}
-  - component: {fileID: 7509013838076466929}
-  m_Layer: 0
+  - component: {fileID: 8409603329583221461}
+  m_Layer: 7
   m_Name: Rock Flat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 7555027778997204303}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!205 &7509013838076466929
+--- !u!205 &8409603329583221461
 LODGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,13 +41,13 @@ LODGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2378505136102569459}
   serializedVersion: 2
-  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
-  m_Size: 1
+  m_LocalReferencePoint: {x: 0.12552762, y: -0.07468796, z: -0.57542324}
+  m_Size: 6.403598
   m_FadeMode: 0
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.012298433
+  - screenRelativeHeight: 0.029115964
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 6888797315454158425}
@@ -63,8 +63,8 @@ GameObject:
   - component: {fileID: 7555027778997204303}
   - component: {fileID: 4330539913555660297}
   - component: {fileID: 6888797315454158425}
-  - component: {fileID: 3909202123241994163}
-  m_Layer: 0
+  - component: {fileID: 7174567052393634525}
+  m_Layer: 7
   m_Name: rock_flat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,8 +136,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3909202123241994163
-BoxCollider:
+--- !u!64 &7174567052393634525
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -154,6 +154,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 161.6242, y: 104.99314, z: 234.0591}
-  m_Center: {x: 3.0575626, y: 0.14229402, z: 23.960047}
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4441956135514378507, guid: e734d51726d607549b8ffc176c2a442e, type: 3}

@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class EnemyShipSpawner : MonoBehaviour
 {
@@ -17,25 +15,19 @@ public class EnemyShipSpawner : MonoBehaviour
     public float minDistanceFromPlayer = 50f;
     public float minDistanceFromOtherShips = 30f;
 
-    public TextMeshProUGUI despawnWarning;
-
 
     private DayAndNight dayAndNight;
-    private List<GameObject> spawnedShips = new List<GameObject>();
-
-    private bool previousState;
+    private List<GameObject> spawnedShips = new List<GameObject>(); 
 
     void Start()
     {
         dayAndNight = FindObjectOfType<DayAndNight>();
-        previousState = dayAndNight.IsDaytime;
         SpawnEnemyShips();
     }
 
     void Update()
     {
        UpdatePirateVisibility();
-       SetSpawnWarning();
     }
 
     void SpawnEnemyShips()
@@ -112,11 +104,8 @@ public class EnemyShipSpawner : MonoBehaviour
     {
         foreach (GameObject ship in spawnedShips)
         {
-            if (ship != null) //not having null checks has caused a lot of errors to pop up
-            {
-                if (Vector3.Distance(position, ship.transform.position) < minDistanceFromOtherShips)
-                    return false;
-            }
+            if (Vector3.Distance(position, ship.transform.position) < minDistanceFromOtherShips)
+                return false;
         }
         return true;
     }
@@ -126,41 +115,18 @@ public class EnemyShipSpawner : MonoBehaviour
         bool isDaytime = dayAndNight.IsDaytime;
         foreach (GameObject ship in spawnedShips)
         {
-            bool shouldBeVisible = true;
-            if (ship != null) //not having null checks has caused a lot of errors to pop up
+            bool shouldBeVisible = true; 
+
+            if (ship.CompareTag("RoyalShip"))
             {
-                if (ship.CompareTag("RoyalShip"))
-                {
-                    shouldBeVisible = isDaytime;
-                }
-                else if (ship.CompareTag("SharkShip") || ship.CompareTag("PirateShip") || ship.CompareTag("zombieShip"))
-                {
-                    shouldBeVisible = !isDaytime;
-                }
-
-                ship.SetActive(shouldBeVisible);
+                shouldBeVisible = isDaytime; 
             }
-        }
-    }
+            else if (ship.CompareTag("SharkShip") || ship.CompareTag("PirateShip") || ship.CompareTag("zombieShip")) 
+            {
+                shouldBeVisible = !isDaytime;
+            }
 
-    private void SetSpawnWarning()
-    {
-        if (previousState == true && !dayAndNight.IsDaytime)
-        {
-            StartCoroutine(ActivateWarning("The Emperials are returning to the barracks."));
+            ship.SetActive(shouldBeVisible);
         }
-        if (previousState == false && dayAndNight.IsDaytime)
-        {
-            StartCoroutine(ActivateWarning("The Undead are returning to the depths."));
-        }
-        previousState = dayAndNight.IsDaytime;
-    }
-
-    private IEnumerator ActivateWarning(string warning)
-    {
-        despawnWarning.text = warning;
-        despawnWarning.enabled = true;
-        yield return new WaitForSeconds(3.5f);
-        despawnWarning.enabled = false;
     }
 }

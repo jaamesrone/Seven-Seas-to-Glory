@@ -41,9 +41,6 @@ public class PlayerController : MonoBehaviour
     public GameObject firingPoint;
     public GameObject reticleImage;
     public GameObject reload;
-
-  //  public AudioSource gunFire;
-   // public AudioSource swordSwing;
     
 
     private void Awake()
@@ -168,13 +165,11 @@ public class PlayerController : MonoBehaviour
             {
                 animator.SetBool("IsAttacking", true);
                 isAttacking = true;
-               // swordSwing.Play();
-                StartCoroutine(ResetIsAttackingAfterDelay(0.8f));
+                StartCoroutine(ResetIsAttackingAfterDelay(1f));
             }
         }
         else if(isUsingGun)
             {
-                //gunFire.Play();
                 GameObject bullet = Instantiate(normalBulletPrefab, firingPoint.transform.position, firingPoint.transform.rotation);
                 Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
                 if (bulletRigidbody != null)

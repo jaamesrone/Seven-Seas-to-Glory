@@ -148,9 +148,9 @@ public class ImperialPirate : EnemyClass
 
     void Die()
     {
-        recruitmentText.text = "\tDo you want to recruit this pirate? J/M.\tteleport pirates to you 'T'";
+        recruitmentText.text = "\tDo you want to recruit this pirate? J/M.\n\tteleport pirates to you 'T'";
         awaitingRecruitmentDecision = true; // The pirate is now waiting for a decision
-        agent.enabled = false;
+        agent.isStopped = true; 
     }
     void Recruitment()
     {

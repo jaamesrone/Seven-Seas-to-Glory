@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2969375589261158709}
-  - component: {fileID: 5780981714818034486}
-  m_Layer: 0
+  - component: {fileID: 5594656896946532115}
+  m_Layer: 7
   m_Name: Rock Spire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 3489190989979117185}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!205 &5780981714818034486
+--- !u!205 &5594656896946532115
 LODGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -47,7 +47,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.009523164
+  - screenRelativeHeight: 0.0052469736
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 4390747221373091495}
@@ -63,9 +63,8 @@ GameObject:
   - component: {fileID: 3489190989979117185}
   - component: {fileID: 6824617932536315303}
   - component: {fileID: 4390747221373091495}
-  - component: {fileID: 2718769813654553087}
-  - component: {fileID: 5661921241391157724}
-  m_Layer: 0
+  - component: {fileID: 6323748404631333177}
+  m_Layer: 7
   m_Name: rock_spire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +80,7 @@ Transform:
   m_GameObject: {fileID: 5769438704974179894}
   serializedVersion: 2
   m_LocalRotation: {x: -0.6779221, y: -0.16260879, z: -0.075963266, w: -0.71288824}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.99, z: 0}
   m_LocalScale: {x: 0.02267585, y: 0.022675846, z: 0.02267585}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -137,8 +136,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2718769813654553087
-BoxCollider:
+--- !u!64 &6323748404631333177
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -155,27 +154,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 145.82523, y: 126.86267, z: 342.5488}
-  m_Center: {x: 90.27498, y: 10.488301, z: -127.17984}
---- !u!65 &5661921241391157724
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5769438704974179894}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 248.94743, y: 213.01167, z: 137.99747}
-  m_Center: {x: 29.82157, y: -8.485875, z: -24.90165}
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6115173918861560542, guid: e734d51726d607549b8ffc176c2a442e, type: 3}

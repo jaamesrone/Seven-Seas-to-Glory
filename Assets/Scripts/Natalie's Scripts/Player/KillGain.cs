@@ -4,26 +4,34 @@ using UnityEngine;
 
 public class KillGain : MonoBehaviour
 {
+    public Player player;
     public int maxMoney = 100;
     public int minMoney = 10;
     public int maxCannonballChance = 4;
     public int maxCannonballGain = 6;
 
+    private void Start()
+    {
+        if (player == null)
+        {
+            Debug.Log("player null");
+        }
+    }
     public void Spare()
     {
-        gameObject.GetComponent<Player>().money += GetRandomNum();
+        player.money += GetRandomNum();
         SetAmmoDrop();
     }
 
     public void Kill()
     {
-        gameObject.GetComponent<Player>().money += GetRandomNum() + 100;
+        player.money += GetRandomNum() + 100;
         SetAmmoDrop();
     }
 
     public void ShipSink()
     {
-        gameObject.GetComponent<Player>().money += GetRandomNum();
+        player.money += GetRandomNum();
         SetAmmoDrop();
     }
 
@@ -32,11 +40,11 @@ public class KillGain : MonoBehaviour
         int rand = Random.Range(0, maxCannonballChance);
         if (rand == 0)
         {
-            gameObject.GetComponent<Player>().numExplodeCannonballs += Random.Range(1, maxCannonballGain + 1);
+            player.numExplodeCannonballs += Random.Range(1, maxCannonballGain + 1);
         }
         if (rand == 1)
         {
-            gameObject.GetComponent<Player>().numFreezingCannonballs += Random.Range(1, maxCannonballGain + 1);
+            player.numFreezingCannonballs += Random.Range(1, maxCannonballGain + 1);
         }
     }
 

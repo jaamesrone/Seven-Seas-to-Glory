@@ -22,6 +22,12 @@ public class Player : PlayerClass
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Explosion")
+            health -= 10;
+    }
+
     private void Die()
     {
         Debug.Log("player died!");

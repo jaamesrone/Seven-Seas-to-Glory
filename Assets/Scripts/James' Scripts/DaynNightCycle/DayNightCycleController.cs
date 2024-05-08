@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using TMPro;
 
 public class DayAndNight : MonoBehaviour
 {
@@ -29,7 +28,6 @@ public class DayAndNight : MonoBehaviour
         updateTime();
         updateDayNightCycle();
         rotateSkybox();
-        //SetSpawnWarning();
     }
 
     private void updateTime()
