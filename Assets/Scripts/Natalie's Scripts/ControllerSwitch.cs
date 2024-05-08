@@ -35,6 +35,8 @@ public class ControllerSwitch : MonoBehaviour
     public GameObject playerHealthBar;
     public GameObject shipHealthBar;
 
+    private GameObject enemyShip = null;
+
     private void Start()
     {
         InCharacter = true;
@@ -43,6 +45,7 @@ public class ControllerSwitch : MonoBehaviour
         cannonRight.GetComponent<Cannon>().enabled = false;
         Ship.GetComponent<ShipController>().isDriving = false;
         Ship.GetComponent<Rigidbody>().isKinematic = true; //Keeps player from being able to move it
+        Character.GetComponent<Rigidbody>().isKinematic = false; //Ensure player can be moved
 
         inventoryActive.UpdateActive(0);
 
@@ -96,6 +99,10 @@ public class ControllerSwitch : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.N))
             {
                 // ignore combat and stay in ship
+                if (enemyShip != null)
+                {
+                    enemyShip.GetComponentInParent<EnemyShipAI>().SetHandToHandCombat(false);
+                }
                 dialogueText.text = "";
                 awaitingCombatDecision = false;
             }
@@ -108,7 +115,7 @@ public class ControllerSwitch : MonoBehaviour
         {
             CanDriveShip = false;
         }
-        if (other.CompareTag("HandtoHand"))//james' script
+        if (other.CompareTag("HandtoHand") && awaitingCombatDecision)//james' script
         {
             dialogueText.text = "";
             awaitingCombatDecision = false;
@@ -130,6 +137,7 @@ public class ControllerSwitch : MonoBehaviour
         }
         else if (other.tag == "HandtoHand" && !isCooldownActive && !awaitingCombatDecision && InShip) //if player enters the trigger dialogue pops up asking a question
         {//james' script
+            enemyShip = other.gameObject;
             other.GetComponentInParent<EnemyShipAI>().SetHandToHandCombat(true);//stops the pirate ai ship from shooting cannonballs
             other.gameObject.transform.parent.GetComponent<EnemyShipAI>().speed = 0;
             dialogueText.text = "Do you want to engage in hand-to-hand combat? (Y/N)";

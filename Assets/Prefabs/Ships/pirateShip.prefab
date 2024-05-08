@@ -1120,6 +1120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 8699597107415782830}
   health: 100
+  killGain: {fileID: 0}
 --- !u!65 &4572097413338364574
 BoxCollider:
   m_ObjectHideFlags: 0
