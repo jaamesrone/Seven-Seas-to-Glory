@@ -37,6 +37,8 @@ public class ControllerSwitch : MonoBehaviour
     public TextMeshProUGUI controlsTop;
     public TextMeshProUGUI controlsBottom;
 
+    private GameObject enemyShip = null;
+
     private void Start()
     {
         InCharacter = true;
@@ -99,6 +101,10 @@ public class ControllerSwitch : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.N))
             {
                 // ignore combat and stay in ship
+                if(enemyShip != null)
+                {
+                    enemyShip.GetComponentInParent<EnemyShipAI>().SetHandToHandCombat(false);
+                }
                 dialogueText.text = "";
                 awaitingCombatDecision = false;
             }
@@ -111,7 +117,7 @@ public class ControllerSwitch : MonoBehaviour
         {
             CanDriveShip = false;
         }
-        if (other.CompareTag("HandtoHand"))//james' script
+        if (other.CompareTag("HandtoHand") && awaitingCombatDecision)//james' script
         {
             dialogueText.text = "";
             awaitingCombatDecision = false;
@@ -133,6 +139,7 @@ public class ControllerSwitch : MonoBehaviour
         }
         else if (other.tag == "HandtoHand" && !isCooldownActive && !awaitingCombatDecision && InShip) //if player enters the trigger dialogue pops up asking a question
         {//james' script
+            enemyShip = other.gameObject;
             other.GetComponentInParent<EnemyShipAI>().SetHandToHandCombat(true);//stops the pirate ai ship from shooting cannonballs
             other.gameObject.transform.parent.GetComponent<EnemyShipAI>().speed = 0;
             dialogueText.text = "Do you want to engage in hand-to-hand combat? (Y/N)";
