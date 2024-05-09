@@ -104,8 +104,11 @@ public class EnemyShipSpawner : MonoBehaviour
     {
         foreach (GameObject ship in spawnedShips)
         {
-            if (Vector3.Distance(position, ship.transform.position) < minDistanceFromOtherShips)
-                return false;
+            if (ship != null)
+            {
+                if (Vector3.Distance(position, ship.transform.position) < minDistanceFromOtherShips)
+                    return false;
+            }
         }
         return true;
     }
@@ -115,18 +118,20 @@ public class EnemyShipSpawner : MonoBehaviour
         bool isDaytime = dayAndNight.IsDaytime;
         foreach (GameObject ship in spawnedShips)
         {
-            bool shouldBeVisible = true; 
-
-            if (ship.CompareTag("RoyalShip"))
+            bool shouldBeVisible = true;
+            if (ship != null)
             {
-                shouldBeVisible = isDaytime; 
-            }
-            else if (ship.CompareTag("SharkShip") || ship.CompareTag("PirateShip") || ship.CompareTag("zombieShip")) 
-            {
-                shouldBeVisible = !isDaytime;
-            }
+                if (ship.CompareTag("RoyalShip"))
+                {
+                    shouldBeVisible = isDaytime;
+                }
+                else if (ship.CompareTag("SharkShip") || ship.CompareTag("PirateShip") || ship.CompareTag("zombieShip"))
+                {
+                    shouldBeVisible = !isDaytime;
+                }
 
-            ship.SetActive(shouldBeVisible);
+                ship.SetActive(shouldBeVisible);
+            }
         }
     }
 }

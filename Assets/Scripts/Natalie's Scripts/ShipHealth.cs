@@ -11,11 +11,17 @@ public class ShipHealth : MonoBehaviour
     private bool hit = false;
     private int addedDamage = 0;
 
-    public KillGain killGain;
+    private GameObject player;
+    private KillGain killGain;
 
     void Start()
     {
         healthBar.SetMaxHealth(health);
+        player = GameObject.FindWithTag("Player");
+        if (player != null)
+        {
+            killGain = player.GetComponent<KillGain>();
+        }
     }
 
     public void TakeDamage(float damage)
@@ -60,5 +66,9 @@ public class ShipHealth : MonoBehaviour
     {
         Debug.Log("Enemy Sank!");
         Destroy(gameObject);
+        if (killGain != null)
+        {
+            killGain.ShipSink();
+        }
     }
 }
