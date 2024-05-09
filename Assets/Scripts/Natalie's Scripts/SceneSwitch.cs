@@ -23,6 +23,12 @@ public class SceneSwitch : MonoBehaviour
         Cursor.visible = true;
         SceneManager.LoadScene("MenuControlsScene");
     }
+    public void switchToCredits()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+        SceneManager.LoadScene("Credits");
+    }
     public void Quit()
     {
         Application.Quit();
